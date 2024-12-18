@@ -21,9 +21,14 @@ import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
 import { DEPRESSIONOPTIONS, DEPRESSIONQUESTIONS } from "@/constants/questions";
 
+import { useNavigate } from "react-router";
+
+import Logo from "@/assets/logo.png";
+
 type Tap = "chat" | "diagnosis" | "lucid";
 
 export function DiagnosisPage() {
+    const navigate = useNavigate();
     // current tap
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
 
@@ -59,11 +64,15 @@ export function DiagnosisPage() {
         }, 1000);
     }
 
+    function handleGoPreviousPage() {
+        navigate(-1);
+    }
+
     return (
         <Container bg={bg}>
             <Center height="5vh" bg="white">
                 <HStack w="100%" gap="10px">
-                    <Image src="logo.png" h="2vh" alt="logo" />
+                    <Image src={Logo} h="2vh" alt="logo" />
                     <Spacer />
                     <Button
                         size="md"
@@ -142,20 +151,22 @@ export function DiagnosisPage() {
                     )}
                     {state.status === "onProgress" && (
                         <>
-                            <Square
+                            <Center
                                 bg="white"
                                 borderRadius="md"
-                                borderWidth="1px"
-                                borderColor="#C6C6C6"
+                                borderWidth={2}
+                                borderColor={palettes.grey}
                                 width="100%"
                                 height="20vh"
                                 p="24px"
                             >
-                                <VStack alignItems="center">
+                                <VStack h="100%" alignItems="center">
+                                    <Spacer />
                                     <Text
                                         fontSize="4xl"
                                         fontWeight="bold"
                                         color="black"
+                                        textAlign="center"
                                     >
                                         {
                                             state.surveyQuestions.questions[
@@ -163,10 +174,44 @@ export function DiagnosisPage() {
                                             ]
                                         }
                                     </Text>
+                                    <Spacer />
+                                    <Text color="black">{`${
+                                        state.currentIndex + 1
+                                    } / ${
+                                        state.surveyQuestions.questions.length
+                                    }`}</Text>
                                 </VStack>
-                            </Square>
-                            {/* Array -> question answers */}
-                            {/* Create question and answers object */}
+                            </Center>
+                            <HStack mt="1vh" mb="1vh" gap={0}>
+                                <Button
+                                    w="49%"
+                                    h="3vh"
+                                    color="white"
+                                    fontSize="l"
+                                    fontWeight="bold"
+                                    bg={palettes.primary}
+                                    borderColor={palettes.primary}
+                                    borderWidth={2}
+                                    onClick={() => {
+                                        goBack();
+                                    }}
+                                >
+                                    Prev
+                                </Button>
+                                <Spacer />
+                                <Button
+                                    w="49%"
+                                    h="3vh"
+                                    color="black"
+                                    fontWeight="bold"
+                                    borderColor={palettes.grey}
+                                    borderWidth={2}
+                                    fontSize="l"
+                                    onClick={handleGoPreviousPage}
+                                >
+                                    End diagnosis
+                                </Button>
+                            </HStack>
                             {state.surveyQuestions.options.map((_, idx) => (
                                 <AnswerButton
                                     key={idx}
