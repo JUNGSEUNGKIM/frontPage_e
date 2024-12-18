@@ -31,6 +31,17 @@ export function OnboardingPage() {
                     Lets get started
                 </Button>
             </Link>
+            <Button
+                size="2xl"
+                bg="white"
+                fontSize="4xl"
+                borderColor={palettes.grey}
+                borderWidth={2}
+                color="black"
+                mt="5"
+            >
+                How to use
+            </Button>
         </VStack>
     );
 }

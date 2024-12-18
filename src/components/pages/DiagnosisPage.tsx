@@ -182,9 +182,17 @@ export function DiagnosisPage() {
                                     }`}</Text>
                                 </VStack>
                             </Center>
-                            <HStack mt="1vh" mb="1vh" gap={0}>
+                            {state.surveyQuestions.options.map((_, idx) => (
+                                <AnswerButton
+                                    key={idx}
+                                    label={state.surveyQuestions.options[idx]}
+                                    isSelected={tappedButtonIdx === idx}
+                                    handleTap={() => handleAnswerTap(idx)}
+                                />
+                            ))}
+                            <HStack mt="5vh" mb="1vh" gap={0}>
                                 <Button
-                                    w="49%"
+                                    w="30%"
                                     h="3vh"
                                     color="white"
                                     fontSize="l"
@@ -198,9 +206,9 @@ export function DiagnosisPage() {
                                 >
                                     Prev
                                 </Button>
-                                <Spacer />
+                                <Container width="1vw" />
                                 <Button
-                                    w="49%"
+                                    w="30%"
                                     h="3vh"
                                     color="black"
                                     fontWeight="bold"
@@ -212,14 +220,6 @@ export function DiagnosisPage() {
                                     End diagnosis
                                 </Button>
                             </HStack>
-                            {state.surveyQuestions.options.map((_, idx) => (
-                                <AnswerButton
-                                    key={idx}
-                                    label={state.surveyQuestions.options[idx]}
-                                    isSelected={tappedButtonIdx === idx}
-                                    handleTap={() => handleAnswerTap(idx)}
-                                />
-                            ))}
                         </>
                     )}
                     {state.status === "done" && (
