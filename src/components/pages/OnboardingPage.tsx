@@ -3,6 +3,7 @@ import { Container, VStack, HStack, Image } from "@chakra-ui/react";
 import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
+import { Link } from "react-router";
 
 export function OnboardingPage() {
     return (
@@ -20,14 +21,16 @@ export function OnboardingPage() {
             <Container height="10vh"></Container>
             <DynamicEmoji width={350} height={350} />
             <Container height="10vh"></Container>
-            <Button
-                size="2xl"
-                bg={palettes.primary}
-                fontSize="4xl"
-                color="white"
-            >
-                Lets get started
-            </Button>
+            <Link to="/diagnosis">
+                <Button
+                    size="2xl"
+                    bg={palettes.primary}
+                    fontSize="4xl"
+                    color="white"
+                >
+                    Lets get started
+                </Button>
+            </Link>
         </VStack>
     );
 }
