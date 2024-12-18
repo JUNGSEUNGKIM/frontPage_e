@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import * as faceMesh from "@mediapipe/face_mesh";
 import { Camera } from "@mediapipe/camera_utils";
 import cv from "@techstark/opencv-js";
-import { RPPGMeasurement } from "@/interfaces/rppg_interface";
+import { RPPGMeasurement } from "@/types/rppg_types";
 
 const FaceDetectionApp = ({
     onValueChanged,

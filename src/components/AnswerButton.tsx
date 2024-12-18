@@ -3,11 +3,16 @@ import palettes from "@/constants/colors";
 import { Text } from "@chakra-ui/react";
 
 interface AnswerButtonProps {
+    label: string;
     isSelected: boolean;
     handleTap: () => void;
 }
 
-export function AnswerButton({ isSelected, handleTap }: AnswerButtonProps) {
+export function AnswerButton({
+    label,
+    isSelected,
+    handleTap,
+}: AnswerButtonProps) {
     return (
         <Button
             bg={isSelected ? palettes.primary : "white"}
@@ -27,7 +32,7 @@ export function AnswerButton({ isSelected, handleTap }: AnswerButtonProps) {
                 fontWeight="bold"
                 color={isSelected ? "white" : "black"}
             >
-                일주일 이상 영향을 받았다
+                {label}
             </Text>
         </Button>
     );

@@ -1,7 +1,7 @@
 import { HStack, VStack, Center, Text } from "@chakra-ui/react";
 import { grey } from "@/constants/colors";
 import { RppgItem } from "./RppgItem";
-import { RPPGMeasurement } from "@/interfaces/rppg_interface";
+import { RPPGMeasurement } from "@/types";
 
 export function RppgMeasurementList({
     measurementValue,

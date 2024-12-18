@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { RppgMeasurementList } from "@/components/RppgResults";
 // import Webcam from "react-webcam";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
-import { RPPGMeasurement } from "@/interfaces/rppg_interface";
+import { RPPGMeasurement } from "@/types/rppg_types";
 
 interface Diagnosis {
     status: "init" | "onProgress" | "done";
@@ -32,6 +32,7 @@ export function DiagnosisPage() {
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
     // button clicked check
     const [isProcessing, setIsProcessing] = useState(false);
+    // answer button index
     const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
     // status : init / progress / done
     const [diagnosis, setDiagnosis] = useState<Diagnosis>({
@@ -49,7 +50,7 @@ export function DiagnosisPage() {
 
     // get question data from server
     useEffect(() => {
-        console.log(diagnosis.currentIndex);
+        // console.log(diagnosis.currentIndex);
     }, [diagnosis]);
 
     // handle rppg
@@ -164,9 +165,12 @@ export function DiagnosisPage() {
                             </Text>
                         </VStack>
                     </Square>
+                    {/* Array -> question answers */}
+                    {/* Create question and answers object */}
                     {Array.from({ length: 4 }).map((_, idx) => (
                         <AnswerButton
                             key={idx}
+                            label="질문 답변 예제"
                             isSelected={selectedIdx === idx}
                             handleTap={() => handleButtonClick(idx)}
                         />
