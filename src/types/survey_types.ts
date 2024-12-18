@@ -11,5 +11,5 @@ export interface SurveyState {
     status: SurveyStatus;
     currentIndex: number;
     responses: number[];
-    questions: SurveyQuestions;
+    surveyQuestions: SurveyQuestions;
 }

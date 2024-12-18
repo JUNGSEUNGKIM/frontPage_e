@@ -1,5 +1,5 @@
-/// Dimension q&a
-export const DIMENSIONQUESTIONS = [
+/// Depression q&a
+export const DEPRESSIONQUESTIONS = [
     "Little interest or pleasure in doing things",
     "Feeling down, depressed, or hopeless",
     "Trouble falling or staying asleep, or sleeping too much",

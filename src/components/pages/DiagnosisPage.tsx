@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { bg, grey, primary } from "@/constants/colors";
+import palettes, { bg, grey, primary } from "@/constants/colors";
 import {
     Image,
     VStack,
@@ -18,28 +18,22 @@ import { RppgMeasurementList } from "@/components/RppgResults";
 // import Webcam from "react-webcam";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
-
-interface Diagnosis {
-    status: "init" | "onProgress" | "done";
-    currentIndex: number;
-    answers: number[];
-}
+import { useSurvey } from "@/hooks/useSurvey";
+import { DEPRESSIONOPTIONS, DEPRESSIONQUESTIONS } from "@/constants/questions";
 
 type Tap = "chat" | "diagnosis" | "lucid";
 
 export function DiagnosisPage() {
     // current tap
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
+
     // button clicked check
     const [isProcessing, setIsProcessing] = useState(false);
-    // answer button index
-    const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+    const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
+
+    const { state, startSurvey, answerQuestion, goBack } = useSurvey();
     // status : init / progress / done
-    const [diagnosis, setDiagnosis] = useState<Diagnosis>({
-        status: "init",
-        currentIndex: 0,
-        answers: [],
-    });
 
     const [measurement, setMeasurement] = useState<RPPGMeasurement>({
         hr: "0",
@@ -48,35 +42,23 @@ export function DiagnosisPage() {
         emotion: "None",
     });
 
-    // get question data from server
-    useEffect(() => {
-        // console.log(diagnosis.currentIndex);
-    }, [diagnosis]);
-
     // handle rppg
     function handleMeasurement(newValue: RPPGMeasurement) {
         setMeasurement(newValue);
     }
 
     function handleTap(selectedTap: Tap) {
-        // selectedTap : string
         setCurrentTap(selectedTap);
     }
 
-    function handleButtonClick(idx: number) {
-        if (isProcessing) return;
-        setIsProcessing(true);
-        setSelectedIdx(idx);
-        setDiagnosis({
-            ...diagnosis,
-            currentIndex: diagnosis.currentIndex + 1,
-        });
-
+    function handleAnswerTap(idx: number) {
+        setTappedButtonIdx(idx);
         setTimeout(() => {
-            setSelectedIdx(null);
-            setIsProcessing(false);
+            setTappedButtonIdx(null);
+            answerQuestion(idx);
         }, 1000);
     }
+
     return (
         <Container bg={bg}>
             <Center height="5vh" bg="white">
@@ -144,37 +126,62 @@ export function DiagnosisPage() {
                 </GridItem>
 
                 <GridItem rowSpan={4} rounded="md">
-                    <Square
-                        bg="white"
-                        borderRadius="md"
-                        borderWidth="1px"
-                        borderColor="#C6C6C6"
-                        width="100%"
-                        height="20vh"
-                        p="24px"
-                    >
-                        <VStack alignItems="center">
-                            <Text
-                                fontSize="4xl"
-                                fontWeight="bold"
-                                color="black"
+                    {state.status === "init" && (
+                        <Button
+                            onClick={() =>
+                                startSurvey(
+                                    DEPRESSIONQUESTIONS,
+                                    DEPRESSIONOPTIONS
+                                )
+                            }
+                            bg={palettes.primary}
+                            color="white"
+                        >
+                            Start diagnosis
+                        </Button>
+                    )}
+                    {state.status === "onProgress" && (
+                        <>
+                            <Square
+                                bg="white"
+                                borderRadius="md"
+                                borderWidth="1px"
+                                borderColor="#C6C6C6"
+                                width="100%"
+                                height="20vh"
+                                p="24px"
                             >
-                                질문 텍스트가 들어가는 공간입니다. 텍스트 길이는
-                                어느정도까지 잘나올까요? 최대 길이를
-                                체크해야합니다.
-                            </Text>
-                        </VStack>
-                    </Square>
-                    {/* Array -> question answers */}
-                    {/* Create question and answers object */}
-                    {Array.from({ length: 4 }).map((_, idx) => (
-                        <AnswerButton
-                            key={idx}
-                            label="질문 답변 예제"
-                            isSelected={selectedIdx === idx}
-                            handleTap={() => handleButtonClick(idx)}
-                        />
-                    ))}
+                                <VStack alignItems="center">
+                                    <Text
+                                        fontSize="4xl"
+                                        fontWeight="bold"
+                                        color="black"
+                                    >
+                                        {
+                                            state.surveyQuestions.questions[
+                                                state.currentIndex
+                                            ]
+                                        }
+                                    </Text>
+                                </VStack>
+                            </Square>
+                            {/* Array -> question answers */}
+                            {/* Create question and answers object */}
+                            {state.surveyQuestions.options.map((_, idx) => (
+                                <AnswerButton
+                                    key={idx}
+                                    label={state.surveyQuestions.options[idx]}
+                                    isSelected={tappedButtonIdx === idx}
+                                    handleTap={() => handleAnswerTap(idx)}
+                                />
+                            ))}
+                        </>
+                    )}
+                    {state.status === "done" && (
+                        <Center>
+                            <Text color="black">Result Component</Text>
+                        </Center>
+                    )}
                 </GridItem>
             </Grid>
         </Container>
