@@ -21,6 +21,7 @@ export function AnswerButton({
             borderWidth="2px"
             variant="solid"
             borderColor={isSelected ? palettes.primary : palettes.grey}
+            borderRadius={12}
             onClick={handleTap}
             mt="16px"
             _hover={{

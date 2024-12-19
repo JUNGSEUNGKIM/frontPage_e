@@ -85,9 +85,12 @@ export function DiagnosisPage() {
         <Container bg={bg}>
             <Center height="5vh" bg="white">
                 <HStack w="100%" gap="10px">
-                    <Link to="/">
-                        <Image src={Logo} h="2vh" alt="logo" />
-                    </Link>
+                    <Image
+                        src={Logo}
+                        onClick={() => handleGoPreviousPage()}
+                        h="2vh"
+                        alt="logo"
+                    />
                     <Spacer />
                     <Button
                         size="md"
@@ -97,6 +100,7 @@ export function DiagnosisPage() {
                         borderColor={
                             currentTap === "diagnosis" ? primary : grey
                         }
+                        borderRadius={12}
                         onClick={() => handleTap("diagnosis")}
                     >
                         <Text
@@ -113,6 +117,7 @@ export function DiagnosisPage() {
                         bg={currentTap === "lucid" ? primary : "white"}
                         borderWidth="1px"
                         borderColor={currentTap === "lucid" ? primary : grey}
+                        borderRadius={12}
                         onClick={() => handleTap("lucid")}
                     >
                         <Text
@@ -127,6 +132,7 @@ export function DiagnosisPage() {
                         bg={currentTap === "chat" ? primary : "white"}
                         borderWidth="1px"
                         borderColor={currentTap === "chat" ? primary : grey}
+                        borderRadius={12}
                         onClick={() => handleTap("chat")}
                     >
                         <Text color={currentTap === "chat" ? "white" : "black"}>
@@ -177,6 +183,7 @@ export function DiagnosisPage() {
                                         }
                                         borderColor={palettes.grey}
                                         borderWidth={2}
+                                        borderRadius={12}
                                         onClick={() => {
                                             if (
                                                 selectedDiagnosis !==
@@ -229,6 +236,7 @@ export function DiagnosisPage() {
                                         }
                                         borderColor={palettes.grey}
                                         borderWidth={2}
+                                        borderRadius={12}
                                         onClick={() => {
                                             if (
                                                 selectedDiagnosis !== "Dementia"
@@ -274,8 +282,9 @@ export function DiagnosisPage() {
                                     w="100%"
                                     h="4vh"
                                     bg={palettes.primary}
-                                    fontSize="2xl"
+                                    fontSize="3xl"
                                     color="white"
+                                    borderRadius={12}
                                     onClick={() => {
                                         let questions = DEPRESSIONQUESTIONS;
                                         let options = DEPRESSIONOPTIONS;
@@ -297,6 +306,7 @@ export function DiagnosisPage() {
                                     borderRadius="md"
                                     borderWidth={2}
                                     borderColor={palettes.grey}
+                                    borderRadius={12}
                                     width="100%"
                                     height="20vh"
                                     p="24px"
@@ -344,6 +354,7 @@ export function DiagnosisPage() {
                                         bg={palettes.primary}
                                         borderColor={palettes.primary}
                                         borderWidth={2}
+                                        borderRadius={12}
                                         onClick={() => {
                                             goBack();
                                         }}
@@ -354,14 +365,16 @@ export function DiagnosisPage() {
                                     <Button
                                         w="30%"
                                         h="3vh"
-                                        color="black"
+                                        bg="white"
                                         fontWeight="bold"
                                         borderColor={palettes.grey}
                                         borderWidth={2}
+                                        borderRadius={12}
+                                        color="black"
                                         fontSize="l"
                                         onClick={handleGoPreviousPage}
                                     >
-                                        End diagnosis
+                                        Stop
                                     </Button>
                                 </HStack>
                             </>

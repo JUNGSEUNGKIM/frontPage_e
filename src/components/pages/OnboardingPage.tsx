@@ -28,6 +28,7 @@ export function OnboardingPage() {
                     bg={palettes.primary}
                     fontSize="4xl"
                     color="white"
+                    borderRadius={12}
                 >
                     Lets get started
                 </Button>
@@ -35,9 +36,10 @@ export function OnboardingPage() {
             <Button
                 w="50vw"
                 h="4vh"
-                bg="white"
+                bg={palettes.grey}
                 fontSize="4xl"
                 borderColor={palettes.grey}
+                borderRadius={12}
                 borderWidth={2}
                 color="black"
                 mt={1}

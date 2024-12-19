@@ -12,7 +12,7 @@ interface Palettes {
 const palettes: Palettes = {
     primary: "#017ef4",
     background: "#fefefe",
-    grey: "#e8e8e8",
+    grey: "#f1f1f1",
 };
 
 export default palettes;
