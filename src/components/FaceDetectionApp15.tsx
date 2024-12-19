@@ -534,7 +534,7 @@ const FaceDetectionApp = ({
                 playsInline
             />
             {/* canvas for detect check */}
-            <canvas ref={canvasRef} />
+            <canvas ref={canvasRef} style={{ borderRadius: "8px" }} />
             {/* canvas for skin extract */}
             <canvas ref={skinCanvasRef} style={{ display: "none" }} />
         </Flex>

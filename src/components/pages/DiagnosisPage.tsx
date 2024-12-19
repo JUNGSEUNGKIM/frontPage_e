@@ -1,5 +1,6 @@
 import { useState } from "react";
 import palettes, { bg, grey, primary } from "@/constants/colors";
+import { Link } from "react-router";
 import {
     Image,
     VStack,
@@ -30,6 +31,7 @@ import { useNavigate } from "react-router";
 import Logo from "@/assets/logo.png";
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
+import { DiagnosisDone } from "../DiagnosisDone";
 
 type Tap = "chat" | "diagnosis" | "lucid";
 
@@ -83,7 +85,9 @@ export function DiagnosisPage() {
         <Container bg={bg}>
             <Center height="5vh" bg="white">
                 <HStack w="100%" gap="10px">
-                    <Image src={Logo} h="2vh" alt="logo" />
+                    <Link to="/">
+                        <Image src={Logo} h="2vh" alt="logo" />
+                    </Link>
                     <Spacer />
                     <Button
                         size="md"
@@ -153,7 +157,7 @@ export function DiagnosisPage() {
                 <GridItem rounded="md">
                     <Container h="100%">
                         {state.status === "init" && (
-                            <VStack gap="5vh">
+                            <VStack gap="2vh">
                                 <Text
                                     color="black"
                                     fontSize="5xl"
@@ -164,7 +168,7 @@ export function DiagnosisPage() {
                                 </Text>
                                 <HStack w="100%">
                                     <Button
-                                        w="46%"
+                                        w="48%"
                                         h="30vh"
                                         bg={
                                             selectedDiagnosis === "Depression"
@@ -209,21 +213,14 @@ export function DiagnosisPage() {
                                                 Questionnaire-9) is a clinically
                                                 validated tool used to screen,
                                                 diagnose, and measure the
-                                                severity of depression.It
-                                                consists of nine questions based
-                                                on the criteria for diagnosing
-                                                major depressive disorder as
-                                                outlined in the DSM-5
-                                                (Diagnostic and Statistical
-                                                Manual of Mental Disorders, 5th
-                                                Edition).
+                                                severity of depression.
                                             </Text>
                                             <Spacer />
                                         </VStack>
                                     </Button>
                                     <Spacer />
                                     <Button
-                                        w="46%"
+                                        w="48%"
                                         h="30vh"
                                         bg={
                                             selectedDiagnosis === "Dementia"
@@ -268,18 +265,16 @@ export function DiagnosisPage() {
                                                 determine the presence and
                                                 severity of cognitive decline
                                                 that interferes with daily life.
-                                                Dementia is not a specific
-                                                disease but a group of symptoms
-                                                affecting memory, thinking, and
-                                                social abilities.
                                             </Text>
                                             <Spacer />
                                         </VStack>
                                     </Button>
                                 </HStack>
                                 <Button
-                                    size="2xl"
+                                    w="100%"
+                                    h="4vh"
                                     bg={palettes.primary}
+                                    fontSize="2xl"
                                     color="white"
                                     onClick={() => {
                                         let questions = DEPRESSIONQUESTIONS;
@@ -291,7 +286,7 @@ export function DiagnosisPage() {
                                         startSurvey(questions, options);
                                     }}
                                 >
-                                    Start
+                                    Start Diagnosis
                                 </Button>
                             </VStack>
                         )}
@@ -372,9 +367,7 @@ export function DiagnosisPage() {
                             </>
                         )}
                         {state.status === "done" && (
-                            <Center>
-                                <Text color="black">Result Component</Text>
-                            </Center>
+                            <DiagnosisDone rppgMesurement={measurement} />
                         )}
                     </Container>
                 </GridItem>

@@ -4,7 +4,7 @@ import { DEPRESSIONQUESTIONS, DEPRESSIONOPTIONS } from "@/constants/questions";
 
 export function useSurvey() {
     const [state, setState] = useState<SurveyState>({
-        status: "init",
+        status: "done",
         currentIndex: 0,
         responses: [],
         surveyQuestions: {
