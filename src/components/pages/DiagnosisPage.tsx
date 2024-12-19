@@ -1,6 +1,5 @@
 import { useState } from "react";
 import palettes, { bg, grey, primary } from "@/constants/colors";
-import { Link } from "react-router";
 import {
     Image,
     VStack,
@@ -62,7 +61,11 @@ export function DiagnosisPage() {
 
     // handle rppg
     function handleMeasurement(newValue: RPPGMeasurement) {
-        setMeasurement(newValue);
+        if (newValue.emotion === "") {
+            setMeasurement({ ...newValue, emotion: "None" });
+        } else {
+            setMeasurement(newValue);
+        }
     }
 
     function handleTap(selectedTap: Tap) {
@@ -303,7 +306,6 @@ export function DiagnosisPage() {
                             <>
                                 <Center
                                     bg="white"
-                                    borderRadius="md"
                                     borderWidth={2}
                                     borderColor={palettes.grey}
                                     borderRadius={12}

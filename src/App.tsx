@@ -1,14 +1,14 @@
-import { DiagnosisPage } from "./components/pages/DiagnosisPage";
-import { OnboardingPage } from "./components/pages/OnboardingPage";
-// import FaceDetectionApp from "./components/FaceDetectionApp15";
+// import { DiagnosisPage } from "./components/pages/DiagnosisPage";
+// import { OnboardingPage } from "./components/pages/OnboardingPage";
+// // import FaceDetectionApp from "./components/FaceDetectionApp15";
 
-function App() {
-    return (
-        <>
-            <DiagnosisPage />
-            {/* <OnboardingPage /> */}
-        </>
-    );
-}
+// function App() {
+//     return (
+//         <>
+//             <DiagnosisPage />
+//             {/* <OnboardingPage /> */}
+//         </>
+//     );
+// }
 
-export default App;
+// export default App;
