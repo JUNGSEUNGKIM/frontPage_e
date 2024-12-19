@@ -1,14 +1,35 @@
 import palettes from "@/constants/colors";
-import { HStack, Text, VStack, Spacer } from "@chakra-ui/react";
+import { HStack, Text, VStack, Spacer, Heading } from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
+import LineChart from "../LineChart";
 
 export default function ReportPage() {
     return (
         <VStack w="100vw" h="100vh" bg={palettes.background}>
-            <VStack w="90vw" h="70vh" mt="2vh" bg="orange" borderRadius={12}>
+            <VStack
+                w="90vw"
+                h="70vh"
+                mt="2vh"
+                bg="white"
+                borderRadius={12}
+                borderWidth={2}
+                borderColor={palettes.grey}
+            >
                 <Text color="black" fontSize="6xl">
                     REPORT
                 </Text>
+                <Heading color="black" fontWeight="bold">
+                    rPPG Result
+                </Heading>
+                <HStack w="70vw">
+                    <LineChart />
+                </HStack>
+                <Heading color="black" fontWeight="bold">
+                    Your Emotion
+                </Heading>
+                <Heading color="black" fontWeight="bold">
+                    Summary
+                </Heading>
             </VStack>
             <HStack>
                 <Spacer />
