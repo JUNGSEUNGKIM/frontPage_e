@@ -5,6 +5,7 @@ import * as faceMesh from "@mediapipe/face_mesh";
 import { Camera } from "@mediapipe/camera_utils";
 import cv from "@techstark/opencv-js";
 import { RPPGMeasurement } from "@/types/rppg_types";
+import { Flex } from "@chakra-ui/react";
 
 const FaceDetectionApp = ({
     onValueChanged,
@@ -23,6 +24,8 @@ const FaceDetectionApp = ({
     const BATCH_INTERVAL = 5000; // 5초
     const imageBufferRef = useRef([]);
     const timeoutIdRef = useRef(null);
+
+    // 브라우저 크기 감지
 
     const sendBatch = useCallback(() => {
         if (
@@ -511,8 +514,8 @@ const FaceDetectionApp = ({
                 onFrame: async () => {
                     await faceMeshModel.send({ image: videoRef.current });
                 },
-                width: 640,
-                height: 480,
+                width: window.innerWidth * 0.5,
+                height: window.innerHeight * 0.2,
             });
             camera.start();
 
@@ -523,7 +526,7 @@ const FaceDetectionApp = ({
     }, []);
 
     return (
-        <div className="flex flex-row items-center">
+        <Flex justify="center" align="center" width="100%">
             <video
                 ref={videoRef}
                 style={{ display: "none" }}
@@ -534,7 +537,7 @@ const FaceDetectionApp = ({
             <canvas ref={canvasRef} />
             {/* canvas for skin extract */}
             <canvas ref={skinCanvasRef} style={{ display: "none" }} />
-        </div>
+        </Flex>
     );
 };
 

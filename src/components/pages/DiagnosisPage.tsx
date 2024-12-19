@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import palettes, { bg, grey, primary } from "@/constants/colors";
 import {
     Image,
@@ -7,7 +7,6 @@ import {
     Grid,
     GridItem,
     Center,
-    Square,
     HStack,
     Container,
     Spacer,
@@ -19,21 +18,33 @@ import { RppgMeasurementList } from "@/components/RppgResults";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
-import { DEPRESSIONOPTIONS, DEPRESSIONQUESTIONS } from "@/constants/questions";
+import {
+    DEMENTIAOPTIONS,
+    DEMENTIAQUESTIONS,
+    DEPRESSIONOPTIONS,
+    DEPRESSIONQUESTIONS,
+} from "@/constants/questions";
 
 import { useNavigate } from "react-router";
 
 import Logo from "@/assets/logo.png";
+import Crying from "@/assets/animations/crying.png";
+import Thinking from "@/assets/animations/thinking.png";
 
 type Tap = "chat" | "diagnosis" | "lucid";
+
+type DiagnosisType = "Depression" | "Dementia";
 
 export function DiagnosisPage() {
     const navigate = useNavigate();
     // current tap
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
 
+    const [selectedDiagnosis, setSelectedDiagnosis] =
+        useState<DiagnosisType>("Depression");
+
     // button clicked check
-    const [isProcessing, setIsProcessing] = useState(false);
+    // const [isProcessing, setIsProcessing] = useState(false);
 
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
@@ -120,11 +131,16 @@ export function DiagnosisPage() {
                     </Button>
                 </HStack>
             </Center>
-            <Grid minHeight="95vh" pt="10px" gap="10px">
-                <GridItem rowSpan={1} bg="gray.50" rounded="md">
+            <Grid
+                templateRows="10% 30% 60%"
+                minHeight="95vh"
+                pt="10px"
+                gap="10px"
+            >
+                <GridItem bg="gray.50" rounded="md">
                     <RppgMeasurementList measurementValue={measurement} />
                 </GridItem>
-                <GridItem rowSpan={2} rounded="md">
+                <GridItem rounded="md">
                     <Center w="100%" h="100%">
                         <HStack w="100%">
                             <FaceDetectionApp
@@ -134,99 +150,233 @@ export function DiagnosisPage() {
                     </Center>
                 </GridItem>
 
-                <GridItem rowSpan={4} rounded="md">
-                    {state.status === "init" && (
-                        <Button
-                            onClick={() =>
-                                startSurvey(
-                                    DEPRESSIONQUESTIONS,
-                                    DEPRESSIONOPTIONS
-                                )
-                            }
-                            bg={palettes.primary}
-                            color="white"
-                        >
-                            Start diagnosis
-                        </Button>
-                    )}
-                    {state.status === "onProgress" && (
-                        <>
-                            <Center
-                                bg="white"
-                                borderRadius="md"
-                                borderWidth={2}
-                                borderColor={palettes.grey}
-                                width="100%"
-                                height="20vh"
-                                p="24px"
-                            >
-                                <VStack h="100%" alignItems="center">
-                                    <Spacer />
-                                    <Text
-                                        fontSize="4xl"
-                                        fontWeight="bold"
-                                        color="black"
-                                        textAlign="center"
-                                    >
-                                        {
-                                            state.surveyQuestions.questions[
-                                                state.currentIndex
-                                            ]
-                                        }
-                                    </Text>
-                                    <Spacer />
-                                    <Text color="black">{`${
-                                        state.currentIndex + 1
-                                    } / ${
-                                        state.surveyQuestions.questions.length
-                                    }`}</Text>
-                                </VStack>
-                            </Center>
-                            {state.surveyQuestions.options.map((_, idx) => (
-                                <AnswerButton
-                                    key={idx}
-                                    label={state.surveyQuestions.options[idx]}
-                                    isSelected={tappedButtonIdx === idx}
-                                    handleTap={() => handleAnswerTap(idx)}
-                                />
-                            ))}
-                            <HStack mt="5vh" mb="1vh" gap={0}>
-                                <Button
-                                    w="30%"
-                                    h="3vh"
-                                    color="white"
-                                    fontSize="l"
+                <GridItem rounded="md">
+                    <Container h="100%">
+                        {state.status === "init" && (
+                            <VStack gap="5vh">
+                                <Text
+                                    color="black"
+                                    fontSize="5xl"
                                     fontWeight="bold"
+                                    animation="pulse"
+                                >
+                                    Choose Diagnosis Type
+                                </Text>
+                                <HStack w="100%">
+                                    <Button
+                                        w="46%"
+                                        h="30vh"
+                                        bg={
+                                            selectedDiagnosis === "Depression"
+                                                ? palettes.grey
+                                                : "white"
+                                        }
+                                        borderColor={palettes.grey}
+                                        borderWidth={2}
+                                        onClick={() => {
+                                            if (
+                                                selectedDiagnosis !==
+                                                "Depression"
+                                            ) {
+                                                setSelectedDiagnosis(
+                                                    "Depression"
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        <VStack h="100%">
+                                            <Spacer />
+                                            <Text
+                                                color="black"
+                                                fontSize="2xl"
+                                                fontWeight="bold"
+                                            >
+                                                Depression Diagnosis (PHQ-9)
+                                            </Text>
+                                            <Image
+                                                src={Crying}
+                                                h="8vh"
+                                                mt="3vh"
+                                                mb="1vh"
+                                            />
+                                            <Text
+                                                color="black"
+                                                textAlign="start"
+                                                whiteSpace="pre-line"
+                                                fontSize="xl"
+                                            >
+                                                The PHQ-9 (Patient Health
+                                                Questionnaire-9) is a clinically
+                                                validated tool used to screen,
+                                                diagnose, and measure the
+                                                severity of depression.It
+                                                consists of nine questions based
+                                                on the criteria for diagnosing
+                                                major depressive disorder as
+                                                outlined in the DSM-5
+                                                (Diagnostic and Statistical
+                                                Manual of Mental Disorders, 5th
+                                                Edition).
+                                            </Text>
+                                            <Spacer />
+                                        </VStack>
+                                    </Button>
+                                    <Spacer />
+                                    <Button
+                                        w="46%"
+                                        h="30vh"
+                                        bg={
+                                            selectedDiagnosis === "Dementia"
+                                                ? palettes.grey
+                                                : "white"
+                                        }
+                                        borderColor={palettes.grey}
+                                        borderWidth={2}
+                                        onClick={() => {
+                                            if (
+                                                selectedDiagnosis !== "Dementia"
+                                            ) {
+                                                setSelectedDiagnosis(
+                                                    "Dementia"
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        <VStack h="100%">
+                                            <Spacer />
+                                            <Text
+                                                color={"black"}
+                                                fontSize="2xl"
+                                                fontWeight="bold"
+                                            >
+                                                Dementia Diagnosis
+                                            </Text>
+                                            <Image
+                                                src={Thinking}
+                                                h="8vh"
+                                                mt="3vh"
+                                                mb="1vh"
+                                            />
+                                            <Text
+                                                color={"black"}
+                                                textAlign="start"
+                                                whiteSpace="pre-line"
+                                                fontSize="xl"
+                                            >
+                                                Dementia diagnosis involves a
+                                                comprehensive evaluation to
+                                                determine the presence and
+                                                severity of cognitive decline
+                                                that interferes with daily life.
+                                                Dementia is not a specific
+                                                disease but a group of symptoms
+                                                affecting memory, thinking, and
+                                                social abilities.
+                                            </Text>
+                                            <Spacer />
+                                        </VStack>
+                                    </Button>
+                                </HStack>
+                                <Button
+                                    size="2xl"
                                     bg={palettes.primary}
-                                    borderColor={palettes.primary}
-                                    borderWidth={2}
+                                    color="white"
                                     onClick={() => {
-                                        goBack();
+                                        let questions = DEPRESSIONQUESTIONS;
+                                        let options = DEPRESSIONOPTIONS;
+                                        if (selectedDiagnosis === "Dementia") {
+                                            questions = DEMENTIAQUESTIONS;
+                                            options = DEMENTIAOPTIONS;
+                                        }
+                                        startSurvey(questions, options);
                                     }}
                                 >
-                                    Prev
+                                    Start
                                 </Button>
-                                <Container width="1vw" />
-                                <Button
-                                    w="30%"
-                                    h="3vh"
-                                    color="black"
-                                    fontWeight="bold"
-                                    borderColor={palettes.grey}
+                            </VStack>
+                        )}
+                        {state.status === "onProgress" && (
+                            <>
+                                <Center
+                                    bg="white"
+                                    borderRadius="md"
                                     borderWidth={2}
-                                    fontSize="l"
-                                    onClick={handleGoPreviousPage}
+                                    borderColor={palettes.grey}
+                                    width="100%"
+                                    height="20vh"
+                                    p="24px"
                                 >
-                                    End diagnosis
-                                </Button>
-                            </HStack>
-                        </>
-                    )}
-                    {state.status === "done" && (
-                        <Center>
-                            <Text color="black">Result Component</Text>
-                        </Center>
-                    )}
+                                    <VStack h="100%" alignItems="center">
+                                        <Spacer />
+                                        <Text
+                                            fontSize="4xl"
+                                            fontWeight="bold"
+                                            color="black"
+                                            textAlign="center"
+                                        >
+                                            {
+                                                state.surveyQuestions.questions[
+                                                    state.currentIndex
+                                                ]
+                                            }
+                                        </Text>
+                                        <Spacer />
+                                        <Text color="black">{`${
+                                            state.currentIndex + 1
+                                        } / ${
+                                            state.surveyQuestions.questions
+                                                .length
+                                        }`}</Text>
+                                    </VStack>
+                                </Center>
+                                {state.surveyQuestions.options.map((_, idx) => (
+                                    <AnswerButton
+                                        key={idx}
+                                        label={
+                                            state.surveyQuestions.options[idx]
+                                        }
+                                        isSelected={tappedButtonIdx === idx}
+                                        handleTap={() => handleAnswerTap(idx)}
+                                    />
+                                ))}
+                                <HStack mt="5vh" mb="1vh" gap={0}>
+                                    <Button
+                                        w="30%"
+                                        h="3vh"
+                                        color="white"
+                                        fontSize="l"
+                                        fontWeight="bold"
+                                        bg={palettes.primary}
+                                        borderColor={palettes.primary}
+                                        borderWidth={2}
+                                        onClick={() => {
+                                            goBack();
+                                        }}
+                                    >
+                                        Prev
+                                    </Button>
+                                    <Container width="1vw" />
+                                    <Button
+                                        w="30%"
+                                        h="3vh"
+                                        color="black"
+                                        fontWeight="bold"
+                                        borderColor={palettes.grey}
+                                        borderWidth={2}
+                                        fontSize="l"
+                                        onClick={handleGoPreviousPage}
+                                    >
+                                        End diagnosis
+                                    </Button>
+                                </HStack>
+                            </>
+                        )}
+                        {state.status === "done" && (
+                            <Center>
+                                <Text color="black">Result Component</Text>
+                            </Center>
+                        )}
+                    </Container>
                 </GridItem>
             </Grid>
         </Container>

@@ -9,7 +9,7 @@ export function RppgMeasurementList({
     measurementValue: RPPGMeasurement;
 }) {
     return (
-        <HStack gap="1" h="100%">
+        <HStack gap="1px" w="100%" h="100%">
             <RppgMeasurementCell
                 label="Emotion"
                 value={measurementValue.emotion}
@@ -33,7 +33,7 @@ function RppgMeasurementCell({
 }) {
     return (
         <Center
-            w="1/4"
+            w="25%"
             h="100%"
             bg="white"
             p="10px"

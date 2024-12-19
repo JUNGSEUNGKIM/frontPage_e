@@ -23,7 +23,8 @@ export function OnboardingPage() {
             <Container height="10vh"></Container>
             <Link to="/diagnosis">
                 <Button
-                    size="2xl"
+                    w="50vw"
+                    h="4vh"
                     bg={palettes.primary}
                     fontSize="4xl"
                     color="white"
@@ -32,13 +33,14 @@ export function OnboardingPage() {
                 </Button>
             </Link>
             <Button
-                size="2xl"
+                w="50vw"
+                h="4vh"
                 bg="white"
                 fontSize="4xl"
                 borderColor={palettes.grey}
                 borderWidth={2}
                 color="black"
-                mt="5"
+                mt={1}
             >
                 How to use
             </Button>
