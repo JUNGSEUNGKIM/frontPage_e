@@ -15,6 +15,7 @@ createRoot(document.getElementById("root")!).render(
             <Provider>
                 <Routes>
                     <Route index element={<OnboardingPage />} />
+                    {/* <Route index element={<ReportPage />} /> */}
                     <Route path="diagnosis" element={<DiagnosisPage />} />
                     <Route path="report" element={<ReportPage />} />
                 </Routes>

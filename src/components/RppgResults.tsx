@@ -1,5 +1,5 @@
 import { HStack, VStack, Center, Text } from "@chakra-ui/react";
-import { grey } from "@/constants/colors";
+import palettes from "@/constants/colors";
 import { RppgItem } from "./RppgItem";
 import { RPPGMeasurement } from "@/types";
 
@@ -39,7 +39,7 @@ function RppgMeasurementCell({
             p="10px"
             borderRadius="md"
             borderWidth="2px"
-            borderColor={grey}
+            borderColor={palettes.grey}
         >
             <Center w="100%" h="100%" bg="white">
                 <VStack>

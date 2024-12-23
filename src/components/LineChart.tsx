@@ -1,65 +1,76 @@
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from "chart.js";
 import { Line } from "react-chartjs-2";
 // import faker from 'faker';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-);
+export default function LineChart({ lineColor }: { lineColor: string }) {
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "top" as const,
+            },
+            title: {
+                display: false,
+                text: "rPPG Measurement Result",
+            },
+        },
+        scales: {
+            // to remove the labels
+            x: {
+                ticks: {
+                    display: false,
+                },
 
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: "top" as const,
+                // to remove the x-axis grid
+                grid: {
+                    drawBorder: false,
+                    display: false,
+                },
+            },
+            // to remove the y-axis labels
+            y: {
+                ticks: {
+                    display: false,
+                    beginAtZero: true,
+                },
+                // to remove the y-axis grid
+                grid: {
+                    drawBorder: false,
+                    display: false,
+                },
+            },
         },
-        title: {
-            display: true,
-            text: "rPPG Measurement Result",
-        },
-    },
-};
+    };
 
-const labels = ["1", "2", "3", "4", "5", "6"];
+    const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: "HR",
-            data: labels.map(() => Math.random() * 100),
-            borderColor: "red",
-            backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-        {
-            label: "HRV",
-            data: labels.map(() => Math.random() * 100),
-            borderColor: "blue",
-            backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-        {
-            label: "Stress",
-            data: labels.map(() => Math.random() * 100),
-            borderColor: "orange",
-            backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-    ],
-};
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: "HR",
+                data: labels.map(() => Math.random() * 100),
+                borderWidth: 3,
+                borderColor: lineColor,
+                fill: false,
+                backgroundColor: "white",
+                tension: 0.5,
+                pointStyle: "line",
+                pointBorderWidth: 0,
+            },
+            // {
+            //     label: "HRV",
+            //     data: labels.map(() => Math.random() * 100),
+            //     borderColor: "blue",
+            //     backgroundColor: "rgba(53, 162, 235, 0.5)",
+            // },
+            // {
+            //     label: "Stress",
+            //     data: labels.map(() => Math.random() * 100),
+            //     borderColor: "orange",
+            //     backgroundColor: "rgba(53, 162, 235, 0.5)",
+            // },
+        ],
+    };
 
-export default function LineChart() {
     return <Line options={options} data={data} />;
 }

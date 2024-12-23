@@ -16,7 +16,7 @@ export function OnboardingPage() {
             gradientTo="blue.200"
         >
             <HStack w="100vw">
-                <Image src={Logo} h="2vh" ml={3} mt={3} />
+                <Image src={Logo} h="2vh" ml={7} mt={7} />
             </HStack>
             <Container height="10vh"></Container>
             <DynamicEmoji width={350} height={350} />

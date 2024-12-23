@@ -1,82 +1,149 @@
 import palettes from "@/constants/colors";
-import { HStack, Text, VStack, Spacer, Heading } from "@chakra-ui/react";
-import { Button } from "@/components/ui/button";
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+} from "chart.js";
+
+import {
+    Container,
+    HStack,
+    Text,
+    VStack,
+    Spacer,
+    Heading,
+    Image,
+    Box,
+} from "@chakra-ui/react";
 import LineChart from "../LineChart";
+import Smile from "@/assets/animations/grinning.png";
+import Logo from "@/assets/logo.png";
+import { ReportBottomButton } from "../ReportBottomButton";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement
+    // Title,
+    // Tooltip,
+    // Legend
+);
+
+ChartJS.defaults.scale.ticks.display = false;
+ChartJS.defaults.backgroundColor = "white";
 
 export default function ReportPage() {
     return (
-        <VStack w="100vw" h="100vh" bg={palettes.background}>
-            <VStack
-                w="90vw"
-                h="70vh"
-                mt="2vh"
+        <VStack w="100vw" h="100vh" bg={palettes.background} p="16px">
+            <HStack w="100%" mb="2vh">
+                <Heading color={palettes.black} fontSize="3xl">
+                    Diagnosis Report
+                </Heading>
+                <Spacer />
+                <Image src={Logo} h="2vh" mr="2vw" />
+            </HStack>
+            <Heading
+                color={palettes.black}
+                fontWeight="bold"
+                fontSize="2xl"
+                mb="1vh"
+            >
+                rPPG Result
+            </Heading>
+            <HStack w="100%">
+                <ChartContainer>
+                    <Heading color="black" fontWeight="bold" fontSize="xl">
+                        HR
+                    </Heading>
+                    <LineChart lineColor="red" />
+                    <Text color="black">min: 64 max: 84</Text>
+                </ChartContainer>
+                <ChartContainer>
+                    <Heading color="black" fontWeight="bold" fontSize="xl">
+                        HRV
+                    </Heading>
+                    <LineChart lineColor={palettes.primary} />
+                </ChartContainer>
+            </HStack>
+            <HStack w="100%">
+                <ChartContainer>
+                    <Heading color="black" fontWeight="bold" fontSize="xl">
+                        Stress
+                    </Heading>
+                    <LineChart lineColor="orange" />
+                </ChartContainer>
+                <ChartContainer>
+                    <Heading color="black" fontWeight="bold" fontSize="xl">
+                        Emotion
+                    </Heading>
+                    <HStack w="100%">
+                        <VStack w="45%">
+                            <Image src={Smile} h="7vh" mt="1vh" />
+                            <Text color="black" fontWeight="bold" fontSize="xl">
+                                Happy
+                            </Text>
+                        </VStack>
+                        <Spacer />
+                        <VStack w="45%" h="100%">
+                            <Container
+                                w="100%"
+                                h="2vh"
+                                bg="orange"
+                                borderRadius={6}
+                            >
+                                Emotion chart
+                            </Container>
+                            <Container
+                                w="100%"
+                                h="8vh"
+                                bg="blue"
+                                borderRadius={6}
+                            >
+                                <Text>tooltip here</Text>
+                            </Container>
+                        </VStack>
+                        <Spacer />
+                    </HStack>
+                </ChartContainer>
+            </HStack>
+            <Box h="1vh" />
+            <Heading color="black" fontWeight="bold" fontSize="2xl" mb="1vh">
+                Diagnosis Result
+            </Heading>
+            <Container
+                w="100%"
+                h="25vh"
                 bg="white"
                 borderRadius={12}
-                borderWidth={2}
-                borderColor={palettes.grey}
-            >
-                <Text color="black" fontSize="6xl">
-                    REPORT
-                </Text>
-                <Heading color="black" fontWeight="bold">
-                    rPPG Result
-                </Heading>
-                <HStack w="70vw">
-                    <LineChart />
-                </HStack>
-                <Heading color="black" fontWeight="bold">
-                    Your Emotion
-                </Heading>
-                <Heading color="black" fontWeight="bold">
-                    Summary
-                </Heading>
-            </VStack>
-            <HStack>
+            ></Container>
+            <HStack w="100%">
+                <ReportBottomButton
+                    label="Print"
+                    outline={false}
+                    onClick={() => {
+                        print();
+                    }}
+                />
                 <Spacer />
-                <ReportBottomButton label="Again" outline={false} />
-                <ReportBottomButton label="Quit" outline={true} />
-                <Spacer />
+
+                <ReportBottomButton
+                    label="Quit"
+                    outline={true}
+                    onClick={() => {}}
+                />
             </HStack>
         </VStack>
     );
 }
 
-function ReportBottomButton({
-    label,
-    outline,
-}: {
-    label: string;
-    outline: boolean;
-}) {
-    if (outline) {
-        return (
-            <Button
-                w="44.7vw"
-                h="4vh"
-                bg="white"
-                color="black"
-                borderRadius={12}
-                borderWidth={2}
-                borderColor={palettes.grey}
-                fontSize="4xl"
-            >
-                {label}
-            </Button>
-        );
-    }
-
+function ChartContainer({ children }: { children: React.ReactNode }) {
     return (
-        <Button
-            w="44.7vw"
-            h="4vh"
-            bg={palettes.primary}
-            color="white"
-            borderColor={palettes.primary}
-            borderRadius={12}
-            borderWidth={2}
-            fontSize="4xl"
-        >
-            {label}
-        </Button>
+        <Container h="15vh" bg="white" borderRadius={12}>
+            {children}
+        </Container>
     );
 }

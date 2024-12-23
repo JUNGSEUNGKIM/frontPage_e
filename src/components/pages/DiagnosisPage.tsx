@@ -1,5 +1,5 @@
 import { useState } from "react";
-import palettes, { bg, grey, primary } from "@/constants/colors";
+import palettes from "@/constants/colors";
 import {
     Image,
     VStack,
@@ -85,8 +85,8 @@ export function DiagnosisPage() {
     }
 
     return (
-        <Container bg={bg}>
-            <Center height="5vh" bg="white">
+        <Container bg={palettes.background}>
+            <Center height="5vh">
                 <HStack w="100%" gap="10px">
                     <Image
                         src={Logo}
@@ -98,10 +98,16 @@ export function DiagnosisPage() {
                     <Button
                         size="md"
                         w="100px"
-                        bg={currentTap === "diagnosis" ? primary : "white"}
+                        bg={
+                            currentTap === "diagnosis"
+                                ? palettes.primary
+                                : "white"
+                        }
                         borderWidth="1px"
                         borderColor={
-                            currentTap === "diagnosis" ? primary : grey
+                            currentTap === "diagnosis"
+                                ? palettes.primary
+                                : palettes.grey
                         }
                         borderRadius={12}
                         onClick={() => handleTap("diagnosis")}
@@ -117,24 +123,32 @@ export function DiagnosisPage() {
                     <Button
                         size="md"
                         w="100px"
-                        bg={currentTap === "lucid" ? primary : "white"}
+                        bg={currentTap === "lucid" ? palettes.primary : "white"}
                         borderWidth="1px"
-                        borderColor={currentTap === "lucid" ? primary : grey}
+                        borderColor={
+                            currentTap === "lucid"
+                                ? palettes.primary
+                                : palettes.grey
+                        }
                         borderRadius={12}
                         onClick={() => handleTap("lucid")}
                     >
                         <Text
                             color={currentTap === "lucid" ? "white" : "black"}
                         >
-                            Lucid
+                            DTx
                         </Text>
                     </Button>
                     <Button
                         size="md"
                         w="100px"
-                        bg={currentTap === "chat" ? primary : "white"}
+                        bg={currentTap === "chat" ? palettes.primary : "white"}
                         borderWidth="1px"
-                        borderColor={currentTap === "chat" ? primary : grey}
+                        borderColor={
+                            currentTap === "chat"
+                                ? palettes.primary
+                                : palettes.grey
+                        }
                         borderRadius={12}
                         onClick={() => handleTap("chat")}
                     >
