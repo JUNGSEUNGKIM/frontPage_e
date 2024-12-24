@@ -14,7 +14,7 @@ const FaceDetectionApp = ({
 }) => {
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
-    const skinCanvasRef = useRef(null);
+    // const skinCanvasRef = useRef(null);
     const [isMirrored, setIsMirrored] = useState(true);
     const socketRef = useRef(null);
     const frameCountRef = useRef(0);
@@ -24,6 +24,10 @@ const FaceDetectionApp = ({
     const BATCH_INTERVAL = 5000; // 5초
     const imageBufferRef = useRef([]);
     const timeoutIdRef = useRef(null);
+    const FIXED_OUTPUT_SIZE = {
+        width: 154,  // 원하는 출력 크기로 조정
+        height: 154
+    };
 
     // 브라우저 크기 감지
 
@@ -107,21 +111,6 @@ const FaceDetectionApp = ({
         };
     }, []);
 
-    const calculateAverageRGB = (src, mask) => {
-        const result = new cv.Mat();
-        try {
-            src.copyTo(result, mask);
-            const means = cv.mean(result, mask);
-            return {
-                r: Math.round(means[0]),
-                g: Math.round(means[1]),
-                b: Math.round(means[2]),
-            };
-        } finally {
-            result.delete();
-        }
-    };
-
     const drawFaceBoundingBox = (canvasCtx, landmarks, width, height) => {
         let minX = width;
         let minY = height;
@@ -143,7 +132,7 @@ const FaceDetectionApp = ({
         maxX = Math.min(width, maxX + padding);
         maxY = Math.min(height, maxY + padding);
 
-        canvasCtx.strokeStyle = "#00ff00";
+        canvasCtx.strokeStyle = "#0022ff";
         canvasCtx.lineWidth = 2;
         canvasCtx.strokeRect(minX, minY, maxX - minX, maxY - minY);
     };
@@ -177,71 +166,52 @@ const FaceDetectionApp = ({
                     )
                 );
 
+                const roiMask = mask.roi(new cv.Rect(
+                    Math.floor(bounds.minX),
+                    Math.floor(bounds.minY),
+                    Math.floor(width),
+                    Math.floor(height)
+                ));
+
+                // 리사이즈를 위한 새로운 Mat 생성
                 const resizedRoi = new cv.Mat();
-                const targetSize = { width: 48, height: 48 }; // 48x48로 크기 변경
-                cv.resize(
-                    roi,
-                    resizedRoi,
-                    new cv.Size(targetSize.width, targetSize.height),
-                    0,
-                    0,
-                    cv.INTER_AREA
-                );
+                const resizedMask = new cv.Mat();
 
-                // 마스크도 같은 영역으로 크롭
-                const roiMask = mask.roi(
-                    new cv.Rect(
-                        Math.floor(bounds.minX),
-                        Math.floor(bounds.minY),
-                        Math.floor(width),
-                        Math.floor(height)
-                    )
-                );
+                // 이미지와 마스크를 고정된 크기로 리사이즈
+                cv.resize(roi, resizedRoi, new cv.Size(FIXED_OUTPUT_SIZE.width, FIXED_OUTPUT_SIZE.height), 0, 0, cv.INTER_AREA);
+                cv.resize(roiMask, resizedMask, new cv.Size(FIXED_OUTPUT_SIZE.width, FIXED_OUTPUT_SIZE.height), 0, 0, cv.INTER_AREA);
 
-                // 흰색 배경의 Mat 생성
-                const whiteBg = new cv.Mat(
-                    height,
-                    width,
-                    cv.CV_8UC3,
-                    new cv.Scalar(255, 255, 255)
-                );
+                // 흰색 배경의 Mat 생성 (고정된 크기)
+                let whiteBg = new cv.Mat(FIXED_OUTPUT_SIZE.height, FIXED_OUTPUT_SIZE.width, cv.CV_8UC3, new cv.Scalar(255, 255, 255));
 
-                // 얼굴 부분만 복사
-                const croppedFace = new cv.Mat();
-                roi.copyTo(croppedFace);
+                // 리사이즈된 얼굴 부분만 복사
+                let finalFace = new cv.Mat();
+                resizedRoi.copyTo(finalFace);
 
                 // 마스크를 이용해 얼굴 부분만 흰색 배경에 복사
-                croppedFace.copyTo(whiteBg, roiMask);
+                finalFace.copyTo(whiteBg, resizedMask);
 
-                // tempCanvas의 크기를 크롭된 영역의 크기로 설정
-                const tempCanvas = document.createElement("canvas");
-                tempCanvas.width = width;
-                tempCanvas.height = height;
+                // tempCanvas 생성 및 크기 설정
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = FIXED_OUTPUT_SIZE.width;
+                tempCanvas.height = FIXED_OUTPUT_SIZE.height;
                 cv.imshow(tempCanvas, whiteBg);
 
-                // 디버그용 크기 출력
-                // console.log('Cropped image size:', width, 'x', height);
-
-                const imageData = tempCanvas
-                    .toDataURL("image/jpeg", 0.8)
-                    .split(",")[1];
+                const imageData = tempCanvas.toDataURL('image/jpeg', 0.8).split(',')[1];
                 // socketRef.current.send(imageData);
                 imageBufferRef.current.push({
                     timestamp: Date.now(),
-                    data: imageData,
+                    data: imageData
                 });
                 const currentTime = Date.now();
                 if (
-                    frameCountRef.current % 150 ===
-                    0 // 30프레임 중 1프레임 선택
+                    frameCountRef.current % 150 === 0  // 30프레임 중 1프레임 선택
                 ) {
-                    if (
-                        socketRef.current &&
-                        socketRef.current.readyState === WebSocket.OPEN
-                    ) {
+
+                    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
                         const emotionPayload = {
                             timestamp: Date.now(),
-                            emotionImg: imageData,
+                            emotionImg: imageData
                         };
                         socketRef.current.send(JSON.stringify(emotionPayload));
                     }
@@ -250,17 +220,16 @@ const FaceDetectionApp = ({
                 }
 
                 if (imageBufferRef.current.length === 1) {
-                    timeoutIdRef.current = setTimeout(
-                        sendBatch,
-                        BATCH_INTERVAL
-                    );
+                    timeoutIdRef.current = setTimeout(sendBatch, BATCH_INTERVAL);
                 }
 
                 // 메모리 정리
                 roi.delete();
                 resizedRoi.delete();
                 roiMask.delete();
-                croppedFace.delete();
+                resizedMask.delete();
+                finalFace.delete();
+                // croppedFace.delete();
                 whiteBg.delete();
             } catch (error) {
                 console.error("Error in sendFaceRegion:", error);
@@ -270,16 +239,16 @@ const FaceDetectionApp = ({
     );
 
     const onResults = (results) => {
-        if (!canvasRef.current || !skinCanvasRef.current || !videoRef.current)
+        if (!canvasRef.current || !videoRef.current)
             return;
+        // if (!canvasRef.current || !skinCanvasRef.current || !videoRef.current)
+        //     return;
 
         const canvasCtx = canvasRef.current.getContext("2d");
-        const skinCanvasCtx = skinCanvasRef.current.getContext("2d");
 
         canvasRef.current.width = videoRef.current.videoWidth;
         canvasRef.current.height = videoRef.current.videoHeight;
-        skinCanvasRef.current.width = videoRef.current.videoWidth;
-        skinCanvasRef.current.height = videoRef.current.videoHeight;
+
 
         canvasCtx.clearRect(
             0,
@@ -287,17 +256,11 @@ const FaceDetectionApp = ({
             canvasRef.current.width,
             canvasRef.current.height
         );
-        skinCanvasCtx.clearRect(
-            0,
-            0,
-            skinCanvasRef.current.width,
-            skinCanvasRef.current.height
-        );
+
 
         // setIsFaceDetected(results.multiFaceLandmarks?.length > 0);
 
         canvasCtx.save();
-        skinCanvasCtx.save();
 
         if (isMirrored) {
             canvasCtx.scale(-1, 1);
@@ -418,21 +381,11 @@ const FaceDetectionApp = ({
                     frameCountRef.current % 150 ===
                     0 // 150프레임 중 1프레임 선택
                 ) {
-                    const rgbValues = calculateAverageRGB(src, mask);
 
                     const result = new cv.Mat();
                     src.copyTo(result, mask);
 
-                    skinCanvasCtx.save();
-                    if (isMirrored) {
-                        skinCanvasCtx.scale(-1, 1);
-                        skinCanvasCtx.translate(
-                            -skinCanvasRef.current.width,
-                            0
-                        );
-                    }
-                    cv.imshow(skinCanvasRef.current, result);
-                    skinCanvasCtx.restore();
+
 
                     // 크롭된 얼굴 영역만 전송
                     sendFaceRegion(src, mask, bounds);
@@ -458,18 +411,9 @@ const FaceDetectionApp = ({
                     regionVector.delete();
                 });
 
-                const rgbValues = calculateAverageRGB(src, mask);
 
                 const result = new cv.Mat();
                 src.copyTo(result, mask);
-
-                skinCanvasCtx.save();
-                if (isMirrored) {
-                    skinCanvasCtx.scale(-1, 1);
-                    skinCanvasCtx.translate(-skinCanvasRef.current.width, 0);
-                }
-                cv.imshow(skinCanvasRef.current, result);
-                skinCanvasCtx.restore();
 
                 // 크롭된 얼굴 영역만 전송
                 sendFaceRegion(src, mask, bounds);
@@ -497,7 +441,8 @@ const FaceDetectionApp = ({
     useEffect(() => {
         const faceMeshModel = new faceMesh.FaceMesh({
             locateFile: (file) => {
-                return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+                // return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+                return `/face_mesh/${file}`;
             },
         });
 
@@ -514,8 +459,10 @@ const FaceDetectionApp = ({
                 onFrame: async () => {
                     await faceMeshModel.send({ image: videoRef.current });
                 },
-                width: window.innerWidth * 0.5,
-                height: window.innerHeight * 0.2,
+                // width: window.innerWidth * 0.5,
+                // height: window.innerHeight * 0.2,
+                width: 640,
+                height: 480,
             });
             camera.start();
 
@@ -536,7 +483,7 @@ const FaceDetectionApp = ({
             {/* canvas for detect check */}
             <canvas ref={canvasRef} style={{ borderRadius: "8px" }} />
             {/* canvas for skin extract */}
-            <canvas ref={skinCanvasRef} style={{ display: "none" }} />
+            {/*<canvas ref={skinCanvasRef} style={{ display: "none" }} />*/}
         </Flex>
     );
 };
