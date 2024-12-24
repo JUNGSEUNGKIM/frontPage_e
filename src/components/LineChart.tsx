@@ -60,8 +60,10 @@ export default function LineChart({ lineColor }: { lineColor: string }) {
             // {
             //     label: "HRV",
             //     data: labels.map(() => Math.random() * 100),
-            //     borderColor: "blue",
+            //     borderColor: "red",
             //     backgroundColor: "rgba(53, 162, 235, 0.5)",
+            //     tension: 0.5,
+            //     //     pointStyle: "line",
             // },
             // {
             //     label: "Stress",

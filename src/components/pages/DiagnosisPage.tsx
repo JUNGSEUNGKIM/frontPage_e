@@ -193,12 +193,12 @@ export function DiagnosisPage() {
                                     <Button
                                         w="48%"
                                         h="30vh"
-                                        bg={
+                                        bg={"white"}
+                                        borderColor={
                                             selectedDiagnosis === "Depression"
-                                                ? palettes.grey
-                                                : "white"
+                                                ? palettes.primary
+                                                : palettes.grey
                                         }
-                                        borderColor={palettes.grey}
                                         borderWidth={2}
                                         borderRadius={12}
                                         onClick={() => {
@@ -246,12 +246,12 @@ export function DiagnosisPage() {
                                     <Button
                                         w="48%"
                                         h="30vh"
-                                        bg={
+                                        bg={"white"}
+                                        borderColor={
                                             selectedDiagnosis === "Dementia"
-                                                ? palettes.grey
-                                                : "white"
+                                                ? palettes.primary
+                                                : palettes.grey
                                         }
-                                        borderColor={palettes.grey}
                                         borderWidth={2}
                                         borderRadius={12}
                                         onClick={() => {
