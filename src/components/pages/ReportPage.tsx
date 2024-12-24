@@ -17,11 +17,14 @@ import {
     Heading,
     Image,
     Box,
+    ProgressRoot,
+    ProgressLabel,
 } from "@chakra-ui/react";
 import LineChart from "../LineChart";
 import Smile from "@/assets/animations/grinning.png";
 import Logo from "@/assets/logo.png";
 import { ReportBottomButton } from "../ReportBottomButton";
+import { ProgressBar, ProgressValueText } from "../ui/progress";
 
 ChartJS.register(
     CategoryScale,
@@ -38,7 +41,7 @@ ChartJS.defaults.backgroundColor = "white";
 
 export default function ReportPage() {
     return (
-        <VStack w="100vw" h="100vh" bg={palettes.background} p="16px">
+        <VStack w="100vw" h="100vh" bg={"white"} p="16px">
             <HStack w="100%" mb="2vh">
                 <Heading color={palettes.black} fontSize="3xl">
                     Diagnosis Report
@@ -52,9 +55,33 @@ export default function ReportPage() {
             <Container
                 w="100%"
                 h="25vh"
-                bg="white"
+                bg={palettes.grey}
                 borderRadius={12}
-            ></Container>
+                p="4"
+            >
+                <Heading color="black">Description summary here</Heading>
+                <Text w="50%" color="black">
+                    main description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines main
+                    description text here. It will be over 3 lines
+                </Text>
+                <ProgressRoot defaultValue={20} maxW="xl" bg="grey">
+                    <HStack gap="5">
+                        <ProgressLabel color="black">Usage</ProgressLabel>
+                        <ProgressBar bg={palettes.primary} flex="1" />
+                        <ProgressValueText color="black">40%</ProgressValueText>
+                    </HStack>
+                </ProgressRoot>
+            </Container>
             <Box h="1vh" />
             <Heading
                 color={palettes.black}
@@ -120,7 +147,7 @@ export default function ReportPage() {
                     </HStack>
                 </ChartContainer>
             </HStack>
-            <HStack w="100%">
+            <HStack w="100%" mt={8}>
                 <ReportBottomButton
                     label="Print"
                     outline={false}
@@ -142,7 +169,7 @@ export default function ReportPage() {
 
 function ChartContainer({ children }: { children: React.ReactNode }) {
     return (
-        <Container h="15vh" bg="white" borderRadius={12}>
+        <Container h="15vh" bg={palettes.grey} borderRadius={12}>
             {children}
         </Container>
     );

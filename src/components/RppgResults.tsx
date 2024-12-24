@@ -36,27 +36,24 @@ function RppgMeasurementCell({
             w="25%"
             h="100%"
             bg="white"
-            p="10px"
-            borderRadius="md"
+            borderRadius={12}
             borderWidth="2px"
             borderColor={palettes.grey}
         >
-            <Center w="100%" h="100%" bg="white">
-                <VStack>
-                    <Text
-                        textStyle="2xl"
-                        color="blackAlpha.700"
-                        fontWeight="medium"
-                    >
-                        {label}
-                    </Text>
-                    <RppgItem
-                        isEmotion={label === "Emotion"}
-                        value={value}
-                        label={label}
-                    />
-                </VStack>
-            </Center>
+            <VStack>
+                <Text
+                    textStyle="2xl"
+                    color="blackAlpha.700"
+                    fontWeight="medium"
+                >
+                    {label}
+                </Text>
+                <RppgItem
+                    isEmotion={label === "Emotion"}
+                    value={value}
+                    label={label}
+                />
+            </VStack>
         </Center>
     );
 }

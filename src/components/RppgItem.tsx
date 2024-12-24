@@ -15,7 +15,7 @@ export function RppgItem({
 }) {
     if (isEmotion) {
         return (
-            <Text textStyle="4xl" fontWeight="bold" color="black">
+            <Text textStyle="3xl" fontWeight="bold" color="black">
                 {value}
             </Text>
         );
@@ -27,7 +27,7 @@ export function RppgItem({
             {label === "Stress" && (
                 <CustomImage src={stressImage} alt="Stress" />
             )}
-            <Text textStyle="4xl" fontWeight="bold" color="black">
+            <Text textStyle="3xl" fontWeight="bold" color="black">
                 {value}
             </Text>
         </HStack>

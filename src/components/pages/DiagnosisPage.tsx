@@ -86,7 +86,7 @@ export function DiagnosisPage() {
 
     return (
         <Container bg={palettes.background}>
-            <Center height="5vh">
+            <Center height="3vh">
                 <HStack w="100%" gap="10px">
                     <Image
                         src={Logo}
@@ -158,12 +158,7 @@ export function DiagnosisPage() {
                     </Button>
                 </HStack>
             </Center>
-            <Grid
-                templateRows="10% 30% 60%"
-                minHeight="95vh"
-                pt="10px"
-                gap="10px"
-            >
+            <Grid templateRows="6% 28% 64%" minHeight="95vh" pt="10px" gap="5">
                 <GridItem bg="gray.50" rounded="md">
                     <RppgMeasurementList measurementValue={measurement} />
                 </GridItem>

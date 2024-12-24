@@ -8,14 +8,17 @@ import { DiagnosisPage } from "./components/pages/DiagnosisPage.tsx";
 import ReportPage from "./components/pages/ReportPage.tsx";
 
 // strict mode for check error
+const isTEST = true;
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <BrowserRouter>
             <Provider>
                 <Routes>
-                    <Route index element={<OnboardingPage />} />
-                    {/* <Route index element={<ReportPage />} /> */}
+                    <Route
+                        index
+                        element={isTEST ? <ReportPage /> : <OnboardingPage />}
+                    />
                     <Route path="diagnosis" element={<DiagnosisPage />} />
                     <Route path="report" element={<ReportPage />} />
                 </Routes>
