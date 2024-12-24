@@ -9,7 +9,7 @@ export function RppgMeasurementList({
     measurementValue: RPPGMeasurement;
 }) {
     return (
-        <HStack gap="1px" w="100%" h="100%">
+        <HStack gap="1px" w="100%" h="10%">
             <RppgMeasurementCell
                 label="Emotion"
                 value={measurementValue.emotion}

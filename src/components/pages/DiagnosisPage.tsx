@@ -158,10 +158,7 @@ export function DiagnosisPage() {
                     </Button>
                 </HStack>
             </Center>
-            <Grid templateRows="6% 28% 64%" minHeight="95vh" pt="10px" gap="5">
-                <GridItem bg="gray.50" rounded="md">
-                    <RppgMeasurementList measurementValue={measurement} />
-                </GridItem>
+            <Grid templateRows="28% 60% 6%" minHeight="95vh" pt="10px" gap="5">
                 <GridItem rounded="md">
                     <Center w="100%" h="100%">
                         <HStack w="100%">
@@ -174,6 +171,8 @@ export function DiagnosisPage() {
 
                 <GridItem rounded="md">
                     <Container h="100%">
+                        <RppgMeasurementList measurementValue={measurement} />
+                        <Container h={1} />
                         {state.status === "init" && (
                             <VStack gap="2vh">
                                 <Text
@@ -319,12 +318,16 @@ export function DiagnosisPage() {
                                     borderColor={palettes.grey}
                                     borderRadius={12}
                                     width="100%"
-                                    height="20vh"
+                                    height="13vh"
                                     p="24px"
                                 >
-                                    <VStack h="100%" alignItems="center">
-                                        <Spacer />
+                                    <VStack
+                                        h="100%"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
                                         <Text
+                                            h="100%"
                                             fontSize="4xl"
                                             fontWeight="bold"
                                             color="black"
@@ -336,7 +339,6 @@ export function DiagnosisPage() {
                                                 ]
                                             }
                                         </Text>
-                                        <Spacer />
                                         <Text color="black">{`${
                                             state.currentIndex + 1
                                         } / ${
