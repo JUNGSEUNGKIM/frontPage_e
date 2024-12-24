@@ -4,8 +4,37 @@ import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { getSpeech } from "@/utls/getSpeech";
+import { greetings } from "@/constants/titles";
 
 export function OnboardingPage() {
+    // init speech
+    useEffect(() => {
+        // preload
+        window.speechSynthesis.getVoices();
+    }, []);
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            // check is last emoji here
+            if (currentIndex === 4) {
+                setCurrentIndex(0);
+                // change current emoji
+            } else {
+                setCurrentIndex(currentIndex + 1);
+            }
+        }, 10000);
+
+        return () => clearInterval(intervalId);
+    }, [currentIndex]);
+
+    useEffect(() => {
+        getSpeech(greetings[currentIndex]);
+    }, [currentIndex]);
+
     return (
         <VStack
             w="100vw"
@@ -19,7 +48,7 @@ export function OnboardingPage() {
                 <Image src={Logo} h="2vh" ml={7} mt={7} />
             </HStack>
             <Container height="10vh"></Container>
-            <DynamicEmoji width={350} height={350} />
+            <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
             <Container height="10vh"></Container>
             <Link to="/diagnosis">
                 <Button

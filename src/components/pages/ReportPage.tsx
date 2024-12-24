@@ -46,6 +46,16 @@ export default function ReportPage() {
                 <Spacer />
                 <Image src={Logo} h="2vh" mr="2vw" />
             </HStack>
+            <Heading color="black" fontWeight="bold" fontSize="2xl" mb="1vh">
+                Diagnosis Result
+            </Heading>
+            <Container
+                w="100%"
+                h="25vh"
+                bg="white"
+                borderRadius={12}
+            ></Container>
+            <Box h="1vh" />
             <Heading
                 color={palettes.black}
                 fontWeight="bold"
@@ -110,16 +120,6 @@ export default function ReportPage() {
                     </HStack>
                 </ChartContainer>
             </HStack>
-            <Box h="1vh" />
-            <Heading color="black" fontWeight="bold" fontSize="2xl" mb="1vh">
-                Diagnosis Result
-            </Heading>
-            <Container
-                w="100%"
-                h="25vh"
-                bg="white"
-                borderRadius={12}
-            ></Container>
             <HStack w="100%">
                 <ReportBottomButton
                     label="Print"
