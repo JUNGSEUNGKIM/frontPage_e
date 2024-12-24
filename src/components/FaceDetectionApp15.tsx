@@ -7,6 +7,10 @@ import cv from "@techstark/opencv-js";
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { Flex } from "@chakra-ui/react";
 
+type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
+
+const currentURL: SOCKETURL = "ws://121.133.205.103:5050/ws";
+
 const FaceDetectionApp = ({
     onValueChanged,
 }: {
@@ -25,8 +29,8 @@ const FaceDetectionApp = ({
     const imageBufferRef = useRef([]);
     const timeoutIdRef = useRef(null);
     const FIXED_OUTPUT_SIZE = {
-        width: 154,  // 원하는 출력 크기로 조정
-        height: 154
+        width: 154, // 원하는 출력 크기로 조정
+        height: 154,
     };
 
     // 브라우저 크기 감지
@@ -57,7 +61,8 @@ const FaceDetectionApp = ({
     }, [sendBatch]);
 
     useEffect(() => {
-        socketRef.current = new WebSocket("ws://121.133.205.103:5050/ws");
+        // socketRef.current = new WebSocket("ws://localhost:5050/ws");
+        socketRef.current = new WebSocket(currentURL);
 
         frameCountRef.current = 0;
         lastEmotionSendTimeRef.current = Date.now();
@@ -166,52 +171,84 @@ const FaceDetectionApp = ({
                     )
                 );
 
-                const roiMask = mask.roi(new cv.Rect(
-                    Math.floor(bounds.minX),
-                    Math.floor(bounds.minY),
-                    Math.floor(width),
-                    Math.floor(height)
-                ));
+                const roiMask = mask.roi(
+                    new cv.Rect(
+                        Math.floor(bounds.minX),
+                        Math.floor(bounds.minY),
+                        Math.floor(width),
+                        Math.floor(height)
+                    )
+                );
 
                 // 리사이즈를 위한 새로운 Mat 생성
                 const resizedRoi = new cv.Mat();
                 const resizedMask = new cv.Mat();
 
                 // 이미지와 마스크를 고정된 크기로 리사이즈
-                cv.resize(roi, resizedRoi, new cv.Size(FIXED_OUTPUT_SIZE.width, FIXED_OUTPUT_SIZE.height), 0, 0, cv.INTER_AREA);
-                cv.resize(roiMask, resizedMask, new cv.Size(FIXED_OUTPUT_SIZE.width, FIXED_OUTPUT_SIZE.height), 0, 0, cv.INTER_AREA);
+                cv.resize(
+                    roi,
+                    resizedRoi,
+                    new cv.Size(
+                        FIXED_OUTPUT_SIZE.width,
+                        FIXED_OUTPUT_SIZE.height
+                    ),
+                    0,
+                    0,
+                    cv.INTER_AREA
+                );
+                cv.resize(
+                    roiMask,
+                    resizedMask,
+                    new cv.Size(
+                        FIXED_OUTPUT_SIZE.width,
+                        FIXED_OUTPUT_SIZE.height
+                    ),
+                    0,
+                    0,
+                    cv.INTER_AREA
+                );
 
                 // 흰색 배경의 Mat 생성 (고정된 크기)
-                let whiteBg = new cv.Mat(FIXED_OUTPUT_SIZE.height, FIXED_OUTPUT_SIZE.width, cv.CV_8UC3, new cv.Scalar(255, 255, 255));
+                const whiteBg = new cv.Mat(
+                    FIXED_OUTPUT_SIZE.height,
+                    FIXED_OUTPUT_SIZE.width,
+                    cv.CV_8UC3,
+                    new cv.Scalar(255, 255, 255)
+                );
 
                 // 리사이즈된 얼굴 부분만 복사
-                let finalFace = new cv.Mat();
+                const finalFace = new cv.Mat();
                 resizedRoi.copyTo(finalFace);
 
                 // 마스크를 이용해 얼굴 부분만 흰색 배경에 복사
                 finalFace.copyTo(whiteBg, resizedMask);
 
                 // tempCanvas 생성 및 크기 설정
-                const tempCanvas = document.createElement('canvas');
+                const tempCanvas = document.createElement("canvas");
                 tempCanvas.width = FIXED_OUTPUT_SIZE.width;
                 tempCanvas.height = FIXED_OUTPUT_SIZE.height;
                 cv.imshow(tempCanvas, whiteBg);
 
-                const imageData = tempCanvas.toDataURL('image/jpeg', 0.8).split(',')[1];
+                const imageData = tempCanvas
+                    .toDataURL("image/jpeg", 0.8)
+                    .split(",")[1];
                 // socketRef.current.send(imageData);
                 imageBufferRef.current.push({
                     timestamp: Date.now(),
-                    data: imageData
+                    data: imageData,
                 });
                 const currentTime = Date.now();
                 if (
-                    frameCountRef.current % 150 === 0  // 30프레임 중 1프레임 선택
+                    frameCountRef.current % 150 ===
+                    0 // 30프레임 중 1프레임 선택
                 ) {
-
-                    if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+                    if (
+                        socketRef.current &&
+                        socketRef.current.readyState === WebSocket.OPEN
+                    ) {
                         const emotionPayload = {
                             timestamp: Date.now(),
-                            emotionImg: imageData
+                            emotionImg: imageData,
                         };
                         socketRef.current.send(JSON.stringify(emotionPayload));
                     }
@@ -220,7 +257,10 @@ const FaceDetectionApp = ({
                 }
 
                 if (imageBufferRef.current.length === 1) {
-                    timeoutIdRef.current = setTimeout(sendBatch, BATCH_INTERVAL);
+                    timeoutIdRef.current = setTimeout(
+                        sendBatch,
+                        BATCH_INTERVAL
+                    );
                 }
 
                 // 메모리 정리
@@ -239,8 +279,7 @@ const FaceDetectionApp = ({
     );
 
     const onResults = (results) => {
-        if (!canvasRef.current || !videoRef.current)
-            return;
+        if (!canvasRef.current || !videoRef.current) return;
         // if (!canvasRef.current || !skinCanvasRef.current || !videoRef.current)
         //     return;
 
@@ -249,14 +288,12 @@ const FaceDetectionApp = ({
         canvasRef.current.width = videoRef.current.videoWidth;
         canvasRef.current.height = videoRef.current.videoHeight;
 
-
         canvasCtx.clearRect(
             0,
             0,
             canvasRef.current.width,
             canvasRef.current.height
         );
-
 
         // setIsFaceDetected(results.multiFaceLandmarks?.length > 0);
 
@@ -381,11 +418,8 @@ const FaceDetectionApp = ({
                     frameCountRef.current % 150 ===
                     0 // 150프레임 중 1프레임 선택
                 ) {
-
                     const result = new cv.Mat();
                     src.copyTo(result, mask);
-
-
 
                     // 크롭된 얼굴 영역만 전송
                     sendFaceRegion(src, mask, bounds);
@@ -410,7 +444,6 @@ const FaceDetectionApp = ({
                     regionMatPoints.delete();
                     regionVector.delete();
                 });
-
 
                 const result = new cv.Mat();
                 src.copyTo(result, mask);

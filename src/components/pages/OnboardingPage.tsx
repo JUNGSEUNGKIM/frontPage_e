@@ -8,11 +8,22 @@ import { useEffect, useState } from "react";
 import { getSpeech } from "@/utls/getSpeech";
 import { greetings } from "@/constants/titles";
 
+import {
+    DialogBody,
+    DialogCloseTrigger,
+    DialogContent,
+    DialogDescription,
+    DialogRoot,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+
 export function OnboardingPage() {
     // init speech
     useEffect(() => {
         // preload
         window.speechSynthesis.getVoices();
+        getSpeech(greetings[0]);
     }, []);
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -62,19 +73,33 @@ export function OnboardingPage() {
                     Lets get started
                 </Button>
             </Link>
-            <Button
-                w="50vw"
-                h="4vh"
-                bg={palettes.grey}
-                fontSize="4xl"
-                borderColor={palettes.grey}
-                borderRadius={12}
-                borderWidth={2}
-                color="black"
-                mt={1}
-            >
-                How to use
-            </Button>
+            <DialogRoot placement="center">
+                <DialogTrigger asChild>
+                    <Button
+                        w="50vw"
+                        h="4vh"
+                        bg={palettes.grey}
+                        fontSize="4xl"
+                        borderColor={palettes.grey}
+                        borderRadius={12}
+                        borderWidth={2}
+                        color="black"
+                        mt={1}
+                    >
+                        How to use
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogBody pt="4" borderRadius={12}>
+                        <DialogTitle>Guide</DialogTitle>
+                        <DialogDescription mb={4}>
+                            this is example of kiosk information.
+                        </DialogDescription>
+                        <Button>This is button</Button>
+                    </DialogBody>
+                    <DialogCloseTrigger top="0" insetEnd="-12" bg="bg" />
+                </DialogContent>
+            </DialogRoot>
         </VStack>
     );
 }
