@@ -21,7 +21,7 @@ export const Greetings = [
     },
     {
         text: "Welcome!\nReady for a new experience?",
-        url: "",
+        url: English2,
     },
     { text: "Your well-being is our focus.\nLet’s begin!", url: "" },
 
