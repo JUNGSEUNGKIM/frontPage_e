@@ -326,8 +326,9 @@ export function DiagnosisPage() {
                                         justifyContent="center"
                                         alignItems="center"
                                     >
+                                        <Spacer />
                                         <Text
-                                            h="100%"
+                                            h="50%"
                                             fontSize="4xl"
                                             fontWeight="bold"
                                             color="black"
@@ -339,12 +340,14 @@ export function DiagnosisPage() {
                                                 ]
                                             }
                                         </Text>
+                                        <Spacer />
                                         <Text color="black">{`${
                                             state.currentIndex + 1
                                         } / ${
                                             state.surveyQuestions.questions
                                                 .length
                                         }`}</Text>
+                                        <Spacer />
                                     </VStack>
                                 </Center>
                                 {state.surveyQuestions.options.map((_, idx) => (

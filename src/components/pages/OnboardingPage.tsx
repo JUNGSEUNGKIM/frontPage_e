@@ -6,7 +6,7 @@ import Logo from "@/assets/logo.png";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import { getSpeech } from "@/utls/getSpeech";
-import { greetings } from "@/constants/titles";
+import { greetings } from "@/constants/greetings";
 
 import {
     DialogBody,

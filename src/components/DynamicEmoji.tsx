@@ -5,7 +5,7 @@ import OpenMouthEmoji from "@/assets/animations/open_mouth.png";
 import RelieveEmoji from "@/assets/animations/relieve.png";
 import WinkingEmoji from "@/assets/animations/winking.png";
 
-import { greetings } from "@/constants/titles";
+import { greetings } from "@/constants/greetings";
 
 const images = [
     GrinningEmoji,
