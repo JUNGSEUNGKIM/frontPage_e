@@ -1,11 +1,11 @@
-import { Container, Image, Text, VStack } from "@chakra-ui/react";
+import { Container, Heading, Image, VStack } from "@chakra-ui/react";
 import GrinningEmoji from "@/assets/animations/grinning.png";
 import KissEmoji from "@/assets/animations/kiss.png";
 import OpenMouthEmoji from "@/assets/animations/open_mouth.png";
 import RelieveEmoji from "@/assets/animations/relieve.png";
 import WinkingEmoji from "@/assets/animations/winking.png";
 
-import { greetings } from "@/constants/greetings";
+import { Greetings } from "@/constants/greetings";
 
 const images = [
     GrinningEmoji,
@@ -13,6 +13,10 @@ const images = [
     KissEmoji,
     OpenMouthEmoji,
     RelieveEmoji,
+    WinkingEmoji,
+    GrinningEmoji,
+    GrinningEmoji,
+    GrinningEmoji,
 ];
 
 export function DynamicEmoji({
@@ -28,17 +32,19 @@ export function DynamicEmoji({
         <VStack>
             <Image w={width} h={height} src={images[currentIdx]} />;
             <Container h={100} />
-            <Text
+            <Heading
                 minH="10vh"
                 animation="pulse"
                 textAlign="center"
                 whiteSpace="pre-line"
-                textStyle="6xl"
+                textStyle="7xl"
                 fontWeight="bold"
                 color="black"
+                pl={3}
+                pr={3}
             >
-                {greetings[currentIdx]}
-            </Text>
+                {Greetings[currentIdx].text}
+            </Heading>
         </VStack>
     );
 }

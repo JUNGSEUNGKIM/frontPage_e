@@ -1,50 +1,73 @@
 import palettes from "@/constants/colors";
-import { Container, VStack, HStack, Image } from "@chakra-ui/react";
-import { Button } from "../ui/button";
-import { DynamicEmoji } from "../DynamicEmoji";
-import Logo from "@/assets/logo.png";
-import { Link } from "react-router";
-import { useEffect, useState } from "react";
-import { getSpeech } from "@/utls/getSpeech";
-import { greetings } from "@/constants/greetings";
 
 import {
     DialogBody,
     DialogCloseTrigger,
     DialogContent,
-    DialogDescription,
+    DialogFooter,
+    DialogHeader,
     DialogRoot,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
 
+import {
+    Container,
+    VStack,
+    HStack,
+    Image,
+    Spacer,
+    Heading,
+} from "@chakra-ui/react";
+import { Button } from "../ui/button";
+import { DynamicEmoji } from "../DynamicEmoji";
+import Logo from "@/assets/logo.png";
+import { Link } from "react-router";
+import { useEffect, useState, useRef } from "react";
+import useSound from "use-sound";
+import bgm from "@/assets/audio/focus.mp3";
+
+import { Greetings } from "@/constants/greetings";
+import { Tutorial } from "../tutorial/Tutorial";
+
 export function OnboardingPage() {
-    // init speech
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const nextIndex = (currentIndex + 1) % Greetings.length;
+    const audioRef = useRef(null);
+
+    // html 요소 접근 -> useRef 활용
     useEffect(() => {
-        // preload
-        window.speechSynthesis.getVoices();
-        getSpeech(greetings[0]);
+        if (audioRef.current) {
+            audioRef.current.volume = 0.5; // 기본 볼륨을 50%로 설정
+        }
     }, []);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    // Load the sound for the next index
+    const [play, { stop }] = useSound(Greetings[nextIndex]?.url);
+
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            // check is last emoji here
-            if (currentIndex === 4) {
-                setCurrentIndex(0);
-                // change current emoji
-            } else {
-                setCurrentIndex(currentIndex + 1);
-            }
+            // 최신 currentIndex 값을 참조
+            setCurrentIndex((prev) => {
+                if (prev === Greetings.length - 1) {
+                    return 0;
+                }
+                return prev + 1;
+            });
         }, 10000);
 
         return () => clearInterval(intervalId);
-    }, [currentIndex]);
+    }, []);
 
-    useEffect(() => {
-        getSpeech(greetings[currentIndex]);
-    }, [currentIndex]);
+    // useEffect(() => {
+    //     // currentIndex가 변경될 때마다 재생
+    //     if (open) {
+    //         return;
+    //     }
+    //     play();
+    // }, [currentIndex]);
 
     return (
         <VStack
@@ -57,49 +80,49 @@ export function OnboardingPage() {
         >
             <HStack w="100vw">
                 <Image src={Logo} h="2vh" ml={7} mt={7} />
+                <Spacer />
             </HStack>
-            <Container height="10vh"></Container>
+            <Container height="10vh" />
             <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
-            <Container height="10vh"></Container>
-            <Link to="/diagnosis">
-                <Button
-                    w="50vw"
-                    h="4vh"
-                    bg={palettes.primary}
-                    fontSize="4xl"
-                    color="white"
-                    borderRadius={12}
-                >
-                    Lets get started
-                </Button>
-            </Link>
-            <DialogRoot placement="center">
+            <Container height="20vh" />
+            <DialogRoot
+                lazyMount
+                open={open}
+                size="full"
+                onOpenChange={(e) => setOpen(e.open)}
+            >
                 <DialogTrigger asChild>
                     <Button
-                        w="50vw"
-                        h="4vh"
-                        bg={palettes.grey}
-                        fontSize="4xl"
-                        borderColor={palettes.grey}
+                        w="80vw"
+                        h="5vh"
+                        bg={palettes.primary}
+                        color="white"
                         borderRadius={12}
-                        borderWidth={2}
-                        color="black"
-                        mt={1}
+                        onClick={() => {
+                            stop();
+                        }}
                     >
-                        How to use
+                        <Heading size="5xl">{`Let's begin !`}</Heading>
                     </Button>
                 </DialogTrigger>
+
                 <DialogContent>
-                    <DialogBody pt="4" borderRadius={12}>
-                        <DialogTitle>Guide</DialogTitle>
-                        <DialogDescription mb={4}>
-                            this is example of kiosk information.
-                        </DialogDescription>
-                        <Button>This is button</Button>
+                    <DialogHeader>
+                        <DialogTitle>Tutorial</DialogTitle>
+                    </DialogHeader>
+                    <DialogBody>
+                        <Tutorial />
+                        {/* <DialogActionTrigger asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogActionTrigger> */}
                     </DialogBody>
-                    <DialogCloseTrigger top="0" insetEnd="-12" bg="bg" />
+                    <DialogFooter></DialogFooter>
+                    <DialogCloseTrigger />
                 </DialogContent>
             </DialogRoot>
+            <Spacer />
+            <audio ref={audioRef} id="bgm" src={bgm} loop controls />
+            <Container h="5vh" />
         </VStack>
     );
 }

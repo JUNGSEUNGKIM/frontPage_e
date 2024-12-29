@@ -228,7 +228,7 @@ export function DiagnosisPage() {
                                                     />
                                                     <Text
                                                         color="black"
-                                                        textAlign="start"
+                                                        textAlign="center"
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
@@ -284,7 +284,7 @@ export function DiagnosisPage() {
                                                     />
                                                     <Text
                                                         color={"black"}
-                                                        textAlign="start"
+                                                        textAlign="center"
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
