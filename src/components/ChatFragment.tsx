@@ -130,11 +130,6 @@ export function ChatFragment() {
 
         // 음성 출력 시작
         synth.speak(utterance);
-
-
-                    handleStartListening();
-            setIsLoading(false);
-            setIsListening(true);
     };
 
     return (
