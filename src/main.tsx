@@ -8,7 +8,7 @@ import { DiagnosisPage } from "./components/pages/DiagnosisPage.tsx";
 import ReportPage from "./components/pages/ReportPage.tsx";
 
 // strict mode for check error
-const isTEST = false;
+const isTEST = true;
 
 createRoot(document.getElementById("root")!).render(
     <BrowserRouter>

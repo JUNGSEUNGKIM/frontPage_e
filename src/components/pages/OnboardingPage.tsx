@@ -22,7 +22,6 @@ import {
 import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
-import { Link } from "react-router";
 import { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
 import bgm from "@/assets/audio/focus.mp3";

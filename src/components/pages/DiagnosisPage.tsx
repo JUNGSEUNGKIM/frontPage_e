@@ -32,8 +32,9 @@ import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import { DiagnosisDone } from "../DiagnosisDone";
 import { ChatFragment } from "../ChatFragment";
+import { DtxFragment } from "../DtxFragment";
 
-type Tap = "chat" | "diagnosis" | "lucid";
+type Tap = "chat" | "diagnosis" | "dtx";
 
 type DiagnosisType = "Depression" | "Dementia";
 
@@ -124,19 +125,17 @@ export function DiagnosisPage() {
                     <Button
                         size="md"
                         w="100px"
-                        bg={currentTap === "lucid" ? palettes.primary : "white"}
+                        bg={currentTap === "dtx" ? palettes.primary : "white"}
                         borderWidth="1px"
                         borderColor={
-                            currentTap === "lucid"
+                            currentTap === "dtx"
                                 ? palettes.primary
                                 : palettes.grey
                         }
                         borderRadius={12}
-                        onClick={() => handleTap("lucid")}
+                        onClick={() => handleTap("dtx")}
                     >
-                        <Text
-                            color={currentTap === "lucid" ? "white" : "black"}
-                        >
+                        <Text color={currentTap === "dtx" ? "white" : "black"}>
                             DTx
                         </Text>
                     </Button>
@@ -428,6 +427,7 @@ export function DiagnosisPage() {
                         )}
                         {/* Add Chat fragment here */}
                         {currentTap === "chat" && <ChatFragment />}
+                        {currentTap === "dtx" && <DtxFragment />}
                     </Container>
                 </GridItem>
             </Grid>
