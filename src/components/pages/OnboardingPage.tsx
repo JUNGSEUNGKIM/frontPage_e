@@ -60,13 +60,13 @@ export function OnboardingPage() {
         return () => clearInterval(intervalId);
     }, []);
 
-    // useEffect(() => {
-    //     // currentIndex가 변경될 때마다 재생
-    //     if (open) {
-    //         return;
-    //     }
-    //     play();
-    // }, [currentIndex]);
+    useEffect(() => {
+        // currentIndex가 변경될 때마다 재생
+        if (open) {
+            return;
+        }
+        play();
+    }, [currentIndex]);
 
     return (
         <VStack
