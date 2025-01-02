@@ -74,11 +74,11 @@ export function OnboardingPage() {
             h="100vh"
             bg={palettes.background}
             bgGradient="to-tr"
-            gradientFrom="orange.100"
-            gradientTo="blue.200"
+            gradientFrom="purple.300"
+            gradientTo="blue.400"
         >
             <HStack w="100vw">
-                <Image src={Logo} h="2vh" ml={7} mt={7} />
+                <Image src={Logo} h="2vh" mt="2vw" ml="2vw" />
                 <Spacer />
             </HStack>
             <Container height="10vh" />
