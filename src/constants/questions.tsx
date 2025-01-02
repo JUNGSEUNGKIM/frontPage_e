@@ -12,10 +12,10 @@ export const DEPRESSIONQUESTIONS = [
 ];
 
 export const DEPRESSIONOPTIONS = [
-    "Not at all",
-    "Several days",
-    "More than half the days",
-    "Nearly every day",
+    "1. Not at all",
+    "2. Several days",
+    "3. More than half the days",
+    "4. Nearly every day",
 ];
 
 /// Dimentia q&a
@@ -37,4 +37,4 @@ export const DEMENTIAQUESTIONS = [
     "Difficult to use equipment that I used in the past",
 ];
 
-export const DEMENTIAOPTIONS = ["Not at all", "Sometimes", "Often"];
+export const DEMENTIAOPTIONS = ["1. Not at all", "2. Sometimes", "3. Often"];

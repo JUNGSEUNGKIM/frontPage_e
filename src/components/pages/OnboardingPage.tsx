@@ -22,7 +22,6 @@ import {
 import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
-import { Link } from "react-router";
 import { useEffect, useState, useRef } from "react";
 import useSound from "use-sound";
 import bgm from "@/assets/audio/focus.mp3";
@@ -61,13 +60,13 @@ export function OnboardingPage() {
         return () => clearInterval(intervalId);
     }, []);
 
-    // useEffect(() => {
-    //     // currentIndex가 변경될 때마다 재생
-    //     if (open) {
-    //         return;
-    //     }
-    //     play();
-    // }, [currentIndex]);
+    useEffect(() => {
+        // currentIndex가 변경될 때마다 재생
+        if (open) {
+            return;
+        }
+        play();
+    }, [currentIndex]);
 
     return (
         <VStack
@@ -75,11 +74,11 @@ export function OnboardingPage() {
             h="100vh"
             bg={palettes.background}
             bgGradient="to-tr"
-            gradientFrom="orange.100"
-            gradientTo="blue.200"
+            gradientFrom="purple.300"
+            gradientTo="blue.400"
         >
             <HStack w="100vw">
-                <Image src={Logo} h="2vh" ml={7} mt={7} />
+                <Image src={Logo} h="2vh" mt="2vw" ml="2vw" />
                 <Spacer />
             </HStack>
             <Container height="10vh" />
@@ -112,9 +111,6 @@ export function OnboardingPage() {
                     </DialogHeader>
                     <DialogBody>
                         <Tutorial />
-                        {/* <DialogActionTrigger asChild>
-                            <Button variant="outline">Cancel</Button>
-                        </DialogActionTrigger> */}
                     </DialogBody>
                     <DialogFooter></DialogFooter>
                     <DialogCloseTrigger />

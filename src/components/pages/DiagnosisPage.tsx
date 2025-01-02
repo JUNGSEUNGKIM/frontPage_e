@@ -10,6 +10,7 @@ import {
     HStack,
     Container,
     Spacer,
+    Group,
 } from "@chakra-ui/react";
 import { AnswerButton } from "@/components/AnswerButton";
 import { Button } from "@/components/ui/button";
@@ -32,8 +33,9 @@ import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import { DiagnosisDone } from "../DiagnosisDone";
 import { ChatFragment } from "../ChatFragment";
+import { DtxFragment } from "../DtxFragment";
 
-type Tap = "chat" | "diagnosis" | "lucid";
+type Tap = "chat" | "diagnosis" | "dtx";
 
 type DiagnosisType = "Depression" | "Dementia";
 
@@ -50,7 +52,8 @@ export function DiagnosisPage() {
 
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
-    const { state, startSurvey, answerQuestion, goBack } = useSurvey();
+    const { state, startSurvey, initSurvey, answerQuestion, goBack } =
+        useSurvey();
     // status : init / progress / done
 
     const [measurement, setMeasurement] = useState<RPPGMeasurement>({
@@ -86,19 +89,19 @@ export function DiagnosisPage() {
     }
 
     return (
-        <Container bg={palettes.background}>
-            <Center height="3vh">
-                <HStack w="100%" gap="10px">
-                    <Image
-                        src={Logo}
-                        onClick={() => handleGoPreviousPage()}
-                        h="2vh"
-                        alt="logo"
-                    />
-                    <Spacer />
+        <VStack w="100vw" h="100vh" bg={palettes.background}>
+            <HStack w="100vw">
+                <Image
+                    src={Logo}
+                    h="2vh"
+                    mt="2vw"
+                    ml="2vw"
+                    onClick={() => handleGoPreviousPage()}
+                />
+                <Spacer />
+                <Group pt={5} pr={5}>
                     <Button
-                        size="md"
-                        w="100px"
+                        w="10vw"
                         bg={
                             currentTap === "diagnosis"
                                 ? palettes.primary
@@ -122,27 +125,23 @@ export function DiagnosisPage() {
                         </Text>
                     </Button>
                     <Button
-                        size="md"
-                        w="100px"
-                        bg={currentTap === "lucid" ? palettes.primary : "white"}
+                        w="10vw"
+                        bg={currentTap === "dtx" ? palettes.primary : "white"}
                         borderWidth="1px"
                         borderColor={
-                            currentTap === "lucid"
+                            currentTap === "dtx"
                                 ? palettes.primary
                                 : palettes.grey
                         }
                         borderRadius={12}
-                        onClick={() => handleTap("lucid")}
+                        onClick={() => handleTap("dtx")}
                     >
-                        <Text
-                            color={currentTap === "lucid" ? "white" : "black"}
-                        >
+                        <Text color={currentTap === "dtx" ? "white" : "black"}>
                             DTx
                         </Text>
                     </Button>
                     <Button
-                        size="md"
-                        w="100px"
+                        w="10vw"
                         bg={currentTap === "chat" ? palettes.primary : "white"}
                         borderWidth="1px"
                         borderColor={
@@ -157,12 +156,12 @@ export function DiagnosisPage() {
                             AI Chat
                         </Text>
                     </Button>
-                </HStack>
-            </Center>
+                </Group>
+            </HStack>
             <Grid templateRows="28% 60% 6%" minHeight="95vh" pt="10px" gap="5">
                 <GridItem rounded="md">
                     <Center w="100%" h="100%">
-                        <HStack w="100%">
+                        <HStack w="100%" mb={1}>
                             <FaceDetectionApp
                                 onValueChanged={handleMeasurement}
                             />
@@ -173,22 +172,22 @@ export function DiagnosisPage() {
                 <GridItem rounded="md">
                     <Container h="100%">
                         <RppgMeasurementList measurementValue={measurement} />
-                        <Container h={1} />
                         {currentTap === "diagnosis" && (
                             <>
                                 {state.status === "init" && (
-                                    <VStack gap="2vh">
+                                    <VStack w="100%" gap={4}>
                                         <Text
                                             color="black"
                                             fontSize="5xl"
                                             fontWeight="bold"
                                             animation="pulse"
+                                            mt="3"
                                         >
                                             Choose Diagnosis Type
                                         </Text>
                                         <HStack w="100%">
                                             <Button
-                                                w="48%"
+                                                w="49%"
                                                 h="30vh"
                                                 bg={"white"}
                                                 borderColor={
@@ -245,7 +244,7 @@ export function DiagnosisPage() {
                                             </Button>
                                             <Spacer />
                                             <Button
-                                                w="48%"
+                                                w="49%"
                                                 h="30vh"
                                                 bg={"white"}
                                                 borderColor={
@@ -303,6 +302,7 @@ export function DiagnosisPage() {
                                         <Button
                                             w="100%"
                                             h="4vh"
+                                            mt={3}
                                             bg={palettes.primary}
                                             fontSize="3xl"
                                             color="white"
@@ -335,6 +335,7 @@ export function DiagnosisPage() {
                                             borderRadius={12}
                                             width="100%"
                                             height="13vh"
+                                            mt={4}
                                             p="24px"
                                         >
                                             <VStack
@@ -396,27 +397,32 @@ export function DiagnosisPage() {
                                                 borderWidth={2}
                                                 borderRadius={12}
                                                 onClick={() => {
+                                                    if (
+                                                        state.currentIndex === 0
+                                                    ) {
+                                                        initSurvey();
+                                                    }
                                                     goBack();
                                                 }}
                                             >
                                                 Prev
                                             </Button>
-                                            <Container width="1vw" />
-                                            <Button
-                                                w="30%"
-                                                h="3vh"
-                                                bg="white"
-                                                fontWeight="bold"
-                                                borderColor={palettes.grey}
-                                                borderWidth={2}
-                                                borderRadius={12}
-                                                color="black"
-                                                fontSize="l"
-                                                onClick={handleGoPreviousPage}
-                                            >
-                                                Stop
-                                            </Button>
                                         </HStack>
+                                        <Container h="15vh" />
+                                        <Button
+                                            w="100%"
+                                            h="3vh"
+                                            bg="white"
+                                            fontWeight="bold"
+                                            borderColor={palettes.grey}
+                                            borderWidth={2}
+                                            borderRadius={12}
+                                            color="black"
+                                            fontSize="l"
+                                            onClick={handleGoPreviousPage}
+                                        >
+                                            Stop
+                                        </Button>
                                     </>
                                 )}
                                 {state.status === "done" && (
@@ -428,10 +434,11 @@ export function DiagnosisPage() {
                         )}
                         {/* Add Chat fragment here */}
                         {currentTap === "chat" && <ChatFragment />}
+                        {currentTap === "dtx" && <DtxFragment />}
                     </Container>
                 </GridItem>
             </Grid>
-        </Container>
+        </VStack>
     );
 }
 
