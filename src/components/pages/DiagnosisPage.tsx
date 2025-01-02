@@ -52,7 +52,8 @@ export function DiagnosisPage() {
 
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
-    const { state, startSurvey, answerQuestion, goBack } = useSurvey();
+    const { state, startSurvey, initSurvey, answerQuestion, goBack } =
+        useSurvey();
     // status : init / progress / done
 
     const [measurement, setMeasurement] = useState<RPPGMeasurement>({
@@ -174,7 +175,7 @@ export function DiagnosisPage() {
                         {currentTap === "diagnosis" && (
                             <>
                                 {state.status === "init" && (
-                                    <VStack gap={4}>
+                                    <VStack w="100%" gap={4}>
                                         <Text
                                             color="black"
                                             fontSize="5xl"
@@ -334,6 +335,7 @@ export function DiagnosisPage() {
                                             borderRadius={12}
                                             width="100%"
                                             height="13vh"
+                                            mt={4}
                                             p="24px"
                                         >
                                             <VStack
@@ -395,27 +397,32 @@ export function DiagnosisPage() {
                                                 borderWidth={2}
                                                 borderRadius={12}
                                                 onClick={() => {
+                                                    if (
+                                                        state.currentIndex === 0
+                                                    ) {
+                                                        initSurvey();
+                                                    }
                                                     goBack();
                                                 }}
                                             >
                                                 Prev
                                             </Button>
-                                            <Container width="1vw" />
-                                            <Button
-                                                w="30%"
-                                                h="3vh"
-                                                bg="white"
-                                                fontWeight="bold"
-                                                borderColor={palettes.grey}
-                                                borderWidth={2}
-                                                borderRadius={12}
-                                                color="black"
-                                                fontSize="l"
-                                                onClick={handleGoPreviousPage}
-                                            >
-                                                Stop
-                                            </Button>
                                         </HStack>
+                                        <Container h="15vh" />
+                                        <Button
+                                            w="100%"
+                                            h="3vh"
+                                            bg="white"
+                                            fontWeight="bold"
+                                            borderColor={palettes.grey}
+                                            borderWidth={2}
+                                            borderRadius={12}
+                                            color="black"
+                                            fontSize="l"
+                                            onClick={handleGoPreviousPage}
+                                        >
+                                            Stop
+                                        </Button>
                                     </>
                                 )}
                                 {state.status === "done" && (

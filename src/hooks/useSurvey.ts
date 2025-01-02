@@ -13,6 +13,18 @@ export function useSurvey() {
         },
     });
 
+    const initSurvey = () => {
+        setState({
+            status: "init",
+            currentIndex: 0,
+            responses: [],
+            surveyQuestions: {
+                questions: DEPRESSIONQUESTIONS,
+                options: DEPRESSIONOPTIONS,
+            },
+        });
+    };
+
     const startSurvey = (questions: string[], options: string[]) => {
         setState({
             status: "onProgress",
@@ -47,5 +59,12 @@ export function useSurvey() {
         }));
     };
 
-    return { state, startSurvey, endSurvey, answerQuestion, goBack };
+    return {
+        state,
+        startSurvey,
+        initSurvey,
+        endSurvey,
+        answerQuestion,
+        goBack,
+    };
 }

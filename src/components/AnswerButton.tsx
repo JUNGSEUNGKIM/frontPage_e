@@ -29,8 +29,10 @@ export function AnswerButton({
             }}
         >
             <Text
-                fontSize="xl"
+                w="20vw"
+                fontSize="2xl"
                 fontWeight="bold"
+                textAlign="start"
                 color={isSelected ? "white" : "black"}
             >
                 {label}
