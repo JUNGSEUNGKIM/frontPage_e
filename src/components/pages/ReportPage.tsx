@@ -54,16 +54,13 @@ export default function ReportPage() {
     return (
         <VStack w="100vw" h="100vh" bg={"white"} p="16px">
             <HStack w="100%" mb="2vh">
-                <Heading color={palettes.black} fontSize="3xl">
-                    Diagnosis Report
-                </Heading>
                 <Spacer />
                 <Image src={Logo} h="2vh" mr="2vw" />
             </HStack>
-            <Heading color="black" fontWeight="bold" fontSize="2xl" mb="1vh">
+            <Heading color={palettes.black} fontSize="4xl" mb="2vh">
                 Diagnosis Result
             </Heading>
-            <HStack w="100%" h="25vh" p="4">
+            <HStack w="100%" h="25vh">
                 <VStack w="30%" h="100%" borderRadius={8} bg={palettes.grey}>
                     <Image src={AvatarImg} w={300} />
                     <Text color="black">user image</Text>
@@ -115,15 +112,6 @@ export default function ReportPage() {
                     </Center>
                 </HStack>
             </HStack>
-            <Box h="1vh" />
-            <Heading
-                color={palettes.black}
-                fontWeight="bold"
-                fontSize="2xl"
-                mb="1vh"
-            >
-                rPPG Result
-            </Heading>
             <HStack w="100%">
                 <ChartContainer>
                     <Heading color="black" fontWeight="bold" fontSize="xl">
@@ -171,7 +159,7 @@ export default function ReportPage() {
                     </Container>
                 </ChartContainer>
             </HStack>
-            <HStack w="100%" h="15vh">
+            <HStack w="100%">
                 <ChartContainer>
                     <Heading color="black" fontWeight="bold" fontSize="xl">
                         Emotion
@@ -250,7 +238,7 @@ export default function ReportPage() {
 
 function ChartContainer({ children }: { children: React.ReactNode }) {
     return (
-        <Container h="15vh" bg={palettes.grey} borderRadius={12}>
+        <Container w="50%" h="15vh" bg={palettes.grey} borderRadius={12}>
             {children}
         </Container>
     );
