@@ -169,7 +169,7 @@ export default function DiagnosisResult() {
                             config={{
                                 value: {
                                     label: "Heart Rate",
-                                    color: "hsl(var(--chart-2))",
+                                    color: "hsl(var(--chart-1))",
                                 },
                             }}
                             className="w-full h-[200px]"

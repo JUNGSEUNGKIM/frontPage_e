@@ -30,7 +30,7 @@ export function DynamicEmoji({
 }) {
     return (
         <VStack>
-            <Image w={width} h={height} src={images[currentIdx]} />;
+            <Image w={width} h={height} src={images[currentIdx]} />
             <Container h={100} />
             <Heading
                 minH="10vh"
