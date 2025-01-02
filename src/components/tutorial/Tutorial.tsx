@@ -98,6 +98,19 @@ export function Tutorial() {
 
     return (
         <Container h="100%" className="slider-container">
+            <HStack>
+                <Spacer />
+                <Button
+                    w="10vw"
+                    h="3vh"
+                    variant="outline"
+                    onClick={() => {
+                        navigate("diagnosis");
+                    }}
+                >
+                    <Text fontSize="xl">Skip</Text>
+                </Button>
+            </HStack>
             <Slider
                 ref={(slider) => {
                     sliderRef = slider;
@@ -125,6 +138,7 @@ export function Tutorial() {
                 >
                     <Text fontSize="3xl">Previous</Text>
                 </Button>
+                <Spacer />
                 <Spacer />
                 {!isLast && (
                     <Button

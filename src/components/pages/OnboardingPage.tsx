@@ -111,9 +111,6 @@ export function OnboardingPage() {
                     </DialogHeader>
                     <DialogBody>
                         <Tutorial />
-                        {/* <DialogActionTrigger asChild>
-                            <Button variant="outline">Cancel</Button>
-                        </DialogActionTrigger> */}
                     </DialogBody>
                     <DialogFooter></DialogFooter>
                     <DialogCloseTrigger />
