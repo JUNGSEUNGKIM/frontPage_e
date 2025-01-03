@@ -315,7 +315,7 @@ export function DiagnosisPage() {
                                             </Button>
                                         </HStack>
                                         <Button
-                                            w="95vw"
+                                            w="94vw"
                                             h="4vh"
                                             mt={3}
                                             fontSize="3xl"
