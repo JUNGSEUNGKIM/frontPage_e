@@ -1,22 +1,11 @@
-import {
-    Area,
-    AreaChart,
-    Label,
-    Line,
-    LineChart,
-    Pie,
-    PieChart,
-} from "recharts";
+
+import { Area, AreaChart, Label, Pie, PieChart } from "recharts";
 
 import { Button } from "@/components/ui/button";
 import { Image } from "@chakra-ui/react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart";
+
+import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import Logo from "@/assets/logo.png";
 import palettes from "@/constants/colors";
 import HeartBeat from "@/assets/heartbeat.png";
@@ -92,70 +81,77 @@ export default function DiagnosisResult() {
 
                 {/* Description Summary */}
                 <Card className="bg-blue-50 w-2/3">
-                    <CardContent className="flex flex-row justify-between p-4 ">
-                        <ChartContainer
-                            config={chartConfig}
-                            className="aspect-square w-1/3"
-                        >
-                            <PieChart>
-                                <ChartTooltip
-                                    cursor={false}
-                                    content={<ChartTooltipContent hideLabel />}
-                                />
-                                <Pie
-                                    data={chartData}
-                                    dataKey="visitors"
-                                    nameKey="browser"
-                                    innerRadius={60}
-                                    strokeWidth={5}
-                                >
-                                    <Label
-                                        content={({ viewBox }) => {
-                                            if (
-                                                viewBox &&
-                                                "cx" in viewBox &&
-                                                "cy" in viewBox
-                                            ) {
-                                                return (
-                                                    <text
-                                                        x={viewBox.cx}
-                                                        y={viewBox.cy}
-                                                        textAnchor="middle"
-                                                        dominantBaseline="middle"
-                                                    >
-                                                        <tspan
+                    <CardContent className="flex flex-row justify-between items-center p-4 ">
+                        <div className="flex flex-col w-1/2 h-full">
+                            <ChartContainer
+                                config={chartConfig}
+                                className="aspect-square w-auto"
+                            >
+                                <PieChart>
+                                    <Pie
+                                        data={chartData}
+                                        dataKey="visitors"
+                                        nameKey="browser"
+                                        innerRadius={60}
+                                        strokeWidth={5}
+                                    >
+                                        <Label
+                                            content={({ viewBox }) => {
+                                                if (
+                                                    viewBox &&
+                                                    "cx" in viewBox &&
+                                                    "cy" in viewBox
+                                                ) {
+                                                    return (
+                                                        <text
                                                             x={viewBox.cx}
                                                             y={viewBox.cy}
-                                                            className="fill-foreground text-3xl font-bold"
+                                                            textAnchor="middle"
+                                                            dominantBaseline="middle"
                                                         >
-                                                            {"none"}
-                                                        </tspan>
-                                                        <tspan
-                                                            x={viewBox.cx}
-                                                            y={
-                                                                (viewBox.cy ||
-                                                                    0) + 24
-                                                            }
-                                                            className="fill-muted-foreground"
-                                                        >
-                                                            Score
-                                                        </tspan>
-                                                    </text>
-                                                );
-                                            }
-                                        }}
-                                    />
-                                </Pie>
-                            </PieChart>
-                        </ChartContainer>
-                        {/* <div className="w-1/2">
-                            <h3 className="font-bold">Diagnosis Result</h3>
+                                                            <tspan
+                                                                x={viewBox.cx}
+                                                                y={viewBox.cy}
+                                                                className="fill-foreground text-3xl font-bold"
+                                                            >
+                                                                {"none"}
+                                                            </tspan>
+                                                            <tspan
+                                                                x={viewBox.cx}
+                                                                y={
+                                                                    (viewBox.cy ||
+                                                                        0) + 24
+                                                                }
+                                                                className="fill-muted-foreground"
+                                                            >
+                                                                Score
+                                                            </tspan>
+                                                        </text>
+                                                    );
+                                                }
+                                            }}
+                                        />
+                                    </Pie>
+                                </PieChart>
+                            </ChartContainer>
+                        </div>
+                        <div className="flex flex-col w-1/2">
+                            <h3 className="font-bold mb-4">Diagnosis Result</h3>
                             <p>
-                                Lorem ipsum dollar sit Lorem ipsum dollar
-                                sitLorem ipsum dollar sitLorem ipsum dollar
-                                sitLorem ipsum dollar sitLorem ipsum dollar
+                                The mental health checkup is provided for you to
+                                self-assess your condition and should not be
+                                considered diagnostic. Increased stress can
+                                lower your physical, psychological, and coping
+                                resources, so caution is advised.
+                                <br />
+                                <br />
+                                If the issues you are experiencing persist, it
+                                is recommended to seek free counseling at your
+                                local mental health center or visit a
+                                psychiatric clinic for consultation.
                             </p>
-                        </div> */}
+                        </div>
+
                     </CardContent>
                 </Card>
             </div>
@@ -169,7 +165,7 @@ export default function DiagnosisResult() {
                             config={{
                                 value: {
                                     label: "Heart Rate",
-                                    color: "hsl(var(--chart-2))",
+                                    color: "hsl(var(--chart-1))",
                                 },
                             }}
                             className="w-full h-[200px]"

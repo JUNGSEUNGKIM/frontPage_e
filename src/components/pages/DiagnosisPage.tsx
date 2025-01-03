@@ -408,7 +408,7 @@ export function DiagnosisPage() {
                                                 Prev
                                             </Button>
                                         </HStack>
-                                        <Container h="15vh" />
+                                        <Container h="10vh" />
                                         <Button
                                             w="100%"
                                             h="3vh"

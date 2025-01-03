@@ -132,7 +132,9 @@ export function Tutorial() {
                 <Button
                     w="40vw"
                     h="4vh"
-                    variant="outline"
+                    borderColor={palettes.grey}
+                    borderRadius={12}
+                    borderWidth={2}
                     onClick={previous}
                     mt="5"
                 >
@@ -149,7 +151,9 @@ export function Tutorial() {
                         onClick={next}
                         mt="5"
                     >
-                        <Text fontSize="3xl">Next</Text>
+                        <Text fontSize="3xl" color="white">
+                            Next
+                        </Text>
                     </Button>
                 )}
                 {isLast && (
@@ -163,7 +167,9 @@ export function Tutorial() {
                         }}
                         mt="5"
                     >
-                        <Text fontSize="3xl">Start</Text>
+                        <Text fontSize="3xl" color="white">
+                            Start
+                        </Text>
                     </Button>
                 )}
             </HStack>

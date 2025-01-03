@@ -28,6 +28,7 @@ import bgm from "@/assets/audio/focus.mp3";
 
 import { Greetings } from "@/constants/greetings";
 import { Tutorial } from "../tutorial/Tutorial";
+import CustomAudioPlayer from "../CustomAudioPlayer";
 
 export function OnboardingPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -101,14 +102,12 @@ export function OnboardingPage() {
                             stop();
                         }}
                     >
-                        <Heading size="5xl">{`Let's begin !`}</Heading>
+                        <Heading className="font-bold text-4xl">{`Get Started`}</Heading>
                     </Button>
                 </DialogTrigger>
 
                 <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Tutorial</DialogTitle>
-                    </DialogHeader>
+                    <DialogHeader></DialogHeader>
                     <DialogBody>
                         <Tutorial />
                     </DialogBody>
@@ -117,7 +116,8 @@ export function OnboardingPage() {
                 </DialogContent>
             </DialogRoot>
             <Spacer />
-            <audio ref={audioRef} id="bgm" src={bgm} loop controls />
+            <CustomAudioPlayer />
+            {/* <audio ref={audioRef} id="bgm" src={bgm} loop controls /> */}
             <Container h="5vh" />
         </VStack>
     );
