@@ -16,22 +16,16 @@ import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { DiagnosisReport } from "@/types";
 
-// Sample data for the HR chart
-const chartData = [
-    { browser: "safari", visitors: 90, fill: "var(--color-safari)" },
-    { browser: "chrome", visitors: 10, fill: "var(--color-chrome)" },
-];
-
 const chartConfig = {
-    visitors: {
-        label: "Visitors",
+    scores: {
+        label: "scores",
     },
-    chrome: {
-        label: "Chrome",
+    left: {
+        label: "left",
         color: "hsl(var(--chart-1))",
     },
-    safari: {
-        label: "Safari",
+    get: {
+        label: "get",
         color: "hsl(var(--chart-2))",
     },
 } satisfies ChartConfig;
@@ -57,29 +51,6 @@ export default function DiagnosisResult() {
         ) / state.hrValues.length
     );
     const score = state.score;
-    // [
-    //     { time: "0", value: 65 },
-    //     { time: "1", value: 72 },
-    //     { time: "2", value: 64 },
-    //     { time: "3", value: 75 },
-    //     { time: "4", value: 69 },
-    //     { time: "5", value: 84 },
-    // ];
-
-    // const emotions = [
-    //     {
-    //         label: "Angry",
-    //         emoji: "😡",
-    //         color: "#90EE90",
-    //         value: Number(state.measurement.emotionResult.Angry) / 100,
-    //     },
-    //     { label: "Disgusted", emoji: "😫", color: "#90EE90", value: 0.4 },
-    //     { label: "Fearful", emoji: "😨", color: "#D3D3D3", value: 0.6 },
-    //     { label: "Happy", emoji: "😄", color: "#00BFFF", value: 0.3 },
-    //     { label: "Neutral", emoji: "🙂", color: "#FF6B6B", value: 0.1 },
-    //     { label: "Sad", emoji: "😢", color: "#FFD700", value: 0.5 },
-    //     { label: "Surprised", emoji: "😮", color: "#FFD700", value: 0.5 },
-    // ];
     const emotions = [
         {
             label: "Angry",
@@ -123,6 +94,14 @@ export default function DiagnosisResult() {
             color: "#FFA500", // 주황색
             value: Number(state.measurement.emotionResult.Surprised),
         },
+    ];
+
+    // Sample data for the HR chart
+    // left : total score - get
+    // get : scores. sum
+    const chartData = [
+        { browser: "left", scores: 1, fill: "#e2e8f0" },
+        { browser: "get", scores: 14, fill: "#3b82f6" },
     ];
 
     const navigate = useNavigate();
@@ -169,7 +148,7 @@ export default function DiagnosisResult() {
                                 <PieChart>
                                     <Pie
                                         data={chartData}
-                                        dataKey="visitors"
+                                        dataKey="scores"
                                         nameKey="browser"
                                         innerRadius={60}
                                         strokeWidth={5}
@@ -215,15 +194,12 @@ export default function DiagnosisResult() {
                             </ChartContainer>
                         </div>
                         <div className="flex flex-col w-1/2">
-                            <h3 className="font-bold mb-4">Diagnosis Result</h3>
+                            <h3 className="font-bold text-xl mb-4">
+                                {" "}
+                                {state.diagnosisType} Diagnosis Result
+                            </h3>
+                            <h4>Normal</h4>
                             <p>
-                                The mental health checkup is provided for you to
-                                self-assess your condition and should not be
-                                considered diagnostic. Increased stress can
-                                lower your physical, psychological, and coping
-                                resources, so caution is advised.
-                                <br />
-                                <br />
                                 If the issues you are experiencing persist, it
                                 is recommended to seek free counseling at your
                                 local mental health center or visit a
@@ -243,7 +219,7 @@ export default function DiagnosisResult() {
                             config={{
                                 value: {
                                     label: "Heart Rate",
-                                    color: "hsl(var(--chart-1))",
+                                    color: "#3b82f6",
                                 },
                             }}
                             className="w-full h-[200px]"
@@ -259,12 +235,12 @@ export default function DiagnosisResult() {
                                     >
                                         <stop
                                             offset="5%"
-                                            stopColor="hsl(var(--chart-2))"
+                                            stopColor="#3b82f6"
                                             stopOpacity={0.8}
                                         />
                                         <stop
                                             offset="95%"
-                                            stopColor="hsl(var(--chart-2))"
+                                            stopColor="#3b82f6"
                                             stopOpacity={0.1}
                                         />
                                     </linearGradient>
@@ -288,7 +264,7 @@ export default function DiagnosisResult() {
                 <Card>
                     <CardContent className="flex flex-col p-4">
                         <h3 className="font-bold mb-10">HRV</h3>
-                        <div className="flex flex-row items-center justify-center mb-4">
+                        <div className="flex flex-row items-center justify-center mb-4 px-10">
                             <Image src={HeartBeat} className="w-1/2" />
                             <span className="w-1/2 text-8xl font-bold text-blue-500 text-center">
                                 {state.measurement.hrv}
