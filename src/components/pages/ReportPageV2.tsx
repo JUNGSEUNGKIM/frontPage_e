@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import Logo from "@/assets/logo.png";
 import palettes from "@/constants/colors";
-import HeartBeat from "@/assets/heartbeat.png";
+import HeartBeat from "@/assets/heartbeat2.png";
 
 import { Input } from "../ui/input";
 import Keyboard from "react-simple-keyboard";
@@ -107,9 +107,20 @@ export default function DiagnosisResult() {
     const navigate = useNavigate();
     const [showKeyboard, setShowKeyboard] = useState(false);
     const [email, setEmail] = useState("");
+    const [layoutName, setLayoutName] = useState<"default" | "shift">(
+        "default"
+    );
 
-    const onChange = (input: string) => {
+    const handleShift = () => {
+        setLayoutName(layoutName === "default" ? "shift" : "default");
+    };
+
+    const handleChange = (input: string) => {
         setEmail(input);
+    };
+
+    const handleKeyPress = (button: string) => {
+        if (button === "{shift}" || button === "{lock}") handleShift();
     };
 
     return (
@@ -121,6 +132,7 @@ export default function DiagnosisResult() {
                     h="2vh"
                     mr="2vw"
                     onClick={() => navigate("/", { replace: true })}
+                    className="mr-auto"
                 />
             </div>
 
@@ -355,34 +367,19 @@ export default function DiagnosisResult() {
                     </CardContent>
                 </Card>
             </div>
-
-            <Button
-                w="100%"
-                borderColor={palettes.grey}
-                borderWidth={1}
-                fontSize="2xl"
-                p={8}
-                onClick={() => {
-                    navigate("/", { replace: true });
-                }}
-            >
-                Quit
-            </Button>
             {/* Action Buttons */}
-            <h2 className="text-center text-3xl font-bold text-slate-800 mt-8">
-                Save your Result!
-            </h2>
             <Button
                 w="100%"
                 bg={palettes.primary}
                 color="white"
-                fontSize="2xl"
+                fontSize="3xl"
+                fontWeight="bold"
                 p={8}
                 onClick={() => {
                     setShowKeyboard(true);
                 }}
             >
-                Send to Email
+                Save
             </Button>
             {showKeyboard && (
                 <div className="mb-96">
@@ -397,7 +394,11 @@ export default function DiagnosisResult() {
                             });
                         }}
                     />
-                    <Keyboard onChange={onChange} onKeyPress={() => {}} />
+                    <Keyboard
+                        layoutName={layoutName}
+                        onChange={handleChange}
+                        onKeyPress={handleKeyPress}
+                    />
                 </div>
             )}
             <span ref={myRef} className="h-1" />
