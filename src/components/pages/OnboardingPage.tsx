@@ -107,9 +107,7 @@ export function OnboardingPage() {
                 </DialogTrigger>
 
                 <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Tutorial</DialogTitle>
-                    </DialogHeader>
+                    <DialogHeader></DialogHeader>
                     <DialogBody>
                         <Tutorial />
                     </DialogBody>
