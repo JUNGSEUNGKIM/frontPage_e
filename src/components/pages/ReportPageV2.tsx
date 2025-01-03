@@ -17,6 +17,8 @@ import { useLocation, useNavigate } from "react-router";
 import { DiagnosisReport } from "@/types";
 import Webcam from "react-webcam";
 
+type DiagnosisResultStatus = "Normal" | "Warning" | "Danger";
+
 const chartConfig = {
     scores: {
         label: "scores",
@@ -91,6 +93,12 @@ export default function DiagnosisResult() {
         ) / state.hrValues.length
     );
     const score = state.score;
+
+    const stressText =
+        Number(state.measurement.stress) <= 60
+            ? "Your stress level is mild.\nYou’re experiencing occasional stress, but it’s manageable. Keep it up! 💪"
+            : "Your stress level is high.\nYou might feel overwhelmed. Take a moment to pause and recharge! 🔋";
+
     const emotions = [
         {
             label: "Angry",
@@ -113,7 +121,7 @@ export default function DiagnosisResult() {
         {
             label: "Happy",
             emoji: "😄",
-            color: "##facc15", // 노란색
+            color: "#facc15", // 노란색
             value: Number(state.measurement.emotionResult.Happy),
         },
         {
@@ -162,6 +170,91 @@ export default function DiagnosisResult() {
     const handleKeyPress = (button: string) => {
         if (button === "{shift}" || button === "{lock}") handleShift();
     };
+
+    // Diagnosis Status
+    // 기준 점수와 설명 정의
+    const thresholds: Record<
+        string,
+        {
+            normal: { score: number; description: string };
+            warning: { score: number; description: string };
+            danger: { score: number; description: string };
+        }
+    > = {
+        Depression: {
+            normal: {
+                score: 40,
+                description: `Your mental state appears to be stable. 😊 
+                      Keep maintaining a healthy lifestyle and continue doing what brings you joy.
+                      Remember, occasional stress is normal and part of life.`,
+            },
+            warning: {
+                score: 70,
+                description: `You might be experiencing mild signs of depression. 🤔
+                      Consider talking to someone you trust or engaging in relaxing activities.
+                      If symptoms persist, seeking professional guidance could be beneficial.`,
+            },
+            danger: {
+                score: Infinity,
+                description: `Your score indicates significant depressive symptoms. 🆘
+                      Please reach out to a mental health professional for immediate support.
+                      You don't have to face this alone—help is available, and recovery is possible.`,
+            },
+        },
+        Dementia: {
+            normal: {
+                score: 50,
+                description: `Your cognitive functions seem to be in good shape. 🙂
+                      Keep engaging in brain-stimulating activities like reading, puzzles, or learning new skills.
+                      Staying physically active and socially connected can also benefit your mental health.`,
+            },
+            warning: {
+                score: 80,
+                description: `There are some signs that may indicate cognitive decline. 🤔
+                      It’s a good idea to monitor these changes and consult with a specialist if needed.
+                      Early intervention can make a significant difference in managing symptoms effectively.`,
+            },
+            danger: {
+                score: Infinity,
+                description: `Your score suggests potential serious cognitive challenges. 🆘
+                      Please consult a neurologist or specialist as soon as possible.
+                      Early diagnosis and treatment are crucial for better management of the condition.`,
+            },
+        },
+    };
+
+    // Diagnosis Status 결정 함수
+    function getDiagnosisResult(
+        type: string,
+        score: number
+    ): { status: DiagnosisResultStatus; description: string } {
+        const threshold = thresholds[type];
+        if (!threshold) {
+            throw new Error(`Unknown diagnosis type: ${type}`);
+        }
+
+        if (score < threshold.normal.score) {
+            return {
+                status: "Normal",
+                description: threshold.normal.description,
+            };
+        } else if (score < threshold.warning.score) {
+            return {
+                status: "Warning",
+                description: threshold.warning.description,
+            };
+        } else {
+            return {
+                status: "Danger",
+                description: threshold.danger.description,
+            };
+        }
+    }
+
+    // 사용 예
+    const diagnosisType = state.diagnosisType; // e.g., "Depression"
+    const { status: diagnosisStatus, description: diagnosisDescription } =
+        getDiagnosisResult(diagnosisType, score);
 
     return (
         <div className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto">
@@ -281,17 +374,25 @@ export default function DiagnosisResult() {
                             </ChartContainer>
                         </div>
                         <div className="flex flex-col w-1/2">
-                            <h3 className="font-bold text-xl mb-4">
-                                {" "}
+                            <h3 className="font-bold text-xl">
                                 {state.diagnosisType} Diagnosis Result
                             </h3>
-                            <h4>Normal</h4>
-                            <p>
-                                If the issues you are experiencing persist, it
-                                is recommended to seek free counseling at your
-                                local mental health center or visit a
-                                psychiatric clinic for consultation.
-                            </p>
+                            <Card className="flex flex-row gap-4 bg-white px-2 rounded-md my-2">
+                                <h4 className="font-bold">Status</h4>
+                                {/* Conditional text here */}
+                                <h4
+                                    className={`font-bold ${
+                                        diagnosisStatus === "Normal"
+                                            ? "text-blue-500"
+                                            : diagnosisStatus === "Warning"
+                                            ? "text-orange-500"
+                                            : "text-red-500"
+                                    }`}
+                                >
+                                    {diagnosisStatus}
+                                </h4>
+                            </Card>
+                            <p>{diagnosisDescription}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -391,7 +492,7 @@ export default function DiagnosisResult() {
                                             className="h-8 rounded-md "
                                             style={{
                                                 width:
-                                                    emotion.value <= 0.03
+                                                    emotion.value <= 0.04
                                                         ? "1%"
                                                         : `${Math.round(
                                                               emotion.value *
@@ -435,9 +536,7 @@ export default function DiagnosisResult() {
                             </div>
                         </div>
                         <p className="text-lg text-center mt-10">
-                            Your stress level is low.
-                            <br />
-                            You’re having a calm and peaceful day! 😊
+                            {stressText}
                         </p>
                     </CardContent>
                 </Card>
