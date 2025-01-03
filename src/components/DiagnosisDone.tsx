@@ -42,7 +42,7 @@ export function DiagnosisDone({
     return (
         <VStack
             bg="white"
-            width="95vw"
+            width="94vw"
             height="30vh"
             p="24px"
             marginTop="4"

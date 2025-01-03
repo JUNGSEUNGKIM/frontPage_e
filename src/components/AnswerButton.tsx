@@ -16,7 +16,7 @@ export function AnswerButton({
     return (
         <Button
             bg={isSelected ? palettes.primary : "white"}
-            w="95vw"
+            w="94vw"
             p="40px"
             // borderWidth="2px"
             variant="solid"
