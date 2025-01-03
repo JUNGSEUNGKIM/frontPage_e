@@ -1,4 +1,3 @@
-
 import { Area, AreaChart, Label, Pie, PieChart } from "recharts";
 
 import { Button } from "@/components/ui/button";
@@ -151,7 +150,6 @@ export default function DiagnosisResult() {
                                 psychiatric clinic for consultation.
                             </p>
                         </div>
-
                     </CardContent>
                 </Card>
             </div>
@@ -300,7 +298,7 @@ export default function DiagnosisResult() {
                     p={8}
                     onClick={() => print()}
                 >
-                    Print
+                    Send to Email
                 </Button>
                 <Button
                     w="100%"

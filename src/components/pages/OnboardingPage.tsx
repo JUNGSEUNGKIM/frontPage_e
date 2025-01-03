@@ -7,9 +7,8 @@ import {
     DialogFooter,
     DialogHeader,
     DialogRoot,
-    DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/chakraui/dialog";
 
 import {
     Container,
@@ -22,9 +21,8 @@ import {
 import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
-import bgm from "@/assets/audio/focus.mp3";
 
 import { Greetings } from "@/constants/greetings";
 import { Tutorial } from "../tutorial/Tutorial";
@@ -33,14 +31,6 @@ import CustomAudioPlayer from "../CustomAudioPlayer";
 export function OnboardingPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const nextIndex = (currentIndex + 1) % Greetings.length;
-    const audioRef = useRef(null);
-
-    // html 요소 접근 -> useRef 활용
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = 0.5; // 기본 볼륨을 50%로 설정
-        }
-    }, []);
 
     // Load the sound for the next index
     const [play, { stop }] = useSound(Greetings[nextIndex]?.url);
@@ -117,7 +107,6 @@ export function OnboardingPage() {
             </DialogRoot>
             <Spacer />
             <CustomAudioPlayer />
-            {/* <audio ref={audioRef} id="bgm" src={bgm} loop controls /> */}
             <Container h="5vh" />
         </VStack>
     );

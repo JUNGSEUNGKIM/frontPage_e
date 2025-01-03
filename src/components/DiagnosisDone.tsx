@@ -22,10 +22,11 @@ export function DiagnosisDone({
     return (
         <VStack
             bg="white"
-            width="100%"
+            width="90vw"
             height="30vh"
             p="24px"
-            borderRadius={2}
+            marginTop="4"
+            borderRadius={12}
             borderWidth={2}
             borderColor={palettes.grey}
         >
