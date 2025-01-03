@@ -9,6 +9,12 @@ import Logo from "@/assets/logo.png";
 import palettes from "@/constants/colors";
 import HeartBeat from "@/assets/heartbeat.png";
 
+import { Input } from "../ui/input";
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router";
+
 // Sample data for the HR chart
 const hrData = [
     { time: "0", value: 65 },
@@ -55,14 +61,35 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DiagnosisResult() {
+    const myRef = useRef<HTMLElement | null>(null);
+
+    const navigate = useNavigate();
+    const [showKeyboard, setShowKeyboard] = useState(false);
+    const [email, setEmail] = useState("");
+
+    const onChange = (input) => {
+        setEmail(input);
+    };
+
+    const onKeyPress = (button) => {
+        // if (button == "{bksp}") {
+        //     console.log("back");
+        // }
+        // setEmail(button);
+    };
     return (
         <div
-            className="min-h-screen bg-white p-4 flex flex-col gap-4"
-            style={{ width: "100vw", height: "100vh" }}
+            className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto"
+            // style={{ width: "100vw", height: "100vh" }}
         >
             {/* Logo */}
             <div className="p-4">
-                <Image src={Logo} h="2vh" mr="2vw" />
+                <Image
+                    src={Logo}
+                    h="2vh"
+                    mr="2vw"
+                    onClick={() => navigate("/", { replace: true })}
+                />
             </div>
 
             {/* Title */}
@@ -288,28 +315,51 @@ export default function DiagnosisResult() {
                 </Card>
             </div>
 
+            <Button
+                w="100%"
+                borderColor={palettes.grey}
+                borderWidth={1}
+                fontSize="2xl"
+                p={8}
+                onClick={() => {
+                    navigate("/", { replace: true });
+                }}
+            >
+                Quit
+            </Button>
             {/* Action Buttons */}
-            <div className="mb-28 mt-16 space-y-4">
-                <Button
-                    w="100%"
-                    bg={palettes.primary}
-                    color="white"
-                    fontSize="2xl"
-                    p={8}
-                    onClick={() => print()}
-                >
-                    Send to Email
-                </Button>
-                <Button
-                    w="100%"
-                    borderColor={palettes.grey}
-                    borderWidth={1}
-                    fontSize="2xl"
-                    p={8}
-                >
-                    Quit
-                </Button>
-            </div>
+            <h2 className="text-center text-3xl font-bold text-slate-800 mt-8">
+                Save your Result!
+            </h2>
+            <Button
+                w="100%"
+                bg={palettes.primary}
+                color="white"
+                fontSize="2xl"
+                p={8}
+                onClick={() => {
+                    setShowKeyboard(true);
+                }}
+            >
+                Send to Email
+            </Button>
+            {showKeyboard && (
+                <div className="mb-96">
+                    <Input
+                        type="email"
+                        value={email}
+                        placeholder="Email"
+                        className="h-14 mb-4"
+                        onClick={() => {
+                            myRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                            });
+                        }}
+                    />
+                    <Keyboard onChange={onChange} onKeyPress={onKeyPress} />
+                </div>
+            )}
+            <span ref={myRef} className="h-1" />
         </div>
     );
 }
