@@ -128,6 +128,7 @@ export function ChatFragment() {
 
     useEffect(() => {
         wsRef.current = new WebSocket("ws://172.30.1.16:5554/ws");
+        // wsRef.current = new WebSocket("ws://172.30.1.16:5554/ws");
 
         wsRef.current.onopen = () => {
             console.log("WebSocket Connected");
@@ -246,8 +247,20 @@ export function ChatFragment() {
                 overflow="hidden"
                 w="100%"
             >
+                <Flex
+
+                    mb={0}
+                >
+                    <Box maxW="100%"
+                         p={0}
+                         rounded="lg">
+
+                    </Box>
+                </Flex>
                 <Flex flex="1" flexDirection="column-reverse" overflowY="auto">
+
                     <Box ref={messagesEndRef} />
+
                     {messages.map((message, index) => (
                         <Flex
                             key={index}
