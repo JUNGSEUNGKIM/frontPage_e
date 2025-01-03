@@ -73,7 +73,7 @@ export default function DiagnosisResult() {
         {
             label: "Happy",
             emoji: "😄",
-            color: "#FFFF00", // 노란색
+            color: "##facc15", // 노란색
             value: Number(state.measurement.emotionResult.Happy),
         },
         {
@@ -91,7 +91,7 @@ export default function DiagnosisResult() {
         {
             label: "Surprised",
             emoji: "😮",
-            color: "#FFA500", // 주황색
+            color: "#f97316", // 주황색
             value: Number(state.measurement.emotionResult.Surprised),
         },
     ];
