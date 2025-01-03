@@ -147,9 +147,10 @@ export default function DiagnosisResult() {
     // Sample data for the HR chart
     // left : total score - get
     // get : scores. sum
+    const maxScore = state.diagnosisType == "Dementia" ? 30 : 27;
     const chartData = [
-        { browser: "left", scores: 1, fill: "#e2e8f0" },
-        { browser: "get", scores: 14, fill: "#3b82f6" },
+        { browser: "left", scores: maxScore - state.score, fill: "#e2e8f0" },
+        { browser: "get", scores: state.score, fill: "#3b82f6" },
     ];
 
     const navigate = useNavigate();
@@ -183,13 +184,13 @@ export default function DiagnosisResult() {
     > = {
         Depression: {
             normal: {
-                score: 40,
+                score: 10,
                 description: `Your mental state appears to be stable. 😊 
                       Keep maintaining a healthy lifestyle and continue doing what brings you joy.
                       Remember, occasional stress is normal and part of life.`,
             },
             warning: {
-                score: 70,
+                score: 20,
                 description: `You might be experiencing mild signs of depression. 🤔
                       Consider talking to someone you trust or engaging in relaxing activities.
                       If symptoms persist, seeking professional guidance could be beneficial.`,
@@ -203,13 +204,13 @@ export default function DiagnosisResult() {
         },
         Dementia: {
             normal: {
-                score: 50,
+                score: 5,
                 description: `Your cognitive functions seem to be in good shape. 🙂
                       Keep engaging in brain-stimulating activities like reading, puzzles, or learning new skills.
                       Staying physically active and socially connected can also benefit your mental health.`,
             },
             warning: {
-                score: 80,
+                score: 20,
                 description: `There are some signs that may indicate cognitive decline. 🤔
                       It’s a good idea to monitor these changes and consult with a specialist if needed.
                       Early intervention can make a significant difference in managing symptoms effectively.`,
@@ -282,6 +283,7 @@ export default function DiagnosisResult() {
                             <Webcam
                                 ref={webcamRef}
                                 audio={false}
+                                reversed={true}
                                 screenshotFormat="image/png"
                                 className="w-full h-full object-cover rounded"
                             />

@@ -21,6 +21,7 @@ import {
 import { Button } from "../ui/button";
 import { DynamicEmoji } from "../DynamicEmoji";
 import Logo from "@/assets/logo.png";
+import CESLogo from "@/assets/ces_logo.png";
 import { useEffect, useState } from "react";
 import useSound from "use-sound";
 
@@ -70,6 +71,7 @@ export function OnboardingPage() {
         >
             <HStack w="100vw">
                 <Image src={Logo} h="2vh" mt="2vw" ml="2vw" />
+                <Image src={CESLogo} h="2vh" mt="2vw" ml="2vw" />
                 <Spacer />
             </HStack>
             <Container height="10vh" />
