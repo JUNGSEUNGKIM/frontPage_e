@@ -30,12 +30,12 @@ interface TutorialSlide {
 const slides: TutorialSlide[] = [
     {
         title: "Welcome!",
-        desc: "This kiosk uses rPPG technology to measure\nyour heart rate, stress levels, and emotions.",
+        desc: "This kiosk uses rPPG technology to measure\nyour heart rate, stress level, and emotions.",
         emojiUrl: PartyingEmoji,
     },
     {
         title: "Comprehensive Diagnosis",
-        desc: "In addition to rPPG analysis,\nwe provide tools for depression and dementia diagnosis.",
+        desc: "In addition to rPPG analysis,\nwe provide surveys for diagnosing depression and dementia.",
         emojiUrl: MemoEmoji,
     },
     {
@@ -45,12 +45,12 @@ const slides: TutorialSlide[] = [
     },
     {
         title: "Check Your Results",
-        desc: "Once the diagnosis and rPPG analysis are complete,\nyou'll receive a detailed report.",
+        desc: "Once the diagnosis and rPPG analysis are complete,\nyou will receive a detailed report.",
         emojiUrl: ClipboardEmoji,
     },
     {
-        title: "Makeup Notice",
-        desc: "Heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
+        title: "Disclaimer",
+        desc: "Wearing heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
         emojiUrl: ClownEmoji,
     },
     {

@@ -1,4 +1,3 @@
-
 import { Area, AreaChart, Label, Pie, PieChart } from "recharts";
 
 import { Button } from "@/components/ui/button";
@@ -10,32 +9,14 @@ import Logo from "@/assets/logo.png";
 import palettes from "@/constants/colors";
 import HeartBeat from "@/assets/heartbeat.png";
 
-// Sample data for the HR chart
-const hrData = [
-    { time: "0", value: 65 },
-    { time: "1", value: 72 },
-    { time: "2", value: 64 },
-    { time: "3", value: 75 },
-    { time: "4", value: 69 },
-    { time: "5", value: 84 },
-];
-// "Angry": 0,
-// "Disgusted": 0,
-// "Fearful": 0,
-// "Happy": 0,
-// "Neutral": 0,
-// "Sad": 0,
-// "Surprised": 0
+import { Input } from "../ui/input";
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
+import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { DiagnosisReport } from "@/types";
 
-const emotions = [
-    { label: "Angry", emoji: "😡", color: "#90EE90", value: 0.4 },
-    { label: "Disgusted", emoji: "😫", color: "#90EE90", value: 0.4 },
-    { label: "Fearful", emoji: "😨", color: "#D3D3D3", value: 0.6 },
-    { label: "Happy", emoji: "😄", color: "#00BFFF", value: 0.3 },
-    { label: "Neutral", emoji: "🙂", color: "#FF6B6B", value: 0.1 },
-    { label: "Sad", emoji: "😢", color: "#FFD700", value: 0.5 },
-    { label: "Surprised", emoji: "😮", color: "#FFD700", value: 0.5 },
-];
+// Sample data for the HR chart
 const chartData = [
     { browser: "safari", visitors: 90, fill: "var(--color-safari)" },
     { browser: "chrome", visitors: 10, fill: "var(--color-chrome)" },
@@ -56,14 +37,112 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DiagnosisResult() {
+    const myRef = useRef<HTMLElement | null>(null);
+
+    const location = useLocation();
+    const state = location.state as DiagnosisReport; // Type Assertion
+
+    // console.log(state);
+
+    const hrData = state.hrValues.map((e: string, i: number) => {
+        return { time: `${i}`, value: Number(e) };
+    });
+    const convertedHrValues = state.hrValues.map((e) => Number(e));
+    const hrValuesMin = Math.min(...convertedHrValues);
+    const hrValuesMax = Math.max(...convertedHrValues);
+    const hrValuesMean = Math.floor(
+        convertedHrValues.reduce(
+            (ac: number, current: number) => ac + current,
+            0
+        ) / state.hrValues.length
+    );
+    const score = state.score;
+    // [
+    //     { time: "0", value: 65 },
+    //     { time: "1", value: 72 },
+    //     { time: "2", value: 64 },
+    //     { time: "3", value: 75 },
+    //     { time: "4", value: 69 },
+    //     { time: "5", value: 84 },
+    // ];
+
+    // const emotions = [
+    //     {
+    //         label: "Angry",
+    //         emoji: "😡",
+    //         color: "#90EE90",
+    //         value: Number(state.measurement.emotionResult.Angry) / 100,
+    //     },
+    //     { label: "Disgusted", emoji: "😫", color: "#90EE90", value: 0.4 },
+    //     { label: "Fearful", emoji: "😨", color: "#D3D3D3", value: 0.6 },
+    //     { label: "Happy", emoji: "😄", color: "#00BFFF", value: 0.3 },
+    //     { label: "Neutral", emoji: "🙂", color: "#FF6B6B", value: 0.1 },
+    //     { label: "Sad", emoji: "😢", color: "#FFD700", value: 0.5 },
+    //     { label: "Surprised", emoji: "😮", color: "#FFD700", value: 0.5 },
+    // ];
+    const emotions = [
+        {
+            label: "Angry",
+            emoji: "😡",
+            color: "#FF0000", // 빨간색으로 화남을 표현
+            value: Number(state.measurement.emotionResult.Angry), // 값 참조
+        },
+        {
+            label: "Disgusted",
+            emoji: "😫",
+            color: "#8B0000", // 어두운 빨간색
+            value: Number(state.measurement.emotionResult.Disgusted),
+        },
+        {
+            label: "Fearful",
+            emoji: "😨",
+            color: "#800080", // 보라색
+            value: Number(state.measurement.emotionResult.Fearful),
+        },
+        {
+            label: "Happy",
+            emoji: "😄",
+            color: "#FFFF00", // 노란색
+            value: Number(state.measurement.emotionResult.Happy),
+        },
+        {
+            label: "Neutral",
+            emoji: "🙂",
+            color: "#808080", // 회색
+            value: Number(state.measurement.emotionResult.Neutral),
+        },
+        {
+            label: "Sad",
+            emoji: "😢",
+            color: "#0000FF", // 파란색
+            value: Number(state.measurement.emotionResult.Sad),
+        },
+        {
+            label: "Surprised",
+            emoji: "😮",
+            color: "#FFA500", // 주황색
+            value: Number(state.measurement.emotionResult.Surprised),
+        },
+    ];
+
+    const navigate = useNavigate();
+    const [showKeyboard, setShowKeyboard] = useState(false);
+    const [email, setEmail] = useState("");
+
+    const onChange = (input: string) => {
+        setEmail(input);
+    };
+
     return (
-        <div
-            className="min-h-screen bg-white p-4 flex flex-col gap-4"
-            style={{ width: "100vw", height: "100vh" }}
-        >
+        <div className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto">
             {/* Logo */}
             <div className="p-4">
-                <Image src={Logo} h="2vh" mr="2vw" />
+                <Image
+                    src={Logo}
+                    h="2vh"
+                    mr="2vw"
+                    onClick={() => navigate("/", { replace: true })}
+                />
             </div>
 
             {/* Title */}
@@ -112,9 +191,9 @@ export default function DiagnosisResult() {
                                                             <tspan
                                                                 x={viewBox.cx}
                                                                 y={viewBox.cy}
-                                                                className="fill-foreground text-3xl font-bold"
+                                                                className="fill-foreground text-2xl font-bold"
                                                             >
-                                                                {"none"}
+                                                                {`${score}`}
                                                             </tspan>
                                                             <tspan
                                                                 x={viewBox.cx}
@@ -151,7 +230,6 @@ export default function DiagnosisResult() {
                                 psychiatric clinic for consultation.
                             </p>
                         </div>
-
                     </CardContent>
                 </Card>
             </div>
@@ -200,9 +278,9 @@ export default function DiagnosisResult() {
                             </AreaChart>
                         </ChartContainer>
                         <div className="mt-2 flex justify-start gap-2 text-sm text-muted-foreground">
-                            <span>Min: 64</span>
-                            <span>Max: 84</span>
-                            <span>Mean: 74</span>
+                            <span>Min: {hrValuesMin}</span>
+                            <span>Max: {hrValuesMax}</span>
+                            <span>Mean: {hrValuesMean}</span>
                         </div>
                     </CardContent>
                 </Card>
@@ -213,7 +291,7 @@ export default function DiagnosisResult() {
                         <div className="flex flex-row items-center justify-center mb-4">
                             <Image src={HeartBeat} className="w-1/2" />
                             <span className="w-1/2 text-8xl font-bold text-blue-500 text-center">
-                                79
+                                {state.measurement.hrv}
                             </span>
                         </div>
                         <span className="text-sm text-slate-400 text-center">
@@ -237,7 +315,7 @@ export default function DiagnosisResult() {
                                     className="flex items-center gap-2"
                                 >
                                     {/* change to emoji (image) */}
-                                    <div className="flex justify-between w-32">
+                                    <div className="flex justify-between w-1/4">
                                         <span className="font-bold">
                                             {emotion.label}
                                         </span>
@@ -245,15 +323,27 @@ export default function DiagnosisResult() {
                                             {emotion.emoji}
                                         </span>
                                     </div>
-                                    <div
-                                        className="h-8 rounded-md"
-                                        style={{
-                                            width: `${emotion.value * 100}%`,
-                                            backgroundColor: emotion.color,
-                                        }}
-                                    >
-                                        <div className="flex justify-end items-center h-full pr-2 text-white">
-                                            {emotion.value * 100}%
+                                    <div className="w-3/4">
+                                        <div
+                                            className="h-8 rounded-md "
+                                            style={{
+                                                width:
+                                                    emotion.value <= 0.03
+                                                        ? "1%"
+                                                        : `${Math.round(
+                                                              emotion.value *
+                                                                  100
+                                                          )}%`,
+                                                backgroundColor: emotion.color,
+                                            }}
+                                        >
+                                            <div className="flex justify-end items-center h-full pr-1 text-white text-xs font-bold">
+                                                {emotion.value == 0
+                                                    ? ""
+                                                    : `${Math.round(
+                                                          emotion.value * 100
+                                                      )}%`}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -270,14 +360,14 @@ export default function DiagnosisResult() {
                             {/* Indicator */}
                             <div
                                 className="absolute -top-3 transform -translate-x-1/2 text-blue-500"
-                                style={{ left: `${20}%` }} // Adjust this value based on the actual stress score
+                                style={{ left: `${state.measurement.stress}%` }} // Adjust this value based on the actual stress score
                             >
                                 ▼
                             </div>
                             {/* Bar */}
                             <div className="flex justify-center items-center h-10 bg-gradient-to-r  from-blue-100 via-blue-300 to-blue-500 rounded-md">
                                 <p className="text-2xl text-center font-bold text-white">
-                                    score : 20
+                                    score : {state.measurement.stress}
                                 </p>
                             </div>
                         </div>
@@ -290,28 +380,51 @@ export default function DiagnosisResult() {
                 </Card>
             </div>
 
+            <Button
+                w="100%"
+                borderColor={palettes.grey}
+                borderWidth={1}
+                fontSize="2xl"
+                p={8}
+                onClick={() => {
+                    navigate("/", { replace: true });
+                }}
+            >
+                Quit
+            </Button>
             {/* Action Buttons */}
-            <div className="mb-28 mt-16 space-y-4">
-                <Button
-                    w="100%"
-                    bg={palettes.primary}
-                    color="white"
-                    fontSize="2xl"
-                    p={8}
-                    onClick={() => print()}
-                >
-                    Print
-                </Button>
-                <Button
-                    w="100%"
-                    borderColor={palettes.grey}
-                    borderWidth={1}
-                    fontSize="2xl"
-                    p={8}
-                >
-                    Quit
-                </Button>
-            </div>
+            <h2 className="text-center text-3xl font-bold text-slate-800 mt-8">
+                Save your Result!
+            </h2>
+            <Button
+                w="100%"
+                bg={palettes.primary}
+                color="white"
+                fontSize="2xl"
+                p={8}
+                onClick={() => {
+                    setShowKeyboard(true);
+                }}
+            >
+                Send to Email
+            </Button>
+            {showKeyboard && (
+                <div className="mb-96">
+                    <Input
+                        type="email"
+                        value={email}
+                        placeholder="Email"
+                        className="h-14 mb-4"
+                        onClick={() => {
+                            myRef.current?.scrollIntoView({
+                                behavior: "smooth",
+                            });
+                        }}
+                    />
+                    <Keyboard onChange={onChange} onKeyPress={() => {}} />
+                </div>
+            )}
+            <span ref={myRef} className="h-1" />
         </div>
     );
 }

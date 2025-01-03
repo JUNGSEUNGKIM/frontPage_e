@@ -16,14 +16,15 @@ export function AnswerButton({
     return (
         <Button
             bg={isSelected ? palettes.primary : "white"}
-            w="100%"
+            w="95vw"
             p="40px"
-            borderWidth="2px"
+            // borderWidth="2px"
             variant="solid"
-            borderColor={isSelected ? palettes.primary : palettes.grey}
+            // borderColor={isSelected ? palettes.primary : palettes.grey}
             borderRadius={12}
             onClick={handleTap}
             mt="16px"
+            className="shadow"
             _hover={{
                 borderColor: palettes.grey,
             }}
