@@ -10,12 +10,8 @@ export const generatePDF = async (
         throw new Error(`Element with id ${elementToPrintId} not found`);
     }
 
-    // 화면 크기 가져오기
-    const width = element.offsetWidth;
-    const height = element.offsetHeight;
-
     // HTML → Canvas 변환 (고해상도)
-    const canvas = await html2canvas(element, { scale: 3 });
+    const canvas = await html2canvas(element, { scale: 2 });
 
     // Canvas 데이터 URL
     const data = canvas.toDataURL("image/png");
@@ -24,13 +20,13 @@ export const generatePDF = async (
     const pdf = new jsPDF({
         orientation: "p",
         unit: "mm",
-        format: [width * 0.264583, height * 0.264583], // px → mm 변환
+        format: "a4",
     });
 
     // 이미지 추가
     const imgWidth = pdf.internal.pageSize.getWidth();
     const imgHeight = (canvas.height * imgWidth) / canvas.width; // 비율 유지
-    pdf.addImage(data, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.addImage(data, "PNG", 0, 4, imgWidth, imgHeight);
 
     // PDF 저장
     pdf.save(`${filename}.pdf`);
