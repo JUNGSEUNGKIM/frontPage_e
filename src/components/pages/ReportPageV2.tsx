@@ -1,8 +1,10 @@
+
 import { Area, AreaChart, Label, Pie, PieChart } from "recharts";
 
 import { Button } from "@/components/ui/button";
 import { Image } from "@chakra-ui/react";
 import { Card, CardContent } from "@/components/ui/card";
+
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import Logo from "@/assets/logo.png";
 import palettes from "@/constants/colors";
@@ -149,6 +151,7 @@ export default function DiagnosisResult() {
                                 psychiatric clinic for consultation.
                             </p>
                         </div>
+
                     </CardContent>
                 </Card>
             </div>

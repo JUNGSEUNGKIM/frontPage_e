@@ -141,6 +141,7 @@ export function Tutorial() {
                     <Text fontSize="3xl">Previous</Text>
                 </Button>
                 <Spacer />
+                <Spacer />
                 {!isLast && (
                     <Button
                         bg={palettes.primary}
