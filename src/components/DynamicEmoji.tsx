@@ -33,7 +33,7 @@ export function DynamicEmoji({
             <Image w={width} h={height} src={images[currentIdx]} />
             <Container h={100} />
             <Heading
-                minH="10vh"
+                minH="18vh"
                 animation="pulse"
                 textAlign="center"
                 whiteSpace="pre-line"

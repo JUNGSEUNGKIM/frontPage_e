@@ -64,9 +64,9 @@ export function OnboardingPage() {
             w="100vw"
             h="100vh"
             bg={palettes.background}
-            bgGradient="to-tr"
-            gradientFrom="purple.300"
-            gradientTo="blue.400"
+            bgGradient="to-r"
+            gradientFrom="#EAE4FF"
+            gradientTo="#B0E3FF"
         >
             <HStack w="100vw">
                 <Image src={Logo} h="2vh" mt="2vw" ml="2vw" />
