@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import palettes from "@/constants/colors";
 import {
     Image,
@@ -34,10 +34,9 @@ import Thinking from "@/assets/animations/thinking.png";
 import { DiagnosisDone } from "../DiagnosisDone";
 import { ChatFragment } from "../ChatFragment";
 import { DtxFragment } from "../DtxFragment";
+import { DiagnosisType } from "@/types";
 
 type Tap = "chat" | "diagnosis" | "dtx";
-
-type DiagnosisType = "Depression" | "Dementia";
 
 export function DiagnosisPage() {
     const navigate = useNavigate();
@@ -46,6 +45,8 @@ export function DiagnosisPage() {
 
     const [selectedDiagnosis, setSelectedDiagnosis] =
         useState<DiagnosisType>("Depression");
+
+    const hrRef = useRef<string[]>([]);
 
     // button clicked check
     // const [isProcessing, setIsProcessing] = useState(false);
@@ -61,6 +62,15 @@ export function DiagnosisPage() {
         hrv: "0",
         stress: "0",
         emotion: "None",
+        emotionResult: {
+            Angry: 0,
+            Happy: 0,
+            Disgusted: 0,
+            Fearful: 0,
+            Neutral: 0,
+            Sad: 0,
+            Surprised: 0,
+        },
     });
 
     // handle rppg
@@ -70,6 +80,11 @@ export function DiagnosisPage() {
         } else {
             setMeasurement(newValue);
         }
+        if (newValue.hr !== "0") {
+            hrRef.current.push(newValue.hr);
+        }
+
+        console.log(hrRef.current);
     }
 
     function handleTap(selectedTap: Tap) {
@@ -300,10 +315,9 @@ export function DiagnosisPage() {
                                             </Button>
                                         </HStack>
                                         <Button
-                                            w="100%"
+                                            w="95vw"
                                             h="4vh"
                                             mt={3}
-                                            bg={palettes.primary}
                                             fontSize="3xl"
                                             color="white"
                                             borderRadius={12}
@@ -321,6 +335,7 @@ export function DiagnosisPage() {
                                                 }
                                                 startSurvey(questions, options);
                                             }}
+                                            className="shadow bg-blue-500"
                                         >
                                             Start Diagnosis
                                         </Button>
@@ -337,6 +352,7 @@ export function DiagnosisPage() {
                                             height="13vh"
                                             mt={4}
                                             p="24px"
+                                            className="w-full"
                                         >
                                             <VStack
                                                 h="100%"
@@ -350,6 +366,7 @@ export function DiagnosisPage() {
                                                     fontWeight="bold"
                                                     color="black"
                                                     textAlign="center"
+                                                    className="w-full"
                                                 >
                                                     {
                                                         state.surveyQuestions
@@ -404,6 +421,7 @@ export function DiagnosisPage() {
                                                     }
                                                     goBack();
                                                 }}
+                                                className="shadow"
                                             >
                                                 Prev
                                             </Button>
@@ -415,11 +433,12 @@ export function DiagnosisPage() {
                                             bg="white"
                                             fontWeight="bold"
                                             borderColor={palettes.grey}
-                                            borderWidth={2}
+                                            // borderWidth={2}
                                             borderRadius={12}
                                             color="black"
                                             fontSize="l"
                                             onClick={handleGoPreviousPage}
+                                            className="shadow"
                                         >
                                             Stop
                                         </Button>
@@ -428,6 +447,11 @@ export function DiagnosisPage() {
                                 {state.status === "done" && (
                                     <DiagnosisDone
                                         rppgMesurement={measurement}
+                                        hrValues={hrRef.current}
+                                        selectedDiagnosisType={
+                                            selectedDiagnosis
+                                        }
+                                        answers={state.responses}
                                     />
                                 )}
                             </>

@@ -13,6 +13,7 @@ export interface SurveyState {
     responses: number[];
     surveyQuestions: SurveyQuestions;
 }
+export type DiagnosisType = "Depression" | "Dementia";
 
 // interface Parent {
 //     foo: number;

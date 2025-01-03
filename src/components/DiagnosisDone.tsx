@@ -3,21 +3,41 @@ import { Button } from "./ui/button";
 import RocketEmoji from "@/assets/animations/rocket.png";
 import LoadingEmoji from "@/assets/animations/loading.png";
 import palettes from "@/constants/colors";
-import { RPPGMeasurement } from "@/types";
-import { Link } from "react-router";
+import { DiagnosisType, RPPGMeasurement } from "@/types";
+import { useNavigate } from "react-router";
 
 const RESULT_TEXT = `Your assessment is complete!\nReady to check your results?`;
 const WAITNG_TEXT = `Please Waiting...`;
 
 export function DiagnosisDone({
     rppgMesurement,
+    hrValues,
+    selectedDiagnosisType,
+    answers,
 }: {
     rppgMesurement: RPPGMeasurement;
+    hrValues: string[];
+    selectedDiagnosisType: DiagnosisType;
+    answers: number[];
 }) {
+    const navigate = useNavigate();
+
     const isDone =
         rppgMesurement.hrv !== "0" &&
         rppgMesurement.hr !== "0" &&
-        rppgMesurement.stress !== "0";
+        rppgMesurement.stress !== "0" &&
+        hrValues.length > 5;
+
+    function handleClick() {
+        navigate("/report", {
+            state: {
+                measurement: rppgMesurement,
+                hrValues: hrValues,
+                score: answers.reduce((acc, current) => acc + current, 0),
+                diagnosisType: selectedDiagnosisType,
+            },
+        });
+    }
 
     return (
         <VStack
@@ -42,20 +62,19 @@ export function DiagnosisDone({
                 {isDone ? RESULT_TEXT : WAITNG_TEXT}
             </Text>
             {isDone && (
-                <Link to="/report">
-                    <Button
-                        w="40vw"
-                        h="3vh"
-                        mt="2vh"
-                        bg={palettes.primary}
-                        color="white"
-                        fontWeight="medium"
-                        fontSize="2xl"
-                        loading={!isDone}
-                    >
-                        {`Let’s check!`}
-                    </Button>
-                </Link>
+                <Button
+                    w="40vw"
+                    h="3vh"
+                    mt="2vh"
+                    bg={palettes.primary}
+                    color="white"
+                    fontWeight="medium"
+                    fontSize="2xl"
+                    loading={!isDone}
+                    onClick={handleClick}
+                >
+                    {`Let’s check!`}
+                </Button>
             )}
             {!isDone && (
                 <Button

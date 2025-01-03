@@ -84,13 +84,24 @@ const FaceDetectionApp = ({
                 if (response.message === "Measurement received successfully") {
                     // 성공적으로 분석 완료
                     console.log(response.message);
-                    console.log("추천 색상:", response.result.hr);
+
+                    console.log(response.result);
+                    // {
+                    // "Angry": 0,
+                    // "Disgusted": 0,
+                    // "Fearful": 0,
+                    // "Happy": 0,
+                    // "Neutral": 0,
+                    // "Sad": 0,
+                    // "Surprised": 0
+                    // }
                     // change rppg values
                     onValueChanged({
                         hr: response.result.hr as string,
                         hrv: response.result.hrv as string,
                         emotion: response.result.emotion as string,
                         stress: response.result.stress as string,
+                        emotionResult: response.result.emotion_result,
                     });
                 } else {
                     // 에러 처리
