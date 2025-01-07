@@ -127,8 +127,8 @@ export function ChatFragment() {
     };
 
     useEffect(() => {
-        wsRef.current = new WebSocket("ws://172.30.1.16:5554/ws");
-        // wsRef.current = new WebSocket("ws://172.30.1.16:5554/ws");
+        // wsRef.current = new WebSocket("ws://localhost:5554/ws");
+        wsRef.current = new WebSocket("wss://api.emmaet.com/ws");
 
         wsRef.current.onopen = () => {
             console.log("WebSocket Connected");
@@ -234,7 +234,7 @@ export function ChatFragment() {
             bg="gray.50"
             p="1"
             flexDirection="column"
-            w="100%"
+            w="50vh"
             pt="3vh"
             justifyContent="space-between"
         >
@@ -254,6 +254,7 @@ export function ChatFragment() {
                     <Box maxW="100%"
                          p={0}
                          rounded="lg">
+
 
                     </Box>
                 </Flex>

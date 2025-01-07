@@ -12,6 +12,10 @@ import Monocle from "@/assets/animations/monocle.png";
 import ClipboardEmoji from "@/assets/animations/clip.png";
 import ClownEmoji from "@/assets/animations/clown.png";
 import DottedEmoji from "@/assets/animations/dotted.png";
+import LucidImg from "@/assets/dtximg/lucid_img.jpg";
+import Expression from "@/assets/dtximg/expression_img.gif";
+import Difference from "@/assets/dtximg/difference_img.jpg";
+import MemoryImg from "@/assets/dtximg/memory_img.png";
 // TODO: 1. create loading component
 // TODO: 2. create interface for api call using axios
 // TODO: 3. connect lucid website to iframe
@@ -26,35 +30,27 @@ interface TutorialSlide {
 type DTxStatus = "init" | "loading" | "done" | "error";
 const slides: TutorialSlide[] = [
     {
-        title: "Welcome!",
-        desc: "This kiosk uses rPPG technology to measure\nyour heart rate, stress levels, and emotions.",
-        emojiUrl: PartyingEmoji,
+        title: "sound therapy application Lucid",
+        desc: "",
+        emojiUrl: LucidImg,
     },
     {
-        title: "Comprehensive Diagnosis",
+        title: "Memory Game",
         desc: "In addition to rPPG analysis,\nwe provide tools for depression and dementia diagnosis.",
-        emojiUrl: MemoEmoji,
+        emojiUrl: MemoryImg,
     },
     {
-        title: "How to Start",
+        title: "Let's play a Spot the Difference game!",
         desc: "Choose the type of diagnosis you want\nand respond to the questions accurately.",
-        emojiUrl: Monocle,
+        emojiUrl: Difference,
     },
+
     {
-        title: "Check Your Results",
-        desc: "Once the diagnosis and rPPG analysis are complete,\nyou'll receive a detailed report.",
-        emojiUrl: ClipboardEmoji,
-    },
-    {
-        title: "Makeup Notice",
+        title: "Let's play the Copy the Expression game!",
         desc: "Heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
-        emojiUrl: ClownEmoji,
+        emojiUrl: Expression,
     },
-    {
-        title: "Camera Tips",
-        desc: "For accurate analysis,\navoid moving too much or staying too far from the camera.",
-        emojiUrl: DottedEmoji,
-    },
+
 ];
 export function DtxFragment() {
     const [currentStatus, setCurrentStatus] = useState<DTxStatus>("init");
@@ -203,10 +199,8 @@ function Slide({
     return (
         <Center h="50vh" mt="0vh">
             <VStack>
-                <Heading fontSize="7xl" color="black" mb={10}>
-                    {title}
-                </Heading>
-                <Image src={emojiUrl} h="18vh" mb={32} />
+
+                <Image src={emojiUrl} h="35vh" mb={10} />
                 {/*<Box h="30vh" w="100%" mb={10}>*/}
                 {/*    <iframe*/}
                 {/*        src="https://www.wikipedia.org" // 외부 콘텐츠의 URL*/}
@@ -218,15 +212,18 @@ function Slide({
                 {/*        }}*/}
                 {/*    />*/}
                 {/*</Box>*/}
-                <Text
-                    lineHeight={1.2}
-                    fontSize="4xl"
-                    textAlign="center"
-                    whiteSpace="pre-line"
-                    color="black"
-                >
-                    {desc}
-                </Text>
+                {/*<Text*/}
+                {/*    lineHeight={1.2}*/}
+                {/*    fontSize="4xl"*/}
+                {/*    textAlign="center"*/}
+                {/*    whiteSpace="pre-line"*/}
+                {/*    color="black"*/}
+                {/*>*/}
+                {/*    {desc}*/}
+                {/*</Text>*/}
+                <Heading fontSize="3xl" color="black" mb={10}>
+                   <a onClick={()=>{alert("Coming soon.")}}>[ {title} ]</a>
+                </Heading>
             </VStack>
         </Center>
     );
