@@ -1,5 +1,5 @@
 import { Text, Image, VStack, Spacer } from "@chakra-ui/react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import RocketEmoji from "@/assets/animations/rocket.png";
 import LoadingEmoji from "@/assets/animations/loading.png";
 import palettes from "@/constants/colors";

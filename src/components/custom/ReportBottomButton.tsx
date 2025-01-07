@@ -1,5 +1,5 @@
 import palettes from "@/constants/colors";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export function ReportBottomButton({
     label,

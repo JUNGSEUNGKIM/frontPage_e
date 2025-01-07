@@ -1,17 +1,18 @@
 import { useEffect, useState, useRef } from "react";
-import {HStack, Container, Spacer, Text, Center, VStack, Heading, Image, Box} from "@chakra-ui/react";
+import {
+    HStack,
+    Container,
+    Spacer,
+    Text,
+    Center,
+    VStack,
+    Heading,
+    Image,
+} from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
-import { Api } from "@/constants/api";
-import { Tutorial } from "./tutorial/Tutorial";
 import Slider from "react-slick";
 import palettes from "@/constants/colors.tsx";
-import {useNavigate} from "react-router";
-import PartyingEmoji from "@/assets/animations/partying.png";
-import MemoEmoji from "@/assets/animations/memo.png";
-import Monocle from "@/assets/animations/monocle.png";
-import ClipboardEmoji from "@/assets/animations/clip.png";
-import ClownEmoji from "@/assets/animations/clown.png";
-import DottedEmoji from "@/assets/animations/dotted.png";
+import { useNavigate } from "react-router";
 import LucidImg from "@/assets/dtximg/lucid_img.jpg";
 import Expression from "@/assets/dtximg/expression_img.gif";
 import Difference from "@/assets/dtximg/difference_img.jpg";
@@ -50,7 +51,6 @@ const slides: TutorialSlide[] = [
         desc: "Heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
         emojiUrl: Expression,
     },
-
 ];
 export function DtxFragment() {
     const [currentStatus, setCurrentStatus] = useState<DTxStatus>("init");
@@ -73,6 +73,10 @@ export function DtxFragment() {
         });
     };
 
+    function selectDTx() {
+        setCurrentStatus("loading");
+    }
+
     const settings = {
         dots: true,
         infinite: false,
@@ -86,8 +90,6 @@ export function DtxFragment() {
     const [count, setCount] = useState(0);
 
     const isLast = count === slides.length - 1;
-    // console.log(slides.length - 1);
-    // console.log(typeof count);
     useEffect(
         () => {},
         // 1. post -> fetch token
@@ -97,7 +99,7 @@ export function DtxFragment() {
     );
 
     return (
-        <Container  h="10vh" className="slider-container" w="100%" maxW="50vh">
+        <Container h="10vh" className="slider-container" w="100%" maxW="50vh">
             {currentStatus === "init" && <SelectDtxComponent />}
             {currentStatus === "loading" && <LoadingComponent />}
             {currentStatus === "done" && <EmbbededLucid />}
@@ -147,23 +149,19 @@ export function DtxFragment() {
                 <Spacer />
                 <Spacer />
 
-                    <Button
-                        w="20vw"
-                        h="4vh"
-                        borderColor={palettes.grey}
-                        borderRadius={12}
-                        borderWidth={5}
-                        onClick={next}
-                        mt="5"
-                    >
-                        <Text fontSize="3xl" >
-                            Next
-                        </Text>
-                    </Button>
-
+                <Button
+                    w="20vw"
+                    h="4vh"
+                    borderColor={palettes.grey}
+                    borderRadius={12}
+                    borderWidth={5}
+                    onClick={next}
+                    mt="5"
+                >
+                    <Text fontSize="3xl">Next</Text>
+                </Button>
             </HStack>
         </Container>
-
     );
 }
 
@@ -188,10 +186,10 @@ function EmbbededLucid() {
 }
 
 function Slide({
-                   title,
-                   desc,
-                   emojiUrl,
-               }: {
+    title,
+    desc,
+    emojiUrl,
+}: {
     title: string;
     desc: string;
     emojiUrl: string;
@@ -199,7 +197,6 @@ function Slide({
     return (
         <Center h="50vh" mt="0vh">
             <VStack>
-
                 <Image src={emojiUrl} h="35vh" mb={10} />
                 {/*<Box h="30vh" w="100%" mb={10}>*/}
                 {/*    <iframe*/}
@@ -222,7 +219,13 @@ function Slide({
                 {/*    {desc}*/}
                 {/*</Text>*/}
                 <Heading fontSize="3xl" color="black" mb={10}>
-                   <a onClick={()=>{alert("Coming soon.")}}>[ {title} ]</a>
+                    <a
+                        onClick={() => {
+                            alert("Coming soon.");
+                        }}
+                    >
+                        [ {title} ]
+                    </a>
                 </Heading>
             </VStack>
         </Center>

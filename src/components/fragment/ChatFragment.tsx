@@ -1,13 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import {
-    Button,
-    Box,
-    Text,
-    Flex,
-    Spinner,
-    VStack,
-    Stack,
-} from "@chakra-ui/react";
+import { Button, Box, Flex, Stack } from "@chakra-ui/react";
 
 export function ChatFragment() {
     const MicIcon = ({ size = 50, color = "currentColor" }) => (
@@ -247,19 +239,10 @@ export function ChatFragment() {
                 overflow="hidden"
                 w="100%"
             >
-                <Flex
-
-                    mb={0}
-                >
-                    <Box maxW="100%"
-                         p={0}
-                         rounded="lg">
-
-
-                    </Box>
+                <Flex mb={0}>
+                    <Box maxW="100%" p={0} rounded="lg"></Box>
                 </Flex>
                 <Flex flex="1" flexDirection="column-reverse" overflowY="auto">
-
                     <Box ref={messagesEndRef} />
 
                     {messages.map((message, index) => (

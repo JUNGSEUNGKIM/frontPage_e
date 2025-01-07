@@ -20,13 +20,12 @@ import {
     Spacer,
     Heading,
     Image,
-    Box,
     Center,
 } from "@chakra-ui/react";
 import LineChart from "../LineChart";
 import Smile from "@/assets/animations/grinning.png";
 import Logo from "@/assets/logo.png";
-import { ReportBottomButton } from "../ReportBottomButton";
+import { ReportBottomButton } from "../custom/ReportBottomButton";
 import { EmotionBar } from "../EmotionBar";
 
 ChartJS.register(

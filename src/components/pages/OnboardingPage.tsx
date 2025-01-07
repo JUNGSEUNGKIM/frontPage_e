@@ -27,7 +27,7 @@ import useSound from "use-sound";
 
 import { Greetings } from "@/constants/greetings";
 import { Tutorial } from "../tutorial/Tutorial";
-import CustomAudioPlayer from "../CustomAudioPlayer";
+import CustomAudioPlayer from "../custom/CustomAudioPlayer";
 
 export function OnboardingPage() {
     const [currentIndex, setCurrentIndex] = useState(0);

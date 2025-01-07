@@ -12,9 +12,9 @@ import {
     Spacer,
     Group,
 } from "@chakra-ui/react";
-import { AnswerButton } from "@/components/AnswerButton";
+import { AnswerButton } from "@/components/custom/AnswerButton";
 import { Button } from "@/components/ui/button";
-import { RppgMeasurementList } from "@/components/RppgResults";
+import { RppgMeasurementList } from "@/components/custom/RppgResults";
 // import Webcam from "react-webcam";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
@@ -31,8 +31,8 @@ import { useNavigate } from "react-router";
 import Logo from "@/assets/logo.png";
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
-import { DiagnosisDone } from "../DiagnosisDone";
-import { ChatFragment } from "../ChatFragment";
+import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
+import { ChatFragment } from "../fragment/ChatFragment";
 import { DtxFragment } from "../DtxFragment";
 import { DiagnosisType } from "@/types";
 
