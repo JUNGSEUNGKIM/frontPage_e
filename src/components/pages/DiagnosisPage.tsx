@@ -35,6 +35,7 @@ import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
 import { ChatFragment } from "../fragment/ChatFragment";
 import { DtxFragment } from "../DtxFragment";
 import { DiagnosisType } from "@/types";
+import DtxFragmentV2 from "../fragment/DtxFragmentV2";
 
 type Tap = "chat" | "diagnosis" | "dtx";
 
@@ -173,7 +174,13 @@ export function DiagnosisPage() {
                     </Button>
                 </Group>
             </HStack>
-            <Grid templateRows="28% 60% 6%" minHeight="95vh" pt="10px" gap="5">
+            <Grid
+                w="100vw"
+                templateRows="28% 60% 6%"
+                minHeight="95vh"
+                pt="10px"
+                gap="5"
+            >
                 <GridItem rounded="md">
                     <Center w="100%" h="100%">
                         <HStack w="100%" mb={1}>
@@ -458,7 +465,7 @@ export function DiagnosisPage() {
                         )}
                         {/* Add Chat fragment here */}
                         {currentTap === "chat" && <ChatFragment />}
-                        {currentTap === "dtx" && <DtxFragment />}
+                        {currentTap === "dtx" && <DtxFragmentV2 />}
                     </Container>
                 </GridItem>
             </Grid>
