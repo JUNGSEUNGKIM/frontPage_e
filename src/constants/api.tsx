@@ -10,3 +10,7 @@ export const Api = {
     lucidToken: "https://proxy.core.thelucidproject.ca/experiences",
     lucidStatus: "https://proxy.core.thelucidproject.ca/experiences/",
 };
+
+export const ApiKeys = {
+    lucidLicense: "a4ef524b-45cb-4c05-8688-64d8a49be60c",
+};
