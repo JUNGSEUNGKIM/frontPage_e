@@ -4,7 +4,7 @@ export const DEPRESSIONQUESTIONS = [
     "Feeling down, depressed, or hopeless",
     "Frequently sleep deprived, oversleeping, or having trouble falling asleep",
     "Lacking energy or constantly feeling fatigued",
-    "Haveing poor appetite or overeating",
+    "Having poor appetite or overeating",
     "Feeling dissatisfied with yourself, or believe that you are a failure or have let yourself or your family down",
     "Trouble concentrating on things, such as reading the newspaper or watching television",
     "Moving/speaking very slowly or restlessly, causing others to take notice of your behaviors",

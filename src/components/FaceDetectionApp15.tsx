@@ -9,7 +9,8 @@ import { Flex } from "@chakra-ui/react";
 
 type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
 
-const currentURL: SOCKETURL = "wss://api.emmaet.com/lucycare/ws";
+const currentURL: SOCKETURL = "ws://localhost:5050/ws";
+// const currentURL: SOCKETURL = "wss://api.emmaet.com/lucycare/ws";
 
 const FaceDetectionApp = ({
     onValueChanged,
@@ -486,7 +487,7 @@ const FaceDetectionApp = ({
         const faceMeshModel = new faceMesh.FaceMesh({
             locateFile: (file) => {
                 // return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
-                return `/lucycare/face_mesh/${file}`;
+                return `/face_mesh/${file}`;
             },
         });
 

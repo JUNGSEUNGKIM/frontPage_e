@@ -51,6 +51,8 @@ export function ChatFragment() {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
+    const [indexQ, setIndexQ] = useState(0);
+    const [startQ, setStartQ] = useState(false);
     const [isListening, setIsListening] = useState(false);
     const [isMic, setIsMic] = useState(true);
     const [speakQueue, setSpeakQueue] = useState([]);
@@ -126,41 +128,106 @@ export function ChatFragment() {
         }
     };
 
+    // useEffect(() => {
+    //     // wsRef.current = new WebSocket("ws://localhost:5554/ws");
+    //     wsRef.current = new WebSocket("ws://172.30.1.16:5554/ws");
+    //
+    //     wsRef.current.onopen = () => {
+    //         console.log("WebSocket Connected");
+    //         sendMessageToServer("start_conversation");
+    //     };
+    //
+    //     wsRef.current.onmessage = (event) => {
+    //         handleServerResponse(event);
+    //     };
+    //
+    //     wsRef.current.onerror = (error) => {
+    //         console.error("WebSocket Error:", error);
+    //     };
+    //
+    //     wsRef.current.onclose = () => {
+    //         console.log("WebSocket Disconnected");
+    //     };
+    //
+    //     return () => {
+    //         if (wsRef.current) {
+    //             wsRef.current.close();
+    //         }
+    //         synth.cancel();
+    //         recognition.stop();
+    //     };
+    // }, []);
+    const questions = [
+        "최근 2주 동안 며칠 정도 기분이 우울하거나 슬펐던 적이 있나요?",
+        "최근 2주 동안 며칠 정도 평소 하던 일에 대한 흥미가 없어지거나 즐거움을 느끼지 못했나요?",
+        "최근 2주 동안 며칠 정도 잠들기가 어렵거나 자주 깼거나 너무 많이 잤나요?",
+        "최근 2주 동안 며칠 정도 평소보다 식욕이 줄었거나 많이 먹었나요?",
+        "최근 2주 동안 며칠 정도 다른 사람들이 눈치 챌 정도로 평소보다 말과 행동이 느려졌나요?",
+        "최근 2주 동안 며칠 정도 피곤하고 기운이 없었나요?",
+        "최근 2주 동안 내가 잘못 했거나, 실패했다는 생각이 들었나요?",
+        "최근 2주 동안 일상적인 일에도 집중할 수 없었나요?",
+        "최근 2주 동안 차라리 죽는 것이 더 낫겠다고 생각했나요?",
+    ];
+    const [score, setScore] = useState(0);
+    const calculateSeverity = (totalScore) => {
+        if (totalScore <= 4) return "우울증이 의심되지 않습니다.";
+        if (totalScore <= 9) return "가벼운 우울증이 의심됩니다. 지속적인 자가 관리가 필요합니다.";
+        if (totalScore <= 15) return "중등도의 우울증이 의심됩니다. 전문가와 상담을 고려해보세요.";
+        return "심한 우울증이 의심됩니다. 반드시 전문가의 상담을 받으세요.";
+    };
+
     useEffect(() => {
-        // wsRef.current = new WebSocket("ws://localhost:5554/ws");
-        wsRef.current = new WebSocket("wss://api.emmaet.com/ws");
-
-        wsRef.current.onopen = () => {
-            console.log("WebSocket Connected");
-            sendMessageToServer("start_conversation");
-        };
-
-        wsRef.current.onmessage = (event) => {
-            handleServerResponse(event);
-        };
-
-        wsRef.current.onerror = (error) => {
-            console.error("WebSocket Error:", error);
-        };
-
-        wsRef.current.onclose = () => {
-            console.log("WebSocket Disconnected");
-        };
-
-        return () => {
-            if (wsRef.current) {
-                wsRef.current.close();
-            }
-            synth.cancel();
-            recognition.stop();
-        };
+        handleServerResponse("안녕하세요! 우울증 검진을 시작하려면 \"대화형 검진\" 버튼을 눌러주세요.")
     }, []);
 
     const sendMessageToServer = (text) => {
-        if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        // if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
             setIsLoading(true);
-            wsRef.current.send(JSON.stringify({ message: text }));
-        }
+            console.log(indexQ)
+            if(text=="검진" || startQ){
+                setStartQ(true)
+                // sendMessageToServer("")
+            }else{
+                handleServerResponse(" 우울증 검진을 시작하려면 \"대화형 검진\" 버튼을 눌러주세요.")
+            }
+            if(startQ || text=="검진"){
+
+                if(indexQ < questions.length){
+                    handleServerResponse(questions[indexQ])
+                    var num = indexQ;
+                    setIndexQ(num+1);
+                    switch (text) {
+                        case "그렇지 않다":
+                            setScore(score);
+                            break;
+                        case "주 2-3 회 정도 그렇다":
+                            setScore(score + 1);
+                            break;
+                        case "주 3-5 회 정도 그렇다":
+                            setScore(score + 2);
+                            break;
+                        case "거의 매일 그렇다":
+                            setScore(score + 3);
+                            break;
+                        default:
+                            console.warn("알 수 없는 입력입니다:", text);
+                            setScore(score);
+                    }
+
+                }else{
+                    setIndexQ(0)
+                    setStartQ(false)
+                    var message = calculateSeverity(score)
+                    console.log(message)
+                    handleServerResponse(message)
+                    handleServerResponse(" 우울증 검진을 시작하려면 \"대화형 검진\" 버튼을 눌러주세요.")
+                }
+                // setIndexQ()
+            }
+
+
+            // wsRef.current.send(JSON.stringify({ message: text }));
+        // }
     };
 
     const handleStartListening = () => {
@@ -191,10 +258,11 @@ export function ChatFragment() {
     };
 
     const handleServerResponse = (response) => {
-        if (response.data === "") {
-            response.data = "test";
-        }
-        const data = response.data;
+        // if (response.data === "") {
+        //     response.data = "test";
+        // }
+        const data = response;
+        // const data = response.data;
         // const sentence_data = data.split(/[.!?]\s+/);
         setMessages((prev) => [{ type: "bot", content: data }, ...prev]);
 
@@ -226,6 +294,7 @@ export function ChatFragment() {
         recognition.stop();
         setMessages((prev) => [{ type: "user", content: text }, ...prev]);
         sendMessageToServer(text);
+
     };
 
     return (

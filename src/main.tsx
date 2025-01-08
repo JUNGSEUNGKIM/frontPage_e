@@ -12,7 +12,7 @@ import ReportPageV2 from "./components/pages/ReportPageV2.tsx";
 const isTEST = false;
 
 createRoot(document.getElementById("root")!).render(
-    <BrowserRouter basename="/lucycare">
+    <BrowserRouter >
         <Provider>
             <Routes>
                 <Route
