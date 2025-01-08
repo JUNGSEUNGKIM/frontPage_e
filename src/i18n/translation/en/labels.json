@@ -1,0 +1,26 @@
+
+{
+    "btnStart" : "Get Started",
+    "btnPrevious" : "Previous",
+    "btnPrev" : "Prev",
+    "btnNext" : "Next",
+    "btnStop" : "Stop",
+    "btnSkip": "Skip",
+    "btnLetsCheck":"Let's check!",
+    "btnStartCapture":"Start Capture",
+    "btnStartDiagnosis":"Start Diagnosis",
+    "btnSave" : "Save",
+    "btnQuit" : "Quit",
+    "chooseDiagnosisTypeLabel":"Choose Diagnosis Type",
+    "rppgEmotionLabel" : "Emotion",
+    "rppgStressLabel" : "Stress",
+    "DepressionDiagnosisLabel" : "Depression Diagnosis (PHQ-9)",
+    "DementiaDiagnosisLabel" : "Dementia Diagnosis",
+    "tapBtnDiagnosis" : "Diagnosis",
+    "tapBtnDtx" : "DTx",
+    "tapAIChat" : "AI Chat",
+    "diagnosisResultLabel":"Diagnosis Result",
+    "depressionResultLabel":"Depression Diagnosis Result",
+    "dementiaResultLabel": "Dementia Diagnosis Result",
+    "scoreResultLabel":"score"
+}

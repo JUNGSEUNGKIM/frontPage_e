@@ -1,0 +1,26 @@
+
+{
+    "btnStart" : "시작하기",
+    "btnPrevious" : "이전",
+    "btnPrev" : "이전",
+    "btnNext" : "다음",
+    "btnStop" : "중단하기",
+    "btnSkip": "건너뛰기",
+    "btnLetsCheck":"확인하러 가기",
+    "btnStartCapture":"촬영하기",
+    "btnStartDiagnosis":"진단 시작하기",
+    "btnSave" : "저장",
+    "btnQuit" : "진단 종료",
+    "chooseDiagnosisTypeLabel":"진단 유형을 선택해주세요",
+    "rppgEmotionLabel" : "감정",
+    "rppgStressLabel" : "스트레스",
+    "DepressionDiagnosisLabel" : "우울증 진단 (PHQ-9)",
+    "DementiaDiagnosisLabel" : "치매 진단",
+    "tapBtnDiagnosis" : "진단",
+    "tapBtnDtx" : "DTx",
+    "tapAIChat" : "챗봇 상담",
+    "diagnosisResultLabel":"진단 결과",
+    "depressionResultLabel":"우울증 진단 결과",
+    "dementiaResultLabel": "치매 진단 결과",
+    "scoreResultLabel":"점수"
+}
