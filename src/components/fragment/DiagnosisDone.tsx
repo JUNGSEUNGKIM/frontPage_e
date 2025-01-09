@@ -20,9 +20,6 @@ export function DiagnosisDone({
 }) {
     const [t, i18n] = useTranslation();
 
-    const RESULT_TEXT = `Your assessment is complete!\nReady to check your results?`;
-    const WAITNG_TEXT = `Please Waiting...`;
-
     const navigate = useNavigate();
 
     const isDone =
@@ -62,7 +59,7 @@ export function DiagnosisDone({
                 fontSize="4xl"
                 fontWeight="bold"
             >
-                {isDone ? RESULT_TEXT : WAITNG_TEXT}
+                {isDone ? t("doneLabel") : t("waitingLabel")}
             </Text>
             {isDone && (
                 <Button
@@ -75,6 +72,7 @@ export function DiagnosisDone({
                     fontSize="2xl"
                     loading={!isDone}
                     onClick={handleClick}
+                    className="shadow-md"
                 >
                     {t("btnLetsCheck")}
                 </Button>
@@ -89,8 +87,9 @@ export function DiagnosisDone({
                     fontWeight="medium"
                     fontSize="2xl"
                     loading={true}
+                    className="shadow-md"
                 >
-                    {`Let’s check!`}
+                    {t("btnLetsCheck")}
                 </Button>
             )}
             <Spacer />

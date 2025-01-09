@@ -107,9 +107,7 @@ const DTxLoading = () => {
                 {t("loadingLucidLabel")}
             </p>
             <h1 className="font-bold text-center text-slate-800 text-2xl px-10">
-                Lucid 101은 사용자의 감정에 어울리는 노래를 추천해주는 디지털
-                치료제입니다.
-                <br /> 마인드맵에서 현재 느끼는 감정을 선택해보세요.
+                {t("lucidDescription")}
             </h1>
         </div>
     );

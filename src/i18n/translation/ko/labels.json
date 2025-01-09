@@ -19,6 +19,8 @@
     "tapBtnDiagnosis" : "진단",
     "tapBtnDtx" : "DTx",
     "tapAIChat" : "챗봇 상담",
+    "waitingLabel" :"결과를 분석하는 중이에요",
+    "doneLabel":"진단 분석이 완료되었어요!\n결과를 확인하러 가볼까요?",
     "diagnosisResultLabel":"진단 결과",
     "depressionResultLabel":"우울증 진단 결과",
     "dementiaResultLabel": "치매 진단 결과",

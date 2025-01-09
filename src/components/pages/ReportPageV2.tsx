@@ -101,8 +101,8 @@ export default function DiagnosisResult() {
 
     const stressText =
         Number(state.measurement.stress) <= 60
-            ? "Your stress level is mild.\nYou’re experiencing occasional stress, but it’s manageable. Keep it up! 💪"
-            : "Your stress level is high.\nYou might feel overwhelmed. Take a moment to pause and recharge! 🔋";
+            ? t("lowStressDescription")
+            : t("highStressDescription");
 
     const emotions = [
         {
@@ -190,41 +190,29 @@ export default function DiagnosisResult() {
         Depression: {
             normal: {
                 score: 10,
-                description: `Your mental state appears to be stable. 😊 
-                      Keep maintaining a healthy lifestyle and continue doing what brings you joy.
-                      Remember, occasional stress is normal and part of life.`,
+                description: t("depressionNormalDescription"),
             },
             warning: {
                 score: 20,
-                description: `You might be experiencing mild signs of depression. 🤔
-                      Consider talking to someone you trust or engaging in relaxing activities.
-                      If symptoms persist, seeking professional guidance could be beneficial.`,
+                description: t("depressionWarningDescription"),
             },
             danger: {
                 score: Infinity,
-                description: `Your score indicates significant depressive symptoms. 🆘
-                      Please reach out to a mental health professional for immediate support.
-                      You don't have to face this alone—help is available, and recovery is possible.`,
+                description: t("depressionDangerDescription"),
             },
         },
         Dementia: {
             normal: {
                 score: 5,
-                description: `Your cognitive functions seem to be in good shape. 🙂
-                      Keep engaging in brain-stimulating activities like reading, puzzles, or learning new skills.
-                      Staying physically active and socially connected can also benefit your mental health.`,
+                description: t("dementiaNormalDescription"),
             },
             warning: {
                 score: 20,
-                description: `There are some signs that may indicate cognitive decline. 🤔
-                      It’s a good idea to monitor these changes and consult with a specialist if needed.
-                      Early intervention can make a significant difference in managing symptoms effectively.`,
+                description: t("dementiaWarningDescription"),
             },
             danger: {
                 score: Infinity,
-                description: `Your score suggests potential serious cognitive challenges. 🆘
-                      Please consult a neurologist or specialist as soon as possible.
-                      Early diagnosis and treatment are crucial for better management of the condition.`,
+                description: t("dementiaDangerDescription"),
             },
         },
     };
@@ -476,9 +464,7 @@ export default function DiagnosisResult() {
                             </span>
                         </div>
                         <span className="text-sm text-slate-400 text-center">
-                            HRV (Heart Rate Variability) is the variation in
-                            time intervals
-                            <br /> between consecutive heartbeats.
+                            {t("hrvDescription")}
                         </span>
                     </CardContent>
                 </Card>

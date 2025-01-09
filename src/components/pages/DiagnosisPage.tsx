@@ -19,12 +19,6 @@ import { RppgMeasurementList } from "@/components/custom/RppgResults";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
-import {
-    DEMENTIAOPTIONS,
-    DEMENTIAQUESTIONS,
-    DEPRESSIONOPTIONS,
-    DEPRESSIONQUESTIONS,
-} from "@/constants/questions";
 
 import { useNavigate } from "react-router";
 
@@ -43,6 +37,49 @@ type Tap = "chat" | "diagnosis" | "dtx";
 export function DiagnosisPage() {
     // i18n hook
     const [t, _] = useTranslation();
+
+    const DEPRESSIONQUESTIONS = [
+        t("depressionQuestion1"), // "Experiencing a lack of motivation or interest"
+        t("depressionQuestion2"), // "Feeling down, depressed, or hopeless"
+        t("depressionQuestion3"), // "Frequently sleep deprived, oversleeping, or having trouble falling asleep"
+        t("depressionQuestion4"), // "Lacking energy or constantly feeling fatigued"
+        t("depressionQuestion5"), // "Having poor appetite or overeating"
+        t("depressionQuestion6"), // "Feeling dissatisfied with yourself, or believe that you are a failure or have let yourself or your family down"
+        t("depressionQuestion7"), // "Trouble concentrating on things, such as reading the newspaper or watching television"
+        t("depressionQuestion8"), // "Moving/speaking very slowly or restlessly, causing others to take notice of your behaviors"
+        t("depressionQuestion9"), // "Have recently attempted or thought of self harm or committing suicide"
+    ];
+
+    const DEPRESSIONOPTIONS = [
+        t("depressionOption1"), // "1. Not at all"
+        t("depressionOption2"), // "2. Few days a week"
+        t("depressionOption3"), // "3. About half of a week"
+        t("depressionOption4"), // "4. Nearly every day"
+    ];
+
+    const DEMENTIAQUESTIONS = [
+        t("dementiaQuestion1"), // "Having difficulty recalling recent past events"
+        t("dementiaQuestion2"), // "Easily forget things you heard a few days ago"
+        t("dementiaQuestion3"), // "Having trouble breaking and changing the pattern in repetitive daily activities"
+        t("dementiaQuestion4"), // "Forgetting things that are personally important"
+        t("dementiaQuestion5"), // "Repetitively doing something and then forgetting about it"
+        t("dementiaQuestion6"), // "Forgetting promises you have made"
+        t("dementiaQuestion7"), // "Forgetting the topic while having a conversation"
+        t("dementiaQuestion8"), // "Unable to immediately think of what to say or express"
+        t("dementiaQuestion9"), // "Unable to quickly recall the names of everyday objects"
+        t("dementiaQuestion10"), // "Having difficulty understanding the content of television shows"
+        t("dementiaQuestion11"), // "Unable to recall the places you have visited"
+        t("dementiaQuestion12"), // "Having been lost or wandering"
+        t("dementiaQuestion13"), // "Having difficulty solving simple math problems"
+        t("dementiaQuestion14"), // "Making mistakes in managing money"
+        t("dementiaQuestion15"), // "Having difficulty using equipment that you have used in the past"
+    ];
+
+    const DEMENTIAOPTIONS = [
+        t("dementiaOption1"), // "1. Not at all"
+        t("dementiaOption2"), // "2. Sometimes"
+        t("dementiaOption3"), // "3. Often"
+    ];
 
     const navigate = useNavigate();
     // current tap
@@ -258,13 +295,9 @@ export function DiagnosisPage() {
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
-                                                        The PHQ-9 (Patient
-                                                        Health Questionnaire-9)
-                                                        is a clinically
-                                                        validated tool used to
-                                                        screen, diagnose, and
-                                                        measure the severity of
-                                                        depression.
+                                                        {t(
+                                                            "depressionDescription"
+                                                        )}
                                                     </Text>
                                                     <Spacer />
                                                 </VStack>
@@ -316,13 +349,9 @@ export function DiagnosisPage() {
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
-                                                        Dementia diagnosis
-                                                        involves a comprehensive
-                                                        evaluation to determine
-                                                        the presence and
-                                                        severity of cognitive
-                                                        decline that interferes
-                                                        with daily life.
+                                                        {t(
+                                                            "dementiaDescription"
+                                                        )}
                                                     </Text>
                                                     <Spacer />
                                                 </VStack>

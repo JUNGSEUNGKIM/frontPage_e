@@ -19,6 +19,8 @@
     "tapBtnDiagnosis" : "Diagnosis",
     "tapBtnDtx" : "DTx",
     "tapAIChat" : "AI Chat",
+    "waitingLabel" :"Please Waiting...",
+    "doneLabel":"Your assessment is complete!\nReady to check your results?",
     "diagnosisResultLabel":"Diagnosis Result",
     "depressionResultLabel":"Depression Diagnosis Result",
     "dementiaResultLabel": "Dementia Diagnosis Result",
