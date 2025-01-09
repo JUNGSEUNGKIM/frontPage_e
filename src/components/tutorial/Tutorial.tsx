@@ -20,6 +20,7 @@ import DottedEmoji from "@/assets/animations/dotted.png";
 import MemoEmoji from "@/assets/animations/memo.png";
 import Monocle from "@/assets/animations/monocle.png";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 interface TutorialSlide {
     title: string;
@@ -27,40 +28,9 @@ interface TutorialSlide {
     emojiUrl: string;
 }
 
-const slides: TutorialSlide[] = [
-    {
-        title: "Welcome!",
-        desc: "This kiosk uses rPPG technology to measure\nyour heart rate, stress level, and emotions.",
-        emojiUrl: PartyingEmoji,
-    },
-    {
-        title: "Comprehensive Diagnosis",
-        desc: "In addition to rPPG analysis,\nwe provide surveys for diagnosing depression and dementia.",
-        emojiUrl: MemoEmoji,
-    },
-    {
-        title: "How to Start",
-        desc: "Choose the type of diagnosis you want\nand respond to the questions accurately.",
-        emojiUrl: Monocle,
-    },
-    {
-        title: "Check Your Results",
-        desc: "Once the diagnosis and rPPG analysis are complete,\nyou will receive a detailed report.",
-        emojiUrl: ClipboardEmoji,
-    },
-    {
-        title: "Disclaimer",
-        desc: "Wearing heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
-        emojiUrl: ClownEmoji,
-    },
-    {
-        title: "Camera Tips",
-        desc: "For accurate analysis,\navoid moving too much or staying too far from the camera.",
-        emojiUrl: DottedEmoji,
-    },
-];
-
 export function Tutorial() {
+    const [t, i18n] = useTranslation();
+
     let sliderRef = useRef<null | Slider>(null);
     const navigate = useNavigate();
 
@@ -79,6 +49,39 @@ export function Tutorial() {
             return prev - 1;
         });
     };
+
+    const slides: TutorialSlide[] = [
+        {
+            title: t("welcomeLabel"),
+            desc: t("kioskInfoDescription"),
+            emojiUrl: PartyingEmoji,
+        },
+        {
+            title: t("ComprehensiveDiagnosisLabel"),
+            desc: t("diagnosisInfoDescription"),
+            emojiUrl: MemoEmoji,
+        },
+        {
+            title: t("howToStartLabel"),
+            desc: t("howToStartDescription"),
+            emojiUrl: Monocle,
+        },
+        {
+            title: t("checkYourResultsLabel"),
+            desc: t("checkYourResultDescription"),
+            emojiUrl: ClipboardEmoji,
+        },
+        {
+            title: t("disclaimerLabel"),
+            desc: t("disclaimerDescription"),
+            emojiUrl: ClownEmoji,
+        },
+        {
+            title: t("cameraTipsLabel"),
+            desc: t("cameraTipsDescription"),
+            emojiUrl: DottedEmoji,
+        },
+    ];
 
     const settings = {
         dots: false,

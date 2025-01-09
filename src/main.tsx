@@ -7,6 +7,8 @@ import { OnboardingPage } from "./components/pages/OnboardingPage.tsx";
 import { DiagnosisPage } from "./components/pages/DiagnosisPage.tsx";
 // import ReportPage from "./components/pages/ReportPage.tsx";
 import ReportPageV2 from "./components/pages/ReportPageV2.tsx";
+// import i18n
+import "./i18n";
 
 // strict mode for check error
 const isTEST = false;

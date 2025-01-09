@@ -29,6 +29,8 @@ import { Greetings } from "@/constants/greetings";
 import { Tutorial } from "../tutorial/Tutorial";
 import CustomAudioPlayer from "../custom/CustomAudioPlayer";
 
+import { useTranslation } from "react-i18next";
+
 export function OnboardingPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const nextIndex = (currentIndex + 1) % Greetings.length;
@@ -37,6 +39,8 @@ export function OnboardingPage() {
     const [play, { stop }] = useSound(Greetings[nextIndex]?.url);
 
     const [open, setOpen] = useState(false);
+
+    const [t, i18n] = useTranslation();
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -73,6 +77,17 @@ export function OnboardingPage() {
                 <Image src={Logo} h="2vh" mt="2vw" ml="2vw" />
                 <Image src={CESLogo} h="2vh" mt="2vw" ml="2vw" />
                 <Spacer />
+                <div className="mr-4">
+                    <button
+                        onClick={() => i18n.changeLanguage("en")}
+                        className="mr-4"
+                    >
+                        English
+                    </button>
+                    <button onClick={() => i18n.changeLanguage("ko")}>
+                        Korean
+                    </button>
+                </div>
             </HStack>
             <Container height="10vh" />
             <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
@@ -94,7 +109,9 @@ export function OnboardingPage() {
                             stop();
                         }}
                     >
-                        <Heading className="font-bold text-4xl">{`Get Started`}</Heading>
+                        <Heading className="font-bold text-4xl animate-bounce">
+                            {t("btnStart")}
+                        </Heading>
                     </Button>
                 </DialogTrigger>
 
