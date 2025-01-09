@@ -111,7 +111,7 @@ export function Tutorial() {
                         navigate("diagnosis");
                     }}
                 >
-                    <Text fontSize="xl">Skip</Text>
+                    <Text fontSize="xl">{t("btnSkip")}</Text>
                 </Button>
             </HStack>
             <Slider
@@ -141,7 +141,7 @@ export function Tutorial() {
                     onClick={previous}
                     mt="5"
                 >
-                    <Text fontSize="3xl">Previous</Text>
+                    <Text fontSize="3xl">{t("btnPrevious")}</Text>
                 </Button>
                 <Spacer />
                 <Spacer />
@@ -155,7 +155,7 @@ export function Tutorial() {
                         mt="5"
                     >
                         <Text fontSize="3xl" color="white">
-                            Next
+                            {t("btnNext")}
                         </Text>
                     </Button>
                 )}
@@ -171,7 +171,7 @@ export function Tutorial() {
                         mt="5"
                     >
                         <Text fontSize="3xl" color="white">
-                            Start
+                            {t("btnStart")}
                         </Text>
                     </Button>
                 )}

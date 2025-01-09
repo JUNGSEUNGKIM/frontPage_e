@@ -22,5 +22,17 @@
     "diagnosisResultLabel":"Diagnosis Result",
     "depressionResultLabel":"Depression Diagnosis Result",
     "dementiaResultLabel": "Dementia Diagnosis Result",
-    "scoreResultLabel":"score"
+    "scoreResultLabel":"score",
+    "loadingLucidLabel" : "Loading Lucid 101",
+    "statusLabel":"Status",
+    "statusNormalLabel" : "Normal",
+    "statusWarningLabel" : "Warning",
+    "statusDangerLabel" : "Danger",
+    "emotionAngryLabel" : "Angry",
+    "emotionDisgustedLabel" : "Disgusted",
+    "emotionFearfulLabel" : "Fearful",
+    "emotionHappyLabel" : "Happy",
+    "emotionNeutralLabel" : "Neutral",
+    "emotionSadLabel" : "Sad",
+    "emotionSurprisedLabel" : "Surprised"
 }

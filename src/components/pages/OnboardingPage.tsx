@@ -109,7 +109,7 @@ export function OnboardingPage() {
                             stop();
                         }}
                     >
-                        <Heading className="font-bold text-4xl animate-bounce">
+                        <Heading className="font-bold text-4xl">
                             {t("btnStart")}
                         </Heading>
                     </Button>

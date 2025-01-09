@@ -22,5 +22,17 @@
     "diagnosisResultLabel":"진단 결과",
     "depressionResultLabel":"우울증 진단 결과",
     "dementiaResultLabel": "치매 진단 결과",
-    "scoreResultLabel":"점수"
+    "scoreResultLabel":"점수",
+    "loadingLucidLabel" : "Lucid 101 불러오는 중",
+    "statusLabel":"상태",
+    "statusNormalLabel" : "정상군",
+    "statusWarningLabel" : "주의군",
+    "statusDangerLabel" : "위험군",
+    "emotionAngryLabel" : "분노",
+    "emotionDisgustedLabel" : "역함",
+    "emotionFearfulLabel" : "두려움",
+    "emotionHappyLabel" : "행복",
+    "emotionNeutralLabel" : "중립",
+    "emotionSadLabel" : "슬픔",
+    "emotionSurprisedLabel" : "놀람"
 }

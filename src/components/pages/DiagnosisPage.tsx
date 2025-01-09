@@ -36,10 +36,14 @@ import { ChatFragment } from "../fragment/ChatFragment";
 import { DtxFragment } from "../DtxFragment";
 import { DiagnosisType } from "@/types";
 import DtxFragmentV2 from "../fragment/DtxFragmentV2";
+import { useTranslation } from "react-i18next";
 
 type Tap = "chat" | "diagnosis" | "dtx";
 
 export function DiagnosisPage() {
+    // i18n hook
+    const [t, _] = useTranslation();
+
     const navigate = useNavigate();
     // current tap
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
@@ -137,7 +141,7 @@ export function DiagnosisPage() {
                                 currentTap === "diagnosis" ? "white" : "black"
                             }
                         >
-                            Diagnosis
+                            {t("tapBtnDiagnosis")}
                         </Text>
                     </Button>
                     <Button
@@ -153,7 +157,7 @@ export function DiagnosisPage() {
                         onClick={() => handleTap("dtx")}
                     >
                         <Text color={currentTap === "dtx" ? "white" : "black"}>
-                            DTx
+                            {t("tapBtnDtx")}
                         </Text>
                     </Button>
                     <Button
@@ -169,7 +173,7 @@ export function DiagnosisPage() {
                         onClick={() => handleTap("chat")}
                     >
                         <Text color={currentTap === "chat" ? "white" : "black"}>
-                            AI Chat
+                            {t("tapAIChat")}
                         </Text>
                     </Button>
                 </Group>
@@ -205,7 +209,7 @@ export function DiagnosisPage() {
                                             animation="pulse"
                                             mt="3"
                                         >
-                                            Choose Diagnosis Type
+                                            {t("chooseDiagnosisTypeLabel")}
                                         </Text>
                                         <HStack w="100%">
                                             <Button
@@ -238,8 +242,9 @@ export function DiagnosisPage() {
                                                         fontSize="2xl"
                                                         fontWeight="bold"
                                                     >
-                                                        Depression Diagnosis
-                                                        (PHQ-9)
+                                                        {t(
+                                                            "DepressionDiagnosisLabel"
+                                                        )}
                                                     </Text>
                                                     <Image
                                                         src={Crying}
@@ -295,7 +300,9 @@ export function DiagnosisPage() {
                                                         fontSize="2xl"
                                                         fontWeight="bold"
                                                     >
-                                                        Dementia Diagnosis
+                                                        {t(
+                                                            "DementiaDiagnosisLabel"
+                                                        )}
                                                     </Text>
                                                     <Image
                                                         src={Thinking}
@@ -344,7 +351,7 @@ export function DiagnosisPage() {
                                             }}
                                             className="shadow bg-blue-500"
                                         >
-                                            Start Diagnosis
+                                            {t("btnStartDiagnosis")}
                                         </Button>
                                     </VStack>
                                 )}
@@ -430,7 +437,7 @@ export function DiagnosisPage() {
                                                 }}
                                                 className="shadow"
                                             >
-                                                Prev
+                                                {t("btnPrev")}
                                             </Button>
                                         </HStack>
                                         <Container h="10vh" />
@@ -447,7 +454,7 @@ export function DiagnosisPage() {
                                             onClick={handleGoPreviousPage}
                                             className="shadow"
                                         >
-                                            Stop
+                                            {t("btnStop")}
                                         </Button>
                                     </>
                                 )}
