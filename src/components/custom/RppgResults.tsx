@@ -14,13 +14,13 @@ export function RppgMeasurementList({
     return (
         <HStack gap="1px" w="100%" h="10%">
             <RppgMeasurementCell
-                label={t("rppgEmotionLabel")}
+                label="Emotion"
                 value={measurementValue.emotion}
             />
             <RppgMeasurementCell label="HR" value={measurementValue.hr} />
             <RppgMeasurementCell label="HRV" value={measurementValue.hrv} />
             <RppgMeasurementCell
-                label={t("rppgStressLabel")}
+                label="Stress"
                 value={measurementValue.stress}
             />
         </HStack>
