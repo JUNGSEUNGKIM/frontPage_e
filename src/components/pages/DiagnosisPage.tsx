@@ -147,16 +147,14 @@ export function DiagnosisPage() {
 
     return (
         <VStack w="100vw" h="100vh" bg={palettes.background}>
-            <HStack w="100vw">
+            <div className="w-full flex flex-row justify-between mt-4 mr-4">
                 <Image
                     src={Logo}
                     h="2vh"
-                    mt="2vw"
                     ml="2vw"
                     onClick={() => handleGoPreviousPage()}
                 />
-                <Spacer />
-                <Group pt={5} pr={5}>
+                <Group>
                     <Button
                         w="10vw"
                         bg={
@@ -197,7 +195,7 @@ export function DiagnosisPage() {
                             {t("tapBtnDtx")}
                         </Text>
                     </Button>
-                    <Button
+                    {/* <Button
                         w="10vw"
                         bg={currentTap === "chat" ? palettes.primary : "white"}
                         borderWidth="1px"
@@ -212,9 +210,9 @@ export function DiagnosisPage() {
                         <Text color={currentTap === "chat" ? "white" : "black"}>
                             {t("tapAIChat")}
                         </Text>
-                    </Button>
+                    </Button> */}
                 </Group>
-            </HStack>
+            </div>
             <Grid
                 w="100vw"
                 templateRows="28% 60% 6%"

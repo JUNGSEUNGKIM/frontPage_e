@@ -37,6 +37,9 @@ export function Tutorial() {
     const next = () => {
         sliderRef.slickNext();
         setCount((prev) => {
+            if (prev >= slides.length) {
+                return prev;
+            }
             return prev + 1;
         });
     };
@@ -95,9 +98,7 @@ export function Tutorial() {
     };
     const [count, setCount] = useState(0);
 
-    const isLast = count === slides.length - 1;
-    // console.log(slides.length - 1);
-    // console.log(typeof count);
+    const isLast = count == slides.length - 1;
 
     return (
         <Container h="100%" className="slider-container">
@@ -143,7 +144,6 @@ export function Tutorial() {
                 >
                     <Text fontSize="3xl">{t("btnPrevious")}</Text>
                 </Button>
-                <Spacer />
                 <Spacer />
                 {!isLast && (
                     <Button

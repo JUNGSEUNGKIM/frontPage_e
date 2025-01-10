@@ -1,6 +1,6 @@
 {
     "welcomeLabel": "환영합니다!",
-    "kioskInfoDescription": "이 키오스크는 rPPG 기술을 활용해 심박수, 스트레스 지수, 감정을 측정합니다.",
+    "kioskInfoDescription": "rPPG 기술을 활용해 사용자의 심박수, 스트레스 지수, 감정을 측정합니다.",
     "ComprehensiveDiagnosisLabel": "종합 진단",
     "diagnosisInfoDescription": "rPPG 분석과 함께 우울증, 치매 진단 설문을 제공합니다.",
     "howToStartLabel": "시작 방법",
