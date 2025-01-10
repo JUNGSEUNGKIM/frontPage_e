@@ -19,12 +19,6 @@ import { RppgMeasurementList } from "@/components/custom/RppgResults";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
-import {
-    DEMENTIAOPTIONS,
-    DEMENTIAQUESTIONS,
-    DEPRESSIONOPTIONS,
-    DEPRESSIONQUESTIONS,
-} from "@/constants/questions";
 
 import { useNavigate } from "react-router";
 
@@ -36,10 +30,57 @@ import { ChatFragment } from "../fragment/ChatFragment";
 import { DtxFragment } from "../DtxFragment";
 import { DiagnosisType } from "@/types";
 import DtxFragmentV2 from "../fragment/DtxFragmentV2";
+import { useTranslation } from "react-i18next";
 
 type Tap = "chat" | "diagnosis" | "dtx";
 
 export function DiagnosisPage() {
+    // i18n hook
+    const [t, _] = useTranslation();
+
+    const DEPRESSIONQUESTIONS = [
+        t("depressionQuestion1"), // "Experiencing a lack of motivation or interest"
+        t("depressionQuestion2"), // "Feeling down, depressed, or hopeless"
+        t("depressionQuestion3"), // "Frequently sleep deprived, oversleeping, or having trouble falling asleep"
+        t("depressionQuestion4"), // "Lacking energy or constantly feeling fatigued"
+        t("depressionQuestion5"), // "Having poor appetite or overeating"
+        t("depressionQuestion6"), // "Feeling dissatisfied with yourself, or believe that you are a failure or have let yourself or your family down"
+        t("depressionQuestion7"), // "Trouble concentrating on things, such as reading the newspaper or watching television"
+        t("depressionQuestion8"), // "Moving/speaking very slowly or restlessly, causing others to take notice of your behaviors"
+        t("depressionQuestion9"), // "Have recently attempted or thought of self harm or committing suicide"
+    ];
+
+    const DEPRESSIONOPTIONS = [
+        t("depressionOption1"), // "1. Not at all"
+        t("depressionOption2"), // "2. Few days a week"
+        t("depressionOption3"), // "3. About half of a week"
+        t("depressionOption4"), // "4. Nearly every day"
+    ];
+
+    const DEMENTIAQUESTIONS = [
+        t("dementiaQuestion1"), // "Having difficulty recalling recent past events"
+        t("dementiaQuestion2"), // "Easily forget things you heard a few days ago"
+        t("dementiaQuestion3"), // "Having trouble breaking and changing the pattern in repetitive daily activities"
+        t("dementiaQuestion4"), // "Forgetting things that are personally important"
+        t("dementiaQuestion5"), // "Repetitively doing something and then forgetting about it"
+        t("dementiaQuestion6"), // "Forgetting promises you have made"
+        t("dementiaQuestion7"), // "Forgetting the topic while having a conversation"
+        t("dementiaQuestion8"), // "Unable to immediately think of what to say or express"
+        t("dementiaQuestion9"), // "Unable to quickly recall the names of everyday objects"
+        t("dementiaQuestion10"), // "Having difficulty understanding the content of television shows"
+        t("dementiaQuestion11"), // "Unable to recall the places you have visited"
+        t("dementiaQuestion12"), // "Having been lost or wandering"
+        t("dementiaQuestion13"), // "Having difficulty solving simple math problems"
+        t("dementiaQuestion14"), // "Making mistakes in managing money"
+        t("dementiaQuestion15"), // "Having difficulty using equipment that you have used in the past"
+    ];
+
+    const DEMENTIAOPTIONS = [
+        t("dementiaOption1"), // "1. Not at all"
+        t("dementiaOption2"), // "2. Sometimes"
+        t("dementiaOption3"), // "3. Often"
+    ];
+
     const navigate = useNavigate();
     // current tap
     const [currentTap, setCurrentTap] = useState<Tap>("diagnosis");
@@ -106,16 +147,14 @@ export function DiagnosisPage() {
 
     return (
         <VStack w="100vw" h="100vh" bg={palettes.background}>
-            <HStack w="100vw">
+            <div className="w-full flex flex-row justify-between mt-4 mr-4">
                 <Image
                     src={Logo}
                     h="2vh"
-                    mt="2vw"
                     ml="2vw"
                     onClick={() => handleGoPreviousPage()}
                 />
-                <Spacer />
-                <Group pt={5} pr={5}>
+                <Group>
                     <Button
                         w="10vw"
                         bg={
@@ -137,7 +176,7 @@ export function DiagnosisPage() {
                                 currentTap === "diagnosis" ? "white" : "black"
                             }
                         >
-                            Diagnosis
+                            {t("tapBtnDiagnosis")}
                         </Text>
                     </Button>
                     <Button
@@ -153,10 +192,10 @@ export function DiagnosisPage() {
                         onClick={() => handleTap("dtx")}
                     >
                         <Text color={currentTap === "dtx" ? "white" : "black"}>
-                            DTx
+                            {t("tapBtnDtx")}
                         </Text>
                     </Button>
-                    <Button
+                    {/* <Button
                         w="10vw"
                         bg={currentTap === "chat" ? palettes.primary : "white"}
                         borderWidth="1px"
@@ -169,11 +208,11 @@ export function DiagnosisPage() {
                         onClick={() => handleTap("chat")}
                     >
                         <Text color={currentTap === "chat" ? "white" : "black"}>
-                            AI Chat
+                            {t("tapAIChat")}
                         </Text>
-                    </Button>
+                    </Button> */}
                 </Group>
-            </HStack>
+            </div>
             <Grid
                 w="100vw"
                 templateRows="28% 60% 6%"
@@ -205,7 +244,7 @@ export function DiagnosisPage() {
                                             animation="pulse"
                                             mt="3"
                                         >
-                                            Choose Diagnosis Type
+                                            {t("chooseDiagnosisTypeLabel")}
                                         </Text>
                                         <HStack w="100%">
                                             <Button
@@ -238,8 +277,9 @@ export function DiagnosisPage() {
                                                         fontSize="2xl"
                                                         fontWeight="bold"
                                                     >
-                                                        Depression Diagnosis
-                                                        (PHQ-9)
+                                                        {t(
+                                                            "DepressionDiagnosisLabel"
+                                                        )}
                                                     </Text>
                                                     <Image
                                                         src={Crying}
@@ -253,13 +293,9 @@ export function DiagnosisPage() {
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
-                                                        The PHQ-9 (Patient
-                                                        Health Questionnaire-9)
-                                                        is a clinically
-                                                        validated tool used to
-                                                        screen, diagnose, and
-                                                        measure the severity of
-                                                        depression.
+                                                        {t(
+                                                            "depressionDescription"
+                                                        )}
                                                     </Text>
                                                     <Spacer />
                                                 </VStack>
@@ -295,7 +331,9 @@ export function DiagnosisPage() {
                                                         fontSize="2xl"
                                                         fontWeight="bold"
                                                     >
-                                                        Dementia Diagnosis
+                                                        {t(
+                                                            "DementiaDiagnosisLabel"
+                                                        )}
                                                     </Text>
                                                     <Image
                                                         src={Thinking}
@@ -309,13 +347,9 @@ export function DiagnosisPage() {
                                                         whiteSpace="pre-line"
                                                         fontSize="xl"
                                                     >
-                                                        Dementia diagnosis
-                                                        involves a comprehensive
-                                                        evaluation to determine
-                                                        the presence and
-                                                        severity of cognitive
-                                                        decline that interferes
-                                                        with daily life.
+                                                        {t(
+                                                            "dementiaDescription"
+                                                        )}
                                                     </Text>
                                                     <Spacer />
                                                 </VStack>
@@ -344,7 +378,7 @@ export function DiagnosisPage() {
                                             }}
                                             className="shadow bg-blue-500"
                                         >
-                                            Start Diagnosis
+                                            {t("btnStartDiagnosis")}
                                         </Button>
                                     </VStack>
                                 )}
@@ -430,7 +464,7 @@ export function DiagnosisPage() {
                                                 }}
                                                 className="shadow"
                                             >
-                                                Prev
+                                                {t("btnPrev")}
                                             </Button>
                                         </HStack>
                                         <Container h="10vh" />
@@ -447,7 +481,7 @@ export function DiagnosisPage() {
                                             onClick={handleGoPreviousPage}
                                             className="shadow"
                                         >
-                                            Stop
+                                            {t("btnStop")}
                                         </Button>
                                     </>
                                 )}

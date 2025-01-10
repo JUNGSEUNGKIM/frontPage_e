@@ -2,6 +2,7 @@ import { Api, ApiKeys } from "@/constants/api";
 import { DTxInfo, DTxProvider, DTxType, useDTx } from "@/providers/dtx";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import HeadPhoneEmoji from "@/assets/animations/headphone.png";
+import { useTranslation } from "react-i18next";
 // TODO: 1. create loading component
 // TODO: 2. create interface for api call using axios
 // TODO: 3. connect lucid website to iframe
@@ -98,16 +99,15 @@ const DtxSelectFragment = () => {
 };
 
 const DTxLoading = () => {
+    const [t, _] = useTranslation();
     return (
         <div className="w-full h-1/2 flex flex-col items-center justify-center bg-blue-100 rounded-md gap-2">
             <img src={HeadPhoneEmoji} className="w-1/4 h-1/2"></img>
             <p className="animate-pulse text-blue-500 font-bold text-xl">
-                Loading Lucid 101
+                {t("loadingLucidLabel")}
             </p>
             <h1 className="font-bold text-center text-slate-800 text-2xl px-10">
-                Lucid 101은 사용자의 감정에 어울리는 노래를 추천해주는 디지털
-                치료제입니다.
-                <br /> 마인드맵에서 현재 느끼는 감정을 선택해보세요.
+                {t("lucidDescription")}
             </h1>
         </div>
     );

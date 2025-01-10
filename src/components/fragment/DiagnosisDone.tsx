@@ -5,9 +5,7 @@ import LoadingEmoji from "@/assets/animations/loading.png";
 import palettes from "@/constants/colors";
 import { DiagnosisType, RPPGMeasurement } from "@/types";
 import { useNavigate } from "react-router";
-
-const RESULT_TEXT = `Your assessment is complete!\nReady to check your results?`;
-const WAITNG_TEXT = `Please Waiting...`;
+import { useTranslation } from "react-i18next";
 
 export function DiagnosisDone({
     rppgMesurement,
@@ -20,6 +18,8 @@ export function DiagnosisDone({
     selectedDiagnosisType: DiagnosisType;
     answers: number[];
 }) {
+    const [t, i18n] = useTranslation();
+
     const navigate = useNavigate();
 
     const isDone =
@@ -59,7 +59,7 @@ export function DiagnosisDone({
                 fontSize="4xl"
                 fontWeight="bold"
             >
-                {isDone ? RESULT_TEXT : WAITNG_TEXT}
+                {isDone ? t("doneLabel") : t("waitingLabel")}
             </Text>
             {isDone && (
                 <Button
@@ -72,8 +72,9 @@ export function DiagnosisDone({
                     fontSize="2xl"
                     loading={!isDone}
                     onClick={handleClick}
+                    className="shadow-md"
                 >
-                    {`Let’s check!`}
+                    {t("btnLetsCheck")}
                 </Button>
             )}
             {!isDone && (
@@ -86,8 +87,9 @@ export function DiagnosisDone({
                     fontWeight="medium"
                     fontSize="2xl"
                     loading={true}
+                    className="shadow-md"
                 >
-                    {`Let’s check!`}
+                    {t("btnLetsCheck")}
                 </Button>
             )}
             <Spacer />

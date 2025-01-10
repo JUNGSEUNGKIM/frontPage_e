@@ -17,6 +17,7 @@ import { useLocation, useNavigate } from "react-router";
 import { DiagnosisReport } from "@/types";
 import Webcam from "react-webcam";
 import { generatePDF } from "@/utls/pdf";
+import { useTranslation } from "react-i18next";
 
 // screen capture
 
@@ -37,6 +38,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DiagnosisResult() {
+    const [t] = useTranslation();
     // 웹캠 참조 타입 명시
     const webcamRef = useRef<Webcam>(null);
 
@@ -99,48 +101,48 @@ export default function DiagnosisResult() {
 
     const stressText =
         Number(state.measurement.stress) <= 60
-            ? "Your stress level is mild.\nYou’re experiencing occasional stress, but it’s manageable. Keep it up! 💪"
-            : "Your stress level is high.\nYou might feel overwhelmed. Take a moment to pause and recharge! 🔋";
+            ? t("lowStressDescription")
+            : t("highStressDescription");
 
     const emotions = [
         {
-            label: "Angry",
+            label: t("emotionAngryLabel"),
             emoji: "😡",
-            color: "#FF0000", // 빨간색으로 화남을 표현
+            color: "#FF0000",
             value: Number(state.measurement.emotionResult.Angry), // 값 참조
         },
         {
-            label: "Disgusted",
+            label: t("emotionDisgustedLabel"),
             emoji: "😫",
-            color: "#8B0000", // 어두운 빨간색
+            color: "#8B0000",
             value: Number(state.measurement.emotionResult.Disgusted),
         },
         {
-            label: "Fearful",
+            label: t("emotionFearfulLabel"),
             emoji: "😨",
             color: "#800080", // 보라색
             value: Number(state.measurement.emotionResult.Fearful),
         },
         {
-            label: "Happy",
+            label: t("emotionHappyLabel"),
             emoji: "😄",
             color: "#facc15", // 노란색
             value: Number(state.measurement.emotionResult.Happy),
         },
         {
-            label: "Neutral",
+            label: t("emotionNeutralLabel"),
             emoji: "🙂",
             color: "#808080", // 회색
             value: Number(state.measurement.emotionResult.Neutral),
         },
         {
-            label: "Sad",
+            label: t("emotionSadLabel"),
             emoji: "😢",
             color: "#0000FF", // 파란색
             value: Number(state.measurement.emotionResult.Sad),
         },
         {
-            label: "Surprised",
+            label: t("emotionSurprisedLabel"),
             emoji: "😮",
             color: "#f97316", // 주황색
             value: Number(state.measurement.emotionResult.Surprised),
@@ -188,41 +190,29 @@ export default function DiagnosisResult() {
         Depression: {
             normal: {
                 score: 10,
-                description: `Your mental state appears to be stable. 😊 
-                      Keep maintaining a healthy lifestyle and continue doing what brings you joy.
-                      Remember, occasional stress is normal and part of life.`,
+                description: t("depressionNormalDescription"),
             },
             warning: {
                 score: 20,
-                description: `You might be experiencing mild signs of depression. 🤔
-                      Consider talking to someone you trust or engaging in relaxing activities.
-                      If symptoms persist, seeking professional guidance could be beneficial.`,
+                description: t("depressionWarningDescription"),
             },
             danger: {
                 score: Infinity,
-                description: `Your score indicates significant depressive symptoms. 🆘
-                      Please reach out to a mental health professional for immediate support.
-                      You don't have to face this alone—help is available, and recovery is possible.`,
+                description: t("depressionDangerDescription"),
             },
         },
         Dementia: {
             normal: {
                 score: 5,
-                description: `Your cognitive functions seem to be in good shape. 🙂
-                      Keep engaging in brain-stimulating activities like reading, puzzles, or learning new skills.
-                      Staying physically active and socially connected can also benefit your mental health.`,
+                description: t("dementiaNormalDescription"),
             },
             warning: {
                 score: 20,
-                description: `There are some signs that may indicate cognitive decline. 🤔
-                      It’s a good idea to monitor these changes and consult with a specialist if needed.
-                      Early intervention can make a significant difference in managing symptoms effectively.`,
+                description: t("dementiaWarningDescription"),
             },
             danger: {
                 score: Infinity,
-                description: `Your score suggests potential serious cognitive challenges. 🆘
-                      Please consult a neurologist or specialist as soon as possible.
-                      Early diagnosis and treatment are crucial for better management of the condition.`,
+                description: t("dementiaDangerDescription"),
             },
         },
     };
@@ -278,7 +268,7 @@ export default function DiagnosisResult() {
 
             {/* Title */}
             <h1 className="text-4xl font-bold text-center mb-16">
-                Diagnosis Result
+                {t("diagnosisResultLabel")}
             </h1>
 
             {/* User Profile */}
@@ -319,7 +309,7 @@ export default function DiagnosisResult() {
                                 onClick={() => setCountdown(5)}
                                 className="w-full mt-4 py-2 bg-blue-500 text-white rounded"
                             >
-                                Start Capture
+                                {t("btnStartCapture")}
                             </button>
                         )}
                     </CardContent>
@@ -383,11 +373,14 @@ export default function DiagnosisResult() {
                         </div>
                         <div className="flex flex-col w-1/2">
                             <h3 className="font-bold text-xl">
-                                {state.diagnosisType} Diagnosis Result
+                                {state.diagnosisType === "Dementia"
+                                    ? t("dementiaResultLabel")
+                                    : t("depressionResultLabel")}
                             </h3>
                             <Card className="flex flex-row gap-4 bg-white px-2 rounded-md my-2">
-                                <h4 className="font-bold">Status</h4>
-                                {/* Conditional text here */}
+                                <h4 className="font-bold">
+                                    {t("statusLabel")}
+                                </h4>
                                 <h4
                                     className={`font-bold ${
                                         diagnosisStatus === "Normal"
@@ -397,7 +390,11 @@ export default function DiagnosisResult() {
                                             : "text-red-500"
                                     }`}
                                 >
-                                    {diagnosisStatus}
+                                    {diagnosisStatus === "Danger"
+                                        ? t("statusDangerLabel")
+                                        : diagnosisStatus === "Normal"
+                                        ? t("statusNormalLabel")
+                                        : t("statusWarningLabel")}
                                 </h4>
                             </Card>
                             <p>{diagnosisDescription}</p>
@@ -467,9 +464,7 @@ export default function DiagnosisResult() {
                             </span>
                         </div>
                         <span className="text-sm text-slate-400 text-center">
-                            HRV (Heart Rate Variability) is the variation in
-                            time intervals
-                            <br /> between consecutive heartbeats.
+                            {t("hrvDescription")}
                         </span>
                     </CardContent>
                 </Card>
@@ -479,7 +474,9 @@ export default function DiagnosisResult() {
             <div className="grid grid-cols-2 gap-4">
                 <Card>
                     <CardContent className="p-4">
-                        <h3 className="font-bold mb-4">Emotion</h3>
+                        <h3 className="font-bold mb-4">
+                            {t("rppgEmotionLabel")}
+                        </h3>
                         <div className="space-y-2">
                             {emotions.map((emotion, index) => (
                                 <div
@@ -527,9 +524,10 @@ export default function DiagnosisResult() {
                 {/* Stress Gauge */}
                 <Card>
                     <CardContent className="p-4">
-                        <h3 className="font-bold mb-12">STRESS</h3>
+                        <h3 className="font-bold mb-12">
+                            {t("rppgStressLabel")}
+                        </h3>
                         <div className="relative">
-                            {/* Indicator */}
                             <div
                                 className="absolute -top-3 transform -translate-x-1/2 text-blue-500"
                                 style={{
@@ -552,7 +550,13 @@ export default function DiagnosisResult() {
                 </Card>
             </div>
             {/* Action Buttons */}
-            <Button
+            <button
+                onClick={() => navigate("/", { replace: true })}
+                className="w-full py-4 text-2xl text-white font-bold bg-blue-500 rounded-lg"
+            >
+                {t("btnQuit")}
+            </button>
+            {/* <Button
                 w="100%"
                 bg={palettes.primary}
                 color="white"
@@ -591,7 +595,7 @@ export default function DiagnosisResult() {
                         onKeyPress={handleKeyPress}
                     />
                 </div>
-            )}
+            )} */}
             <span ref={myRef} className="h-1" />
         </div>
     );

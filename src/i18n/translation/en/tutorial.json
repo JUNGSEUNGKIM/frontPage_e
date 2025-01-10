@@ -1,0 +1,14 @@
+{
+    "welcomeLabel" : "Welcome!",
+    "kioskInfoDescription": "This kiosk uses rPPG technology to measure your heart rate, stress level, and emotions.",
+    "ComprehensiveDiagnosisLabel":"Comprehensive Diagnosis",
+    "diagnosisInfoDescription":"In addition to rPPG analysis, we provide surveys for diagnosing depression and dementia.",
+    "howToStartLabel":"How to Start",
+    "howToStartDescription":"Choose the type of diagnosis you want and respond to the questions accurately.",
+    "checkYourResultsLabel":"Check Your Results",
+    "checkYourResultDescription":"Once the diagnosis and rPPG analysis are complete, you will receive a detailed report.",
+    "disclaimerLabel": "Disclaimer",
+    "disclaimerDescription":"Wearing heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
+    "cameraTipsLabel":"Camera Tips",
+    "cameraTipsDescription":"For accurate analysis, avoid moving too much or staying too far from the camera."
+}
