@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { DynamicEmoji } from "../DynamicEmoji";
 import { SelectableLanguageButton } from "../custom/SelectableLanguageButton";
 import { Tutorial } from "../tutorial/Tutorial";
+import { LogoButton } from "../custom/LogoButton";
 import {
     DialogBody,
     DialogCloseTrigger,
@@ -16,11 +17,10 @@ import {
     DialogTrigger,
 } from "@/components/chakraui/dialog";
 
-// imgs
-import Logo from "@/assets/logo.png";
-import CESLogo from "@/assets/ces_logo.png";
-
 // import CustomAudioPlayer from "../custom/CustomAudioPlayer";
+
+// imgs
+import CESLogo from "@/assets/ces_logo.png";
 
 export function OnboardingPage() {
     const [open, setOpen] = useState(false);
@@ -56,7 +56,7 @@ export function OnboardingPage() {
         <div className="w-full h-screen bg-gradient-to-r from-blue-300 to-slate-200 flex flex-col items-center justify-center">
             <div className="w-full flex flex-row items-center justify-between mt-4">
                 <div className="flex flex-row">
-                    <img src={Logo} className="h-10 mx-4" />
+                    <LogoButton onClick={() => {}} />
                     <img src={CESLogo} className="h-10 mr-4" />
                 </div>
                 <div className="mr-4">
@@ -77,6 +77,7 @@ export function OnboardingPage() {
 
             <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
 
+            {/* Spacer */}
             <div className="h-full" />
 
             <DialogRoot
@@ -103,6 +104,7 @@ export function OnboardingPage() {
                 </DialogContent>
             </DialogRoot>
 
+            {/* Spacer */}
             <div className="h-full" />
             {/* <CustomAudioPlayer /> */}
         </div>

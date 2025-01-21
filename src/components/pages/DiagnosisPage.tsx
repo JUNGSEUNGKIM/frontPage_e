@@ -21,8 +21,6 @@ import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
 
 import { useNavigate } from "react-router";
-
-import Logo from "@/assets/logo.png";
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
@@ -30,6 +28,7 @@ import { ChatFragment } from "../fragment/ChatFragment";
 import { DiagnosisType } from "@/types";
 import DtxFragmentV2 from "../fragment/DtxFragmentV2";
 import { useTranslation } from "react-i18next";
+import { LogoButton } from "../custom/LogoButton";
 
 type Tap = "chat" | "diagnosis" | "dtx";
 
@@ -147,12 +146,7 @@ export function DiagnosisPage() {
     return (
         <VStack w="100vw" h="100vh" bg={palettes.background}>
             <div className="w-full flex flex-row justify-between mt-4 mr-4">
-                <Image
-                    src={Logo}
-                    h="2vh"
-                    ml="2vw"
-                    onClick={() => handleGoPreviousPage()}
-                />
+                <LogoButton onClick={handleGoPreviousPage} />
                 <Group>
                     <Button
                         w="10vw"
