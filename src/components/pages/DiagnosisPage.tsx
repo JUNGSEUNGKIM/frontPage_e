@@ -1,16 +1,12 @@
 import { useState, useRef } from "react";
 import palettes from "@/constants/colors";
 import {
-    Image,
     VStack,
     Text,
-    Grid,
-    GridItem,
     Center,
     HStack,
     Container,
     Spacer,
-    Group,
 } from "@chakra-ui/react";
 import { AnswerButton } from "@/components/custom/AnswerButton";
 import { Button } from "@/components/ui/button";
@@ -88,15 +84,12 @@ export function DiagnosisPage() {
 
     const hrRef = useRef<string[]>([]);
 
-    // button clicked check
-    // const [isProcessing, setIsProcessing] = useState(false);
-
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
     const { state, startSurvey, initSurvey, answerQuestion, goBack } =
         useSurvey();
-    // status : init / progress / done
 
+    // state for rPPG measurement
     const [measurement, setMeasurement] = useState<RPPGMeasurement>({
         hr: "0",
         hrv: "0",
@@ -144,359 +137,309 @@ export function DiagnosisPage() {
     }
 
     return (
-        <VStack w="100vw" h="100vh" bg={palettes.background}>
+        <div className="w-full h-screen flex flex-col px-2">
+            {/* TODO: extract Appbar widget */}
             <div className="w-full flex flex-row justify-between mt-4 mr-4">
                 <LogoButton onClick={handleGoPreviousPage} />
-                <Group>
-                    <Button
-                        w="10vw"
-                        bg={
-                            currentTap === "diagnosis"
-                                ? palettes.primary
-                                : "white"
-                        }
-                        borderWidth="1px"
-                        borderColor={
-                            currentTap === "diagnosis"
-                                ? palettes.primary
-                                : palettes.grey
-                        }
-                        borderRadius={12}
-                        onClick={() => handleTap("diagnosis")}
-                    >
-                        <Text
-                            color={
-                                currentTap === "diagnosis" ? "white" : "black"
-                            }
-                        >
-                            {t("tapBtnDiagnosis")}
-                        </Text>
-                    </Button>
-                    <Button
-                        w="10vw"
-                        bg={currentTap === "dtx" ? palettes.primary : "white"}
-                        borderWidth="1px"
-                        borderColor={
-                            currentTap === "dtx"
-                                ? palettes.primary
-                                : palettes.grey
-                        }
-                        borderRadius={12}
-                        onClick={() => handleTap("dtx")}
-                    >
-                        <Text color={currentTap === "dtx" ? "white" : "black"}>
-                            {t("tapBtnDtx")}
-                        </Text>
-                    </Button>
-                    {/* <Button
-                        w="10vw"
-                        bg={currentTap === "chat" ? palettes.primary : "white"}
-                        borderWidth="1px"
-                        borderColor={
-                            currentTap === "chat"
-                                ? palettes.primary
-                                : palettes.grey
-                        }
-                        borderRadius={12}
-                        onClick={() => handleTap("chat")}
-                    >
-                        <Text color={currentTap === "chat" ? "white" : "black"}>
-                            {t("tapAIChat")}
-                        </Text>
-                    </Button> */}
-                </Group>
-            </div>
-            <Grid
-                w="100vw"
-                templateRows="28% 60% 6%"
-                minHeight="95vh"
-                pt="10px"
-                gap="5"
-            >
-                <GridItem rounded="md">
-                    <Center w="100%" h="100%">
-                        <HStack w="100%" mb={1}>
-                            <FaceDetectionApp
-                                onValueChanged={handleMeasurement}
-                            />
-                        </HStack>
-                    </Center>
-                </GridItem>
 
-                <GridItem rounded="md">
-                    <Container h="100%">
-                        <RppgMeasurementList measurementValue={measurement} />
-                        {currentTap === "diagnosis" && (
-                            <>
-                                {state.status === "init" && (
-                                    <VStack w="100%" gap={4}>
-                                        <Text
-                                            color="black"
-                                            fontSize="5xl"
-                                            fontWeight="bold"
-                                            animation="pulse"
-                                            mt="3"
-                                        >
-                                            {t("chooseDiagnosisTypeLabel")}
-                                        </Text>
-                                        <HStack w="100%">
-                                            <Button
-                                                w="49%"
-                                                h="30vh"
-                                                bg={"white"}
-                                                borderColor={
-                                                    selectedDiagnosis ===
+                <div className="flex flex-row gap-2">
+                    <TapButton
+                        label={t("tapBtnDiagnosis")}
+                        onClick={() => {
+                            handleTap("diagnosis");
+                        }}
+                        isSelected={currentTap === "diagnosis"}
+                    />
+
+                    <TapButton
+                        label={t("tapBtnDtx")}
+                        onClick={() => {
+                            handleTap("dtx");
+                        }}
+                        isSelected={currentTap === "dtx"}
+                    />
+                    <TapButton
+                        label={t("tapAIChat")}
+                        onClick={() => {
+                            handleTap("chat");
+                        }}
+                        isSelected={currentTap === "chat"}
+                    />
+                </div>
+            </div>
+
+            {/* Face Detection Part */}
+            <div className="h-8" />
+
+            <FaceDetectionApp onValueChanged={handleMeasurement} />
+
+            <Container h="100%">
+                <RppgMeasurementList measurementValue={measurement} />
+                {currentTap === "diagnosis" && (
+                    <>
+                        {state.status === "init" && (
+                            <VStack w="100%" gap={4}>
+                                <Text
+                                    color="black"
+                                    fontSize="5xl"
+                                    fontWeight="bold"
+                                    animation="pulse"
+                                    mt="3"
+                                >
+                                    {t("chooseDiagnosisTypeLabel")}
+                                </Text>
+                                <HStack w="100%">
+                                    <Button
+                                        w="49%"
+                                        h="30vh"
+                                        bg={"white"}
+                                        borderColor={
+                                            selectedDiagnosis === "Depression"
+                                                ? palettes.primary
+                                                : palettes.grey
+                                        }
+                                        borderWidth={2}
+                                        borderRadius={12}
+                                        onClick={() => {
+                                            if (
+                                                selectedDiagnosis !==
+                                                "Depression"
+                                            ) {
+                                                setSelectedDiagnosis(
                                                     "Depression"
-                                                        ? palettes.primary
-                                                        : palettes.grey
-                                                }
-                                                borderWidth={2}
-                                                borderRadius={12}
-                                                onClick={() => {
-                                                    if (
-                                                        selectedDiagnosis !==
-                                                        "Depression"
-                                                    ) {
-                                                        setSelectedDiagnosis(
-                                                            "Depression"
-                                                        );
-                                                    }
-                                                }}
-                                            >
-                                                <VStack h="100%">
-                                                    <Spacer />
-                                                    <Text
-                                                        color="black"
-                                                        fontSize="2xl"
-                                                        fontWeight="bold"
-                                                    >
-                                                        {t(
-                                                            "DepressionDiagnosisLabel"
-                                                        )}
-                                                    </Text>
-                                                    <Image
-                                                        src={Crying}
-                                                        h="8vh"
-                                                        mt="3vh"
-                                                        mb="1vh"
-                                                    />
-                                                    <Text
-                                                        color="black"
-                                                        textAlign="center"
-                                                        whiteSpace="pre-line"
-                                                        fontSize="xl"
-                                                    >
-                                                        {t(
-                                                            "depressionDescription"
-                                                        )}
-                                                    </Text>
-                                                    <Spacer />
-                                                </VStack>
-                                            </Button>
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        <VStack h="100%">
                                             <Spacer />
-                                            <Button
-                                                w="49%"
-                                                h="30vh"
-                                                bg={"white"}
-                                                borderColor={
-                                                    selectedDiagnosis ===
-                                                    "Dementia"
-                                                        ? palettes.primary
-                                                        : palettes.grey
-                                                }
-                                                borderWidth={2}
-                                                borderRadius={12}
-                                                onClick={() => {
-                                                    if (
-                                                        selectedDiagnosis !==
-                                                        "Dementia"
-                                                    ) {
-                                                        setSelectedDiagnosis(
-                                                            "Dementia"
-                                                        );
-                                                    }
-                                                }}
+                                            <Text
+                                                color="black"
+                                                fontSize="2xl"
+                                                fontWeight="bold"
                                             >
-                                                <VStack h="100%">
-                                                    <Spacer />
-                                                    <Text
-                                                        color={"black"}
-                                                        fontSize="2xl"
-                                                        fontWeight="bold"
-                                                    >
-                                                        {t(
-                                                            "DementiaDiagnosisLabel"
-                                                        )}
-                                                    </Text>
-                                                    <Image
-                                                        src={Thinking}
-                                                        h="8vh"
-                                                        mt="3vh"
-                                                        mb="1vh"
-                                                    />
-                                                    <Text
-                                                        color={"black"}
-                                                        textAlign="center"
-                                                        whiteSpace="pre-line"
-                                                        fontSize="xl"
-                                                    >
-                                                        {t(
-                                                            "dementiaDescription"
-                                                        )}
-                                                    </Text>
-                                                    <Spacer />
-                                                </VStack>
-                                            </Button>
-                                        </HStack>
-                                        <Button
-                                            w="94vw"
-                                            h="4vh"
-                                            mt={3}
-                                            fontSize="3xl"
-                                            color="white"
-                                            borderRadius={12}
-                                            onClick={() => {
-                                                let questions =
-                                                    DEPRESSIONQUESTIONS;
-                                                let options = DEPRESSIONOPTIONS;
-                                                if (
-                                                    selectedDiagnosis ===
+                                                {t("DepressionDiagnosisLabel")}
+                                            </Text>
+                                            <DiagnosisSelectEmoji
+                                                src={Crying}
+                                            />
+                                            <Text
+                                                color="black"
+                                                textAlign="center"
+                                                whiteSpace="pre-line"
+                                                fontSize="xl"
+                                            >
+                                                {t("depressionDescription")}
+                                            </Text>
+                                            <Spacer />
+                                        </VStack>
+                                    </Button>
+                                    <Spacer />
+                                    <Button
+                                        w="49%"
+                                        h="30vh"
+                                        bg={"white"}
+                                        borderColor={
+                                            selectedDiagnosis === "Dementia"
+                                                ? palettes.primary
+                                                : palettes.grey
+                                        }
+                                        borderWidth={2}
+                                        borderRadius={12}
+                                        onClick={() => {
+                                            if (
+                                                selectedDiagnosis !== "Dementia"
+                                            ) {
+                                                setSelectedDiagnosis(
                                                     "Dementia"
-                                                ) {
-                                                    questions =
-                                                        DEMENTIAQUESTIONS;
-                                                    options = DEMENTIAOPTIONS;
-                                                }
-                                                startSurvey(questions, options);
-                                            }}
-                                            className="shadow bg-blue-500"
-                                        >
-                                            {t("btnStartDiagnosis")}
-                                        </Button>
-                                    </VStack>
-                                )}
-                                {state.status === "onProgress" && (
-                                    <>
-                                        <Center
-                                            bg="white"
-                                            borderWidth={2}
-                                            borderColor={palettes.grey}
-                                            borderRadius={12}
-                                            width="100%"
-                                            height="13vh"
-                                            mt={4}
-                                            p="24px"
+                                                );
+                                            }
+                                        }}
+                                    >
+                                        <VStack h="100%">
+                                            <Spacer />
+                                            <Text
+                                                color={"black"}
+                                                fontSize="2xl"
+                                                fontWeight="bold"
+                                            >
+                                                {t("DementiaDiagnosisLabel")}
+                                            </Text>
+                                            <DiagnosisSelectEmoji
+                                                src={Thinking}
+                                            />
+                                            <Text
+                                                color={"black"}
+                                                textAlign="center"
+                                                whiteSpace="pre-line"
+                                                fontSize="xl"
+                                            >
+                                                {t("dementiaDescription")}
+                                            </Text>
+                                            <Spacer />
+                                        </VStack>
+                                    </Button>
+                                </HStack>
+                                <Button
+                                    w="94vw"
+                                    h="4vh"
+                                    mt={3}
+                                    fontSize="3xl"
+                                    color="white"
+                                    borderRadius={12}
+                                    onClick={() => {
+                                        let questions = DEPRESSIONQUESTIONS;
+                                        let options = DEPRESSIONOPTIONS;
+                                        if (selectedDiagnosis === "Dementia") {
+                                            questions = DEMENTIAQUESTIONS;
+                                            options = DEMENTIAOPTIONS;
+                                        }
+                                        startSurvey(questions, options);
+                                    }}
+                                    className="shadow bg-blue-500"
+                                >
+                                    {t("btnStartDiagnosis")}
+                                </Button>
+                            </VStack>
+                        )}
+                        {state.status === "onProgress" && (
+                            <>
+                                <Center
+                                    bg="white"
+                                    borderWidth={2}
+                                    borderColor={palettes.grey}
+                                    borderRadius={12}
+                                    width="100%"
+                                    height="13vh"
+                                    mt={4}
+                                    p="24px"
+                                    className="w-full"
+                                >
+                                    <VStack
+                                        h="100%"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <Spacer />
+                                        <Text
+                                            h="50%"
+                                            fontSize="4xl"
+                                            fontWeight="bold"
+                                            color="black"
+                                            textAlign="center"
                                             className="w-full"
                                         >
-                                            <VStack
-                                                h="100%"
-                                                justifyContent="center"
-                                                alignItems="center"
-                                            >
-                                                <Spacer />
-                                                <Text
-                                                    h="50%"
-                                                    fontSize="4xl"
-                                                    fontWeight="bold"
-                                                    color="black"
-                                                    textAlign="center"
-                                                    className="w-full"
-                                                >
-                                                    {
-                                                        state.surveyQuestions
-                                                            .questions[
-                                                            state.currentIndex
-                                                        ]
-                                                    }
-                                                </Text>
-                                                <Spacer />
-                                                <Text color="black">{`${
-                                                    state.currentIndex + 1
-                                                } / ${
-                                                    state.surveyQuestions
-                                                        .questions.length
-                                                }`}</Text>
-                                                <Spacer />
-                                            </VStack>
-                                        </Center>
-                                        {state.surveyQuestions.options.map(
-                                            (_, idx) => (
-                                                <AnswerButton
-                                                    key={idx}
-                                                    label={
-                                                        state.surveyQuestions
-                                                            .options[idx]
-                                                    }
-                                                    isSelected={
-                                                        tappedButtonIdx === idx
-                                                    }
-                                                    handleTap={() =>
-                                                        handleAnswerTap(idx)
-                                                    }
-                                                />
-                                            )
-                                        )}
-                                        <HStack mt="5vh" mb="1vh" gap={0}>
-                                            <Button
-                                                w="30%"
-                                                h="3vh"
-                                                color="white"
-                                                fontSize="l"
-                                                fontWeight="bold"
-                                                bg={palettes.primary}
-                                                borderColor={palettes.primary}
-                                                borderWidth={2}
-                                                borderRadius={12}
-                                                onClick={() => {
-                                                    if (
-                                                        state.currentIndex === 0
-                                                    ) {
-                                                        initSurvey();
-                                                    }
-                                                    goBack();
-                                                }}
-                                                className="shadow"
-                                            >
-                                                {t("btnPrev")}
-                                            </Button>
-                                        </HStack>
-                                        <Container h="10vh" />
-                                        <Button
-                                            w="100%"
-                                            h="3vh"
-                                            bg="white"
-                                            fontWeight="bold"
-                                            borderColor={palettes.grey}
-                                            // borderWidth={2}
-                                            borderRadius={12}
-                                            color="black"
-                                            fontSize="l"
-                                            onClick={handleGoPreviousPage}
-                                            className="shadow"
-                                        >
-                                            {t("btnStop")}
-                                        </Button>
-                                    </>
-                                )}
-                                {state.status === "done" && (
-                                    <DiagnosisDone
-                                        rppgMesurement={measurement}
-                                        hrValues={hrRef.current}
-                                        selectedDiagnosisType={
-                                            selectedDiagnosis
+                                            {
+                                                state.surveyQuestions.questions[
+                                                    state.currentIndex
+                                                ]
+                                            }
+                                        </Text>
+                                        <Spacer />
+                                        <Text color="black">{`${
+                                            state.currentIndex + 1
+                                        } / ${
+                                            state.surveyQuestions.questions
+                                                .length
+                                        }`}</Text>
+                                        <Spacer />
+                                    </VStack>
+                                </Center>
+                                {state.surveyQuestions.options.map((_, idx) => (
+                                    <AnswerButton
+                                        key={idx}
+                                        label={
+                                            state.surveyQuestions.options[idx]
                                         }
-                                        answers={state.responses}
+                                        isSelected={tappedButtonIdx === idx}
+                                        handleTap={() => handleAnswerTap(idx)}
                                     />
-                                )}
+                                ))}
+                                <HStack mt="5vh" mb="1vh" gap={0}>
+                                    <Button
+                                        w="30%"
+                                        h="3vh"
+                                        color="white"
+                                        fontSize="l"
+                                        fontWeight="bold"
+                                        bg={palettes.primary}
+                                        borderColor={palettes.primary}
+                                        borderWidth={2}
+                                        borderRadius={12}
+                                        onClick={() => {
+                                            if (state.currentIndex === 0) {
+                                                initSurvey();
+                                            }
+                                            goBack();
+                                        }}
+                                        className="shadow"
+                                    >
+                                        {t("btnPrev")}
+                                    </Button>
+                                </HStack>
+                                <Container h="10vh" />
+                                <Button
+                                    w="100%"
+                                    h="3vh"
+                                    bg="white"
+                                    fontWeight="bold"
+                                    borderColor={palettes.grey}
+                                    // borderWidth={2}
+                                    borderRadius={12}
+                                    color="black"
+                                    fontSize="l"
+                                    onClick={handleGoPreviousPage}
+                                    className="shadow"
+                                >
+                                    {t("btnStop")}
+                                </Button>
                             </>
                         )}
-                        {/* Add Chat fragment here */}
-                        {currentTap === "chat" && <ChatFragment />}
-                        {currentTap === "dtx" && <DtxFragmentV2 />}
-                    </Container>
-                </GridItem>
-            </Grid>
-        </VStack>
+                        {state.status === "done" && (
+                            <DiagnosisDone
+                                rppgMesurement={measurement}
+                                hrValues={hrRef.current}
+                                selectedDiagnosisType={selectedDiagnosis}
+                                answers={state.responses}
+                            />
+                        )}
+                    </>
+                )}
+                {/* Add Chat fragment here */}
+                {currentTap === "chat" && <ChatFragment />}
+                {currentTap === "dtx" && <DtxFragmentV2 />}
+            </Container>
+        </div>
+    );
+}
+
+// components
+// <Image src={Thinking} h="8vh" mt="3vh" mb="1vh" />;
+function DiagnosisSelectEmoji({ src }: { src: string }) {
+    return <img src={src} className="h-36 mt-10 mb-4" />;
+}
+
+function TapButton({
+    label,
+    isSelected,
+    onClick,
+}: {
+    label: string;
+    isSelected: boolean;
+    onClick: () => void;
+}) {
+    const selectedColor = "bg-blue-500 text-white border-blue-500";
+    const unselectedColor = "bg-white text-black border-slate-200";
+
+    return (
+        <button
+            onClick={onClick}
+            className={`w-24 py-2 text-lg rounded-lg border ${
+                isSelected ? selectedColor : unselectedColor
+            }`}
+        >
+            {label}
+        </button>
     );
 }
 

@@ -1,6 +1,5 @@
 import { Area, AreaChart, Label, Pie, PieChart } from "recharts";
 
-import { Button } from "@/components/ui/button";
 import { Image } from "@chakra-ui/react";
 import { Card, CardContent } from "@/components/ui/card";
 
