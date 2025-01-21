@@ -1,5 +1,11 @@
-import palettes from "@/constants/colors";
+// hooks
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
+// components
+import { DynamicEmoji } from "../DynamicEmoji";
+import { SelectableLanguageButton } from "../custom/SelectableLanguageButton";
+import { Tutorial } from "../tutorial/Tutorial";
 import {
     DialogBody,
     DialogCloseTrigger,
@@ -10,24 +16,13 @@ import {
     DialogTrigger,
 } from "@/components/chakraui/dialog";
 
-import { Container, VStack, Image, Spacer, Heading } from "@chakra-ui/react";
-import { Button } from "../ui/button";
-import { DynamicEmoji } from "../DynamicEmoji";
+// imgs
 import Logo from "@/assets/logo.png";
 import CESLogo from "@/assets/ces_logo.png";
-import { useEffect, useState } from "react";
-// import useSound from "use-sound";
 
-// import { Greetings } from "@/constants/greetings";
-import { Tutorial } from "../tutorial/Tutorial";
-import CustomAudioPlayer from "../custom/CustomAudioPlayer";
-
-import { useTranslation } from "react-i18next";
+// import CustomAudioPlayer from "../custom/CustomAudioPlayer";
 
 export function OnboardingPage() {
-    // Load the sound for the next index
-    // const [play, { stop }] = useSound(Greetings[nextIndex]?.url);
-
     const [open, setOpen] = useState(false);
 
     const [t, i18n] = useTranslation();
@@ -41,7 +36,6 @@ export function OnboardingPage() {
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const nextIndex = (currentIndex + 1) % Greetings.length;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -55,29 +49,15 @@ export function OnboardingPage() {
         }, 10000);
 
         return () => clearInterval(intervalId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // useEffect(() => {
-    //     // currentIndex가 변경될 때마다 재생
-    //     if (open) {
-    //         return;
-    //     }
-    //     play();
-    // }, [currentIndex]);
-
     return (
-        <VStack
-            w="100vw"
-            h="100vh"
-            bg={palettes.background}
-            bgGradient="to-r"
-            gradientFrom="#EAE4FF"
-            gradientTo="#B0E3FF"
-        >
+        <div className="w-full h-screen bg-gradient-to-r from-blue-300 to-slate-200 flex flex-col items-center justify-center">
             <div className="w-full flex flex-row items-center justify-between mt-4">
                 <div className="flex flex-row">
-                    <Image src={Logo} h="2vh" ml="2vw" />
-                    <Image src={CESLogo} h="2vh" ml="2vw" />
+                    <img src={Logo} className="h-10 mx-4" />
+                    <img src={CESLogo} className="h-10 mr-4" />
                 </div>
                 <div className="mr-4">
                     <SelectableLanguageButton
@@ -92,9 +72,13 @@ export function OnboardingPage() {
                     />
                 </div>
             </div>
-            <Container height="10vh" />
+
+            <div className="h-full" />
+
             <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
-            <Container height="20vh" />
+
+            <div className="h-full" />
+
             <DialogRoot
                 lazyMount
                 open={open}
@@ -102,22 +86,13 @@ export function OnboardingPage() {
                 onOpenChange={(e) => setOpen(e.open)}
             >
                 <DialogTrigger asChild>
-                    <Button
-                        w="80vw"
-                        h="5vh"
-                        bg={palettes.primary}
-                        color="white"
-                        borderRadius={12}
+                    <OnboardingButton
+                        label={t("btnStart")}
                         onClick={() => {
                             stop();
                         }}
-                    >
-                        <Heading className="font-bold text-4xl">
-                            {t("btnStart")}
-                        </Heading>
-                    </Button>
+                    />
                 </DialogTrigger>
-
                 <DialogContent>
                     <DialogHeader></DialogHeader>
                     <DialogBody>
@@ -127,30 +102,27 @@ export function OnboardingPage() {
                     <DialogCloseTrigger />
                 </DialogContent>
             </DialogRoot>
-            <Spacer />
-            <CustomAudioPlayer />
-            <Container h="5vh" />
-        </VStack>
+
+            <div className="h-full" />
+            {/* <CustomAudioPlayer /> */}
+        </div>
     );
 }
 
-function SelectableLanguageButton({
+// Onbaording Button Component
+function OnboardingButton({
     label,
-    isSelected,
     onClick,
 }: {
     label: string;
-    isSelected: boolean;
     onClick: () => void;
 }) {
     return (
         <button
             onClick={onClick}
-            className={`mr-4 w-24 rounded-md py-2 font-bold ${
-                isSelected ? "bg-blue-500 text-white" : "bg-white text-black"
-            }`}
+            className="w-5/6 py-8 bg-blue-500 rounded-lg flex flex-col items-center justify-center text-white text-4xl"
         >
-            {label}
+            <h1>{label}</h1>
         </button>
     );
 }

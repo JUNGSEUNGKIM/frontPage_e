@@ -2,14 +2,12 @@ import { HStack, VStack, Center, Text } from "@chakra-ui/react";
 import palettes from "@/constants/colors";
 import { RppgItem } from "./RppgItem";
 import { RPPGMeasurement } from "@/types";
-import { useTranslation } from "react-i18next";
 
 export function RppgMeasurementList({
     measurementValue,
 }: {
     measurementValue: RPPGMeasurement;
 }) {
-    const [t] = useTranslation();
 
     return (
         <HStack gap="1px" w="100%" h="10%">
