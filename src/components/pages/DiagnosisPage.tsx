@@ -27,7 +27,6 @@ import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
 import { ChatFragment } from "../fragment/ChatFragment";
-import { DtxFragment } from "../DtxFragment";
 import { DiagnosisType } from "@/types";
 import DtxFragmentV2 from "../fragment/DtxFragmentV2";
 import { useTranslation } from "react-i18next";
@@ -36,7 +35,7 @@ type Tap = "chat" | "diagnosis" | "dtx";
 
 export function DiagnosisPage() {
     // i18n hook
-    const [t, _] = useTranslation();
+    const [t] = useTranslation();
 
     const DEPRESSIONQUESTIONS = [
         t("depressionQuestion1"), // "Experiencing a lack of motivation or interest"
