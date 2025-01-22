@@ -1,5 +1,5 @@
 import { Api, ApiKeys } from "@/constants/api";
-import { DTxInfo, DTxProvider, DTxType, useDTx } from "@/providers/dtx";
+import { DTxInfo, DTxProvider, DTxType, useDTx } from "@/shared/providers/dtx";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import HeadPhoneEmoji from "@/assets/animations/headphone.png";
 import { useTranslation } from "react-i18next";

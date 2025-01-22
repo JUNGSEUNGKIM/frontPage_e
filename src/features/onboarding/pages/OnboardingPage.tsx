@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 // components
-import { DynamicEmoji } from "../DynamicEmoji";
-import { Tutorial } from "../tutorial/Tutorial";
-import { LogoButton } from "../custom/LogoButton";
+import {
+    OnboardingButton,
+    SelectableLanguageButton,
+    DynamicEmoji,
+    Tutorial,
+} from "../components";
+
+import LogoButton from "@/shared/components/LogoButton";
+
 import {
     DialogBody,
     DialogCloseTrigger,
@@ -16,9 +22,7 @@ import {
     DialogTrigger,
 } from "@/components/chakraui/dialog";
 
-// import CustomAudioPlayer from "../custom/CustomAudioPlayer";
-
-// imgs
+// assets
 import CESLogo from "@/assets/ces_logo.png";
 
 export function OnboardingPage() {
@@ -74,7 +78,7 @@ export function OnboardingPage() {
 
             <div className="h-full" />
 
-            <DynamicEmoji width={350} height={350} currentIdx={currentIndex} />
+            <DynamicEmoji currentIdx={currentIndex} />
 
             {/* Spacer */}
             <div className="h-full" />
@@ -107,44 +111,5 @@ export function OnboardingPage() {
             <div className="h-full" />
             {/* <CustomAudioPlayer /> */}
         </div>
-    );
-}
-
-// Onbaording Button Component
-function OnboardingButton({
-    label,
-    onClick,
-}: {
-    label: string;
-    onClick: () => void;
-}) {
-    return (
-        <button
-            onClick={onClick}
-            className="w-5/6 py-8 bg-blue-500 rounded-lg flex flex-col items-center justify-center text-white text-4xl"
-        >
-            <h1>{label}</h1>
-        </button>
-    );
-}
-
-function SelectableLanguageButton({
-    label,
-    isSelected,
-    onClick,
-}: {
-    label: string;
-    isSelected: boolean;
-    onClick: () => void;
-}) {
-    return (
-        <button
-            onClick={onClick}
-            className={`mr-4 w-24 rounded-md py-2 font-bold ${
-                isSelected ? "bg-blue-500 text-white" : "bg-white text-black"
-            }`}
-        >
-            {label}
-        </button>
     );
 }

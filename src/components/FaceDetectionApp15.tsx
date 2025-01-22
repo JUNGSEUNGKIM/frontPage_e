@@ -517,7 +517,7 @@ const FaceDetectionApp = ({
     }, []);
 
     return (
-        <Flex justify="center" align="center" width="100%">
+        <div className="flex flex-col justify-center items-center">
             <video
                 ref={videoRef}
                 style={{ display: "none" }}
@@ -525,10 +525,13 @@ const FaceDetectionApp = ({
                 playsInline
             />
             {/* canvas for detect check */}
-            <canvas ref={canvasRef} style={{ borderRadius: "8px" }} />
+            <canvas
+                ref={canvasRef}
+                className="w-[640px] h-[480px] rounded-lg bg-blue-200"
+            />
             {/* canvas for skin extract */}
             {/*<canvas ref={skinCanvasRef} style={{ display: "none" }} />*/}
-        </Flex>
+        </div>
     );
 };
 

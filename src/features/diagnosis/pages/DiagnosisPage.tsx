@@ -1,30 +1,28 @@
 import { useState, useRef } from "react";
 import palettes from "@/constants/colors";
-import {
-    VStack,
-    Text,
-    Center,
-    HStack,
-    Container,
-    Spacer,
-} from "@chakra-ui/react";
 import { AnswerButton } from "@/components/custom/AnswerButton";
 import { Button } from "@/components/ui/button";
 import { RppgMeasurementList } from "@/components/custom/RppgResults";
-// import Webcam from "react-webcam";
+
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
+
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { useSurvey } from "@/hooks/useSurvey";
 
 import { useNavigate } from "react-router";
+import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
+import { ChatFragment } from "../../../components/fragment/ChatFragment";
+import { DiagnosisType } from "@/types";
+import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
+import { useTranslation } from "react-i18next";
+
+// components
+import { DiagnosisSelectEmoji, TapButton } from "../components";
+import LogoButton from "@/shared/components/LogoButton";
+
+// assets
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
-import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
-import { ChatFragment } from "../fragment/ChatFragment";
-import { DiagnosisType } from "@/types";
-import DtxFragmentV2 from "../fragment/DtxFragmentV2";
-import { useTranslation } from "react-i18next";
-import { LogoButton } from "../custom/LogoButton";
 
 type Tap = "chat" | "diagnosis" | "dtx";
 
@@ -139,56 +137,44 @@ export function DiagnosisPage() {
     return (
         <div className="w-full h-screen flex flex-col px-2">
             {/* TODO: extract Appbar widget */}
-            <div className="w-full flex flex-row justify-between mt-4 mr-4">
+            <div className="w-full flex flex-row justify-between mt-4 mr-4 mb-8">
+                {/* Logo Button */}
                 <LogoButton onClick={handleGoPreviousPage} />
 
                 <div className="flex flex-row gap-2">
                     <TapButton
                         label={t("tapBtnDiagnosis")}
-                        onClick={() => {
-                            handleTap("diagnosis");
-                        }}
+                        onClick={() => handleTap("diagnosis")}
                         isSelected={currentTap === "diagnosis"}
                     />
 
                     <TapButton
                         label={t("tapBtnDtx")}
-                        onClick={() => {
-                            handleTap("dtx");
-                        }}
+                        onClick={() => handleTap("dtx")}
                         isSelected={currentTap === "dtx"}
                     />
                     <TapButton
                         label={t("tapAIChat")}
-                        onClick={() => {
-                            handleTap("chat");
-                        }}
+                        onClick={() => handleTap("chat")}
                         isSelected={currentTap === "chat"}
                     />
                 </div>
             </div>
 
             {/* Face Detection Part */}
-            <div className="h-8" />
-
             <FaceDetectionApp onValueChanged={handleMeasurement} />
 
-            <Container h="100%">
+            <div className="h-full mt-8">
                 <RppgMeasurementList measurementValue={measurement} />
                 {currentTap === "diagnosis" && (
                     <>
                         {state.status === "init" && (
-                            <VStack w="100%" gap={4}>
-                                <Text
-                                    color="black"
-                                    fontSize="5xl"
-                                    fontWeight="bold"
-                                    animation="pulse"
-                                    mt="3"
-                                >
+                            <div className="w-full flex flex-col items-center gap-4">
+                                <h1 className="text-black text-5xl font-bold animate-pulse my-8">
                                     {t("chooseDiagnosisTypeLabel")}
-                                </Text>
-                                <HStack w="100%">
+                                </h1>
+
+                                <div className="w-full flex flex-row">
                                     <Button
                                         w="49%"
                                         h="30vh"
@@ -211,30 +197,21 @@ export function DiagnosisPage() {
                                             }
                                         }}
                                     >
-                                        <VStack h="100%">
-                                            <Spacer />
-                                            <Text
-                                                color="black"
-                                                fontSize="2xl"
-                                                fontWeight="bold"
-                                            >
+                                        <div className="h-full flex flex-col items-center justify-center">
+                                            <h2 className="font-bold text-2xl text-black">
                                                 {t("DepressionDiagnosisLabel")}
-                                            </Text>
+                                            </h2>
                                             <DiagnosisSelectEmoji
                                                 src={Crying}
                                             />
-                                            <Text
-                                                color="black"
-                                                textAlign="center"
-                                                whiteSpace="pre-line"
-                                                fontSize="xl"
-                                            >
-                                                {t("depressionDescription")}
-                                            </Text>
-                                            <Spacer />
-                                        </VStack>
+                                            <DiagnosisDescriptionText
+                                                text={t(
+                                                    "depressionDescription"
+                                                )}
+                                            />
+                                        </div>
                                     </Button>
-                                    <Spacer />
+                                    <div className="w-full" />
                                     <Button
                                         w="49%"
                                         h="30vh"
@@ -256,30 +233,19 @@ export function DiagnosisPage() {
                                             }
                                         }}
                                     >
-                                        <VStack h="100%">
-                                            <Spacer />
-                                            <Text
-                                                color={"black"}
-                                                fontSize="2xl"
-                                                fontWeight="bold"
-                                            >
+                                        <div className="h-full flex flex-col items-center justify-center">
+                                            <h2 className="text-black text-2xl font-bold">
                                                 {t("DementiaDiagnosisLabel")}
-                                            </Text>
+                                            </h2>
                                             <DiagnosisSelectEmoji
                                                 src={Thinking}
                                             />
-                                            <Text
-                                                color={"black"}
-                                                textAlign="center"
-                                                whiteSpace="pre-line"
-                                                fontSize="xl"
-                                            >
-                                                {t("dementiaDescription")}
-                                            </Text>
-                                            <Spacer />
-                                        </VStack>
+                                            <DiagnosisDescriptionText
+                                                text={t("dementiaDescription")}
+                                            />
+                                        </div>
                                     </Button>
-                                </HStack>
+                                </div>
                                 <Button
                                     w="94vw"
                                     h="4vh"
@@ -300,51 +266,30 @@ export function DiagnosisPage() {
                                 >
                                     {t("btnStartDiagnosis")}
                                 </Button>
-                            </VStack>
+                            </div>
                         )}
                         {state.status === "onProgress" && (
                             <>
-                                <Center
-                                    bg="white"
-                                    borderWidth={2}
-                                    borderColor={palettes.grey}
-                                    borderRadius={12}
-                                    width="100%"
-                                    height="13vh"
-                                    mt={4}
-                                    p="24px"
-                                    className="w-full"
-                                >
-                                    <VStack
-                                        h="100%"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                    >
-                                        <Spacer />
-                                        <Text
-                                            h="50%"
-                                            fontSize="4xl"
-                                            fontWeight="bold"
-                                            color="black"
-                                            textAlign="center"
-                                            className="w-full"
-                                        >
+                                <div className="w-full h-[13vh] mt-4 p-6 bg-white border-slate-300 rounded-lg">
+                                    <div className="h-full flex flex-col justify-center items-center">
+                                        <div className="h-full" />
+                                        <h1 className="w-full h-1/2 text-center text-4xl font-bold text-black">
                                             {
                                                 state.surveyQuestions.questions[
                                                     state.currentIndex
                                                 ]
                                             }
-                                        </Text>
-                                        <Spacer />
-                                        <Text color="black">{`${
-                                            state.currentIndex + 1
-                                        } / ${
-                                            state.surveyQuestions.questions
-                                                .length
-                                        }`}</Text>
-                                        <Spacer />
-                                    </VStack>
-                                </Center>
+                                        </h1>
+                                        <div className="h-full" />
+                                        <p className="text-black">
+                                            {`${state.currentIndex + 1} / ${
+                                                state.surveyQuestions.questions
+                                                    .length
+                                            }`}
+                                        </p>
+                                        <div className="h-full" />
+                                    </div>
+                                </div>
                                 {state.surveyQuestions.options.map((_, idx) => (
                                     <AnswerButton
                                         key={idx}
@@ -355,7 +300,7 @@ export function DiagnosisPage() {
                                         handleTap={() => handleAnswerTap(idx)}
                                     />
                                 ))}
-                                <HStack mt="5vh" mb="1vh" gap={0}>
+                                <div className="mt-[5vh] mb-[1vh] gap-0">
                                     <Button
                                         w="30%"
                                         h="3vh"
@@ -376,8 +321,8 @@ export function DiagnosisPage() {
                                     >
                                         {t("btnPrev")}
                                     </Button>
-                                </HStack>
-                                <Container h="10vh" />
+                                </div>
+                                <div className="h-[10vh]" />
                                 <Button
                                     w="100%"
                                     h="3vh"
@@ -408,39 +353,15 @@ export function DiagnosisPage() {
                 {/* Add Chat fragment here */}
                 {currentTap === "chat" && <ChatFragment />}
                 {currentTap === "dtx" && <DtxFragmentV2 />}
-            </Container>
+            </div>
         </div>
     );
 }
 
-// components
-// <Image src={Thinking} h="8vh" mt="3vh" mb="1vh" />;
-function DiagnosisSelectEmoji({ src }: { src: string }) {
-    return <img src={src} className="h-36 mt-10 mb-4" />;
-}
-
-function TapButton({
-    label,
-    isSelected,
-    onClick,
-}: {
-    label: string;
-    isSelected: boolean;
-    onClick: () => void;
-}) {
-    const selectedColor = "bg-blue-500 text-white border-blue-500";
-    const unselectedColor = "bg-white text-black border-slate-200";
-
+function DiagnosisDescriptionText({ text }: { text: string }) {
     return (
-        <button
-            onClick={onClick}
-            className={`w-24 py-2 text-lg rounded-lg border ${
-                isSelected ? selectedColor : unselectedColor
-            }`}
-        >
-            {label}
-        </button>
+        <p className="text-black text-xl text-center whitespace-pre-line">
+            {text}
+        </p>
     );
 }
-
-// Button error -> Chakra snippet 버튼에만 loading이 기본적으로 구현되어있다.

@@ -1,4 +1,3 @@
-import { Container, Heading, Image, VStack } from "@chakra-ui/react";
 import GrinningEmoji from "@/assets/animations/grinning.png";
 import KissEmoji from "@/assets/animations/kiss.png";
 import OpenMouthEmoji from "@/assets/animations/open_mouth.png";
@@ -6,6 +5,7 @@ import RelieveEmoji from "@/assets/animations/relieve.png";
 import WinkingEmoji from "@/assets/animations/winking.png";
 import { useTranslation } from "react-i18next";
 
+// image list
 const images = [
     GrinningEmoji,
     WinkingEmoji,
@@ -18,16 +18,8 @@ const images = [
     GrinningEmoji,
 ];
 
-export function DynamicEmoji({
-    width,
-    height,
-    currentIdx,
-}: {
-    width: number;
-    height: number;
-    currentIdx: number;
-}) {
-    const [t, i18n] = useTranslation();
+export default function DynamicEmoji({ currentIdx }: { currentIdx: number }) {
+    const [t] = useTranslation();
 
     const Greetings = [
         t("greeting1"),
@@ -36,23 +28,16 @@ export function DynamicEmoji({
         t("greeting4"),
         t("greeting5"),
     ];
+
     return (
-        <VStack>
-            <Image w={width} h={height} src={images[currentIdx]} />
-            <Container h={100} />
-            <Heading
-                minH="18vh"
-                animation="pulse"
-                textAlign="center"
-                whiteSpace="pre-line"
-                textStyle="7xl"
-                fontWeight="bold"
-                color="black"
-                pl={3}
-                pr={3}
+        <div className="flex flex-col items-center">
+            <img src={images[currentIdx]} className="w-80 h-80" />
+            <h1
+                className="min-h-48 mt-16 animated-pulse font-bold text-black 
+                           px-3 text-7xl whitespace-pre-line text-center"
             >
                 {Greetings[currentIdx]}
-            </Heading>
-        </VStack>
+            </h1>
+        </div>
     );
 }

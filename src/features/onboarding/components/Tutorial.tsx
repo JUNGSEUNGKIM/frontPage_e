@@ -9,7 +9,7 @@ import {
     VStack,
     Heading,
 } from "@chakra-ui/react";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 import Slider from "react-slick";
 import { useRef, useState } from "react";
 import palettes from "@/constants/colors";
@@ -29,7 +29,7 @@ interface TutorialSlide {
 }
 
 export function Tutorial() {
-    const [t, i18n] = useTranslation();
+    const [t] = useTranslation();
 
     let sliderRef = useRef<null | Slider>(null);
     const navigate = useNavigate();
