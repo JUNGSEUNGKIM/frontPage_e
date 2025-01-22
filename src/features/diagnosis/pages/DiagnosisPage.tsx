@@ -17,7 +17,7 @@ import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
 import { useTranslation } from "react-i18next";
 
 // components
-import { DiagnosisSelectEmoji, TapButton } from "../components";
+import { DiagnosisSelectableButton, TapButton } from "../components";
 import LogoButton from "@/shared/components/LogoButton";
 
 // assets
@@ -135,7 +135,7 @@ export function DiagnosisPage() {
     }
 
     return (
-        <div className="w-full h-screen flex flex-col px-2">
+        <div className="w-full h-screen flex flex-col">
             {/* TODO: extract Appbar widget */}
             <div className="w-full flex flex-row justify-between mt-4 mr-4 mb-8">
                 {/* Logo Button */}
@@ -164,28 +164,22 @@ export function DiagnosisPage() {
             {/* Face Detection Part */}
             <FaceDetectionApp onValueChanged={handleMeasurement} />
 
-            <div className="h-full mt-8">
+            <div className="h-full mt-8 px-8">
+                {/* rPPGMeasurement Item List */}
                 <RppgMeasurementList measurementValue={measurement} />
                 {currentTap === "diagnosis" && (
                     <>
                         {state.status === "init" && (
-                            <div className="w-full flex flex-col items-center gap-4">
+                            <div className="w-full h-full flex flex-col items-center gap-4">
                                 <h1 className="text-black text-5xl font-bold animate-pulse my-8">
                                     {t("chooseDiagnosisTypeLabel")}
                                 </h1>
 
-                                <div className="w-full flex flex-row">
-                                    <Button
-                                        w="49%"
-                                        h="30vh"
-                                        bg={"white"}
-                                        borderColor={
+                                <div className="w-full h-1/2 flex flex-row gap-4">
+                                    <DiagnosisSelectableButton
+                                        isSelected={
                                             selectedDiagnosis === "Depression"
-                                                ? palettes.primary
-                                                : palettes.grey
                                         }
-                                        borderWidth={2}
-                                        borderRadius={12}
                                         onClick={() => {
                                             if (
                                                 selectedDiagnosis !==
@@ -196,33 +190,14 @@ export function DiagnosisPage() {
                                                 );
                                             }
                                         }}
-                                    >
-                                        <div className="h-full flex flex-col items-center justify-center">
-                                            <h2 className="font-bold text-2xl text-black">
-                                                {t("DepressionDiagnosisLabel")}
-                                            </h2>
-                                            <DiagnosisSelectEmoji
-                                                src={Crying}
-                                            />
-                                            <DiagnosisDescriptionText
-                                                text={t(
-                                                    "depressionDescription"
-                                                )}
-                                            />
-                                        </div>
-                                    </Button>
-                                    <div className="w-full" />
-                                    <Button
-                                        w="49%"
-                                        h="30vh"
-                                        bg={"white"}
-                                        borderColor={
+                                        emojiSrc={Crying}
+                                        label={t("DepressionDiagnosisLabel")}
+                                        description={t("depressionDescription")}
+                                    />
+                                    <DiagnosisSelectableButton
+                                        isSelected={
                                             selectedDiagnosis === "Dementia"
-                                                ? palettes.primary
-                                                : palettes.grey
                                         }
-                                        borderWidth={2}
-                                        borderRadius={12}
                                         onClick={() => {
                                             if (
                                                 selectedDiagnosis !== "Dementia"
@@ -232,19 +207,10 @@ export function DiagnosisPage() {
                                                 );
                                             }
                                         }}
-                                    >
-                                        <div className="h-full flex flex-col items-center justify-center">
-                                            <h2 className="text-black text-2xl font-bold">
-                                                {t("DementiaDiagnosisLabel")}
-                                            </h2>
-                                            <DiagnosisSelectEmoji
-                                                src={Thinking}
-                                            />
-                                            <DiagnosisDescriptionText
-                                                text={t("dementiaDescription")}
-                                            />
-                                        </div>
-                                    </Button>
+                                        emojiSrc={Thinking}
+                                        label={t("DementiaDiagnosisLabel")}
+                                        description={t("dementiaDescription")}
+                                    />
                                 </div>
                                 <Button
                                     w="94vw"
@@ -355,13 +321,5 @@ export function DiagnosisPage() {
                 {currentTap === "dtx" && <DtxFragmentV2 />}
             </div>
         </div>
-    );
-}
-
-function DiagnosisDescriptionText({ text }: { text: string }) {
-    return (
-        <p className="text-black text-xl text-center whitespace-pre-line">
-            {text}
-        </p>
     );
 }
