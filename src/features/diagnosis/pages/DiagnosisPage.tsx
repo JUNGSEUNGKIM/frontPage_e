@@ -25,8 +25,7 @@ import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import PrimaryButton from "@/shared/components/PrimaryButton";
 import BottomNavigationButton from "../components/BottomNavigationButton";
-
-type Tab = "chat" | "diagnosis" | "dtx";
+import { useTabStore } from "@/shared/stores/tabStore";
 
 export function DiagnosisPage() {
     // i18n hook
@@ -77,7 +76,6 @@ export function DiagnosisPage() {
 
     const navigate = useNavigate();
     // current tap
-    const [currentTab, setCurrentTab] = useState<Tab>("diagnosis");
 
     const [selectedDiagnosis, setSelectedDiagnosis] =
         useState<DiagnosisType>("Depression");
@@ -120,10 +118,6 @@ export function DiagnosisPage() {
         console.log(hrRef.current);
     }
 
-    function handleSelectTab(selectedTab: Tab) {
-        setCurrentTab(selectedTab);
-    }
-
     function handleAnswerTap(idx: number) {
         setTappedButtonIdx(idx);
         setTimeout(() => {
@@ -135,6 +129,8 @@ export function DiagnosisPage() {
     function handleGoPreviousPage() {
         navigate(-1);
     }
+
+    const currentTab = useTabStore((state) => state.currentTab);
 
     return (
         <div className="w-full h-screen flex flex-col bg-[#f8f8f8]">
@@ -299,33 +295,45 @@ export function DiagnosisPage() {
                 {currentTab === "chat" && <ChatFragment />}
                 {currentTab === "dtx" && <DtxFragmentV2 />}
             </div>
+            <BottomNavigator />
+        </div>
+    );
+}
 
-            <div className="w-full h-1/6 flex flex-row items-center justify-between rounded-t-3xl bg-white shadow-2xl px-72">
-                <BottomNavigationButton
-                    label="Diagnosis"
-                    isSelected={currentTab === "diagnosis"}
-                    onClick={() => {
-                        handleSelectTab("diagnosis");
-                    }}
-                    tabIconType="search"
-                />
-                <BottomNavigationButton
-                    label="DTx"
-                    isSelected={currentTab === "dtx"}
-                    onClick={() => {
-                        handleSelectTab("dtx");
-                    }}
-                    tabIconType="dtx"
-                />
-                <BottomNavigationButton
-                    label="AI Chat"
-                    isSelected={currentTab === "chat"}
-                    onClick={() => {
-                        handleSelectTab("chat");
-                    }}
-                    tabIconType="aichat"
-                />
-            </div>
+function BottomNavigator() {
+    const currentTab = useTabStore((state) => state.currentTab);
+    const changeTab = useTabStore((state) => state.changeTab);
+    // const [currentTab, changeTab] = useTabStore((state) => [
+    //     state.currentTab,
+    //     state.changeTab,
+    // ]);
+
+    return (
+        <div className="w-full h-1/6 flex flex-row items-center justify-between rounded-t-3xl bg-white shadow-2xl px-72">
+            <BottomNavigationButton
+                label="Diagnosis"
+                isSelected={currentTab === "diagnosis"}
+                onClick={() => {
+                    changeTab("diagnosis");
+                }}
+                tabIconType="search"
+            />
+            <BottomNavigationButton
+                label="DTx"
+                isSelected={currentTab === "dtx"}
+                onClick={() => {
+                    changeTab("dtx");
+                }}
+                tabIconType="dtx"
+            />
+            <BottomNavigationButton
+                label="AI Chat"
+                isSelected={currentTab === "chat"}
+                onClick={() => {
+                    changeTab("chat");
+                }}
+                tabIconType="aichat"
+            />
         </div>
     );
 }
