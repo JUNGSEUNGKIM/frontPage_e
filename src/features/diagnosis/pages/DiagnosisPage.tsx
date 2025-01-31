@@ -303,6 +303,7 @@ export function DiagnosisPage() {
 function BottomNavigator() {
     const currentTab = useTabStore((state) => state.currentTab);
     const changeTab = useTabStore((state) => state.changeTab);
+    // 구조분해할당 시 에러
     // const [currentTab, changeTab] = useTabStore((state) => [
     //     state.currentTab,
     //     state.changeTab,

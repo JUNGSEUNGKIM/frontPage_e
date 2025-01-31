@@ -18,7 +18,7 @@ export function DiagnosisDone({
     selectedDiagnosisType: DiagnosisType;
     answers: number[];
 }) {
-    const [t, i18n] = useTranslation();
+    const [t] = useTranslation();
 
     const navigate = useNavigate();
 
