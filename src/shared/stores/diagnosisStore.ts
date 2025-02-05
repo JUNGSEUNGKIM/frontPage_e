@@ -9,6 +9,8 @@ interface DiagnosisStore {
     selectDiagnosis: (value: DiagnosisType) => void;
     setSurvey: (questions: string[], options: string[]) => void;
     stopSurvey: () => void;
+    goPrevious: () => void;
+    answerQuestion: (response: number) => void;
 }
 
 export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
@@ -37,4 +39,26 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
                 status: "done",
             },
         })),
+
+    goPrevious: () =>
+        set((state) => ({
+            ...state,
+            surveyState: {
+                ...state.surveyState,
+                currentIndex: Math.max(state.surveyState.currentIndex - 1, 0),
+            },
+        })),
+
+    answerQuestion: (response) =>
+        set((state) => {
+            if (
+                state.surveyState.responses[state.surveyState.currentIndex] !=
+                null
+            ) {
+                const updatedResponses = [...state.surveyState.responses];
+                updatedResponses[state.surveyState.currentIndex] = response;
+            }
+
+            return { ...state };
+        }),
 }));
