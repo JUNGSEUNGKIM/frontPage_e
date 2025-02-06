@@ -1,0 +1,1 @@
+export type DiagnosisResultStatus = "Normal" | "Warning" | "Danger";
