@@ -1,11 +1,10 @@
-import { Input } from "./Input";
 import { StatCard } from "./StatCard";
-import { ChartContainer } from "./Chart";
-import HR from "./HR";
-import HRV from "./HRV";
-import Emotions from "./Emotions";
-import Stress from "./Stress";
-import Summary from "./Summary";
-import Camera from "./Camera";
+import { ResultChardCard } from "./ResultChartCard";
+import HRResultCard from "./HRResultCard";
+import HRVResultCard from "./HRVResultCard";
+import EmotionResultCard from "./EmotionResultCard";
+import StressResultCard from "./StressResultCard";
+import SummaryCard from "./SummaryCard";
+import CameraCard from "./CameraCard";
 
-export { Input, StatCard, ChartContainer, Camera, Summary, HR, HRV, Emotions, Stress };
+export { StatCard, ResultChardCard, CameraCard, SummaryCard, HRResultCard, HRVResultCard, EmotionResultCard, StressResultCard };

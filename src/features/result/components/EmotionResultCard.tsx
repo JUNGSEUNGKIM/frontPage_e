@@ -1,13 +1,13 @@
-import { DiagnosisReport } from "@/types";
+import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 import { StatCard } from "./StatCard";
 
 
-interface EmotionProps {
-    state: DiagnosisReport
+interface EmotionResultCardProps {
+    state: DiagnosisResult
 }
 
-export default function Emotions({state}: EmotionProps) {
+export default function({state}: EmotionResultCardProps) {
 
     const [t] = useTranslation();
 

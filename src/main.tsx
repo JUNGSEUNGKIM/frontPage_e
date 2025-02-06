@@ -7,7 +7,7 @@ import { OnboardingPage } from "./features/onboarding/pages/OnboardingPage.tsx";
 import { DiagnosisPage } from "./features/diagnosis/pages/DiagnosisPage.tsx";
 // import ReportPage from "./components/pages/ReportPage.tsx";
 // import ReportPageV2 from "./components/pages/ReportPageV2.tsx";
-import ReportPage from "./features/result/pages/ReportPage.tsx"
+import ResultPage from "./features/result/pages/ResultPage.tsx"
 // import i18n
 import "./i18n";
 
@@ -20,10 +20,10 @@ createRoot(document.getElementById("root")!).render(
             <Routes>
                 <Route
                     index
-                    element={isTEST ? <ReportPage /> : <OnboardingPage />}
+                    element={isTEST ? <ResultPage /> : <OnboardingPage />}
                 />
                 <Route path="diagnosis" element={<DiagnosisPage />} />
-                <Route path="report" element={<ReportPage />} />
+                <Route path="report" element={<ResultPage />} />
             </Routes>
         </Provider>
     </BrowserRouter>

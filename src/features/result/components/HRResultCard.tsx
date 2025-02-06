@@ -1,13 +1,13 @@
 import { Area, AreaChart } from "recharts";
-import { ChartContainer, StatCard } from "../components/index";
-import { DiagnosisReport } from "@/types";
+import { ResultChardCard, StatCard } from "./index";
+import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 
-interface HRProps {
-    state: DiagnosisReport
+interface HRResultCardProps {
+    state: DiagnosisResult
 }
 
-export default function HR({state}: HRProps) {
+export default function({state}: HRResultCardProps) {
 
     const [t] = useTranslation();
 
@@ -26,7 +26,7 @@ export default function HR({state}: HRProps) {
     
     return (
         <StatCard title={t("HR")}>
-            <ChartContainer
+            <ResultChardCard
                 config={{
                     value: {
                         label: "Heart Rate",
@@ -63,7 +63,7 @@ export default function HR({state}: HRProps) {
                         fill="url(#hrGradient)"
                     />
                 </AreaChart>
-            </ChartContainer>
+            </ResultChardCard>
             <div className="mt-2 flex justify-start gap-2 text-sm text-muted-foreground">
                 <span>Min: {hrValuesMin}</span>
                 <span>Max: {hrValuesMax}</span>

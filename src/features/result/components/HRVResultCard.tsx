@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { StatCard } from "./StatCard";
-import { DiagnosisReport } from "@/types";
+import { DiagnosisResult } from "../types";
 import HeartBeat from "@/assets/heartbeat2.png";
 
-interface HRVProps {
-    state: DiagnosisReport
+interface HRVResultCardProps {
+    state: DiagnosisResult
 }
 
-export default function HRV({state}: HRVProps) {
+export default function({state}: HRVResultCardProps) {
 
     const [t] = useTranslation();
 

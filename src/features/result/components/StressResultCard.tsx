@@ -1,12 +1,12 @@
-import { DiagnosisReport } from "@/types";
+import { DiagnosisResult } from "../types";
 import { StatCard } from "./StatCard";
 import { useTranslation } from "react-i18next";
 
-interface StressProps {
-    state: DiagnosisReport
+interface StressResultCardProps {
+    state: DiagnosisResult
 }
 
-export default function Stress({state}: StressProps) {
+export default function({state}: StressResultCardProps) {
 
     const [t] = useTranslation();
 

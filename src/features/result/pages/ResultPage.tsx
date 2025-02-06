@@ -3,17 +3,17 @@ import Logo from "@/assets/logo.png";
 import "react-simple-keyboard/build/css/index.css";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { DiagnosisReport } from "@/types";
 import { useTranslation } from "react-i18next";
 
-import { HR, HRV, Emotions, Stress, Summary, Camera } from "../components/index";
+import { HRResultCard, HRVResultCard, EmotionResultCard, StressResultCard, SummaryCard, CameraCard } from "../components";
+import { DiagnosisResult } from "../types";
 
-export default function DiagnosisResult() {
+export default function ResultPage() {
     const [t] = useTranslation();
     const myRef = useRef<HTMLElement | null>(null);
 
     const location = useLocation();
-    const state = location.state as DiagnosisReport; // Type Assertion
+    const state = location.state as DiagnosisResult; // Type Assertion
 
     const navigate = useNavigate();
 
@@ -39,20 +39,20 @@ export default function DiagnosisResult() {
 
             {/* 카메라 영상 & 진단 결과 */}
             <div className="flex flex-row gap-4 h-1/5">
-                <Camera/>
-                <Summary state={state}/>
+                <CameraCard/>
+                <SummaryCard state={state}/>
             </div>
 
             {/* HR & HRV 결과 */}
             <div className="grid grid-cols-2 gap-4">
-                <HR state={state}/>
-                <HRV state={state}/>
+                <HRResultCard state={state}/>
+                <HRVResultCard state={state}/>
             </div>
 
             {/* Emotions & Stress 결과 */}
             <div className="grid grid-cols-2 gap-4">
-                <Emotions state={state}/>
-                <Stress state={state}/>
+                <EmotionResultCard state={state}/>
+                <StressResultCard state={state}/>
             </div>
 
             {/* 진단 종료 버튼 */}

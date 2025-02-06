@@ -1,11 +1,11 @@
 import { DiagnosisReport } from "@/types";
-import { ChartContainer } from "./Chart";
+import { ResultChardCard } from "./ResultChartCard";
 import { Label, PieChart, Pie } from "recharts";
 import { ChartConfig } from "../types/ChartConfig";
 import { DiagnosisResultStatus } from "../types/index";
 import { useTranslation } from "react-i18next";
 
-interface SummaryProps {
+interface SummaryCardProps {
     state: DiagnosisReport
 }
 
@@ -23,7 +23,7 @@ const chartConfig = {
     },
 } satisfies ChartConfig;
 
-export default function({state}: SummaryProps) {
+export default function({state}: SummaryCardProps) {
 
     const [t] = useTranslation();
 
@@ -117,7 +117,7 @@ export default function({state}: SummaryProps) {
         <div className="bg-blue-50 w-2/3">
             <div className="flex flex-row justify-between items-center p-4 ">
                 <div className="flex flex-col w-1/2 h-full">
-                    <ChartContainer
+                    <ResultChardCard
                         config={chartConfig}
                         className="aspect-square w-auto"
                     >
@@ -167,7 +167,7 @@ export default function({state}: SummaryProps) {
                                 />
                             </Pie>
                         </PieChart>
-                    </ChartContainer>
+                    </ResultChardCard>
                 </div>
                 <div className="flex flex-col w-1/2">
                     <h3 className="font-bold text-xl">
