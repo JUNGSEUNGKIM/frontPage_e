@@ -1,24 +1,24 @@
-import { Button } from "@/components/ui/button";
 import RocketEmoji from "@/assets/animations/rocket.png";
 import LoadingEmoji from "@/assets/animations/loading.png";
-import palettes from "@/constants/colors";
 import { DiagnosisType, RPPGMeasurement } from "@/types";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { ReactNode } from "react";
+import { motion } from "motion/react";
 
-// TODO: remove chakra ui
+interface DiagnosisDoneFragmentProps {
+    rppgMesurement: RPPGMeasurement;
+    hrValues: string[];
+    selectedDiagnosisType: DiagnosisType;
+    answers: number[];
+}
 
 export default function DiagnosisDoneFragment({
     rppgMesurement,
     hrValues,
     selectedDiagnosisType,
     answers,
-}: {
-    rppgMesurement: RPPGMeasurement;
-    hrValues: string[];
-    selectedDiagnosisType: DiagnosisType;
-    answers: number[];
-}) {
+}: DiagnosisDoneFragmentProps) {
     const [t] = useTranslation();
 
     const navigate = useNavigate();
@@ -47,37 +47,34 @@ export default function DiagnosisDoneFragment({
                 {isDone ? t("doneLabel") : t("waitingLabel")}
             </h1>
             {isDone && (
-                <Button
-                    w="40vw"
-                    h="3vh"
-                    mt="2vh"
-                    bg={palettes.primary}
-                    color="white"
-                    fontWeight="medium"
-                    fontSize="2xl"
-                    loading={!isDone}
-                    onClick={handleClick}
-                    className="shadow-md"
-                >
+                <DiagnosisDoneButton onClick={handleClick}>
                     {t("btnLetsCheck")}
-                </Button>
+                </DiagnosisDoneButton>
             )}
             {!isDone && (
-                <Button
-                    w="40vw"
-                    h="3vh"
-                    mt="2vh"
-                    bg={palettes.primary}
-                    color="white"
-                    fontWeight="medium"
-                    fontSize="2xl"
-                    loading={true}
-                    className="shadow-md"
-                >
+                <DiagnosisDoneButton onClick={() => {}}>
                     <SpinnerIcon />
-                </Button>
+                </DiagnosisDoneButton>
             )}
         </div>
+    );
+}
+
+function DiagnosisDoneButton({
+    children,
+    onClick,
+}: {
+    children: ReactNode;
+    onClick: () => void;
+}) {
+    return (
+        <motion.button
+            onClick={onClick}
+            whileTap={{ scale: 0.95 }}
+            className="w-[40%] mt-4 p-4 bg-blue-500 shadow-md rounded-2xl flex flex-row items-center justify-center"
+        >
+            <h1 className="text-2xl font-medium text-white">{children}</h1>
+        </motion.button>
     );
 }
 

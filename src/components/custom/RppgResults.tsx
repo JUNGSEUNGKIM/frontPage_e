@@ -19,8 +19,6 @@ export function RppgMeasurementList({
                 value={measurementValue.stress}
             />
         </div>
-        // <HStack gap="1px" w="100%" h="10%">
-        // </HStack>
     );
 }
 
