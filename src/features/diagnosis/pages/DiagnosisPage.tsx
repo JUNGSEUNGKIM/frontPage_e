@@ -63,7 +63,7 @@ export function DiagnosisPage() {
 
     return (
         // full screen container for vertical kiosk
-        <div className="w-full h-screen flex flex-col bg-[#f8f8f8]">
+        <div className="w-full h-screen flex flex-col bg-[#f8f8f8] gap-4">
             <DiagnosisAppBar />
             {/* Face Detection Part */}
             <FaceDetectionApp onValueChanged={handleMeasurement} />
@@ -71,7 +71,7 @@ export function DiagnosisPage() {
             <div className="h-8" />
             {/* rPPGMeasurement Item List */}
             <RppgMeasurementList measurementValue={measurement} />
-            <div className="h-5/6 flex flex-col">
+            <div className="h-5/6 flex flex-col px-4">
                 {/* Tab-based Fragments */}
                 {currentTab === "diagnosis" && (
                     <>

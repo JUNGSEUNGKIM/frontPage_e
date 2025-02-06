@@ -1,4 +1,3 @@
-import { Text, Image, VStack, Spacer } from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
 import RocketEmoji from "@/assets/animations/rocket.png";
 import LoadingEmoji from "@/assets/animations/loading.png";
@@ -42,27 +41,11 @@ export default function DiagnosisDoneFragment({
     }
 
     return (
-        <VStack
-            bg="white"
-            width="94vw"
-            height="30vh"
-            p="24px"
-            marginTop="4"
-            borderRadius={12}
-            borderWidth={2}
-            borderColor={palettes.grey}
-        >
-            <Spacer />
-            <Image src={isDone ? RocketEmoji : LoadingEmoji} h="12vh" />
-            <Text
-                color="black"
-                whiteSpace="pre-line"
-                textAlign="center"
-                fontSize="4xl"
-                fontWeight="bold"
-            >
+        <div className="w-full h-3/4 flex flex-col items-center justify-center bg-white rounded-lg gap-4">
+            <img src={isDone ? RocketEmoji : LoadingEmoji} className="h-64" />
+            <h1 className="h-20 text-center text-3xl font-bold">
                 {isDone ? t("doneLabel") : t("waitingLabel")}
-            </Text>
+            </h1>
             {isDone && (
                 <Button
                     w="40vw"
@@ -91,10 +74,28 @@ export default function DiagnosisDoneFragment({
                     loading={true}
                     className="shadow-md"
                 >
-                    {t("btnLetsCheck")}
+                    <SpinnerIcon />
                 </Button>
             )}
-            <Spacer />
-        </VStack>
+        </div>
+    );
+}
+
+function SpinnerIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="animate-spin"
+        >
+            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+        </svg>
     );
 }

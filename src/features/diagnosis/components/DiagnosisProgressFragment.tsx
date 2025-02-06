@@ -6,10 +6,14 @@ import DiagnosisProgressToolBar from "./DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 
 export default function DiagnosisProgressFragment() {
+    // use diagnosis store
     const { surveyState } = useDiagnosisStore();
 
+    // local state : 사용자가 선택한 탭
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
+    // currentIndex 변화할 때마다 null 값으로 변경
+    // TODO: 이전에 선택했던 값 남기기?
     useEffect(() => {
         setTappedButtonIdx(null);
     }, [surveyState.currentIndex]);
@@ -18,6 +22,7 @@ export default function DiagnosisProgressFragment() {
         setTappedButtonIdx(idx);
     }
 
+    // 진행된 퍼센트 계산
     const progressPercentage =
         (surveyState.currentIndex /
             surveyState.surveyQuestions.questions.length) *
@@ -39,11 +44,11 @@ export default function DiagnosisProgressFragment() {
                 <div className="w-11/12 h-[0.4rem] bg-[#d9d9d9]">
                     <motion.div
                         animate={{ width: `${progressPercentage}%` }}
-                        className="h-full bg-blue-500"
+                        className="w-0 h-full bg-blue-500"
                     />
                 </div>
             </div>
-
+            {/* Answer Buttons */}
             <div className="w-full h-2/4">
                 {surveyState.surveyQuestions.options.map((_, idx) => (
                     <AnswerButton
