@@ -1,8 +1,5 @@
-import { HStack, VStack, Center, Text } from "@chakra-ui/react";
-import palettes from "@/constants/colors";
 import { RppgItem } from "./RppgItem";
 import { RPPGMeasurement } from "@/types";
-import { useTranslation } from "react-i18next";
 
 export function RppgMeasurementList({
     measurementValue,
@@ -10,7 +7,7 @@ export function RppgMeasurementList({
     measurementValue: RPPGMeasurement;
 }) {
     return (
-        <HStack gap="1px" w="100%" h="10%">
+        <div className="w-full h-[10%] flex flex-row gap-2 px-4">
             <RppgMeasurementCell
                 label="Emotion"
                 value={measurementValue.emotion}
@@ -21,7 +18,7 @@ export function RppgMeasurementList({
                 label="Stress"
                 value={measurementValue.stress}
             />
-        </HStack>
+        </div>
     );
 }
 
@@ -33,28 +30,13 @@ function RppgMeasurementCell({
     value: string;
 }) {
     return (
-        <Center
-            w="25%"
-            h="100%"
-            bg="white"
-            borderRadius={12}
-            borderWidth="2px"
-            borderColor={palettes.grey}
-        >
-            <VStack>
-                <Text
-                    textStyle="2xl"
-                    color="blackAlpha.700"
-                    fontWeight="medium"
-                >
-                    {label}
-                </Text>
-                <RppgItem
-                    isEmotion={label === "Emotion"}
-                    value={value}
-                    label={label}
-                />
-            </VStack>
-        </Center>
+        <div className=" w-full h-full flex flex-col items-center justify-center bg-white rounded-lg py-4">
+            <h1 className="text-2xl text-black/70 font-medium">{label}</h1>
+            <RppgItem
+                isEmotion={label === "Emotion"}
+                value={value}
+                label={label}
+            />
+        </div>
     );
 }

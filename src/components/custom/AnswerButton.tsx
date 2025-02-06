@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
-import palettes from "@/constants/colors";
-import { Text } from "@chakra-ui/react";
+import { clsx } from "clsx";
+import { motion } from "motion/react";
 
 interface AnswerButtonProps {
     label: string;
@@ -13,31 +12,24 @@ export function AnswerButton({
     isSelected,
     handleTap,
 }: AnswerButtonProps) {
+    const selectedClassName = "bg-blue-50 border-blue-500 shadow-lg";
+    const unselectedClassName = "bg-white border-white";
     return (
-        <Button
-            bg={isSelected ? palettes.primary : "white"}
-            w="94vw"
-            p="40px"
-            // borderWidth="2px"
-            variant="solid"
-            // borderColor={isSelected ? palettes.primary : palettes.grey}
-            borderRadius={12}
+        <motion.button
             onClick={handleTap}
-            mt="16px"
-            className="shadow"
-            _hover={{
-                borderColor: palettes.grey,
-            }}
+            whileTap={{ scale: 0.95 }}
+            className={clsx(
+                "w-full flex flex-row justify-center p-6 rounded-2xl mt-4 border transition",
+                isSelected ? selectedClassName : unselectedClassName
+            )}
         >
-            <Text
-                w="20vw"
-                fontSize="2xl"
-                fontWeight="bold"
-                textAlign="start"
-                color={isSelected ? "white" : "black"}
+            <h1
+                className={clsx(
+                    "w-full text-2xl font-bold text-center text-black"
+                )}
             >
                 {label}
-            </Text>
-        </Button>
+            </h1>
+        </motion.button>
     );
 }
