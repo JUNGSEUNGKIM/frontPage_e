@@ -21,14 +21,16 @@ export default function DiagnosisProgressFragment() {
         // fragment container
         <div className="w-full h-full flex flex-col justify-center px-8">
             {/* Question Text */}
-            <h1 className="w-full h-1/4 text-center text-4xl font-bold text-black mt-14">
-                {
-                    surveyState.surveyQuestions.questions[
-                        surveyState.currentIndex
-                    ]
-                }
-            </h1>
-            {/* Progress indicator */}
+            <div className="h-1/4">
+                <h1 className="w-full text-center text-4xl font-bold text-black mt-14">
+                    {
+                        surveyState.surveyQuestions.questions[
+                            surveyState.currentIndex
+                        ]
+                    }
+                </h1>
+                {/* Progress indicator */}
+            </div>
 
             <div className="w-full h-2/4">
                 {surveyState.surveyQuestions.options.map((_, idx) => (
@@ -40,7 +42,6 @@ export default function DiagnosisProgressFragment() {
                     />
                 ))}
             </div>
-            <div className="h-full" />
             <DiagnosisProgressToolBar selectedIdx={tappedButtonIdx} />
         </div>
     );

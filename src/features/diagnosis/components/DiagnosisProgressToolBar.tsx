@@ -25,7 +25,7 @@ export default function DiagnosisProgressToolBar({
     const disabledClassName = "text-slate-300";
 
     return (
-        <div className="w-full flex flex-row justify-between">
+        <div className="w-full flex flex-row justify-between px-28">
             <button
                 onClick={handleGoPrevious}
                 className={`${
@@ -56,7 +56,7 @@ function ChevronLeftIcon() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="size-14"
+            className="size-24"
         >
             <path
                 strokeLinecap="round"
@@ -75,7 +75,7 @@ function ChevronRightIcon() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="size-14"
+            className="size-24"
         >
             <path
                 strokeLinecap="round"

@@ -17,7 +17,7 @@ export function AnswerButton({
         <button
             onClick={handleTap}
             className={clsx(
-                "w-full flex flex-row  justify-center p-4 rounded-2xl mt-4 border",
+                "w-full flex flex-row  justify-center p-6 rounded-2xl mt-4 border",
                 isSelected ? selectedClassName : unselectedClassName
             )}
         >
