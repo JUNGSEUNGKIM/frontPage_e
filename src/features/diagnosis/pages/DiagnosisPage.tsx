@@ -1,24 +1,23 @@
 import { useState, useRef } from "react";
 import { RppgMeasurementList } from "@/components/custom/RppgResults";
-
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
-
 import { RPPGMeasurement } from "@/types/rppg_types";
 
-import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
-import { ChatFragment } from "../../../components/fragment/ChatFragment";
-import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
-
-// components
-
-// assets
+// stores(zustand)
 import { useTabStore } from "@/shared/stores/tabStore";
+import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 
 import BottomNavigator from "../components/BottomNavigator";
 import DiagnosisAppBar from "../components/DiagnosisAppBar";
+
+// fragments
 import SelectDiagnosisFragment from "../components/SelectDiagnosisFragment";
-import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressFragment from "../components/DiagnosisProgressFragment";
+import DiagnosisDoneFragment from "../components/DiagnosisDoneFragment";
+import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
+import { ChatFragment } from "../../../components/fragment/ChatFragment";
+
+// TODO: Add landscape mode (tablet) layout
 
 export function DiagnosisPage() {
     // stores
@@ -54,29 +53,26 @@ export function DiagnosisPage() {
         if (newValue.hr !== "0") {
             hrRef.current.push(newValue.hr);
         }
-
-        console.log(hrRef.current);
     }
 
-    // error check
+    // TODO: error check
     // const { currentDiagnosis, surveyState } = useDiagnosisStore((state) => ({
     //     currentDiagnosis: state.currentDiagnosis,
     //     surveyState: state.surveyState,
     // }));
 
     return (
+        // full screen container for vertical kiosk
         <div className="w-full h-screen flex flex-col bg-[#f8f8f8]">
             <DiagnosisAppBar />
-
             {/* Face Detection Part */}
             <FaceDetectionApp onValueChanged={handleMeasurement} />
-
-            {/* <div className="h-full mt-8 px-8"> */}
+            {/* Gap */}
             <div className="h-8" />
             {/* rPPGMeasurement Item List */}
             <RppgMeasurementList measurementValue={measurement} />
-
             <div className="h-5/6 flex flex-col">
+                {/* Tab-based Fragments */}
                 {currentTab === "diagnosis" && (
                     <>
                         {surveyState.status === "init" && (
@@ -86,7 +82,7 @@ export function DiagnosisPage() {
                             <DiagnosisProgressFragment />
                         )}
                         {surveyState.status === "done" && (
-                            <DiagnosisDone
+                            <DiagnosisDoneFragment
                                 rppgMesurement={measurement}
                                 hrValues={hrRef.current}
                                 selectedDiagnosisType={currentDiagnosis}
@@ -99,6 +95,7 @@ export function DiagnosisPage() {
                 {currentTab === "chat" && <ChatFragment />}
                 {currentTab === "dtx" && <DtxFragmentV2 />}
             </div>
+            {/* Bottom Navigtor (change Tabs) */}
             <BottomNavigator />
         </div>
     );

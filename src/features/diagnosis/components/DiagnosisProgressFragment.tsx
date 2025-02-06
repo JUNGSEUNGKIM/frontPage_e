@@ -18,34 +18,28 @@ export default function DiagnosisProgressFragment() {
     }
 
     return (
-        <div className="w-full flex flex-col justify-center items-center px-8">
-            <div className="w-full h-[30vh] mt-4 p-6 bg-white border-slate-300 rounded-lg">
-                <div className="w-full h-full flex flex-col justify-center items-center">
-                    <div className="h-full" />
-                    <h1 className="w-full h-1/2 text-center text-4xl font-bold text-black">
-                        {
-                            surveyState.surveyQuestions.questions[
-                                surveyState.currentIndex
-                            ]
-                        }
-                    </h1>
-                    <div className="h-full" />
-                    <p className="text-black">
-                        {`${surveyState.currentIndex + 1} / ${
-                            surveyState.surveyQuestions.questions.length
-                        }`}
-                    </p>
-                    <div className="h-full" />
-                </div>
+        // fragment container
+        <div className="w-full h-full flex flex-col justify-center px-8">
+            {/* Question Text */}
+            <h1 className="w-full h-1/4 text-center text-4xl font-bold text-black mt-14">
+                {
+                    surveyState.surveyQuestions.questions[
+                        surveyState.currentIndex
+                    ]
+                }
+            </h1>
+            {/* Progress indicator */}
+
+            <div className="w-full h-2/4">
+                {surveyState.surveyQuestions.options.map((_, idx) => (
+                    <AnswerButton
+                        key={idx}
+                        label={surveyState.surveyQuestions.options[idx]}
+                        isSelected={tappedButtonIdx === idx}
+                        handleTap={() => handleAnswerTap(idx)}
+                    />
+                ))}
             </div>
-            {surveyState.surveyQuestions.options.map((_, idx) => (
-                <AnswerButton
-                    key={idx}
-                    label={surveyState.surveyQuestions.options[idx]}
-                    isSelected={tappedButtonIdx === idx}
-                    handleTap={() => handleAnswerTap(idx)}
-                />
-            ))}
             <div className="h-full" />
             <DiagnosisProgressToolBar selectedIdx={tappedButtonIdx} />
         </div>

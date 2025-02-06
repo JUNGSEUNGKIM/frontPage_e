@@ -7,7 +7,9 @@ import { DiagnosisType, RPPGMeasurement } from "@/types";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
-export function DiagnosisDone({
+// TODO: remove chakra ui
+
+export default function DiagnosisDoneFragment({
     rppgMesurement,
     hrValues,
     selectedDiagnosisType,
