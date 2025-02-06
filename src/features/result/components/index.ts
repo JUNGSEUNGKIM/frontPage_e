@@ -1,4 +1,4 @@
-import { Input } from "./input";
+import { Input } from "./Input";
 import { StatCard } from "./StatCard";
 import { ChartContainer } from "./Chart";
 import HR from "./HR";

@@ -6,18 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 import { DiagnosisReport } from "@/types";
 import { useTranslation } from "react-i18next";
 
-/////////////////////////////////////////////////////////////
-
-// REPLACED`
 import { HR, HRV, Emotions, Stress, Summary, Camera } from "../components/index";
-
-/////////////////////////////////////////////////////////////
-
-// Used by the commented HTML blocks
-//import { Input } from "../components/input";
-//import Keyboard from "react-simple-keyboard";
-
-// screen capture
 
 export default function DiagnosisResult() {
     const [t] = useTranslation();
@@ -33,6 +22,7 @@ export default function DiagnosisResult() {
             id="capture"
             className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto"
         >
+
             {/* Logo */}
             <div className="p-4">
                 <img
@@ -40,7 +30,6 @@ export default function DiagnosisResult() {
                     style={{ height: "2vh", marginRight: "2vw" }}
                     className="mr-auto"
                     onClick={() => navigate("/", { replace: true })}/>
-                
             </div>
 
             {/* 제목 */}
@@ -50,7 +39,6 @@ export default function DiagnosisResult() {
 
             {/* 카메라 영상 & 진단 결과 */}
             <div className="flex flex-row gap-4 h-1/5">
-                
                 <Camera/>
                 <Summary state={state}/>
             </div>
