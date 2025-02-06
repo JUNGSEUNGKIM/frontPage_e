@@ -7,6 +7,7 @@ interface DiagnosisStore {
     surveyState: SurveyState;
     // functions
     selectDiagnosis: (value: DiagnosisType) => void;
+    /// set survey with given questions and options
     setSurvey: (questions: string[], options: string[]) => void;
     stopSurvey: () => void;
     goPrevious: () => void;
@@ -51,14 +52,28 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
 
     answerQuestion: (response) =>
         set((state) => {
-            if (
-                state.surveyState.responses[state.surveyState.currentIndex] !=
-                null
-            ) {
-                const updatedResponses = [...state.surveyState.responses];
-                updatedResponses[state.surveyState.currentIndex] = response;
-            }
+            const updatedResponses = [...state.surveyState.responses];
+            updatedResponses[state.surveyState.currentIndex] = response;
+            const nextIdx = state.surveyState.currentIndex + 1;
 
-            return { ...state };
+            if (nextIdx >= state.surveyState.surveyQuestions.questions.length) {
+                return {
+                    ...state,
+                    surveyState: {
+                        ...state.surveyState,
+                        responses: updatedResponses,
+                        status: "done",
+                    },
+                };
+            } else {
+                return {
+                    ...state,
+                    surveyState: {
+                        ...state.surveyState,
+                        responses: updatedResponses,
+                        currentIndex: nextIdx,
+                    },
+                };
+            }
         }),
 }));

@@ -1,7 +1,3 @@
-import { Button } from "@/components/ui/button";
-import palettes from "@/constants/colors";
-import { Text } from "@chakra-ui/react";
-
 interface AnswerButtonProps {
     label: string;
     isSelected: boolean;
@@ -13,31 +9,21 @@ export function AnswerButton({
     isSelected,
     handleTap,
 }: AnswerButtonProps) {
+    const selectedClassName = "bg-blue-500";
     return (
-        <Button
-            bg={isSelected ? palettes.primary : "white"}
-            w="94vw"
-            p="40px"
-            // borderWidth="2px"
-            variant="solid"
-            // borderColor={isSelected ? palettes.primary : palettes.grey}
-            borderRadius={12}
+        <button
             onClick={handleTap}
-            mt="16px"
-            className="shadow"
-            _hover={{
-                borderColor: palettes.grey,
-            }}
+            className={`w-full p-4 rounded-lg mt-4 shadow ${
+                isSelected ? selectedClassName : ""
+            }`}
         >
-            <Text
-                w="20vw"
-                fontSize="2xl"
-                fontWeight="bold"
-                textAlign="start"
-                color={isSelected ? "white" : "black"}
+            <h1
+                className={`w-1/5 text-2xl font-bold text-start ${
+                    isSelected ? "white" : "black"
+                }`}
             >
                 {label}
-            </Text>
-        </Button>
+            </h1>
+        </button>
     );
 }

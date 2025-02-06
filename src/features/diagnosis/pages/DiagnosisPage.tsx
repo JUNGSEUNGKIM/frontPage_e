@@ -1,13 +1,9 @@
 import { useState, useRef } from "react";
-import palettes from "@/constants/colors";
-import { AnswerButton } from "@/components/custom/AnswerButton";
-import { Button } from "@/components/ui/button";
 import { RppgMeasurementList } from "@/components/custom/RppgResults";
 
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 
 import { RPPGMeasurement } from "@/types/rppg_types";
-import { useSurvey } from "@/hooks/useSurvey";
 
 import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
 import { ChatFragment } from "../../../components/fragment/ChatFragment";
@@ -19,12 +15,6 @@ import { useTranslation } from "react-i18next";
 // assets
 import { useTabStore } from "@/shared/stores/tabStore";
 
-import {
-    getDementiaOptions,
-    getDementiaQuestions,
-    getDepressionOptions,
-    getDepressionQuestions,
-} from "../constants";
 import BottomNavigator from "../components/BottomNavigator";
 import DiagnosisAppBar from "../components/DiagnosisAppBar";
 import SelectDiagnosisFragment from "../components/SelectDiagnosisFragment";
@@ -32,17 +22,9 @@ import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressFragment from "../components/DiagnosisProgressFragment";
 
 export function DiagnosisPage() {
-    // i18n hook
-    const [t] = useTranslation();
-
-    const currentTab = useTabStore((state) => state.currentTab);
+    // stores
+    const { currentTab } = useTabStore();
     const { currentDiagnosis, surveyState } = useDiagnosisStore();
-
-    // get i10n strings
-    // const DEPRESSIONQUESTIONS = getDepressionQuestions(t);
-    // const DEPRESSIONOPTIONS = getDepressionOptions(t);
-    // const DEMENTIAQUESTIONS = getDementiaQuestions(t);
-    // const DEMENTIAOPTIONS = getDementiaOptions(t);
 
     const hrRef = useRef<string[]>([]);
 
@@ -77,6 +59,7 @@ export function DiagnosisPage() {
         console.log(hrRef.current);
     }
 
+    // error check
     // const { currentDiagnosis, surveyState } = useDiagnosisStore((state) => ({
     //     currentDiagnosis: state.currentDiagnosis,
     //     surveyState: state.surveyState,
@@ -96,7 +79,6 @@ export function DiagnosisPage() {
 
             <div className="h-5/6 flex flex-col">
                 {currentTab === "diagnosis" && (
-                    //TODO: fragmnet -> 화면 비율 설정해두기
                     <>
                         {surveyState.status === "init" && (
                             <SelectDiagnosisFragment />
