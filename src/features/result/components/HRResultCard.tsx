@@ -4,11 +4,10 @@ import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 
 interface HRResultCardProps {
-    state: DiagnosisResult
+    state: DiagnosisResult;
 }
 
-export default function({state}: HRResultCardProps) {
-
+export default function HRResultCard({ state }: HRResultCardProps) {
     const [t] = useTranslation();
 
     const hrData = state.hrValues.map((e: string, i: number) => {
@@ -23,7 +22,7 @@ export default function({state}: HRResultCardProps) {
             0
         ) / state.hrValues.length
     );
-    
+
     return (
         <StatCard title={t("HR")}>
             <ResultChardCard

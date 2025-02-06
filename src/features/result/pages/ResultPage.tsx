@@ -5,7 +5,14 @@ import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
-import { HRResultCard, HRVResultCard, EmotionResultCard, StressResultCard, SummaryCard, CameraCard } from "../components";
+import {
+    HRResultCard,
+    HRVResultCard,
+    EmotionResultCard,
+    StressResultCard,
+    SummaryCard,
+    CameraCard,
+} from "../components";
 import { DiagnosisResult } from "../types";
 
 export default function ResultPage() {
@@ -22,14 +29,14 @@ export default function ResultPage() {
             id="capture"
             className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto"
         >
-
             {/* Logo */}
             <div className="p-4">
                 <img
                     src={Logo}
                     style={{ height: "2vh", marginRight: "2vw" }}
                     className="mr-auto"
-                    onClick={() => navigate("/", { replace: true })}/>
+                    onClick={() => navigate("/", { replace: true })}
+                />
             </div>
 
             {/* 제목 */}
@@ -39,20 +46,20 @@ export default function ResultPage() {
 
             {/* 카메라 영상 & 진단 결과 */}
             <div className="flex flex-row gap-4 h-1/5">
-                <CameraCard/>
-                <SummaryCard state={state}/>
+                <CameraCard />
+                <SummaryCard state={state} />
             </div>
 
             {/* HR & HRV 결과 */}
             <div className="grid grid-cols-2 gap-4">
-                <HRResultCard state={state}/>
-                <HRVResultCard state={state}/>
+                <HRResultCard state={state} />
+                <HRVResultCard state={state} />
             </div>
 
             {/* Emotions & Stress 결과 */}
             <div className="grid grid-cols-2 gap-4">
-                <EmotionResultCard state={state}/>
-                <StressResultCard state={state}/>
+                <EmotionResultCard state={state} />
+                <StressResultCard state={state} />
             </div>
 
             {/* 진단 종료 버튼 */}

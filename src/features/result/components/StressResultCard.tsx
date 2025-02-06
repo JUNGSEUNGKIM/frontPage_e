@@ -3,17 +3,16 @@ import { StatCard } from "./StatCard";
 import { useTranslation } from "react-i18next";
 
 interface StressResultCardProps {
-    state: DiagnosisResult
+    state: DiagnosisResult;
 }
 
-export default function({state}: StressResultCardProps) {
-
+export default function StressResultCard({ state }: StressResultCardProps) {
     const [t] = useTranslation();
 
     const stressText =
-    Number(state.measurement.stress) <= 60
-        ? t("lowStressDescription")
-        : t("highStressDescription");
+        Number(state.measurement.stress) <= 60
+            ? t("lowStressDescription")
+            : t("highStressDescription");
 
     return (
         <StatCard title={t("rppgStressLabel")}>
@@ -33,9 +32,7 @@ export default function({state}: StressResultCardProps) {
                     </p>
                 </div>
             </div>
-            <p className="text-lg text-center mt-10">
-                {stressText}
-            </p>
+            <p className="text-lg text-center mt-10">{stressText}</p>
         </StatCard>
     );
 }

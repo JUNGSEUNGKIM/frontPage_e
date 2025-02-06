@@ -1,5 +1,5 @@
 import { RPPGMeasurement } from "./rppg_types";
-import { DiagnosisType } from "./survey_types";
+import { DiagnosisType } from "../shared/types/survey_types";
 
 export interface DiagnosisReport {
     measurement: RPPGMeasurement;

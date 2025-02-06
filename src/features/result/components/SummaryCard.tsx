@@ -6,7 +6,7 @@ import { DiagnosisResultStatus } from "../types/index";
 import { useTranslation } from "react-i18next";
 
 interface SummaryCardProps {
-    state: DiagnosisReport
+    state: DiagnosisReport;
 }
 
 const chartConfig = {
@@ -23,8 +23,7 @@ const chartConfig = {
     },
 } satisfies ChartConfig;
 
-export default function({state}: SummaryCardProps) {
-
+export default function SummaryCard({ state }: SummaryCardProps) {
     const [t] = useTranslation();
 
     const score = state.score;
@@ -32,7 +31,7 @@ export default function({state}: SummaryCardProps) {
     // Sample data for the HR chart
     // left : total score - get
     // get : scores. sum
-    const maxScore = state.diagnosisType == "Dementia" ? 30 : 27;
+    const maxScore = state.diagnosisType == "dementia" ? 30 : 27;
 
     const chartData = [
         { browser: "left", scores: maxScore - state.score, fill: "#e2e8f0" },
@@ -49,7 +48,7 @@ export default function({state}: SummaryCardProps) {
             danger: { score: number; description: string };
         }
     > = {
-        Depression: {
+        depression: {
             normal: {
                 score: 10,
                 description: t("depressionNormalDescription"),
@@ -63,7 +62,7 @@ export default function({state}: SummaryCardProps) {
                 description: t("depressionDangerDescription"),
             },
         },
-        Dementia: {
+        dementia: {
             normal: {
                 score: 5,
                 description: t("dementiaNormalDescription"),
@@ -78,7 +77,6 @@ export default function({state}: SummaryCardProps) {
             },
         },
     };
-
 
     // Diagnosis Status 결정 함수
     function getDiagnosisResult(
@@ -111,7 +109,7 @@ export default function({state}: SummaryCardProps) {
     // 사용 예
     const diagnosisType = state.diagnosisType; // e.g., "Depression"
     const { status: diagnosisStatus, description: diagnosisDescription } =
-        getDiagnosisResult(diagnosisType, score);
+        getDiagnosisResult(diagnosisType!, score);
 
     return (
         <div className="bg-blue-50 w-2/3">
@@ -153,8 +151,8 @@ export default function({state}: SummaryCardProps) {
                                                     <tspan
                                                         x={viewBox.cx}
                                                         y={
-                                                            (viewBox.cy ||
-                                                                0) + 24
+                                                            (viewBox.cy || 0) +
+                                                            24
                                                         }
                                                         className="fill-muted-foreground"
                                                     >
@@ -171,14 +169,12 @@ export default function({state}: SummaryCardProps) {
                 </div>
                 <div className="flex flex-col w-1/2">
                     <h3 className="font-bold text-xl">
-                        {state.diagnosisType === "Dementia"
+                        {state.diagnosisType === "dementia"
                             ? t("dementiaResultLabel")
                             : t("depressionResultLabel")}
                     </h3>
                     <div className="flex flex-row gap-4 bg-white px-2 rounded-md my-2">
-                        <h4 className="font-bold">
-                            {t("statusLabel")}
-                        </h4>
+                        <h4 className="font-bold">{t("statusLabel")}</h4>
                         <h4
                             className={`font-bold ${
                                 diagnosisStatus === "Normal"

@@ -1,9 +1,11 @@
+import { DiagnosisType } from "@/shared/types/survey_types";
+
 export type DiagnosisResult = {
     measurement: RPPGMeasurement;
     hrValues: string[];
     score: number;
     diagnosisType: DiagnosisType;
-}
+};
 
 // type for RPPG Result
 type RPPGMeasurement = {
@@ -20,6 +22,4 @@ type RPPGMeasurement = {
         Sad: number;
         Surprised: number;
     };
-}
-
-type DiagnosisType = "Depression" | "Dementia";
+};

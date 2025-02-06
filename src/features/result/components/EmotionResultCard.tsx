@@ -2,13 +2,11 @@ import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 import { StatCard } from "./StatCard";
 
-
 interface EmotionResultCardProps {
-    state: DiagnosisResult
+    state: DiagnosisResult;
 }
 
-export default function({state}: EmotionResultCardProps) {
-
+export default function EmotionResultCard({ state }: EmotionResultCardProps) {
     const [t] = useTranslation();
 
     const emotions = [
@@ -60,18 +58,11 @@ export default function({state}: EmotionResultCardProps) {
         <StatCard title={t("rppgEmotionLabel")}>
             <div className="space-y-2">
                 {emotions.map((emotion, index) => (
-                    <div
-                        key={index}
-                        className="flex items-center gap-2"
-                    >
+                    <div key={index} className="flex items-center gap-2">
                         {/* change to emoji (image) */}
                         <div className="flex justify-between w-1/4">
-                            <span className="font-bold">
-                                {emotion.label}
-                            </span>
-                            <span className="text-xl">
-                                {emotion.emoji}
-                            </span>
+                            <span className="font-bold">{emotion.label}</span>
+                            <span className="text-xl">{emotion.emoji}</span>
                         </div>
                         <div className="w-3/4">
                             <div
@@ -81,18 +72,15 @@ export default function({state}: EmotionResultCardProps) {
                                         emotion.value <= 0.08
                                             ? "1%"
                                             : `${Math.round(
-                                                    emotion.value *
-                                                        100
-                                                )}%`,
+                                                  emotion.value * 100
+                                              )}%`,
                                     backgroundColor: emotion.color,
                                 }}
                             >
                                 <div className="flex justify-end items-center h-full pr-1 text-white text-xs font-bold">
                                     {emotion.value <= 0.08
                                         ? ""
-                                        : `${Math.round(
-                                                emotion.value * 100
-                                            )}%`}
+                                        : `${Math.round(emotion.value * 100)}%`}
                                 </div>
                             </div>
                         </div>

@@ -4,11 +4,10 @@ import { DiagnosisResult } from "../types";
 import HeartBeat from "@/assets/heartbeat2.png";
 
 interface HRVResultCardProps {
-    state: DiagnosisResult
+    state: DiagnosisResult;
 }
 
-export default function({state}: HRVResultCardProps) {
-
+export default function HRVResultCard({ state }: HRVResultCardProps) {
     const [t] = useTranslation();
 
     return (

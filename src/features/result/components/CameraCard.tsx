@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Webcam from "react-webcam";
 
-
-export default function() {
+export default function CameraCard() {
     const [t] = useTranslation();
 
     // 웹캠 참조 타입 명시
@@ -35,7 +34,6 @@ export default function() {
         setCapturedImage(null);
         setCountdown(5); // 카운트다운 시작
     };
-
 
     // 이미지 캡처 함수
     const captureImage = (): void => {
