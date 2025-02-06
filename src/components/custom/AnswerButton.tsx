@@ -13,8 +13,8 @@ export function AnswerButton({
     return (
         <button
             onClick={handleTap}
-            className={`w-full p-4 rounded-lg mt-4 shadow ${
-                isSelected ? selectedClassName : ""
+            className={`w-full flex flex-row justify-center p-4 rounded-lg mt-4 shadow ${
+                isSelected ? selectedClassName : "bg-white"
             }`}
         >
             <h1

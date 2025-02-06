@@ -18,8 +18,8 @@ export default function DiagnosisProgressFragment() {
     }
 
     return (
-        <div className="w-full flex flex-col justify-center items-center">
-            <div className="w-full h-[13vh] mt-4 p-6 bg-white border-slate-300 rounded-lg">
+        <div className="w-full flex flex-col justify-center items-center px-8">
+            <div className="w-full h-[30vh] mt-4 p-6 bg-white border-slate-300 rounded-lg">
                 <div className="w-full h-full flex flex-col justify-center items-center">
                     <div className="h-full" />
                     <h1 className="w-full h-1/2 text-center text-4xl font-bold text-black">
@@ -46,6 +46,7 @@ export default function DiagnosisProgressFragment() {
                     handleTap={() => handleAnswerTap(idx)}
                 />
             ))}
+            <div className="h-full" />
             <DiagnosisProgressToolBar selectedIdx={tappedButtonIdx} />
         </div>
     );

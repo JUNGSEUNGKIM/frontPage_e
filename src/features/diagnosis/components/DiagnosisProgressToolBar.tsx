@@ -25,7 +25,7 @@ export default function DiagnosisProgressToolBar({
     const disabledClassName = "text-slate-300";
 
     return (
-        <div className="flex flex-row justify-between p-24">
+        <div className="w-full flex flex-row justify-between">
             <button
                 onClick={handleGoPrevious}
                 className={`${

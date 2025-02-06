@@ -9,8 +9,11 @@ interface DiagnosisStore {
     selectDiagnosis: (value: DiagnosisType) => void;
     /// set survey with given questions and options
     setSurvey: (questions: string[], options: string[]) => void;
+    /// end survey
     stopSurvey: () => void;
+    /// go previous question
     goPrevious: () => void;
+    /// answer current question
     answerQuestion: (response: number) => void;
 }
 
@@ -50,6 +53,7 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
             },
         })),
 
+    // TODO: Check array indexing
     answerQuestion: (response) =>
         set((state) => {
             const updatedResponses = [...state.surveyState.responses];

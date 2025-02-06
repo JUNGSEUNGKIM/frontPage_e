@@ -8,7 +8,6 @@ import { RPPGMeasurement } from "@/types/rppg_types";
 import { DiagnosisDone } from "@/components/fragment/DiagnosisDone";
 import { ChatFragment } from "../../../components/fragment/ChatFragment";
 import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
-import { useTranslation } from "react-i18next";
 
 // components
 
