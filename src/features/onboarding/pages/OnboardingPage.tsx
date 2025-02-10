@@ -1,26 +1,13 @@
 // hooks
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
 // components
 import {
     OnboardingButton,
     SelectableLanguageButton,
     DynamicEmoji,
 } from "../components";
-
 import LogoButton from "@/shared/components/LogoButton";
-
-// import {
-//     DialogBody,
-//     DialogCloseTrigger,
-//     DialogContent,
-//     DialogFooter,
-//     DialogHeader,
-//     DialogRoot,
-//     DialogTrigger,
-// } from "@/components/chakraui/dialog";
-
 // assets
 import CESLogo from "@/assets/ces_logo.png";
 import { useNavigate } from "react-router";
@@ -93,30 +80,6 @@ export function OnboardingPage() {
                     navigate("/diagnosis");
                 }}
             />
-
-            {/* <DialogRoot
-                lazyMount
-                open={open}
-                size="full"
-                onOpenChange={(e) => setOpen(e.open)}
-            >
-                <DialogTrigger asChild>
-                    <OnboardingButton
-                        label={t("btnStart")}
-                        onClick={() => {
-                            stop();
-                        }}
-                    />
-                </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader></DialogHeader>
-                    <DialogBody>
-                        <Tutorial />
-                    </DialogBody>
-                    <DialogFooter></DialogFooter>
-                    <DialogCloseTrigger />
-                </DialogContent>
-            </DialogRoot> */}
 
             {/* Spacer */}
             <div className="h-full" />

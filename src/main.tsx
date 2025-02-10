@@ -10,22 +10,21 @@ import ResultPage from "./features/result/pages/ResultPage.tsx";
 // import i18n
 import "./i18n";
 import { Provider } from "@/components/ui/provider";
-import { useEffect } from "react";
-
-// strict mode for check error
-const isTEST = false;
+import SetUpPage from "./features/setup/SetUpPage.tsx";
+import { StrictMode } from "react";
 
 createRoot(document.getElementById("root")!).render(
-    <Provider>
-        <BrowserRouter basename="/lucycare">
-            <Routes>
-                <Route
-                    index
-                    element={isTEST ? <ResultPage /> : <OnboardingPage />}
-                />
-                <Route path="diagnosis" element={<DiagnosisPage />} />
-                <Route path="report" element={<ResultPage />} />
-            </Routes>
-        </BrowserRouter>
-    </Provider>
+    <StrictMode>
+        <Provider>
+            {" "}
+            <BrowserRouter basename="/lucycare">
+                <Routes>
+                    <Route index element={<SetUpPage />} />
+                    <Route path="onboarding" element={<OnboardingPage />} />
+                    <Route path="diagnosis" element={<DiagnosisPage />} />
+                    <Route path="report" element={<ResultPage />} />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
+    </StrictMode>
 );
