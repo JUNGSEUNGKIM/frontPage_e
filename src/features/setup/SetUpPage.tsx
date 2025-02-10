@@ -15,7 +15,7 @@ export default function SetUpPage() {
 
         setTimeout(() => {
             navigate("/onboarding");
-        }, 5000);
+        }, 1000);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
