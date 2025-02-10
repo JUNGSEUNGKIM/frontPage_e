@@ -7,26 +7,26 @@ import {
     OnboardingButton,
     SelectableLanguageButton,
     DynamicEmoji,
-    Tutorial,
 } from "../components";
 
 import LogoButton from "@/shared/components/LogoButton";
 
-import {
-    DialogBody,
-    DialogCloseTrigger,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogRoot,
-    DialogTrigger,
-} from "@/components/chakraui/dialog";
+// import {
+//     DialogBody,
+//     DialogCloseTrigger,
+//     DialogContent,
+//     DialogFooter,
+//     DialogHeader,
+//     DialogRoot,
+//     DialogTrigger,
+// } from "@/components/chakraui/dialog";
 
 // assets
 import CESLogo from "@/assets/ces_logo.png";
+import { useNavigate } from "react-router";
 
 export function OnboardingPage() {
-    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const [t, i18n] = useTranslation();
 
@@ -40,6 +40,7 @@ export function OnboardingPage() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // for dynamic emoji
     useEffect(() => {
         const intervalId = setInterval(() => {
             // 최신 currentIndex 값을 참조
@@ -54,6 +55,9 @@ export function OnboardingPage() {
         return () => clearInterval(intervalId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // Check landscape mode
+    useEffect(() => {}, []);
 
     return (
         <div className="w-full h-screen bg-gradient-to-r from-blue-300 to-slate-200 flex flex-col items-center justify-center">
@@ -83,7 +87,14 @@ export function OnboardingPage() {
             {/* Spacer */}
             <div className="h-full" />
 
-            <DialogRoot
+            <OnboardingButton
+                label={t("btnStart")}
+                onClick={() => {
+                    navigate("/diagnosis");
+                }}
+            />
+
+            {/* <DialogRoot
                 lazyMount
                 open={open}
                 size="full"
@@ -105,7 +116,7 @@ export function OnboardingPage() {
                     <DialogFooter></DialogFooter>
                     <DialogCloseTrigger />
                 </DialogContent>
-            </DialogRoot>
+            </DialogRoot> */}
 
             {/* Spacer */}
             <div className="h-full" />
