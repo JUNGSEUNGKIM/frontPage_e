@@ -1,32 +1,19 @@
 // hooks
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-
 // components
 import {
     OnboardingButton,
     SelectableLanguageButton,
     DynamicEmoji,
-    Tutorial,
 } from "../components";
-
 import LogoButton from "@/shared/components/LogoButton";
-
-import {
-    DialogBody,
-    DialogCloseTrigger,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogRoot,
-    DialogTrigger,
-} from "@/components/chakraui/dialog";
-
 // assets
 import CESLogo from "@/assets/ces_logo.png";
+import { useNavigate } from "react-router";
 
 export function OnboardingPage() {
-    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const [t, i18n] = useTranslation();
 
@@ -40,6 +27,7 @@ export function OnboardingPage() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // for dynamic emoji
     useEffect(() => {
         const intervalId = setInterval(() => {
             // 최신 currentIndex 값을 참조
@@ -54,6 +42,9 @@ export function OnboardingPage() {
         return () => clearInterval(intervalId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    // Check landscape mode
+    useEffect(() => {}, []);
 
     return (
         <div className="w-full h-screen bg-gradient-to-r from-blue-300 to-slate-200 flex flex-col items-center justify-center">
@@ -83,29 +74,12 @@ export function OnboardingPage() {
             {/* Spacer */}
             <div className="h-full" />
 
-            <DialogRoot
-                lazyMount
-                open={open}
-                size="full"
-                onOpenChange={(e) => setOpen(e.open)}
-            >
-                <DialogTrigger asChild>
-                    <OnboardingButton
-                        label={t("btnStart")}
-                        onClick={() => {
-                            stop();
-                        }}
-                    />
-                </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader></DialogHeader>
-                    <DialogBody>
-                        <Tutorial />
-                    </DialogBody>
-                    <DialogFooter></DialogFooter>
-                    <DialogCloseTrigger />
-                </DialogContent>
-            </DialogRoot>
+            <OnboardingButton
+                label={t("btnStart")}
+                onClick={() => {
+                    navigate("/diagnosis");
+                }}
+            />
 
             {/* Spacer */}
             <div className="h-full" />
