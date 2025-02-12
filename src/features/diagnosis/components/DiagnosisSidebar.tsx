@@ -12,12 +12,17 @@ import StressIcon from "@/assets/stress.png";
 import { Tab } from "@/shared/types/tab";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import React from "react";
 
-export default function DiagnosisSidebar() {
+interface LSDiagnosisSidebarProps {
+    camera: React.ReactNode,
+}
+
+export default function DiagnosisSidebar({camera}: LSDiagnosisSidebarProps) {
 
     return (
         <div 
-            className="w-[30%] h-screen bg-blue-500 flex"
+            className="w-1/3 h-screen bg-blue-500 flex"
             style={{
                 borderTopRightRadius: 50,
                 borderBottomRightRadius: 50,
@@ -27,12 +32,11 @@ export default function DiagnosisSidebar() {
             {/* Tab 선택용 사이드바 */}
             <TabBar />
 
-
             <div className="w-4/5 flex flex-col gap-10 p-12 pb-24">
 
                 {/* Camera */}
-                <div className="rounded-full bg-white w-[19vw] h-[19vw]">
-                    <img src="https://picsum.photos/600/600" className="rounded-full w-full h-full object-cover" />
+                <div className="rounded-2xl overflow-clip h-[50%]">
+                    {camera}
                 </div>
 
                 {/* rPPG 데이터 전시 카드들 */}
@@ -50,7 +54,7 @@ function RPPGCards() {
     // Div styles
     const columnWrapperStyle = "flex flex-col w-full h-full gap-3";
     const shadowStyle = {boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.2)"};
-    const cardStyle = "w-full bg-[#99C0FF] flex flex-col items-center justify-center rounded-2xl";
+    const cardStyle = "w-full bg-[#99C0FF] flex flex-col items-center justify-between rounded-2xl p-4";
     const iconAndTextWrapperStyle = "flex items-center justify-center gap-4";
 
     // Text & icon styles
@@ -59,18 +63,18 @@ function RPPGCards() {
     const iconStyle = "w-16 h-16 object-cover"
 
     return (
-        <div className="flex w-[20vw] h-full gap-3">
+        <div className="flex h-full gap-3">
             <div className={columnWrapperStyle}>
 
                 {/* Emotion */}
-                <div className={cn(cardStyle, "h-3/5 gap-16")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-3/5 gap")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>{t("rppgEmotionLabel")}</h3>
                     <p className={valueTextStyle}>{t("emotionNeutralLabel")}</p>
                     <div/>
                 </div>
 
                 {/* HRV */}
-                <div className={cn(cardStyle, "h-2/5 gap-4")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-2/5 gap")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>HRV</h3>
                     <div className={iconAndTextWrapperStyle}>
                         <img src={HRVIcon} className={iconStyle}/>
@@ -82,7 +86,7 @@ function RPPGCards() {
             <div className={columnWrapperStyle}>
 
                 {/* HR */}
-                <div className={cn(cardStyle, "h-2/5 gap-4")}style={shadowStyle}>
+                <div className={cn(cardStyle, "h-2/5 gap")}style={shadowStyle}>
                     <h3 className={labelTextStyle}>HR</h3>
                     <div className={iconAndTextWrapperStyle}>
                         <img src={HRIcon} className={iconStyle}/>
@@ -91,7 +95,7 @@ function RPPGCards() {
                 </div>
 
                 {/* Stress */}
-                <div className={cn(cardStyle, "h-3/5 gap-12")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-3/5 gap")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>{t("rppgStressLabel")}</h3>
                     <div className={iconAndTextWrapperStyle}>
                         <img src={StressIcon} className={iconStyle}/>
@@ -118,7 +122,7 @@ function TabBar() {
 
             {/* 흰색 sidebar tab */}
             <div
-                className="w-full h-[640px] bg-white flex flex-col items-center justify-center"
+                className="w-full h-[60%] bg-white flex flex-col items-center justify-center"
                 style={{
                     borderTopRightRadius: 50,
                     borderBottomRightRadius: 50,
@@ -162,6 +166,10 @@ function TabBarButton({tab, icon, selectedIcon, label}: TabBarButtonProps) {
     const currentTab = useTabStore((state) => state.currentTab);
     const changeTab = useTabStore((state) => state.changeTab);
 
+    const buttonStyle = "flex flex-col items-center justify-center gap-4"
+    const iconStyle = "w-12"
+    const selectionIndicatorStyle = "w-[12px] h-full"
+
     return (
         <button
             className="w-full flex items-center justify-between"
@@ -172,19 +180,19 @@ function TabBarButton({tab, icon, selectedIcon, label}: TabBarButtonProps) {
             <div/>
             {currentTab === tab ? 
                 <>
-                    <div className="flex flex-col items-center justify-center gap-4 text-blue-500">
-                        <img src={selectedIcon}/>
+                    <div className={cn(buttonStyle, "text-blue-500")}>
+                        <img src={selectedIcon} className={iconStyle}/>
                         {label}
                     </div>
-                    <div className="w-[12px] h-full bg-blue-500"/>
+                    <div className={cn(selectionIndicatorStyle, "bg-blue-500")}/>
                 </>
                 :
                 <>
-                    <div className="flex flex-col items-center justify-center gap-4 text-gray-300">
-                        <img src={icon}/>
+                    <div className={cn(buttonStyle, "text-gray-300")}>
+                        <img src={icon} className={iconStyle}/>
                         {label}
                     </div>
-                    <div className="w-[12px] h-full"/>
+                    <div className={selectionIndicatorStyle}/>
                 </>
             }                        
         </button>
