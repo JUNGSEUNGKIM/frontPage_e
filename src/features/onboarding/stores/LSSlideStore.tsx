@@ -1,14 +1,14 @@
 import { create } from "zustand";
-import { SlideData } from "../types";
-import { slideData } from "./SlideDataStore";
+import { LSSlideData } from "../types";
+import { slideData } from "./LSSlideDataStore";
 
-interface SlideStore {
-    currentSlide: SlideData;
+interface LSSlideStore {
+    currentSlide: LSSlideData;
     currentSlideIndex: number;
     changeSlide: (index: number) => void;
 }
 
-export const useSlideStore = create<SlideStore>((set) => ({
+export const useSlideStore = create<LSSlideStore>((set) => ({
     currentSlide: slideData[0],
     currentSlideIndex: 0,
     changeSlide: (index) => set({ 

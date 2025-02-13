@@ -1,4 +1,4 @@
-import { useSlideStore } from "./SlideStore";
-import { slideData } from "./SlideDataStore";
+import { useSlideStore } from "./LSSlideStore";
+import { slideData } from "./LSSlideDataStore";
 
 export { useSlideStore, slideData };

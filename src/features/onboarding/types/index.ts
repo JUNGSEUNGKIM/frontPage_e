@@ -1,3 +1,3 @@
-import { SlideData } from "./SlideData";
+import { LSSlideData } from "./LSSlideData";
 
-export type { SlideData };
+export type { LSSlideData };

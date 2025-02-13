@@ -155,3 +155,13 @@ button:focus-visible {
         @apply bg-background text-foreground;
     }
 }
+
+.no-scrollbar {
+  overflow-y: scroll; /* Or overflow-x for horizontal scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
