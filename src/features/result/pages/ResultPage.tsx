@@ -1,6 +1,4 @@
 import Logo from "@/assets/logo.png";
-
-import "react-simple-keyboard/build/css/index.css";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -11,7 +9,6 @@ import {
     EmotionResultCard,
     StressResultCard,
     SummaryCard,
-    CameraCard,
 } from "../components";
 import { DiagnosisResult } from "../types";
 
@@ -46,7 +43,6 @@ export default function ResultPage() {
 
             {/* 카메라 영상 & 진단 결과 */}
             <div className="flex flex-row gap-4 h-1/5">
-                <CameraCard />
                 <SummaryCard state={state} />
             </div>
 

@@ -10,8 +10,10 @@ export default function SelectableLanguageButton({
     return (
         <button
             onClick={onClick}
-            className={`mr-4 w-24 rounded-md py-2 font-bold ${
-                isSelected ? "bg-blue-500 text-white" : "bg-white text-black"
+            className={`w-24 h-full rounded-sm py-2 font-bold text-4xl ${
+                isSelected
+                    ? "bg-blue-300 text-white border border-blue-500"
+                    : "bg-slate-100 text-black"
             }`}
         >
             {label}

@@ -138,6 +138,17 @@ async function getUser(userId: string): Promise<User> {
 }
 ```
 
+## d. 추가 정리
+- sidebar, toolbar 와 같은 `bar`를 포함하는 컴포넌트의 경우 `b`를 대문자로 표기합니다
+- 예시
+```javascript
+function TabBar(){}
+
+function SideBar(){}
+
+function ToolBar(){}
+```
+
 # 4. 상태 관리 및 Context
 
 ## a. 상태 관리 규칙

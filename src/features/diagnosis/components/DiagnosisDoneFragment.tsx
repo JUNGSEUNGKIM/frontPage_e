@@ -41,7 +41,7 @@ export default function DiagnosisDoneFragment({
     }
 
     return (
-        <div className="w-full h-3/4 flex flex-col items-center justify-center bg-white rounded-lg gap-4">
+        <div className="w-full h-3/4 flex flex-col items-center justify-center bg-white rounded-lg gap-4 ">
             <img src={isDone ? RocketEmoji : LoadingEmoji} className="h-64" />
             <h1 className="h-20 text-center text-3xl font-bold">
                 {isDone ? t("doneLabel") : t("waitingLabel")}

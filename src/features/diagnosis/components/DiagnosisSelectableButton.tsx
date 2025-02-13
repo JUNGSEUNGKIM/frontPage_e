@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 // props
 interface DiagnosisSelectableButtonProps {
     isSelected: boolean;
@@ -18,8 +19,9 @@ export default function DiagnosisSelectableButton({
     const unselectedClassName = "bg-white border-white";
 
     return (
-        <button
+        <motion.button
             onClick={onClick}
+            whileTap={{ scale: 0.95 }}
             className={`w-full border-2 rounded-lg p-4 ${
                 isSelected ? selectedClassName : unselectedClassName
             }`}
@@ -31,6 +33,6 @@ export default function DiagnosisSelectableButton({
                     {description}
                 </p>
             </div>
-        </button>
+        </motion.button>
     );
 }

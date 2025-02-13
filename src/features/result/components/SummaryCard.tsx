@@ -112,9 +112,9 @@ export default function SummaryCard({ state }: SummaryCardProps) {
         getDiagnosisResult(diagnosisType!, score);
 
     return (
-        <div className="bg-blue-50 w-2/3">
+        <div className="w-full flex flex-col bg-blue-50">
             <div className="flex flex-row justify-between items-center p-4 ">
-                <div className="flex flex-col w-1/2 h-full">
+                <div className="flex flex-col w-96 h-full">
                     <ResultChardCard
                         config={chartConfig}
                         className="aspect-square w-auto"

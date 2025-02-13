@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 export default function PrimaryButton({
     label,
     onClick,
@@ -6,11 +8,12 @@ export default function PrimaryButton({
     onClick: () => void;
 }) {
     return (
-        <button
+        <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={onClick}
-            className="w-full h-[4vh] mt-3 text-3xl text-white bg-blue-500 rounded-lg"
+            className="w-full p-8 mt-3 text-3xl text-white font-semibold bg-blue-500 rounded-lg"
         >
             {label}
-        </button>
+        </motion.button>
     );
 }

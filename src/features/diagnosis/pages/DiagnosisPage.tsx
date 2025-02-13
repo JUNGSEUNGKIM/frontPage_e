@@ -16,8 +16,8 @@ import DiagnosisProgressFragment from "../components/DiagnosisProgressFragment";
 import DiagnosisDoneFragment from "../components/DiagnosisDoneFragment";
 import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
 import { ChatFragment } from "../../../components/fragment/ChatFragment";
-
-// TODO: Add landscape mode (tablet) layout
+import DiagnosisSidebar from "../components/DiagnosisSidebar";
+import isLandScape from "@/utls/is_landscape";
 
 export function DiagnosisPage() {
     // stores
@@ -61,7 +61,38 @@ export function DiagnosisPage() {
     //     surveyState: state.surveyState,
     // }));
 
-    return (
+    return isLandScape() ? (
+        <div className="w-screen h-screen flex flex-row bg-[#f8f8f8]">
+            {/* TODO: add measurement values as props */}
+            <DiagnosisSidebar measurementValue={measurement}>
+                <FaceDetectionApp onValueChanged={handleMeasurement} />
+            </DiagnosisSidebar>
+            <div className="w-[70%] flex flex-col px-4">
+                {/* Tab-based Fragments */}
+                {currentTab === "diagnosis" && (
+                    <>
+                        {surveyState.status === "init" && (
+                            <SelectDiagnosisFragment />
+                        )}
+                        {surveyState.status === "onProgress" && (
+                            <DiagnosisProgressFragment />
+                        )}
+                        {surveyState.status === "done" && (
+                            <DiagnosisDoneFragment
+                                rppgMesurement={measurement}
+                                hrValues={hrRef.current}
+                                selectedDiagnosisType={currentDiagnosis}
+                                answers={surveyState.responses}
+                            />
+                        )}
+                    </>
+                )}
+                {/* Add Chat fragment here */}
+                {currentTab === "chat" && <ChatFragment />}
+                {currentTab === "dtx" && <DtxFragmentV2 />}
+            </div>
+        </div>
+    ) : (
         // full screen container for vertical kiosk
         <div className="w-full h-screen flex flex-col bg-[#f8f8f8] gap-4">
             <DiagnosisAppBar />
