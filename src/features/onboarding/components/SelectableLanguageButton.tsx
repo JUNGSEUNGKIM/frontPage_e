@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 export default function SelectableLanguageButton({
     label,
     isSelected,
@@ -8,7 +10,8 @@ export default function SelectableLanguageButton({
     onClick: () => void;
 }) {
     return (
-        <button
+        <motion.button
+            whileTap={{ scale: 0.9 }}
             onClick={onClick}
             className={`w-24 h-full rounded-sm py-2 font-bold text-4xl ${
                 isSelected
@@ -17,6 +20,6 @@ export default function SelectableLanguageButton({
             }`}
         >
             {label}
-        </button>
+        </motion.button>
     );
 }

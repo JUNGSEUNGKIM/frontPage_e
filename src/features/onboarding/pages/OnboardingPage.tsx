@@ -58,14 +58,14 @@ export function OnboardingPage() {
                     <LogoButton onClick={() => {}} />
                     <img src={CESLogo} className="h-10 mr-4" />
                 </div>
-                <div className="mr-4">
+                <div className="flex flex-row mr-4 gap-4">
                     <SelectableLanguageButton
-                        label={"English"}
+                        label={"🇬🇧"}
                         onClick={() => i18n.changeLanguage("en")}
                         isSelected={i18n.language === "en"}
                     />
                     <SelectableLanguageButton
-                        label={"한국어"}
+                        label={"🇰🇷"}
                         onClick={() => i18n.changeLanguage("ko")}
                         isSelected={i18n.language === "ko"}
                     />
