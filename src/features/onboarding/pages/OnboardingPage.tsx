@@ -58,14 +58,14 @@ export function OnboardingPage() {
                     <LogoButton onClick={() => {}} />
                     <img src={CESLogo} className="h-10 mr-4" />
                 </div>
-                <div className="mr-4">
+                <div className="flex flex-row mr-4 gap-4">
                     <SelectableLanguageButton
-                        label={"English"}
+                        label={"🇬🇧"}
                         onClick={() => i18n.changeLanguage("en")}
                         isSelected={i18n.language === "en"}
                     />
                     <SelectableLanguageButton
-                        label={"한국어"}
+                        label={"🇰🇷"}
                         onClick={() => i18n.changeLanguage("ko")}
                         isSelected={i18n.language === "ko"}
                     />
@@ -109,7 +109,7 @@ function OnboardingBottomToolBar() {
         <div className="w-full px-8 py-8 flex flex-row items-center justify-between bg-blue-500 rounded-t-3xl shadow">
             <motion.button
                 onClick={() => {
-                    navigate("/diagnosis");
+                    navigate("/tutorial");
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-[70%] h-full p-8 flex flex-col items-center justify-center bg-white rounded-2xl  text-black text-3xl font-bold shadow-xl"

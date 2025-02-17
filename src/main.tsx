@@ -26,7 +26,8 @@ createRoot(document.getElementById("root")!).render(
             <BrowserRouter basename="/lucycare">
                 <Routes>
                     <Route index element={<SetUpPage />} />
-                    <Route path="onboarding" element={<LSTutorialPage />} />
+                    <Route path="onboarding" element={<OnboardingPage />} />
+                    <Route path="tutorial" element={<LSTutorialPage />} />
                     <Route path="diagnosis" element={<DiagnosisPage />} />
                     <Route path="report" element={<ResultPage />} />
                 </Routes>

@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { slideData, useSlideStore } from "../stores";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { log } from "@techstark/opencv-js";
 
 interface LSSlideProps {
     index: number,
@@ -15,16 +16,17 @@ export default function LSSlide({index}: LSSlideProps) {
     const [isTranslated, setIsTranslated] = useState(false);
 
     const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
+    const changeSlide = useSlideStore((state) => state.changeSlide);
 
-    useEffect(() => {
-        if (slideRef.current) {
-            if (currentSlideIndex === index) {
-                setIsTranslated(true);
-            } else {
-                setIsTranslated(false);
-            }
-        }
-    }, [currentSlideIndex]);
+    // useEffect(() => {
+    //     if (slideRef.current) {
+    //         if (currentSlideIndex === index) {
+    //             setIsTranslated(true);
+    //         } else {
+    //             setIsTranslated(false);
+    //         }
+    //     }
+    // }, [currentSlideIndex]);
 
     return (
         <div 
@@ -42,7 +44,10 @@ export default function LSSlide({index}: LSSlideProps) {
                     borderRadius: 50,
                     background: `linear-gradient(${-Math.PI/4}rad, ${slideData[index].borderColorGradientEdge}, ${slideData[index].borderColorGradientMiddle}, ${slideData[index].borderColorGradientEdge})`,
                 }}
-            
+                onClick={() => {
+                    changeSlide(index)
+                    console.log(`change to ${index}`)
+                }}
             >
                 <div className="flex flex-col items-center justify-between w-full h-full p-16"
                     style={{ 

@@ -26,7 +26,7 @@ export default function LSTutorialSideBar({scrollPosition}: LSTutorialSideBarPro
             {/* Logo */}
             <div className="w-2/5 flex flex-col items-end">
                 <button className="flex mr-1 mt-7 mb-8 w-[78%]"
-                    onClick={() => { navigate("/tutorial") }}
+                    onClick={() => { navigate("/onboarding") }}
                 >
                     <img src={whiteLogo} alt="Emma Healthcare Logo"/>
                 </button>
@@ -57,7 +57,7 @@ function TabBar({scrollPosition}: TabBarProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLDivElement>(null);
 
-    const [isListeningScroll, setIsListeningScroll] = useState(true);
+    const [buttonClickable, setButtonClickable] = useState(true);
 
     const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
     const changeSlide = useSlideStore((state) => state.changeSlide);
@@ -69,9 +69,9 @@ function TabBar({scrollPosition}: TabBarProps) {
 
     useEffect(() => {
         if (highlightRef.current && containerRef.current && buttonRef.current) {
-            if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
-                changeSlide(Math.round(scrollPosition))
-            }
+            // if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
+            //     changeSlide(Math.round(scrollPosition))
+            // }
             highlightRef.current.style.transform = `translateY(${(currentSlideIndex + 1) * (buttonRef.current.offsetHeight)}px)`;
         }
     }, [scrollPosition, currentSlideIndex]);
@@ -90,15 +90,14 @@ function TabBar({scrollPosition}: TabBarProps) {
                         <button
                             className="w-full flex items-center justify-start p-4"
                             onClick={() => {
-                                if (isListeningScroll) {
-                                    const delay = 50
-                                    setIsListeningScroll(false)
+                                if (buttonClickable) {
+                                    setButtonClickable(false)
                                     changeSlide(i);
                                     setTimeout(() => {
-                                        setIsListeningScroll(true)
-                                    }, delay);
+                                        setButtonClickable(true)
+                                    }, 50);
                                 }
-                                setIsListeningScroll(false)
+                                setButtonClickable(false)
                             }}
                         >
                             <div/>

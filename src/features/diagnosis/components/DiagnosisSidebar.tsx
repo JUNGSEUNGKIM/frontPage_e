@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import { RPPGMeasurement } from "@/types";
+import { useNavigate } from "react-router";
 
 interface LSDiagnosisSidebarProps {
     children: ReactNode;
@@ -60,47 +61,57 @@ function RPPGCards({
     const shadowStyle = { boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.2)" };
     const cardStyle =
         "w-full bg-[#99C0FF] flex flex-col items-center justify-between rounded-2xl p-4";
-    const iconAndTextWrapperStyle = "flex items-center justify-center gap-4";
+    const iconAndTextWrapperStyle = "flex items-center justify-center w-full";
 
     // Text & icon styles
     const labelTextStyle = "text-xl text-gray-700 font-medium";
-    const valueTextStyle = "text-3xl font-semibold";
     const iconStyle = "w-16 h-16 object-cover";
+    const valueTextStyle = "text-3xl font-semibold flex w-full items-end pl-4";
 
     return (
         <div className="flex h-full gap-3">
             <div className={columnWrapperStyle}>
                 {/* Emotion */}
-                <div className={cn(cardStyle, "h-3/5 gap")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-3/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>{t("rppgEmotionLabel")}</h3>
-                    <p className={valueTextStyle}>{measurementValue.emotion}</p>
+                    <p className="text-3xl font-semibold">{measurementValue.emotion}</p>
                     <div />
                 </div>
 
                 {/* HRV */}
-                <div className={cn(cardStyle, "h-2/5 gap")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-2/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>HRV</h3>
                     <div className={iconAndTextWrapperStyle}>
-                        <img src={HRVIcon} className={iconStyle} />
-                        <p className={valueTextStyle}>{measurementValue.hrv}</p>
+                        <div className="w-full flex justify-end">
+                            <img src={HRVIcon} className={iconStyle} />
+                        </div>
+                        <p className={valueTextStyle}>
+                            {measurementValue.hrv}
+                        </p>
                     </div>
                 </div>
             </div>
             <div className={columnWrapperStyle}>
                 {/* HR */}
-                <div className={cn(cardStyle, "h-2/5 gap")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-2/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>HR</h3>
                     <div className={iconAndTextWrapperStyle}>
-                        <img src={HRIcon} className={iconStyle} />
-                        <p className={valueTextStyle}>{measurementValue.hr}</p>
+                        <div className="w-full flex justify-end">
+                            <img src={HRIcon} className={iconStyle} />
+                        </div>
+                        <p className={valueTextStyle}>
+                            {measurementValue.hr}
+                        </p>
                     </div>
                 </div>
 
                 {/* Stress */}
-                <div className={cn(cardStyle, "h-3/5 gap")} style={shadowStyle}>
+                <div className={cn(cardStyle, "h-3/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>{t("rppgStressLabel")}</h3>
                     <div className={iconAndTextWrapperStyle}>
-                        <img src={StressIcon} className={iconStyle} />
+                        <div className="w-full flex justify-end">
+                            <img src={StressIcon} className={iconStyle} />
+                        </div>
                         <p className={valueTextStyle}>
                             {measurementValue.stress}
                         </p>
@@ -114,13 +125,16 @@ function RPPGCards({
 
 function TabBar() {
     const [t] = useTranslation();
+    const navigate = useNavigate();
 
     return (
         <div className="w-1/5 h-full flex flex-col items-end">
             {/* Logo */}
-            <div className="flex mr-1 mt-7 mb-8 w-[78%]">
+            <button className="flex mr-1 mt-7 mb-8 w-[78%]"
+                onClick={() => navigate("/onboarding")}
+            >
                 <img src={whiteLogo} alt="Emma Healthcare Logo" />
-            </div>
+            </button>
 
             {/* 흰색 sidebar tab */}
             <div
