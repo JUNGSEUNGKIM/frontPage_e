@@ -25,7 +25,7 @@ export default function DiagnosisProgressFragment() {
     // 진행된 퍼센트 계산
     const progressPercentage =
         (surveyState.currentIndex /
-            surveyState.surveyQuestions.questions.length) *
+            surveyState.survey.questions.length) *
         100;
 
     return (
@@ -35,9 +35,7 @@ export default function DiagnosisProgressFragment() {
             <div className="h-1/4 flex flex-col items-center gap-10">
                 <h1 className="w-full h-2/5 text-center text-4xl font-bold text-black mt-14">
                     {
-                        surveyState.surveyQuestions.questions[
-                            surveyState.currentIndex
-                        ]
+                        surveyState.survey.questions[surveyState.currentIndex].question_text
                     }
                 </h1>
                 {/* Progress indicator */}
@@ -50,10 +48,10 @@ export default function DiagnosisProgressFragment() {
             </div>
             {/* Answer Buttons */}
             <div className="w-full h-2/4">
-                {surveyState.surveyQuestions.options.map((_, idx) => (
+                {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
                     <AnswerButton
                         key={idx}
-                        label={surveyState.surveyQuestions.options[idx]}
+                        label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
                         isSelected={tappedButtonIdx === idx}
                         handleTap={() => handleAnswerTap(idx)}
                     />

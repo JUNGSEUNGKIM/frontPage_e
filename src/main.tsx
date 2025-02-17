@@ -13,6 +13,7 @@ import "./i18n";
 import { Provider } from "@/components/ui/provider";
 import SetUpPage from "./features/setup/SetUpPage.tsx";
 import { StrictMode } from "react";
+import { LSTutorialPage } from "./features/onboarding/pages/LSTutorialPage.tsx";
 // import { LSOnboardingPage } from "./features/onboarding/pages/LSOnboardingPage.tsx";
 
 // TEMP DEBUG - landscape sidebar debugging code
@@ -25,7 +26,7 @@ createRoot(document.getElementById("root")!).render(
             <BrowserRouter basename="/lucycare">
                 <Routes>
                     <Route index element={<SetUpPage />} />
-                    <Route path="onboarding" element={<OnboardingPage />} />
+                    <Route path="onboarding" element={<LSTutorialPage />} />
                     <Route path="diagnosis" element={<DiagnosisPage />} />
                     <Route path="report" element={<ResultPage />} />
                 </Routes>

@@ -1,0 +1,364 @@
+{
+    "survey_id": 1,
+    "title": "우울증 설문",
+    "title_en": "Depression Survey",
+    "description": "우울증 관련 증상을 평가하는 설문입니다.",
+    "description_en": "A survey to assess depression-related symptoms.",
+    "image_url": null,
+    "questions": [
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "4"
+          },
+          {
+            "response_text": null,
+            "response_score": "1"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 1,
+        "question_text": "동기나 흥미 부족을 경험하고 있습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Experiencing a lack of motivation or interest"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "3"
+          },
+          {
+            "response_text": null,
+            "response_score": "2"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 2,
+        "question_text": "기분이 가라앉거나 우울하거나 희망이 없다고 느낍니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Feeling down, depressed, or hopeless"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "2"
+          },
+          {
+            "response_text": null,
+            "response_score": "3"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 3,
+        "question_text": "자주 잠을 못 자거나, 너무 많이 자거나, 잠드는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Frequently sleep deprived, oversleeping, or having trouble falling asleep"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "1"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 4,
+        "question_text": "에너지가 부족하거나 항상 피곤하다고 느낍니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Lacking energy or constantly feeling fatigued"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "2"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 5,
+        "question_text": "식욕이 없거나 과식을 하고 있습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having poor appetite or overeating"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "3"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 6,
+        "question_text": "스스로에게 만족하지 못하거나 자신이 실패자라고 느끼거나 자신이나 가족을 실망시켰다고 믿습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Feeling dissatisfied with yourself, or believe that you are a failure or have let yourself or your family down"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "4"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 7,
+        "question_text": "신문 읽기나 TV 시청과 같은 일에 집중하는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Trouble concentrating on things, such as reading the newspaper or watching television"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "1"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 8,
+        "question_text": "매우 느리게 움직이거나 말하거나, 혹은 너무 불안해서 주변 사람들이 당신의 행동을 알아차립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Moving/speaking very slowly or restlessly, causing others to take notice of your behaviors"
+      },
+      {
+        "answer": [
+          {
+            "response_text": null,
+            "response_score": "2"
+          }
+        ],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "주중 며칠",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Few days a week"
+          },
+          {
+            "choice_label": "주중 약 절반",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "About half of a week"
+          },
+          {
+            "choice_label": "거의 매일",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Nearly every day"
+          }
+        ],
+        "question_id": 9,
+        "question_text": "최근 자해를 시도했거나 자살을 생각해본 적이 있습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Have recently attempted or thought of self harm or committing suicide"
+      }
+    ]
+  }

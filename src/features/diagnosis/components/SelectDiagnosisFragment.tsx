@@ -1,11 +1,5 @@
 import { useTranslation } from "react-i18next";
 import DiagnosisSelectableButton from "./DiagnosisSelectableButton";
-import {
-    DEMENTIAOPTIONS,
-    DEMENTIAQUESTIONS,
-    DEPRESSIONOPTIONS,
-    DEPRESSIONQUESTIONS,
-} from "@/constants/questions";
 
 // components
 import PrimaryButton from "@/shared/components/PrimaryButton";
@@ -14,12 +8,41 @@ import PrimaryButton from "@/shared/components/PrimaryButton";
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
+import { useEffect, useState } from "react";
+import { getDementiaSurvey, getDepressionSurvey } from "../services/surveyService";
+import { Survey } from "@/shared/types/survey_types";
 
 export default function SelectDiagnosisFragment() {
     const [t] = useTranslation();
 
     const { currentDiagnosis, selectDiagnosis, setSurvey, surveyState } =
         useDiagnosisStore();
+
+    const [depressionSurvey, setDepressionSurvey] = useState<Survey | undefined>();
+    const [dementiaSurvey, setDementiaSurvey] = useState<Survey | undefined>();
+    
+    // Fetch survey questions
+    useEffect(() => {
+        const fetchSurveys = async () => {
+
+            // Fetch depression survey
+            try {
+                const data = await getDepressionSurvey();
+                setDepressionSurvey(data);
+            } catch (err) {
+                console.log(`error: ${err}`)
+            }
+
+            // Fetch dementia survey
+            try {
+                const data = await getDementiaSurvey();
+                setDementiaSurvey(data);
+            } catch (err) {
+                console.log(`error: ${err}`)
+            }
+        };
+        fetchSurveys();
+    }, []);
 
     return (
         <div className="w-full h-full flex flex-col items-center gap-4 px-4">
@@ -54,16 +77,15 @@ export default function SelectDiagnosisFragment() {
 
             <PrimaryButton
                 label={t("btnStartDiagnosis")}
+                disabled={true}
                 onClick={() => {
                     if (surveyState.status !== "onProgress") {
                         // 상태 확인 후 설문 시작
-                        let questions = DEPRESSIONQUESTIONS;
-                        let options = DEPRESSIONOPTIONS;
+                        let survey = depressionSurvey;
                         if (currentDiagnosis === "dementia") {
-                            questions = DEMENTIAQUESTIONS;
-                            options = DEMENTIAOPTIONS;
+                            survey = dementiaSurvey;
                         }
-                        setSurvey(questions, options);
+                        setSurvey(survey);
                     }
                 }}
             />
