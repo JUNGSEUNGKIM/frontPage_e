@@ -91,7 +91,7 @@ function TabBar({scrollPosition}: TabBarProps) {
                             className="w-full flex items-center justify-start p-4"
                             onClick={() => {
                                 if (isListeningScroll) {
-                                    const delay = Math.abs(currentSlideIndex - i) * 50 + 400
+                                    const delay = 50
                                     setIsListeningScroll(false)
                                     changeSlide(i);
                                     setTimeout(() => {
