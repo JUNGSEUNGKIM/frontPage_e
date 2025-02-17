@@ -69,9 +69,9 @@ function TabBar({scrollPosition}: TabBarProps) {
 
     useEffect(() => {
         if (highlightRef.current && containerRef.current && buttonRef.current) {
-            if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
-                changeSlide(Math.round(scrollPosition))
-            }
+            // if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
+            //     changeSlide(Math.round(scrollPosition))
+            // }
             highlightRef.current.style.transform = `translateY(${(currentSlideIndex + 1) * (buttonRef.current.offsetHeight)}px)`;
         }
     }, [scrollPosition, currentSlideIndex]);
