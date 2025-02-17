@@ -72,6 +72,7 @@ export function LSTutorialPage() {
             <div className="flex flex-col w-5/6 h-full">
 
                 <div className="h-full flex flex-nowrap overflow-x-hidden snap-x no-scrollbar"
+                    style={{touchAction: 'none'}}
                     ref={slidesRef}
                 >
                     <div className="w-1/12 shrink-0"/>
@@ -97,18 +98,20 @@ export function LSTutorialPage() {
 function PaginationDots() {
 
     const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
+    const changeSlide = useSlideStore((state) => state.changeSlide);
 
     const dots = [];
     for (let i = 0; i < 6; i++) {
         dots.push(
         <button
             key={i}
+            onClick={() => changeSlide(i)}
             className={`w-3 h-3 rounded-full mx-1 ${currentSlideIndex === i ? 'bg-blue-500' : 'bg-gray-300'} transition-colors duration-300 border-none cursor-pointer`}
         ></button>
         );
     }
 
-    return <div className="w-5/6 flex items-center justify-center absolute bottom-16">{dots}</div>;
+    return <div className="flex items-center justify-center">{dots}</div>;
 };
 
 function PageButtons() {
@@ -117,13 +120,15 @@ function PageButtons() {
     const changeSlide = useSlideStore((state) => state.changeSlide);
 
     return (
-        <div className="w-5/6 flex items-center justify-center absolute bottom-8 space-x-32"> {/* Container for the buttons */}
+        <div className="w-5/6 flex items-center justify-center absolute bottom-8 space-x-16"> {/* Container for the buttons */}
             <button
                 onClick={() => changeSlide(Math.max(currentSlideIndex - 1, 0))}
                 className="rounded-full bg-blue-500 hover:bg-blue-700 text-white p-2 transition duration-300 ease-in-out"
             >
                 <LuArrowLeft className="text-3xl" /> {/* Adjust size as needed */}
             </button>
+
+            <PaginationDots />
 
             <button
                 onClick={() => changeSlide(Math.min(currentSlideIndex + 1, 5))}
