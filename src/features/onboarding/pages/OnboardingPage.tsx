@@ -109,7 +109,7 @@ function OnboardingBottomToolBar() {
         <div className="w-full px-8 py-8 flex flex-row items-center justify-between bg-blue-500 rounded-t-3xl shadow">
             <motion.button
                 onClick={() => {
-                    navigate("/diagnosis");
+                    navigate("/tutorial");
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-[70%] h-full p-8 flex flex-col items-center justify-center bg-white rounded-2xl  text-black text-3xl font-bold shadow-xl"
