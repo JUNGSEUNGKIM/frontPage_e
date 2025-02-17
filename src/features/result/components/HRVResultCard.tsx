@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { StatCard } from "./StatCard";
+import StatCard from "./StatCard";
 import { DiagnosisResult } from "../types";
 import HeartBeat from "@/assets/heartbeat2.png";
 

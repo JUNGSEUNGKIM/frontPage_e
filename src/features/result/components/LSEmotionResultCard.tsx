@@ -2,11 +2,13 @@ import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 import StatCard from "./StatCard";
 
-interface EmotionResultCardProps {
+interface LSEmotionResultCardProps {
     state: DiagnosisResult;
 }
 
-export default function EmotionResultCard({ state }: EmotionResultCardProps) {
+export default function LSEmotionResultCard({
+    state,
+}: LSEmotionResultCardProps) {
     const [t] = useTranslation();
 
     const emotions = [
@@ -56,15 +58,18 @@ export default function EmotionResultCard({ state }: EmotionResultCardProps) {
 
     return (
         <StatCard title={t("rppgEmotionLabel")}>
-            <div className="space-y-2">
+            <div className="w-full space-y-2 flex flex-col">
                 {emotions.map((emotion, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                        {/* change to emoji (image) */}
-                        <div className="flex justify-between w-1/4">
+                    <div
+                        key={index}
+                        className="w-full flex flex-row items-center gap-2"
+                    >
+                        {/* text with emoji */}
+                        <div className="flex justify-between w-24">
                             <span className="font-bold">{emotion.label}</span>
                             <span className="text-xl">{emotion.emoji}</span>
                         </div>
-                        <div className="w-3/4">
+                        <div className="w-full">
                             <div
                                 className="h-8 rounded-md "
                                 style={{

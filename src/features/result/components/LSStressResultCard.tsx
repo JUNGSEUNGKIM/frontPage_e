@@ -2,11 +2,11 @@ import { DiagnosisResult } from "../types";
 import StatCard from "./StatCard";
 import { useTranslation } from "react-i18next";
 
-interface StressResultCardProps {
+interface LSStressResultCardProps {
     state: DiagnosisResult;
 }
 
-export default function StressResultCard({ state }: StressResultCardProps) {
+export default function LSStressResultCard({ state }: LSStressResultCardProps) {
     const [t] = useTranslation();
 
     const stressText =
@@ -15,7 +15,10 @@ export default function StressResultCard({ state }: StressResultCardProps) {
             : t("highStressDescription");
 
     return (
-        <StatCard title={t("rppgStressLabel")}>
+        <StatCard
+            title={t("rppgStressLabel")}
+            // className="w-[23vw] h-full flex flex-col"
+        >
             <div className="relative mt-12">
                 <div
                     className="absolute -top-3 transform -translate-x-1/2 text-blue-500"

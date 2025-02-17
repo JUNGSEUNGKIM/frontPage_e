@@ -3,11 +3,11 @@ import { ResultChardCard, StatCard } from "./index";
 import { DiagnosisResult } from "../types";
 import { useTranslation } from "react-i18next";
 
-interface HRResultCardProps {
+interface LSHRResultCardProps {
     state: DiagnosisResult;
 }
 
-export default function HRResultCard({ state }: HRResultCardProps) {
+export default function LSHRResultCard({ state }: LSHRResultCardProps) {
     const [t] = useTranslation();
 
     const hrData = state.hrValues.map((e: string, i: number) => {
@@ -32,7 +32,7 @@ export default function HRResultCard({ state }: HRResultCardProps) {
                         color: "#3b82f6",
                     },
                 }}
-                className="w-full h-60"
+                className="w-full h-[200px]"
             >
                 <AreaChart data={hrData}>
                     <defs>

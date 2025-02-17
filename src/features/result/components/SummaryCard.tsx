@@ -4,6 +4,8 @@ import { Label, PieChart, Pie } from "recharts";
 import { ChartConfig } from "../types/ChartConfig";
 import { DiagnosisResultStatus } from "../types/index";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import isLandScape from "@/utls/is_landscape";
 
 interface SummaryCardProps {
     state: DiagnosisReport;
@@ -111,10 +113,13 @@ export default function SummaryCard({ state }: SummaryCardProps) {
     const { status: diagnosisStatus, description: diagnosisDescription } =
         getDiagnosisResult(diagnosisType!, score);
 
+    const horizontal = "flex flex-col justify-between items-center p-4";
+    const vertical = "flex flex-row justify-between items-center p-4";
+
     return (
-        <div className="w-full flex flex-col bg-blue-50">
-            <div className="flex flex-row justify-between items-center p-4 ">
-                <div className="flex flex-col w-96 h-full">
+        <div className="w-full flex flex-col bg-blue-50 rounded-2xl">
+            <div className={clsx(isLandScape() ? horizontal : vertical)}>
+                <div className="flex flex-col w-[20rem] h-full">
                     <ResultChardCard
                         config={chartConfig}
                         className="aspect-square w-auto"
