@@ -86,7 +86,7 @@ function TabBar({scrollPosition}: TabBarProps) {
                 <div className={cn(highlightBoxStyle, "bg-white")} ref={highlightRef}/>
 
                 {Array.from({ length: 6 }, (_, i) => (
-                    <div className="z-10" ref={buttonRef}>
+                    <div className="z-10" ref={buttonRef} key={i}>
                         <button
                             className="w-full flex items-center justify-start p-4"
                             onClick={() => {

@@ -14,6 +14,51 @@ export function LSTutorialPage() {
     const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
     const changeSlide = useSlideStore((state) => state.changeSlide);
 
+    const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+    useEffect(() => {
+        const handleTouchStart = (event: TouchEvent) => {
+        setTouchStartX(event.touches[0].clientX);
+        };
+
+        const handleTouchMove = (event: TouchEvent) => {
+        if (touchStartX === null || !slidesRef.current) return;
+
+        const currentX = event.touches[0].clientX;
+        const deltaX = currentX - touchStartX;
+
+        const threshold = 50; // Adjust swipe sensitivity
+
+        if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0) {
+                changeSlide(Math.max(currentSlideIndex - 1, 0));
+            } else {
+                changeSlide(Math.min(currentSlideIndex + 1, 5));
+            }
+            setTouchStartX(null); // Reset for next swipe
+        }
+        };
+
+        const handleTouchEnd = () => {
+            setTouchStartX(null); // Reset on touch end as well
+        }
+
+
+        const container = slidesRef.current;
+        if (container) {
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchmove', handleTouchMove);
+        container.addEventListener('touchend', handleTouchEnd);
+
+
+        return () => { // Cleanup event listeners
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchmove', handleTouchMove);
+            container.removeEventListener('touchend', handleTouchEnd);
+        };
+        }
+    }, [touchStartX]); // Add touchStartX to dependency array
+
     useEffect(() => {
         changeSlide(0)
 
@@ -60,7 +105,7 @@ export function LSTutorialPage() {
                     <div className="w-1/12 shrink-0"/>
 
                     {Array.from({ length: 6 }, (_, i) => (
-                        <LSSlide index={i}/>
+                        <LSSlide index={i} key={i}/>
                     ))}
 
                     <div className="w-1/12 shrink-0"/>
