@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 
@@ -24,6 +24,14 @@ export default function AlertModal({
     onAccept,
     onCancel,
 }: AlertModalProps) {
+    // scroll 방지
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
     return (
         <ModalPortal>
             <div
