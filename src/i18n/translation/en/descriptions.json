@@ -1,14 +1,14 @@
 {
     "depressionDescription" :"The PHQ-9 (Patient Health Questionnaire-9) is a clinically validated tool used to screen, diagnose, and measure the severity of depression.",
-    "dementiaDescription" : "Dementia diagnosis involves a comprehensive evaluation to determine the presence and severity of cognitive decline that interferes with daily life.",
-    "lucidDescription" : "Lucid 101 is a digital therapeutic tool that recommends songs suited to your emotions.\nChoose the emotion you are currently feeling from the mind map.",
+    "dementiaDescription" : "Cognitive impairment diagnosis involves a comprehensive evaluation to determine the presence and severity of cognitive decline that interferes with daily life.",
+    "lucidDescription" : "Lucid 101 is a digital therapeutic tool that recommends music suited to your emotions.\nChoose the emotion you are currently feeling from the mind map.",
     "lowStressDescription" :"Your stress level is mild.\nYou’re experiencing occasional stress, but it’s manageable. Keep it up! 💪",
     "highStressDescription" :"Your stress level is high.\nYou might feel overwhelmed. Take a moment to pause and recharge! 🔋",
     "hrvDescription" : "HRV (Heart Rate Variability) is the variation in time intervals\nbetween consecutive heartbeats.",
-    "depressionNormalDescription": "Your mental state appears to be stable. 😊 Maintain a healthy lifestyle and keep doing what brings you joy. Remember, occasional stress is normal and part of life.",
+    "depressionNormalDescription": "Your mental health appears to be stable. 😊 Maintain a healthy lifestyle and keep doing what brings you joy. Remember, occasional stress is normal and part of life.",
     "depressionWarningDescription": "You might be experiencing mild signs of depression. 🤔 Consider talking to someone you trust or engaging in relaxing activities. If symptoms persist, seeking professional guidance could be beneficial.",
-    "depressionDangerDescription": "Your score indicates significant depressive symptoms. 🆘 Please reach out to a mental health professional for immediate support. You don't have to face this alone—help is available, and recovery is possible.",
+    "depressionDangerDescription": "Your score indicates significant depressive symptoms. ⚠️ Please reach out to a mental health professional for immediate support. You don't have to face this alone—help is available, and recovery is possible.",
     "dementiaNormalDescription": "Your cognitive functions seem to be in good shape. 🙂 Keep engaging in brain-stimulating activities like reading, puzzles, or learning new skills. Staying physically active and socially connected can also benefit your mental health.",
     "dementiaWarningDescription": "There are some signs that may indicate cognitive decline. 🤔 It’s a good idea to monitor these changes and consult with a specialist if needed. Early intervention can make a significant difference in managing symptoms effectively.",
-    "dementiaDangerDescription": "Your score suggests potential serious cognitive challenges. 🆘 Please consult a neurologist or specialist as soon as possible. Early diagnosis and treatment are crucial for better management of the condition."
+    "dementiaDangerDescription": "Your score suggests potential serious cognitive challenges. ⚠️ Please consult a neurologist or specialist as soon as possible. Early diagnosis and treatment are crucial for better management of the condition."
 }

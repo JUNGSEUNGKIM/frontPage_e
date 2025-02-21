@@ -2,7 +2,7 @@
     "welcomeLabel" : "Welcome!",
     "kioskInfoDescription": "This kiosk uses rPPG technology to measure your heart rate, stress level, and emotions.",
     "ComprehensiveDiagnosisLabel":"Comprehensive Diagnosis",
-    "diagnosisInfoDescription":"In addition to rPPG analysis, we provide surveys for diagnosing depression and dementia.",
+    "diagnosisInfoDescription":"In addition to rPPG analysis, we provide surveys for diagnosing depression and cognitive impairment.",
     "howToStartLabel":"How to Start",
     "howToStartDescription":"Choose the type of diagnosis you want and respond to the questions accurately.",
     "checkYourResultsLabel":"Check Your Results",

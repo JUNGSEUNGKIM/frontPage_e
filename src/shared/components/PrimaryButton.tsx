@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
 export default function PrimaryButton({
@@ -12,9 +13,11 @@ export default function PrimaryButton({
     return (
         <motion.button
             whileTap={{ scale: 0.95 }}
-            onClick={onClick}
-            disabled={false || false}
-            className="w-full p-8 mt-3 text-3xl text-white font-semibold bg-blue-500 rounded-lg"
+            onClick={() => {if (!disabled) onClick()}}
+            className={
+                cn("w-full p-8 mt-3 text-3xl text-white font-semibold rounded-lg", 
+                    disabled ? "bg-blue-300" : "bg-blue-500")
+            }
         >
             {label}
         </motion.button>

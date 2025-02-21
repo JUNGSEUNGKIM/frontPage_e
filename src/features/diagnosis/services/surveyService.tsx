@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { SampleDepressionSurvey } from "./sample"
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { SampleDepressionSurvey } from "./sample";
 
 // TEMP DEBUG - depression survey API base URL
 const API_BASE_URL = 'http://121.133.205.103:3000/api';
@@ -7,45 +8,60 @@ const API_BASE_URL = 'http://121.133.205.103:3000/api';
 // TEST - use sample data for each survey
 const TEST = false;
 
-const getDepressionSurvey = async (memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
-  if (TEST) return SampleDepressionSurvey
-  try {
-    const response = await axios.get(`${API_BASE_URL}/survey?survey_id=1&member_id=${memberId}&organization_id=${organizationId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching survey:", error);
-    throw error;
-  }
-};
-
-const getDementiaSurvey = async (memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
-  try {
-    const response = await axios.get(`${API_BASE_URL}/survey?survey_id=2&member_id=${memberId}&organization_id=${organizationId}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching survey:", error);
-    throw error;
-  }
-};
-
-const getCustomSurvey = async (surveyId: number, memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+const getSurvey = async (surveyId: number, memberId: number, organizationId: number) => {
+  if (TEST) return SampleDepressionSurvey; // Only return sample for depression survey
   try {
     const response = await axios.get(`${API_BASE_URL}/survey?survey_id=${surveyId}&member_id=${memberId}&organization_id=${organizationId}`);
+    console.log(`Survey data successfully fetched.`)
     return response.data;
   } catch (error) {
-    console.error("Error fetching survey:", error);
+    console.error(`Error while fetching survey):`, error);
     throw error;
   }
 };
 
-const postDepressionSurveyAnswer = async (answerData: any) => {
+const postSurveyAnswer = async (answerData: any, surveyId: number, memberId: number, organizationId: number) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/survey?survey_id=1&member_id=1&organization_id=1`, answerData);
+    const response = await axios.post(answerData, `${API_BASE_URL}/survey?survey_id=${surveyId}&member_id=${memberId}&organization_id=${organizationId}`);
+    console.log(`Survey answer data sucessfully posted.`)
     return response.data;
   } catch (error) {
-    console.error("Error posting answer:", error);
+    console.error(`Error while posting answer to survey:`, error);
     throw error;
   }
 };
 
-export { getDepressionSurvey, getDementiaSurvey, getCustomSurvey };
+const useSurveyGet = (surveyId: number, memberId: number, organizationId: number) => {
+  return useQuery({
+    queryKey: ['surveyGet', surveyId, memberId, organizationId], 
+    queryFn: () => getSurvey(surveyId, memberId, organizationId),
+  });
+};
+
+const useDepressionSurveyGet = (memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+  return useSurveyGet(1, memberId, organizationId);
+};
+
+const useDementiaSurveyGet = (memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+  return useSurveyGet(2, memberId, organizationId);
+};
+
+const useSurveyAnswerPost = (answerData: any, surveyId: number, memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+  const queryClient = useQueryClient();
+  const key = ['surveyPost', surveyId, memberId, organizationId]
+  return useMutation({
+    mutationKey: key,
+    mutationFn: () => postSurveyAnswer(answerData, surveyId, memberId, organizationId),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: key })
+  });
+};
+
+const useDepressionSurveyAnswerPost = (answerData: any, memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+  return useSurveyAnswerPost(answerData, 1, memberId, organizationId);
+};
+
+const useDementiaSurveyAnswerPost = (answerData: any, memberId: number = 1, organizationId: number = 1) => { // TODO remove default params
+  return useSurveyAnswerPost(answerData, 2, memberId, organizationId);
+};
+
+export { useSurveyGet, useDepressionSurveyGet, useDementiaSurveyGet, useSurveyAnswerPost, useDepressionSurveyAnswerPost, useDementiaSurveyAnswerPost };
