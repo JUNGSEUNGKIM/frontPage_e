@@ -1,5 +1,6 @@
 // hooks
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 
 // components
 import { LSSlide, LSTutorialSideBar, PaginationDots } from "../components";
@@ -11,8 +12,9 @@ import { motion } from "motion/react";
 
 export function LSTutorialPage() {
 
-    const slidesRef = useRef<HTMLDivElement>(null)
+    const navigate = useNavigate();
 
+    const slidesRef = useRef<HTMLDivElement>(null)
     const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
     const changeSlide = useSlideStore((state) => state.changeSlide);
 
@@ -51,7 +53,7 @@ export function LSTutorialPage() {
                 if (deltaX > 0) {
                     changeSlide(Math.max(currentSlideIndex - 1, 0));
                 } else {
-                    changeSlide(Math.min(currentSlideIndex + 1, 5));
+                    changeSlide(Math.min(currentSlideIndex + 1, 6));
                 }
                 setTouchStartX(null);
             }
@@ -93,6 +95,7 @@ export function LSTutorialPage() {
                     {Array.from({ length: 6 }, (_, i) => (
                         <LSSlide index={i} key={i}/>
                     ))}
+                    <LSSlide index={6} key={6} buttonMode={true} onClick={() => navigate("/diagnosis")}/>
 
                     <div className="w-1/12 shrink-0"/>
 
@@ -140,7 +143,7 @@ function PageButtons() {
             <motion.button
                 onClick={() => {
                     if (buttonClickable) {
-                        changeSlide(Math.min(currentSlideIndex + 1, 5));
+                        changeSlide(Math.min(currentSlideIndex + 1, 6));
                         setTimeout(() => {
                             setButtonClickable(true)
                         }, buttonCooldown);

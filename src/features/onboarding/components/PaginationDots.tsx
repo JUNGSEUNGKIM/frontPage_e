@@ -6,7 +6,7 @@ export function PaginationDots() {
     const changeSlide = useSlideStore((state) => state.changeSlide);
 
     const dots = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
         dots.push(
         <button
             key={i}

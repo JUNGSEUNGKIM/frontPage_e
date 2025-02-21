@@ -72,5 +72,15 @@ export const slideData: Record<number, LSSlideData> = {
         borderColorGradientMiddle: "#FFFFFF",
         image: Dotted,
         shadow: ShadowYellow,
+    },
+    6: {
+        title: "startLabel",
+        description: "",
+        backgroundColorGradientTop: "#E3E9FF",
+        backgroundColorGradientBottom: "#A1B4FF",
+        borderColorGradientEdge: "#4460CF",
+        borderColorGradientMiddle: "#FFFFFF",
+        image: Partying,
+        shadow: ShadowBlue,
     }
 }

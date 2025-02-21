@@ -2,7 +2,7 @@ import whiteLogo from "@/assets/logo_white.png";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { useSlideStore } from "../stores/LSSlideStore";
-import { slideData } from "../stores";
+import { slideData } from "../constants";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -74,7 +74,7 @@ function TabBar() {
                 <div className={cn(highlightBoxStyle, "bg-white")} ref={highlightRef}/>
 
                 {/* 버튼 리스트 */}
-                {Array.from({ length: 6 }, (_, i) => (
+                {Array.from({ length: 7 }, (_, i) => (
                     <div className="z-10" ref={buttonRef} key={i}>
                         <button
                             className="w-full flex items-center justify-start p-4"
