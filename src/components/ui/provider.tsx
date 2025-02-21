@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export function Provider(props: ColorModeProviderProps) {
     const queryClient = new QueryClient();
 
-    // Disable context menu (viar right clicking or two finger tapping)
+    // Disable context menu (viar right clicking or two finger tapping) 
     useEffect(() => {
         const handleContextMenu = (e: any) => {
           e.preventDefault()
