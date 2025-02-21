@@ -6,44 +6,34 @@ import { slideData } from "../stores";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
-interface LSTutorialSideBarProps {
-    scrollPosition: number;
-}
+export default function LSTutorialSideBar() {
 
-export default function LSTutorialSideBar({
-    scrollPosition,
-}: LSTutorialSideBarProps) {
     const navigate = useNavigate();
 
     return (
-        <div
+        <div 
             className="w-1/6 h-screen bg-blue-500 flex flex-col justify-between"
             style={{
                 borderTopRightRadius: 50,
                 borderBottomRightRadius: 50,
             }}
         >
+
             {/* Logo */}
             <div className="w-2/5 flex flex-col items-end">
-                <button
-                    className="flex mr-1 mt-7 mb-8 w-[78%]"
-                    onClick={() => {
-                        navigate("/onboarding");
-                    }}
+                <button className="flex mr-1 mt-7 mb-8 w-[78%]"
+                    onClick={() => { navigate("/onboarding") }}
                 >
-                    <img src={whiteLogo} alt="Emma Healthcare Logo" />
+                    <img src={whiteLogo} alt="Emma Healthcare Logo"/>
                 </button>
             </div>
 
             {/* Tab 선택용 사이드바 */}
-            <TabBar scrollPosition={scrollPosition} />
+            <TabBar/>
 
-            <button
+            <button 
                 className="underline mb-[15%] text-white"
-                onClick={() => {
-                    navigate("/diagnosis");
-                }}
-                data-cy="skip"
+                onClick={() => { navigate("/diagnosis") }}
             >
                 Skip
             </button>
@@ -51,11 +41,8 @@ export default function LSTutorialSideBar({
     );
 }
 
-interface TabBarProps {
-    scrollPosition: number;
-}
+function TabBar() {
 
-function TabBar({ scrollPosition }: TabBarProps) {
     const [t] = useTranslation();
 
     const highlightRef = useRef<HTMLDivElement>(null);
@@ -68,28 +55,23 @@ function TabBar({ scrollPosition }: TabBarProps) {
     const changeSlide = useSlideStore((state) => state.changeSlide);
 
     const highlightBoxStyle = cn(
-        "w-5/6 transition-transform duration-300 ease-in-out z-5 py-7 rounded-2xl",
-        `h-[${buttonRef.current && buttonRef.current.offsetHeight}px]`
+        "w-5/6 transition-transform duration-300 ease-in-out z-5 py-7 rounded-2xl", 
+        `h-[${buttonRef.current && (buttonRef.current.offsetHeight)}px]`
     );
 
     useEffect(() => {
         if (highlightRef.current && containerRef.current && buttonRef.current) {
-            // if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
-            //     changeSlide(Math.round(scrollPosition))
-            // }
-            highlightRef.current.style.transform = `translateY(${
-                (currentSlideIndex + 1) * buttonRef.current.offsetHeight
-            }px)`;
+            highlightRef.current.style.transform = `translateY(${(currentSlideIndex + 1) * (buttonRef.current.offsetHeight)}px)`;
         }
-    }, [scrollPosition, currentSlideIndex]);
+    }, [currentSlideIndex]);
 
     return (
         <div className="w-full flex flex-col" ref={containerRef}>
+            
             <div className="w-full h-full flex flex-col justify-center items-center">
-                <div
-                    className={cn(highlightBoxStyle, "bg-white")}
-                    ref={highlightRef}
-                />
+
+                {/* 이동식 버튼 하이라이트 박스 */}
+                <div className={cn(highlightBoxStyle, "bg-white")} ref={highlightRef}/>
 
                 {/* 버튼 리스트 */}
                 {Array.from({ length: 6 }, (_, i) => (
@@ -98,24 +80,21 @@ function TabBar({ scrollPosition }: TabBarProps) {
                             className="w-full flex items-center justify-start p-4"
                             onClick={() => {
                                 if (buttonClickable) {
-                                    setButtonClickable(false);
+                                    setButtonClickable(false)
                                     changeSlide(i);
                                     setTimeout(() => {
-                                        setButtonClickable(true);
+                                        setButtonClickable(true)
                                     }, 50);
                                 }
-                                setButtonClickable(false);
+                                setButtonClickable(false)
                             }}
-                            data-cy={`slide-button-${i}`}
                         >
-                            <div />
-                            <div
-                                className={cn(
-                                    "flex flex-col items-center justify-center gap-4 w-full",
-                                    currentSlideIndex === i
-                                        ? "text-blue-500"
-                                        : "text-white"
-                                )}
+                            <div/>
+                            <div 
+                                className={
+                                    cn("flex flex-col items-center justify-center gap-4 w-full", 
+                                    currentSlideIndex === i ? "text-blue-500" : "text-white")
+                                }
                             >
                                 {t(slideData[i].title)}
                             </div>
@@ -123,7 +102,8 @@ function TabBar({ scrollPosition }: TabBarProps) {
                     </div>
                 ))}
 
-                <div className={highlightBoxStyle} />
+                <div className={highlightBoxStyle}/>
+
             </div>
         </div>
     );
