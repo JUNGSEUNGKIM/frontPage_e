@@ -6,6 +6,7 @@ interface DiagnosisStore {
     currentDiagnosis: DiagnosisType;
     surveyState: SurveyState;
     // functions
+    init: () => void;
     selectDiagnosis: (value: DiagnosisType) => void;
     /// set survey with given questions and options
     setSurvey: (survey: Survey | undefined) => void;
@@ -33,22 +34,62 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
             description_en: "",
             image_url: "",
             organization: {
-                organization_id: 0
+                organization_id: 0,
             },
-            questions: [{
-                question_id: 0,
-                question_text: "",
-                question_text_en: "",
-                question_type: "",
-                choices: [{
-                    choice_value: "",
-                    choice_label: "",
-                    choice_label_en: "",
-                    choice_order: 0,
-                }]
-            }]
+            questions: [
+                {
+                    question_id: 0,
+                    question_text: "",
+                    question_text_en: "",
+                    question_type: "",
+                    choices: [
+                        {
+                            choice_value: "",
+                            choice_label: "",
+                            choice_label_en: "",
+                            choice_order: 0,
+                        },
+                    ],
+                },
+            ],
         },
     },
+    init: () =>
+        set({
+            currentDiagnosis: null,
+            surveyState: {
+                status: "init",
+                currentIndex: 0,
+                responses: [],
+                survey: {
+                    survey_id: 0,
+                    title: "",
+                    title_en: "",
+                    description: "",
+                    description_en: "",
+                    image_url: "",
+                    organization: {
+                        organization_id: 0,
+                    },
+                    questions: [
+                        {
+                            question_id: 0,
+                            question_text: "",
+                            question_text_en: "",
+                            question_type: "",
+                            choices: [
+                                {
+                                    choice_value: "",
+                                    choice_label: "",
+                                    choice_label_en: "",
+                                    choice_order: 0,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            },
+        }),
     selectDiagnosis: (value) => set({ currentDiagnosis: value }),
     setSurvey: (survey) =>
         set((state) => ({
