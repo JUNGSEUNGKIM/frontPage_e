@@ -1,25 +1,37 @@
 import { useTranslation } from "react-i18next";
-import DiagnosisSelectableButton from "./DiagnosisSelectableButton";
+import { useEffect, useState } from "react";
+import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 
 // components
 import PrimaryButton from "@/shared/components/PrimaryButton";
+import DiagnosisSelectableButton from "./DiagnosisSelectableButton";
+
+// services
+import { useDepressionSurveyGet, useDementiaSurveyGet } from "../services/surveyService";
+
+// types
+import { Survey } from "@/types";
 
 // assets
 import Crying from "@/assets/animations/crying.png";
 import Thinking from "@/assets/animations/thinking.png";
-import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
-import { useEffect, useState } from "react";
-import { useDepressionSurveyGet, useDementiaSurveyGet } from "../services/surveyService";
-import { Survey } from "@/shared/types/survey_types";
+import { UseQueryResult } from "@tanstack/react-query";
 
 export default function SelectDiagnosisFragment() {
     const [t] = useTranslation();
 
-    const { currentDiagnosis, selectDiagnosis, setSurvey, surveyState } =
-        useDiagnosisStore();
+    const { currentDiagnosis, selectDiagnosis, setSurvey, surveyState } = useDiagnosisStore();
 
-    const depressionSurvey = useDepressionSurveyGet().data;
-    const dementiaSurvey = useDementiaSurveyGet().data;
+    const depressionSurvey = useDepressionSurveyGet();
+    const dementiaSurvey = useDementiaSurveyGet();
+
+    const getSelectedSurvey = (): UseQueryResult<any, Error> | null => {
+        switch (currentDiagnosis) {
+            case "depression": return depressionSurvey;
+            case "dementia": return dementiaSurvey;
+            default: return null;
+        }
+    } 
 
     return (
         <div className="w-full h-full flex flex-col items-center gap-4 px-4">
@@ -53,16 +65,14 @@ export default function SelectDiagnosisFragment() {
             </div>
 
             <PrimaryButton
-                label={t("btnStartDiagnosis")}
-                onClick={() => {
-                    if (surveyState.status !== "onProgress") {
-                        switch (currentDiagnosis) {
-                            case "depression": setSurvey(depressionSurvey); break;
-                            default: setSurvey(dementiaSurvey);
-
-                        }
-                    }
-                }}
+                label={
+                    getSelectedSurvey() === null ?  t("diagnosisNotSelected") 
+                    : getSelectedSurvey()?.isSuccess ? t("btnStartDiagnosis") 
+                    : getSelectedSurvey()?.isError ? t("errorLabel")
+                    : t("diagnosisLoading")
+                }
+                disabled={getSelectedSurvey() === null || surveyState.status === "onProgress" || !getSelectedSurvey()?.isSuccess}
+                onClick={() => setSurvey(getSelectedSurvey()?.data)}
             />
         </div>
     );

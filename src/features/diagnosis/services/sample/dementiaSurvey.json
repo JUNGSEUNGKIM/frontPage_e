@@ -1,0 +1,415 @@
+{
+    "survey_id": 2,
+    "title": "치매 설문",
+    "title_en": "Dementia Survey",
+    "description": "치매 관련 증상을 평가하는 설문입니다.",
+    "description_en": "A survey to assess dementia-related symptoms.",
+    "image_url": null,
+    "questions": [
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 10,
+        "question_text": "최근 과거 사건을 기억하는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having difficulty recalling recent past events"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 11,
+        "question_text": "며칠 전에 들은 내용을 쉽게 잊어버립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Easily forget things you heard a few days ago"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 12,
+        "question_text": "반복적인 일상 활동에서 패턴을 깨거나 바꾸는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having trouble breaking and changing the pattern in repetitive daily activities"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 13,
+        "question_text": "개인적으로 중요한 것을 잊어버립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Forgetting things that are personally important"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 14,
+        "question_text": "반복적으로 무언가를 하다가 잊어버립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Repetitively doing something and then forgetting about it"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 15,
+        "question_text": "약속했던 것을 잊어버립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Forgetting promises you have made"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 16,
+        "question_text": "대화 중에 주제를 잊어버립니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Forgetting the topic while having a conversation"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 17,
+        "question_text": "즉시 말할 내용이나 표현을 떠올리는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Unable to immediately think of what to say or express"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 18,
+        "question_text": "일상적인 물건의 이름을 빨리 떠올리지 못합니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Unable to quickly recall the names of everyday objects"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 19,
+        "question_text": "TV 프로그램의 내용을 이해하는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having difficulty understanding the content of television shows"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 20,
+        "question_text": "방문한 장소를 기억하지 못합니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Unable to recall the places you have visited"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 21,
+        "question_text": "길을 잃거나 헤맨 적이 있습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having been lost or wandering"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 22,
+        "question_text": "간단한 수학 문제를 푸는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having difficulty solving simple math problems"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 23,
+        "question_text": "금전 관리를 하는 데 실수를 합니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Making mistakes in managing money"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "전혀 아님",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Not at all"
+          },
+          {
+            "choice_label": "가끔",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Sometimes"
+          },
+          {
+            "choice_label": "자주",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Often"
+          }
+        ],
+        "question_id": 24,
+        "question_text": "이전에 사용했던 기기를 사용하는 데 어려움을 겪습니다",
+        "question_type": "multiple_choice",
+        "question_text_en": "Having difficulty using equipment that you have used in the past"
+      }
+    ]
+  }

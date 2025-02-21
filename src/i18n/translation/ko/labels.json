@@ -16,6 +16,8 @@
     "rppgStressLabel" : "스트레스",
     "DepressionDiagnosisLabel" : "우울증 진단 (PHQ-9)",
     "DementiaDiagnosisLabel" : "인지장애 진단",
+    "diagnosisLoading" : "진단서 불러오는 중...",
+    "diagnosisNotSelected" : "진단 유형이 선택되지 않았습니다",
     "tapBtnDiagnosis" : "진단",
     "tapBtnDtx" : "DTx",
     "tapAIChat" : "챗봇 상담",
@@ -36,5 +38,6 @@
     "emotionHappyLabel" : "행복",
     "emotionNeutralLabel" : "중립",
     "emotionSadLabel" : "슬픔",
-    "emotionSurprisedLabel" : "놀람"
+    "emotionSurprisedLabel" : "놀람",
+    "errorLabel" : "오류가 발생하였습니다"
 }

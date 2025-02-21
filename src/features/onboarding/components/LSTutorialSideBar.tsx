@@ -6,11 +6,7 @@ import { slideData } from "../stores";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
-interface LSTutorialSideBarProps {
-    scrollPosition: number,
-}
-
-export default function LSTutorialSideBar({scrollPosition}: LSTutorialSideBarProps) {
+export default function LSTutorialSideBar() {
 
     const navigate = useNavigate();
 
@@ -33,7 +29,7 @@ export default function LSTutorialSideBar({scrollPosition}: LSTutorialSideBarPro
             </div>
 
             {/* Tab 선택용 사이드바 */}
-            <TabBar scrollPosition={scrollPosition}/>
+            <TabBar/>
 
             <button 
                 className="underline mb-[15%] text-white"
@@ -45,11 +41,7 @@ export default function LSTutorialSideBar({scrollPosition}: LSTutorialSideBarPro
     );
 }
 
-interface TabBarProps {
-    scrollPosition: number,
-}
-
-function TabBar({scrollPosition}: TabBarProps) {
+function TabBar() {
 
     const [t] = useTranslation();
 
@@ -69,22 +61,19 @@ function TabBar({scrollPosition}: TabBarProps) {
 
     useEffect(() => {
         if (highlightRef.current && containerRef.current && buttonRef.current) {
-            // if (isListeningScroll && Math.abs(scrollPosition - currentSlideIndex) >= 0.5) {
-            //     changeSlide(Math.round(scrollPosition))
-            // }
             highlightRef.current.style.transform = `translateY(${(currentSlideIndex + 1) * (buttonRef.current.offsetHeight)}px)`;
         }
-    }, [scrollPosition, currentSlideIndex]);
-
-    
+    }, [currentSlideIndex]);
 
     return (
         <div className="w-full flex flex-col" ref={containerRef}>
             
             <div className="w-full h-full flex flex-col justify-center items-center">
 
+                {/* 이동식 버튼 하이라이트 박스 */}
                 <div className={cn(highlightBoxStyle, "bg-white")} ref={highlightRef}/>
 
+                {/* 버튼 리스트 */}
                 {Array.from({ length: 6 }, (_, i) => (
                     <div className="z-10" ref={buttonRef} key={i}>
                         <button
@@ -107,7 +96,6 @@ function TabBar({scrollPosition}: TabBarProps) {
                                     currentSlideIndex === i ? "text-blue-500" : "text-white")
                                 }
                             >
-                                {/* <img src={selectedIcon} className={iconStyle}/> */}
                                 {t(slideData[i].title)}
                             </div>
                         </button>
