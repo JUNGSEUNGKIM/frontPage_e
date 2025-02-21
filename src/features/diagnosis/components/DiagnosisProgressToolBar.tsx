@@ -1,12 +1,14 @@
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
+import { useModalStore } from "@/shared/stores/modalStore";
 
 export default function DiagnosisProgressToolBar({
     selectedIdx,
 }: {
     selectedIdx: number | null;
 }) {
-    const { surveyState, answerQuestion, goPrevious, init } =
-        useDiagnosisStore();
+    const { surveyState, answerQuestion, goPrevious } = useDiagnosisStore();
+
+    const { showModal } = useModalStore();
 
     // submit function (go to next question)
     function handleSubmit() {
@@ -21,8 +23,9 @@ export default function DiagnosisProgressToolBar({
         goPrevious();
     }
 
+    //stop
     function handleInit() {
-        init();
+        showModal();
     }
 
     const enabledClassName = "text-blue-500";

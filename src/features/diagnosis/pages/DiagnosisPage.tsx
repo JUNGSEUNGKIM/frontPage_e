@@ -18,11 +18,14 @@ import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
 import { ChatFragment } from "../../../components/fragment/ChatFragment";
 import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
+import { useModalStore } from "@/shared/stores/modalStore";
+import AlertModal from "@/shared/components/AlertModal";
 
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
     const { currentDiagnosis, surveyState } = useDiagnosisStore();
+    const { isVisible } = useModalStore();
 
     const hrRef = useRef<string[]>([]);
 
@@ -63,6 +66,9 @@ export function DiagnosisPage() {
 
     return isLandScape() ? (
         <div className="w-screen h-screen flex flex-row bg-[#f8f8f8]">
+            {/* modal */}
+            {isVisible && <DiagnosisProgressModal />}
+
             {/* TODO: add measurement values as props */}
             <DiagnosisSidebar measurementValue={measurement}>
                 <FaceDetectionApp onValueChanged={handleMeasurement} />
@@ -95,6 +101,9 @@ export function DiagnosisPage() {
     ) : (
         // full screen container for vertical kiosk
         <div className="w-full h-screen flex flex-col bg-[#f8f8f8] gap-4">
+            {/* modal */}
+            {isVisible && <DiagnosisProgressModal />}
+
             <DiagnosisAppBar />
             {/* Face Detection Part */}
             <FaceDetectionApp onValueChanged={handleMeasurement} />
@@ -129,5 +138,23 @@ export function DiagnosisPage() {
             {/* Bottom Navigtor (change Tabs) */}
             <BottomNavigator />
         </div>
+    );
+}
+
+function DiagnosisProgressModal() {
+    const { hideModal } = useModalStore();
+    const { init } = useDiagnosisStore();
+    return (
+        <AlertModal
+            title="알림"
+            desc="진행 중인 진단을 종료할까요?"
+            onAccept={() => {
+                hideModal();
+                init();
+            }}
+            onCancel={() => {
+                hideModal();
+            }}
+        />
     );
 }
