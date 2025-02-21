@@ -4,10 +4,12 @@ export default function SelectableLanguageButton({
     label,
     isSelected,
     onClick,
+    cy,
 }: {
     label: string;
     isSelected: boolean;
     onClick: () => void;
+    cy: string;
 }) {
     return (
         <motion.button
@@ -18,6 +20,7 @@ export default function SelectableLanguageButton({
                     ? "bg-blue-300 text-white border border-blue-500"
                     : "bg-slate-100 text-black"
             }`}
+            data-cy={cy}
         >
             {label}
         </motion.button>
