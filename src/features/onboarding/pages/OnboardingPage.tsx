@@ -63,11 +63,13 @@ export function OnboardingPage() {
                         label={"🇬🇧"}
                         onClick={() => i18n.changeLanguage("en")}
                         isSelected={i18n.language === "en"}
+                        cy="selectable-en"
                     />
                     <SelectableLanguageButton
                         label={"🇰🇷"}
                         onClick={() => i18n.changeLanguage("ko")}
                         isSelected={i18n.language === "ko"}
+                        cy="selectable-ko"
                     />
                 </div>
             </div>
@@ -113,6 +115,7 @@ function OnboardingBottomToolBar() {
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-[70%] h-full p-8 flex flex-col items-center justify-center bg-white rounded-2xl  text-black text-3xl font-bold shadow-xl"
+                data-cy="ls-start-button"
             >
                 <h1>{t("btnStart")}</h1>
             </motion.button>
@@ -122,11 +125,13 @@ function OnboardingBottomToolBar() {
                     label={"🇬🇧"}
                     onClick={() => i18n.changeLanguage("en")}
                     isSelected={i18n.language === "en"}
+                    cy="ls-selectable-en"
                 />
                 <SelectableLanguageButton
                     label={"🇰🇷"}
                     onClick={() => i18n.changeLanguage("ko")}
                     isSelected={i18n.language === "ko"}
+                    cy="ls-selectable-ko"
                 />
             </div>
         </div>
