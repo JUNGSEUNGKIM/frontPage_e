@@ -17,6 +17,7 @@ import { RPPGMeasurement } from "@/types";
 import { useNavigate } from "react-router";
 import { useCameraStore } from "@/shared/stores/cameraStore";
 import CameraFlipIcon from "@/assets/icons/cameraFlip.png";
+import { motion } from "motion/react";
 
 interface LSDiagnosisSidebarProps {
     children: ReactNode;
@@ -47,9 +48,15 @@ export default function DiagnosisSidebar({
                     <div className="w-full h-full rounded-2xl overflow-clip flex justify-center items-center bg-black">
                         {children}
                     </div>
-                    <button className="bg-white rounded-full m-4 absolute" onClick={() => setIsCameraMirrored(!isCameraMirrored)}>
+
+                    {/* Camera 좌우 반전 버튼 */}
+                    <motion.button 
+                        className="bg-white rounded-full m-4 absolute opacity-50" 
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsCameraMirrored(!isCameraMirrored)}
+                    >
                         <img src={CameraFlipIcon} className="w-12 h-12 m-2"/>
-                    </button>
+                    </motion.button>
                 </div>
 
                 {/* rPPG 데이터 전시 카드들 */}
