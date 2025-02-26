@@ -84,7 +84,6 @@ export function LSTutorialPage() {
             <div className="flex flex-col w-5/6 h-full">
 
                 <div className="h-full flex flex-nowrap overflow-x-hidden snap-x no-scrollbar"
-                    style={{touchAction: 'none'}}
                     ref={slidesRef}
                 >
                     <div className="w-1/12 shrink-0"/>
