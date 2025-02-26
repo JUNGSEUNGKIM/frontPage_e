@@ -20,6 +20,7 @@ import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";
 import AlertModal from "@/shared/components/AlertModal";
+import { CameraFlipButton } from "../components";
 
 export function DiagnosisPage() {
     // stores
@@ -101,17 +102,33 @@ export function DiagnosisPage() {
     ) : (
         // full screen container for vertical kiosk
         <div className="w-full h-screen flex flex-col bg-[#f8f8f8] gap-4">
+
             {/* modal */}
             {isVisible && <DiagnosisProgressModal />}
 
-            <DiagnosisAppBar />
-            {/* Face Detection Part */}
-            <FaceDetectionApp onValueChanged={handleMeasurement} />
-            {/* Gap */}
-            <div className="h-8" />
-            {/* rPPGMeasurement Item List */}
-            <RppgMeasurementList measurementValue={measurement} />
+            <div 
+                className="w-full bg-blue-500 pb-8"
+                style={{
+                    borderBottomLeftRadius: 50,
+                    borderBottomRightRadius: 50,
+                }}
+            >
+
+                <DiagnosisAppBar />
+
+                {/* Face Detection Part */}
+                <FaceDetectionApp onValueChanged={handleMeasurement} />
+
+                {/* Gap */}
+                <div className="h-8" />
+
+                {/* rPPGMeasurement Item List */}
+                <RppgMeasurementList measurementValue={measurement} />
+
+            </div>
+
             <div className="h-5/6 flex flex-col px-4">
+            
                 {/* Tab-based Fragments */}
                 {currentTab === "diagnosis" && (
                     <>
