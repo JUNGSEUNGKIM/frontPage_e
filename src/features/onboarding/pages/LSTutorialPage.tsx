@@ -35,7 +35,7 @@ export function LSTutorialPage() {
         }
     }, [currentSlideIndex]);
 
-    // 좌우 넘기기 모션 감지지
+    // 좌우 넘기기 모션 감지
     useEffect(() => {
         const handleTouchStart = (event: TouchEvent) => {
         setTouchStartX(event.touches[0].clientX);

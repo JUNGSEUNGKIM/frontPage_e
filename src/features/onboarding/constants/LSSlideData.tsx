@@ -5,12 +5,14 @@ import Monocle from "@/assets/animations/monocle.png"
 import Clip from "@/assets/animations/clip.png"
 import Clown from "@/assets/animations/clown.png"
 import Dotted from "@/assets/animations/dotted.png"
+import Rocket from "@/assets/animations/rocket.png"
 import ShadowBlue from "@/assets/shadows/shadow_blue.png"
 import ShadowGreen from "@/assets/shadows/shadow_green.png"
 import ShadowPink from "@/assets/shadows/shadow_pink.png"
 import ShadowPurple from "@/assets/shadows/shadow_purple.png"
 import ShadowMagenta from "@/assets/shadows/shadow_magenta.png"
 import ShadowYellow from "@/assets/shadows/shadow_yellow.png"
+import ShadowIndigo from "@/assets/shadows/shadow_indigo.png"
 
 export const slideData: Record<number, LSSlideData> = {
     0: {
@@ -80,7 +82,7 @@ export const slideData: Record<number, LSSlideData> = {
         backgroundColorGradientBottom: "#A1B4FF",
         borderColorGradientEdge: "#4460CF",
         borderColorGradientMiddle: "#FFFFFF",
-        image: Partying,
-        shadow: ShadowBlue,
+        image: Rocket,
+        shadow: ShadowIndigo,
     }
 }
