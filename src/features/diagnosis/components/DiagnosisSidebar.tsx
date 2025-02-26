@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import { RPPGMeasurement } from "@/types";
 import { useNavigate } from "react-router";
+import { useCameraStore } from "@/shared/stores/cameraStore";
+import CameraFlipIcon from "@/assets/icons/cameraFlip.png";
 
 interface LSDiagnosisSidebarProps {
     children: ReactNode;
@@ -25,6 +27,9 @@ export default function DiagnosisSidebar({
     children,
     measurementValue,
 }: LSDiagnosisSidebarProps) {
+
+    const { isCameraMirrored, setIsCameraMirrored } = useCameraStore();
+
     return (
         <div
             className="w-1/3 h-screen bg-blue-500 flex"
@@ -38,8 +43,13 @@ export default function DiagnosisSidebar({
 
             <div className="w-4/5 flex flex-col gap-10 p-12 pb-24">
                 {/* Camera */}
-                <div className="rounded-2xl overflow-clip h-[50%]">
-                    {children}
+                <div className="rounded-2xl overflow-clip h-[50%] flex justify-end">
+                    <div className="w-full h-full rounded-2xl overflow-clip flex justify-center items-center bg-black">
+                        {children}
+                    </div>
+                    <button className="bg-white rounded-full m-4 absolute" onClick={() => setIsCameraMirrored(!isCameraMirrored)}>
+                        <img src={CameraFlipIcon} className="w-12 h-12 m-2"/>
+                    </button>
                 </div>
 
                 {/* rPPG 데이터 전시 카드들 */}

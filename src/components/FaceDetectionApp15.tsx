@@ -6,6 +6,8 @@ import { Camera } from "@mediapipe/camera_utils";
 import cv from "@techstark/opencv-js";
 import { RPPGMeasurement } from "@/types/rppg_types";
 import { Flex } from "@chakra-ui/react";
+import { useCameraStore } from "@/shared/stores/cameraStore";
+import { cn } from "@/lib/utils";
 
 type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
 
@@ -20,6 +22,7 @@ const FaceDetectionApp = ({
     const canvasRef = useRef(null);
     // const skinCanvasRef = useRef(null);
     const [isMirrored, setIsMirrored] = useState(false);
+    const { isCameraMirrored } = useCameraStore();
     const socketRef = useRef(null);
     const frameCountRef = useRef(0);
     const lastEmotionSendTimeRef = useRef(Date.now());
@@ -51,6 +54,7 @@ const FaceDetectionApp = ({
             imageBufferRef.current = []; // 버퍼 비우기
         }
     }, []);
+
     useEffect(() => {
         return () => {
             if (timeoutIdRef.current) {
@@ -311,7 +315,7 @@ const FaceDetectionApp = ({
         canvasCtx.save();
 
         if (isMirrored) {
-            canvasCtx.scale(-1, 1);
+            canvasCtx.scale(1, 1);
             canvasCtx.translate(-canvasRef.current.width, 0);
         }
 
@@ -517,7 +521,12 @@ const FaceDetectionApp = ({
     }, []);
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div 
+            className={cn(
+                "flex flex-col justify-center items-center",
+                isCameraMirrored && "scale-x-[-1]"
+            )}
+        >
             <video
                 ref={videoRef}
                 style={{ display: "none" }}
