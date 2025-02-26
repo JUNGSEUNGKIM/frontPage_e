@@ -1,39 +1,30 @@
 import { useTranslation } from "react-i18next";
-import { slideData, useSlideStore } from "../stores";
-import { useEffect, useRef, useState } from "react";
+import { useSlideStore } from "../stores";
+import { slideData } from "../constants";
+import { useRef } from "react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { log } from "@techstark/opencv-js";
+import PrimaryButton from "@/shared/components/PrimaryButton";
 
 interface LSSlideProps {
     index: number,
+    buttonMode?: boolean,
+    onClick?: () => void,
 }
 
-export default function LSSlide({index}: LSSlideProps) {
+export default function LSSlide({ index, buttonMode = false, onClick = () => {}}: LSSlideProps) {
 
     const [t] = useTranslation();
 
     const slideRef = useRef<HTMLDivElement>(null);
-    const [isTranslated, setIsTranslated] = useState(false);
 
-    const currentSlideIndex = useSlideStore((state) => state.currentSlideIndex);
     const changeSlide = useSlideStore((state) => state.changeSlide);
-
-    // useEffect(() => {
-    //     if (slideRef.current) {
-    //         if (currentSlideIndex === index) {
-    //             setIsTranslated(true);
-    //         } else {
-    //             setIsTranslated(false);
-    //         }
-    //     }
-    // }, [currentSlideIndex]);
 
     return (
         <div 
             className={cn(
                 "w-5/6 flex flex-col items-center justify-center px-8 my-28 snap-center shrink-0", 
                 "transition-transform duration-300 ease-in-out", 
-                isTranslated && "translate-y-[-5%]"
             )}
             ref={slideRef}
             
@@ -62,9 +53,15 @@ export default function LSSlide({index}: LSSlideProps) {
                     <img className="h-1/2 translate-y-1/4 z-10" src={slideData[index].image}/>
                     <img className="h-1/4" src={slideData[index].shadow}/>
 
-                    <p className="text-2xl font-medium text-gray-700 bottom-0 w-1/2 text-center">
-                        {t(slideData[index].description)}
-                    </p>
+                    {buttonMode ? 
+                        <div className="w-[67%]">
+                            <PrimaryButton label={t("btnStart")} onClick={onClick} />
+                        </div>
+                    :
+                        <p className="text-2xl font-medium text-gray-700 bottom-0 w-1/2 text-center">
+                            {t(slideData[index].description)}
+                        </p>
+                    }
                 </div>
             </div>
         </div>

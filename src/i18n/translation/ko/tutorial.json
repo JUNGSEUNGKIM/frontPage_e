@@ -10,5 +10,6 @@
     "disclaimerLabel": "주의사항",
     "disclaimerDescription": "진한 화장은 rPPG 분석 정확도에 영향을 줄 수 있습니다.\n참고해 주세요!",
     "cameraTipsLabel": "카메라 주의사항",
-    "cameraTipsDescription": "정확한 분석을 위해 카메라에서 너무 멀어지거나\n움직임이 많지 않도록 주의하세요."
+    "cameraTipsDescription": "정확한 분석을 위해 카메라에서 너무 멀어지거나\n움직임이 많지 않도록 주의하세요.",
+    "startLabel":"준비 되셨나요?"
 }

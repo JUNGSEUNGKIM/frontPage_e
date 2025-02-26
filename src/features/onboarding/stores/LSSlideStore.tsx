@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { LSSlideData } from "../types";
-import { slideData } from "./LSSlideDataStore";
+import { slideData } from "../constants/LSSlideData";
 
 interface LSSlideStore {
     currentSlide: LSSlideData;

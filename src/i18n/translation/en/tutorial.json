@@ -10,5 +10,6 @@
     "disclaimerLabel": "Disclaimer",
     "disclaimerDescription":"Wearing heavy makeup may affect the accuracy of rPPG analysis.\nPlease keep this in mind!",
     "cameraTipsLabel":"Camera Tips",
-    "cameraTipsDescription":"For accurate analysis, avoid moving too much or staying too far from the camera."
+    "cameraTipsDescription":"For accurate analysis, avoid moving too much or staying too far from the camera.",
+    "startLabel":"Ready?"
 }
