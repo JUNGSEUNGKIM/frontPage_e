@@ -116,8 +116,13 @@ export function DiagnosisPage() {
 
                 <DiagnosisAppBar />
 
+
                 {/* Face Detection Part */}
-                <FaceDetectionApp onValueChanged={handleMeasurement} />
+                <div>
+                    <FaceDetectionApp onValueChanged={handleMeasurement} />
+                    
+                </div>
+
 
                 {/* Gap */}
                 <div className="h-8" />

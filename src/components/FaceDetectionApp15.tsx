@@ -8,6 +8,8 @@ import { RPPGMeasurement } from "@/types/rppg_types";
 import { Flex } from "@chakra-ui/react";
 import { useCameraStore } from "@/shared/stores/cameraStore";
 import { cn } from "@/lib/utils";
+import { CameraFlipButton } from "@/features/diagnosis/components";
+import isLandScape from "@/utls/is_landscape";
 
 type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
 
@@ -521,11 +523,8 @@ const FaceDetectionApp = ({
     }, []);
 
     return (
-        <div 
-            className={cn(
-                "flex flex-col justify-center items-center",
-                isCameraMirrored && "scale-x-[-1]"
-            )}
+        <div
+            className="flex flex-col justify-center items-center"
         >
             <video
                 ref={videoRef}
@@ -534,10 +533,16 @@ const FaceDetectionApp = ({
                 playsInline
             />
             {/* canvas for detect check */}
-            <canvas
-                ref={canvasRef}
-                className="w-[640px] h-[480px] rounded-lg bg-blue-200"
-            />
+            <div className="flex justify-end">
+                {!isCameraMirrored && !isLandScape() && <CameraFlipButton />}
+                <canvas
+                    ref={canvasRef}
+                    className={cn("w-[640px] h-[480px] rounded-lg bg-blue-200",
+                        isCameraMirrored && "scale-x-[-1]"
+                    )}
+                />
+                {isCameraMirrored && !isLandScape() && <CameraFlipButton />}
+            </div>
             {/* canvas for skin extract */}
             {/*<canvas ref={skinCanvasRef} style={{ display: "none" }} />*/}
         </div>
