@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { AnswerButton } from "@/components/custom/AnswerButton";
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
-import DiagnosisProgressToolBar from "./DiagnosisProgressToolBar";
+import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 
 export default function DiagnosisProgressFragment() {

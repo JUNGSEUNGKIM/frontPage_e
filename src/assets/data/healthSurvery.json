@@ -1,0 +1,290 @@
+{
+    "survey_id": 0,
+    "title": "기초 설문",
+    "title_en": "Health survey",
+    "description": "기초 공통 설문지입니다.",
+    "description_en": "An essential survey to be answered prior to taking the diagnostic surveys.",
+    "image_url": null,
+    "organization_id": 0,
+    "questions": [
+      {
+        "choices": [
+          {
+            "choice_label": "남성",
+            "choice_order": 1,
+            "choice_value": "남성",
+            "choice_label_en": "Male"
+          },
+          {
+            "choice_label": "여성",
+            "choice_order": 2,
+            "choice_value": "여성",
+            "choice_label_en": "Female"
+          }
+        ],
+        "question_id": 10,
+        "question_text": "성별을 선택하세요",
+        "question_type": "multiple_choice",
+        "question_text_en": "Please select your gender."
+      },
+      {
+        "choices": [],
+        "question_id": 11,
+        "question_text": "나이를 입력하세요",
+        "question_type": "number",
+        "question_text_en": "Please enter your age."
+      },
+      {
+        "choices": [],
+        "question_id": 12,
+        "question_text": "키를 입력하세요 (선택사항)",
+        "question_type": "number",
+        "question_text_en": "Please enter your height (optional)."
+      },
+      {
+        "choices": [],
+        "question_id": 13,
+        "question_text": "체중을 입력하세요 (선택사항)",
+        "question_type": "number",
+        "question_text_en": "Please enter your weight (optional)."
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "네",
+            "choice_order": 1,
+            "choice_value": "네",
+            "choice_label_en": "Yes"
+          },
+          {
+            "choice_label": "아니오",
+            "choice_order": 2,
+            "choice_value": "아니오",
+            "choice_label_en": "No"
+          }
+        ],
+        "question_id": 14,
+        "question_text": "현재 정기적으로 운동을 하고 있나요?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you participate in regular excercise?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "없음",
+            "choice_order": 1,
+            "choice_value": "없음",
+            "choice_label_en": "Never"
+          },
+          {
+            "choice_label": "1~2회",
+            "choice_order": 2,
+            "choice_value": "1~2회",
+            "choice_label_en": "1~2 times"
+          },
+          {
+            "choice_label": "3~5회",
+            "choice_order": 3,
+            "choice_value": "3~5회",
+            "choice_label_en": "3~5 times"
+          },
+          {
+            "choice_label": "6회 이상",
+            "choice_order": 4,
+            "choice_value": "6회 이상",
+            "choice_label_en": "6 times or more"
+          }
+        ],
+        "question_id": 15,
+        "question_text": "주당 운동 횟수는?",
+        "question_type": "multiple_choice",
+        "question_text_en": "How often do you exercise per week?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "4시간 이하",
+            "choice_order": 1,
+            "choice_value": "4시간 이하",
+            "choice_label_en": "Less than 4 hours"
+          },
+          {
+            "choice_label": "4~6시간",
+            "choice_order": 2,
+            "choice_value": "4~6시간",
+            "choice_label_en": "4~6 hours"
+          },
+          {
+            "choice_label": "6~8시간",
+            "choice_order": 3,
+            "choice_value": "6~8시간",
+            "choice_label_en": "6~8 hours"
+          },
+          {
+            "choice_label": "8시간 이상",
+            "choice_order": 4,
+            "choice_value": "8시간 이상",
+            "choice_label_en": "8 hours or more"
+          }
+        ],
+        "question_id": 16,
+        "question_text": "하루 평균 수면 시간은?",
+        "question_type": "multiple_choice",
+        "question_text_en": "How long do you sleep per day on average?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "매우 나쁨",
+            "choice_order": 1,
+            "choice_value": "매우 나쁨",
+            "choice_label_en": "Very bad"
+          },
+          {
+            "choice_label": "나쁨",
+            "choice_order": 2,
+            "choice_value": "나쁨",
+            "choice_label_en": "Bad"
+          },
+          {
+            "choice_label": "보통",
+            "choice_order": 3,
+            "choice_value": "보통",
+            "choice_label_en": "Normal"
+          },
+          {
+            "choice_label": "좋음",
+            "choice_order": 4,
+            "choice_value": "좋음",
+            "choice_label_en": "Good"
+          }
+        ],
+        "question_id": 17,
+        "question_text": "최근 1주일 동안 수면의 질은?",
+        "question_type": "multiple_choice",
+        "question_text_en": "How was your sleep quality in the past week?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "매우 낮음",
+            "choice_order": 1,
+            "choice_value": "매우 낮음",
+            "choice_label_en": "Very low"
+          },
+          {
+            "choice_label": "낮음",
+            "choice_order": 2,
+            "choice_value": "낮음",
+            "choice_label_en": "Low"
+          },
+          {
+            "choice_label": "보통",
+            "choice_order": 3,
+            "choice_value": "보통",
+            "choice_label_en": "Moderate"
+          },
+          {
+            "choice_label": "높음",
+            "choice_order": 4,
+            "choice_value": "높음",
+            "choice_label_en": "High"
+          },
+          {
+            "choice_label": "매우 높음",
+            "choice_order": 5,
+            "choice_value": "매우 높음",
+            "choice_label_en": "Very high"
+          }
+        ],
+        "question_id": 18,
+        "question_text": "최근 1주일 동안의 스트레스 수준은?",
+        "question_type": "multiple_choice",
+        "question_text_en": "How was your stress level in the past week?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "부정적",
+            "choice_order": 1,
+            "choice_value": "부정적",
+            "choice_label_en": "Negative"
+          },
+          {
+            "choice_label": "중립적",
+            "choice_order": 2,
+            "choice_value": "중립적",
+            "choice_label_en": "Neutral"
+          },
+          {
+            "choice_label": "긍정적",
+            "choice_order": 3,
+            "choice_value": "긍정적",
+            "choice_label_en": "Positive"
+          }
+        ],
+        "question_id": 19,
+        "question_text": "최근 1주일 동안 감정 상태는?",
+        "question_type": "multiple_choice",
+        "question_text_en": "How was your general mood during the past week?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "없음",
+            "choice_order": 1,
+            "choice_value": "없음",
+            "choice_label_en": "None"
+          },
+          {
+            "choice_label": "고혈압",
+            "choice_order": 2,
+            "choice_value": "고혈압",
+            "choice_label_en": "Hypertension"
+          },
+          {
+            "choice_label": "당뇨병",
+            "choice_order": 3,
+            "choice_value": "당뇨병",
+            "choice_label_en": "Diabetes"
+          },
+          {
+            "choice_label": "심혈관 질환",
+            "choice_order": 4,
+            "choice_value": "심혈관 질환",
+            "choice_label_en": "Cardiovascular disease"
+          },
+          {
+            "choice_label": "기타",
+            "choice_order": 5,
+            "choice_value": "기타",
+            "choice_label_en": "Other"
+          }
+        ],
+        "question_id": 20,
+        "question_text": "현재 진단받은 질환이 있나요? (중복 선택 가능)",
+        "question_type": "checkbox",
+        "question_text_en": "Currently, have you been diagnosed with any of the following? (Click all that apply.)"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "없음",
+            "choice_order": 1,
+            "choice_value": "없음",
+            "choice_label_en": "No"
+          },
+          {
+            "choice_label": "있음",
+            "choice_order": 2,
+            "choice_value": "있음",
+            "choice_label_en": "Yes"
+          }
+        ],
+        "question_id": 21,
+        "question_text": "현재 복용 중인 약물이 있나요?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Are you currently taking any medications?"
+      }
+    ]
+  }

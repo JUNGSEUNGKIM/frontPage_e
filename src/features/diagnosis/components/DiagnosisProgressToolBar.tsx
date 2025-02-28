@@ -3,8 +3,14 @@ import { useModalStore } from "@/shared/stores/modalStore";
 
 export default function DiagnosisProgressToolBar({
     selectedIdx,
+    answerValue,
+    isSkippable = false,
+    skipDefaultValue = "",
 }: {
-    selectedIdx: number | null;
+    selectedIdx?: number | null;
+    answerValue?: string | null;
+    isSkippable?: boolean;
+    skipDefaultValue?: string;
 }) {
     const { surveyState, answerQuestion, goPrevious } = useDiagnosisStore();
 
@@ -14,6 +20,12 @@ export default function DiagnosisProgressToolBar({
     function handleSubmit() {
         if (selectedIdx != null) {
             answerQuestion(selectedIdx);
+            //TODO send answer via API (or maybe do it when all the questions are over)
+        } else if (answerValue) {
+            answerQuestion(answerValue);
+            //TODO send answer via API (or maybe do it when all the questions are over)
+        } else if (isSkippable && skipDefaultValue) {
+            answerQuestion(skipDefaultValue);
         } else {
             // show something?
         }
@@ -26,6 +38,10 @@ export default function DiagnosisProgressToolBar({
     //stop
     function handleInit() {
         showModal();
+    }
+
+    function isValidAnswerSubmitted() {
+        return selectedIdx != null || (answerValue && answerValue.length > 0) || isSkippable
     }
 
     const enabledClassName = "text-blue-500";
@@ -49,7 +65,7 @@ export default function DiagnosisProgressToolBar({
             <button
                 onClick={handleSubmit}
                 className={`${
-                    selectedIdx == null ? disabledClassName : enabledClassName
+                    isValidAnswerSubmitted() ? enabledClassName : disabledClassName
                 }`}
             >
                 <ChevronRightIcon />

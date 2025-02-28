@@ -37,7 +37,6 @@ export default function LSSlide({ index, buttonMode = false, onClick = () => {}}
                 }}
                 onClick={() => {
                     changeSlide(index)
-                    console.log(`change to ${index}`)
                 }}
             >
                 <div className="flex flex-col items-center justify-between w-full h-full p-16"

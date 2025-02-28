@@ -1,4 +1,4 @@
-export type SurveyStatus = "init" | "onProgress" | "done";
+export type SurveyStatus = "init" | "healthSurvey" | "sleepQualitySurvey" | "selection" | "inProgress" | "done";
 
 export interface SurveyQuestions {
     // survey questions
@@ -10,36 +10,30 @@ export interface SurveyQuestions {
 export interface SurveyState {
     status: SurveyStatus;
     currentIndex: number;
-    responses: number[];
+    responses: any[];
     survey: Survey;
 }
 
 export type DiagnosisType = null | "depression" | "dementia";
 
 export interface Survey {
-    survey_id: 0,
-    title: string,
-    title_en: string,
-    description: string,
-    description_en: string,
-    image_url: string,
-    organization: {
-      organization_id: 0
-    },
-    questions: [
-      {
-        question_id: 0,
-        question_text: string,
-        question_text_en: string,
-        question_type: string,
-        choices: [
-          {
-            choice_value: string,
-            choice_label: string,
-            choice_label_en: string,
-            choice_order: 0
-          }
-        ]
-      }
-    ]
-  }
+  survey_id: number;
+  title: string;
+  title_en: string;
+  description: string;
+  description_en: string;
+  image_url: string | null;
+  organization_id: number;
+  questions: {
+    question_id: number;
+    question_text: string;
+    question_text_en: string;
+    question_type: string;
+    choices: {
+      choice_value: string;
+      choice_label: string;
+      choice_label_en: string;
+      choice_order: number;
+    }[];
+  }[];
+}

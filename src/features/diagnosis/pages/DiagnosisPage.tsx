@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { RppgMeasurementList } from "@/components/custom/RppgResults";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
@@ -11,21 +11,25 @@ import BottomNavigator from "../components/BottomNavigator";
 import DiagnosisAppBar from "../components/DiagnosisAppBar";
 
 // fragments
-import SelectDiagnosisFragment from "../components/SelectDiagnosisFragment";
-import DiagnosisProgressFragment from "../components/DiagnosisProgressFragment";
-import DiagnosisDoneFragment from "../components/DiagnosisDoneFragment";
+import SelectDiagnosisFragment from "../components/fragments/SelectDiagnosisFragment";
+import DiagnosisProgressFragment from "../components/fragments/DiagnosisProgressFragment";
+import DiagnosisDoneFragment from "../components/fragments/DiagnosisDoneFragment";
 import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
 import { ChatFragment } from "../../../components/fragment/ChatFragment";
 import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";
 import AlertModal from "@/shared/components/AlertModal";
-import { CameraFlipButton } from "../components";
+import { DiagnosisStartFragment, HealthSurveyFragment } from "../components";
+import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
+import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
+import { useUserStore } from "@/shared/stores/userStore";
 
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
-    const { currentDiagnosis, surveyState } = useDiagnosisStore();
+    const { currentDiagnosis, surveyState, chooseSurvey } = useDiagnosisStore();
+    const { member } = useUserStore();
     const { isVisible } = useModalStore();
 
     const hrRef = useRef<string[]>([]);
@@ -59,6 +63,35 @@ export function DiagnosisPage() {
         }
     }
 
+    const mutation = useHealthSurveyAnswerPost()
+    const handleSubmit = (memberId: number, responses: any[]) => {
+        const updatedResponsesObject: HealthSurveyResult = {
+            member_id: memberId,
+            gender: responses[0],
+            age: Number.parseInt(responses[1]),
+            height: Number.parseFloat(responses[2]),
+            weight: Number.parseFloat(responses[3]),
+            regular_exercise: responses[4],
+            exercise_frequency: responses[5],
+            sleep_hours: responses[6],
+            sleep_quality: responses[7],
+            stress_level: responses[8],
+            emotional_state: responses[9],
+            existing_conditions: responses[10],
+            medication: responses[11],
+        }
+        mutation.mutate({answerData: updatedResponsesObject, memberId: 1});
+    }
+
+    useEffect(() => {
+        switch (surveyState.status) {
+            case "healthSurvey" : if (surveyState.responses.length == 12) {
+                handleSubmit(member ? member.member_id : 1, surveyState.responses);
+                chooseSurvey();
+            } break;
+        }
+    }, [surveyState.responses])
+
     // TODO: error check
     // const { currentDiagnosis, surveyState } = useDiagnosisStore((state) => ({
     //     currentDiagnosis: state.currentDiagnosis,
@@ -74,16 +107,28 @@ export function DiagnosisPage() {
             <DiagnosisSidebar measurementValue={measurement}>
                 <FaceDetectionApp onValueChanged={handleMeasurement} />
             </DiagnosisSidebar>
+
             <div className="w-[70%] flex flex-col px-4">
                 {/* Tab-based Fragments */}
                 {currentTab === "diagnosis" && (
                     <>
+
                         {surveyState.status === "init" && (
+                            <DiagnosisStartFragment />
+                        )}
+
+                        {surveyState.status === "healthSurvey" && (
+                            <HealthSurveyFragment />
+                        )}
+
+                        {surveyState.status === "selection" && ( 
                             <SelectDiagnosisFragment />
                         )}
-                        {surveyState.status === "onProgress" && (
+
+                        {surveyState.status === "inProgress" && (
                             <DiagnosisProgressFragment />
                         )}
+
                         {surveyState.status === "done" && (
                             <DiagnosisDoneFragment
                                 rppgMesurement={measurement}
@@ -116,13 +161,8 @@ export function DiagnosisPage() {
 
                 <DiagnosisAppBar />
 
-
                 {/* Face Detection Part */}
-                <div>
-                    <FaceDetectionApp onValueChanged={handleMeasurement} />
-                    
-                </div>
-
+                <FaceDetectionApp onValueChanged={handleMeasurement} />
 
                 {/* Gap */}
                 <div className="h-8" />
@@ -137,12 +177,23 @@ export function DiagnosisPage() {
                 {/* Tab-based Fragments */}
                 {currentTab === "diagnosis" && (
                     <>
+
                         {surveyState.status === "init" && (
+                            <DiagnosisStartFragment />
+                        )}
+
+                        {surveyState.status === "healthSurvey" && (
+                            <HealthSurveyFragment />
+                        )}
+
+                        {surveyState.status === "selection" && ( 
                             <SelectDiagnosisFragment />
                         )}
-                        {surveyState.status === "onProgress" && (
+
+                        {surveyState.status === "inProgress" && (
                             <DiagnosisProgressFragment />
                         )}
+
                         {surveyState.status === "done" && (
                             <DiagnosisDoneFragment
                                 rppgMesurement={measurement}
@@ -165,14 +216,15 @@ export function DiagnosisPage() {
 
 function DiagnosisProgressModal() {
     const { hideModal } = useModalStore();
-    const { init } = useDiagnosisStore();
+    const { init, chooseSurvey, surveyState } = useDiagnosisStore();
     return (
         <AlertModal
             title="알림"
             desc="진행 중인 진단을 종료할까요?"
             onAccept={() => {
                 hideModal();
-                init();
+                if (surveyState.status === "inProgress") chooseSurvey();
+                else init();
             }}
             onCancel={() => {
                 hideModal();
