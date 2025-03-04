@@ -14,6 +14,7 @@ import { Provider } from "@/components/ui/provider";
 import SetUpPage from "./features/setup/SetUpPage.tsx";
 import { StrictMode } from "react";
 import { LSTutorialPage } from "./features/onboarding/pages/LSTutorialPage.tsx";
+import MobileSignInPage from "./features/authentication/pages/MobileSignInPage.tsx";
 // import { LSOnboardingPage } from "./features/onboarding/pages/LSOnboardingPage.tsx";
 
 // TEMP DEBUG - landscape sidebar debugging code
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
                     <Route path="tutorial" element={<LSTutorialPage />} />
                     <Route path="diagnosis" element={<DiagnosisPage />} />
                     <Route path="report" element={<ResultPage />} />
+                    <Route path="signin" element={<MobileSignInPage />} />
                 </Routes>
             </BrowserRouter>
         </Provider>
