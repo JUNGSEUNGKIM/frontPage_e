@@ -12,8 +12,12 @@ import LogoButton from "@/shared/components/LogoButton";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
+import { useModalStore } from "@/shared/stores/modalStore";
+import AlertModal from "@/shared/components/AlertModal";
+import SignInModal from "@/features/authentication/components/SigninDialog";
 
 export function OnboardingPage() {
+    const { isVisible } = useModalStore();
     const navigate = useNavigate();
 
     const [t, i18n] = useTranslation();
@@ -46,6 +50,7 @@ export function OnboardingPage() {
 
     return isLandScape() ? (
         <div className="w-screen h-screen flex flex-col items-center justify-between bg-gradient-to-br from-[#E0E4FF] to-[#BFE4FF]">
+            {isVisible && <SignInQRModal />}
             <OnboardingAppBar />
             <DynamicEmoji currentIdx={currentIndex} />
             <OnboardingBottomToolBar />
@@ -103,12 +108,17 @@ function OnboardingAppBar() {
 
 function OnboardingBottomToolBar() {
     const [t, i18n] = useTranslation();
+
+    const { showModal } = useModalStore();
+
     const navigate = useNavigate();
     return (
         <div className="w-full px-8 py-8 flex flex-row items-center justify-between bg-blue-500 rounded-t-3xl shadow">
             <motion.button
                 onClick={() => {
-                    navigate("/tutorial");
+                    // show dialog
+                    showModal();
+                    // navigate("/tutorial");
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-[70%] h-full p-8 flex flex-col items-center justify-center bg-white rounded-2xl  text-black text-3xl font-bold shadow-xl"
@@ -132,5 +142,18 @@ function OnboardingBottomToolBar() {
                 />
             </div>
         </div>
+    );
+}
+
+function SignInQRModal() {
+    const { hideModal } = useModalStore();
+    const navigate = useNavigate();
+    return (
+        <SignInModal
+            onAccept={() => {
+                hideModal();
+                navigate("/tutorial");
+            }}
+        />
     );
 }
