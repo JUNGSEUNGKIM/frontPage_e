@@ -38,13 +38,24 @@ export default function SignInModal({ onAccept }: { onAccept: () => void }) {
                     <h1 className="text-lg font-medium text-center">
                         로그인 완료 후, 하단의 완료 버튼을 눌러주세요.
                     </h1>
+                    <div className="flex flex-row gap-4">
+                        {/* LoginPage URL QRCode */}
+
+                        {/* OTP code */}
+                        <div className="flex flex-col gap-4">
+                            <h1 className="font-lg text-center">OTP번호</h1>
+                            <h1 className="text-xl font-bold text-center">
+                                4F3G3
+                            </h1>
+                        </div>
+                    </div>
                     {/* buttons */}
                     <motion.button
                         whileTap={{ scale: 0.95 }}
                         onClick={onAccept}
                         className="w-64 bg-blue-500 text-white rounded-lg py-4"
                     >
-                        로그인 완료
+                        완료
                     </motion.button>
                 </div>
             </div>
