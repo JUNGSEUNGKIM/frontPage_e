@@ -9,7 +9,6 @@ import {
 } from "../components";
 import LogoButton from "@/shared/components/LogoButton";
 // assets
-import CESLogo from "@/assets/ces_logo.png";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
@@ -56,7 +55,6 @@ export function OnboardingPage() {
             <div className="w-full flex flex-row items-center justify-between mt-4">
                 <div className="flex flex-row">
                     <LogoButton onClick={() => {}} />
-                    <img src={CESLogo} className="h-10 mr-4" />
                 </div>
                 <div className="flex flex-row mr-4 gap-4">
                     <SelectableLanguageButton
@@ -98,7 +96,6 @@ function OnboardingAppBar() {
         <div className="w-full flex flex-row items-center justify-between mt-4">
             <div className="flex flex-row">
                 <LogoButton onClick={() => {}} />
-                <img src={CESLogo} className="h-10 mr-4" />
             </div>
         </div>
     );
