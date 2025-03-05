@@ -48,7 +48,7 @@ export default function ResultPage() {
             <div className="w-[6rem] h-full py-32 flex flex-col items-center justify-end bg-blue-500 rounded-r-[50px] gap-10">
                 <ScaleTransitionButtonWrapper
                     onClick={() => {
-                        navigate(-2);
+                        navigate("/onboarding");
                     }}
                 >
                     <BackIcon />

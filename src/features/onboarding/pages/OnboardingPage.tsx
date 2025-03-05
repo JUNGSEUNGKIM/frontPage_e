@@ -1,6 +1,7 @@
 // hooks
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 // components
 import {
     OnboardingButton,
@@ -29,8 +30,14 @@ export function OnboardingPage() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const { init } = useDiagnosisStore();
+
     // for dynamic emoji
     useEffect(() => {
+
+        // refresh diagnosis related states
+        init();
+
         const intervalId = setInterval(() => {
             // 최신 currentIndex 값을 참조
             setCurrentIndex((prev) => {
