@@ -28,8 +28,8 @@ export default function SleepQualitySurveyFragment() {
     useEffect(() => {
         setTappedButtonIdx(null);
         switch(surveyState.survey.questions[surveyState.currentIndex].question_type) {
-            case "time": setAnswerValue("12:0"); break;
-            case "time_am_pm": setAnswerValue("12:0AM"); break;
+            case "time": setAnswerValue("1:0"); break;
+            case "time_am_pm": setAnswerValue("1:0AM"); break;
             default: setAnswerValue("");
         }
     }, [surveyState.currentIndex]);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import depressionSurvey from "@/assets/data/depressionSurvey.json";
 import dementiaSurvey from "@/assets/data/dementiaSurvey.json";
 
 // TEMP DEBUG - depression survey API base URL
@@ -13,7 +14,13 @@ const getSurvey = async (
     memberId: number,
     organizationId: number
 ) => {
-    if (TEST) return dementiaSurvey; // Only return sample for depression survey
+    if (TEST) {
+        switch (surveyId) {
+            case 1: return depressionSurvey; break;
+            case 2: return dementiaSurvey; break;
+            default: return depressionSurvey; break;
+        }
+    }
     try {
         const response = await axios.get(
             `${API_BASE_URL}/survey?survey_id=${surveyId}&member_id=${memberId}&organization_id=${organizationId}`

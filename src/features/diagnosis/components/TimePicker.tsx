@@ -8,7 +8,7 @@ interface TimePickerProps {
 
 export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM", setInputValue }: TimePickerProps) {
     const [isAm, setIsAm] = useState(true);
-    const [hour, setHour] = useState(12);
+    const [hour, setHour] = useState(1);
     const [minute, setMinute] = useState(0);
 
     const [amPmOpen, setAmPmOpen] = useState(false);
