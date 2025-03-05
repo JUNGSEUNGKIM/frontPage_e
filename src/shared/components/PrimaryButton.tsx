@@ -6,11 +6,13 @@ export default function PrimaryButton({
     onClick,
     disabled = false,
     shadow = false,
+    className = "",
 }: {
     label: string;
     onClick: () => void;
     disabled?: boolean;
     shadow?: boolean;
+    className?: string;
 }) {
     return (
         <motion.button
@@ -19,7 +21,8 @@ export default function PrimaryButton({
             className={
                 cn("w-full p-8 mt-3 text-3xl text-white font-semibold rounded-lg", 
                     disabled ? "bg-blue-300" : "bg-blue-500", 
-                    shadow ? "shadow-lg" : "")
+                    shadow ? "shadow-lg" : "",
+                    className)
             }
         >
             {label}

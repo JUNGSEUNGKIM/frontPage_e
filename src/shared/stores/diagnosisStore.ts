@@ -12,8 +12,6 @@ interface DiagnosisStore {
     selectDiagnosis: (value: DiagnosisType) => void;
     /// start health survey
     startHealthSurvey: () => void;
-    /// open sleep quality start page
-    openSleepQualitySurvey: () => void;
     /// start sleep quality survey
     startSleepQualitySurvey: () => void;
     /// go to survey selection page
@@ -106,13 +104,6 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
                 responses: [],
                 currentIndex: 0,
             },
-        })),
-    openSleepQualitySurvey: () =>
-        set((state) => ({
-            surveyState: {
-                ...state.surveyState, // 기존 상태 유지
-                status: "preSleepQualitySurvey",
-            }
         })),
     startSleepQualitySurvey: () =>
         set((state) => ({

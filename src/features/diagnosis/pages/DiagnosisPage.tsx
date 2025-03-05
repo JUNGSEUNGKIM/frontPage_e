@@ -20,7 +20,7 @@ import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";
 import AlertModal from "@/shared/components/AlertModal";
-import { DiagnosisStartFragment, HealthSurveyFragment, SleepQualitySurveyFragment, SleepQualitySurveyMenuFragment } from "../components";
+import { DiagnosisStartFragment, HealthSurveyFragment, SleepQualitySurveyFragment } from "../components";
 import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
 import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 import { useUserStore } from "@/shared/stores/userStore";
@@ -28,7 +28,7 @@ import { useUserStore } from "@/shared/stores/userStore";
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
-    const { currentDiagnosis, surveyState, chooseSurvey, openSleepQualitySurvey } = useDiagnosisStore();
+    const { currentDiagnosis, surveyState, chooseSurvey } = useDiagnosisStore();
     const { member } = useUserStore();
     const { isVisible } = useModalStore();
 
@@ -87,7 +87,7 @@ export function DiagnosisPage() {
         switch (surveyState.status) {
             case "healthSurvey" : if (surveyState.responses.length == 12) {
                 handleSubmit(member ? member.member_id : 1, surveyState.responses);
-                openSleepQualitySurvey();
+                chooseSurvey();
             } break;
             case "sleepQualitySurvey" : if (surveyState.responses.length == 24) {
                 // TODO submit responses
@@ -123,10 +123,6 @@ export function DiagnosisPage() {
 
                         {surveyState.status === "healthSurvey" && (
                             <HealthSurveyFragment />
-                        )}
-
-                        {surveyState.status === "preSleepQualitySurvey" && (
-                            <SleepQualitySurveyMenuFragment />
                         )}
 
                         {surveyState.status === "sleepQualitySurvey" && (
@@ -198,10 +194,6 @@ export function DiagnosisPage() {
                             <HealthSurveyFragment />
                         )}
 
-                        {surveyState.status === "preSleepQualitySurvey" && (
-                            <SleepQualitySurveyMenuFragment />
-                        )}
-
                         {surveyState.status === "sleepQualitySurvey" && (
                             <SleepQualitySurveyFragment />
                         )}
@@ -236,15 +228,14 @@ export function DiagnosisPage() {
 
 function DiagnosisProgressModal() {
     const { hideModal } = useModalStore();
-    const { init, chooseSurvey, surveyState, openSleepQualitySurvey } = useDiagnosisStore();
+    const { init, chooseSurvey, surveyState } = useDiagnosisStore();
     return (
         <AlertModal
             title="알림"
             desc="진행 중인 진단을 종료할까요?"
             onAccept={() => {
                 hideModal();
-                if (surveyState.status === "inProgress") chooseSurvey();
-                else if (surveyState.status === "sleepQualitySurvey") openSleepQualitySurvey();
+                if (surveyState.status === "inProgress" || surveyState.status === "sleepQualitySurvey") chooseSurvey();
                 else init();
             }}
             onCancel={() => {

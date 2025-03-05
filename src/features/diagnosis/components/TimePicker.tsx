@@ -63,7 +63,7 @@ export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM"
     const minutes = Array.from({ length: 12 }, (_, i) => i * 5);
 
     const buttonStyle = "border-2 rounded-2xl p-6 text-2xl bg-white hover:bg-blue-500 text-black hover:text-white w-64";
-    const dropdownMenuStyle = "absolute z-1 bg-white border rounded-lg shadow mt-1 max-h-64 overflow-y-auto w-64 scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent hover:scrollbar-thumb-gray-300 hover:scrollbar-track-gray-100";
+    const dropdownMenuStyle = "absolute z-1 bg-white border rounded-xl shadow mt-1 max-h-64 overflow-y-auto w-64 scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent hover:scrollbar-thumb-gray-300 hover:scrollbar-track-gray-100";
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

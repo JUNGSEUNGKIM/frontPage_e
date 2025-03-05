@@ -19,20 +19,22 @@ export default function DiagnosisSelectableButton({
     const unselectedClassName = "bg-white border-white";
 
     return (
-        <motion.button
-            onClick={onClick}
-            whileTap={{ scale: 0.95 }}
-            className={`w-full border-2 rounded-lg p-4 ${
-                isSelected ? selectedClassName : unselectedClassName
-            }`}
-        >
-            <div className="h-full flex flex-col items-center justify-center">
-                <h2 className="font-bold text-2xl text-black">{label}</h2>
-                <img src={emojiSrc} className="w-44 h-44 mt-10 mb-4" />
-                <p className="text-black text-xl text-center whitespace-pre-line">
-                    {description}
-                </p>
-            </div>
-        </motion.button>
+        <div className="w-1/2 px-2 snap-start shrink-0 bg-transparent">
+            <motion.button
+                onClick={onClick}
+                whileTap={{ scale: 0.95 }}
+                className="w-full h-full"
+            >
+                <div className={`h-full flex flex-col items-center justify-center border-2 rounded-lg p-4 ${
+                    isSelected ? selectedClassName : unselectedClassName
+                }`}>
+                    <h2 className="font-bold text-2xl text-black">{label}</h2>
+                    <img src={emojiSrc} className="w-44 h-44 mt-10 mb-4" />
+                    <p className="text-black text-xl text-center whitespace-pre-line">
+                        {description}
+                    </p>
+                </div>
+            </motion.button>
+        </div>
     );
 }

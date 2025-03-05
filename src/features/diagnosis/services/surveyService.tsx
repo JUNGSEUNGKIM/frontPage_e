@@ -16,9 +16,9 @@ const getSurvey = async (
 ) => {
     if (TEST) {
         switch (surveyId) {
-            case 1: return depressionSurvey; break;
-            case 2: return dementiaSurvey; break;
-            default: return depressionSurvey; break;
+            case 1: return depressionSurvey;
+            case 2: return dementiaSurvey;
+            default: return depressionSurvey;
         }
     }
     try {

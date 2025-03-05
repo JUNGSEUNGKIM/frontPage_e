@@ -1,4 +1,4 @@
-export type SurveyStatus = "init" | "healthSurvey" | "preSleepQualitySurvey" | "sleepQualitySurvey" | "selection" | "inProgress" | "done";
+export type SurveyStatus = "init" | "healthSurvey" | "selection" | "inProgress" | "sleepQualitySurvey" | "done";
 
 export interface SurveyQuestions {
     // survey questions
@@ -14,7 +14,7 @@ export interface SurveyState {
     survey: Survey;
 }
 
-export type DiagnosisType = null | "depression" | "dementia";
+export type DiagnosisType = null | "depression" | "dementia" | "sleepQuality";
 
 export interface Survey {
   survey_id: number;
