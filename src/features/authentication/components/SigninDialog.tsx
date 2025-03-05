@@ -45,7 +45,7 @@ export default function SignInModal({ onAccept }: { onAccept: () => void }) {
                         <div className="flex flex-col gap-4">
                             <h1 className="font-lg text-center">OTP번호</h1>
                             <h1 className="text-xl font-bold text-center">
-                                4F3G3
+                                4F3G3A
                             </h1>
                         </div>
                     </div>
