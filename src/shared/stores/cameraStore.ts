@@ -1,3 +1,4 @@
+import isLandScape from "@/utls/is_landscape";
 import { create } from "zustand";
 
 interface CameraStore {
@@ -6,6 +7,6 @@ interface CameraStore {
 }
 
 export const useCameraStore = create<CameraStore>((set) => ({
-    isCameraMirrored: false,
+    isCameraMirrored: isLandScape(),
     setIsCameraMirrored: (newValue) => set({ isCameraMirrored: newValue }),
 }));

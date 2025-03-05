@@ -18,7 +18,7 @@ export default function SecondaryButton({
             onClick={() => {if (!disabled) onClick()}}
             className={
                 cn("w-full p-8 mt-3 text-3xl bg-white font-semibold rounded-lg", 
-                    disabled ? "text-blue-300" : "text-blue-500", 
+                    disabled ? "text-gray-500" : "text-black", 
                     shadow ? "shadow-lg" : "")
             }
         >

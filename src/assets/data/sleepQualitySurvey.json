@@ -1,0 +1,754 @@
+{
+    "survey_id": 0,
+    "title": "피츠버그 수면의 질 지수",
+    "title_en": "Dementia Survey",
+    "description": "수면의 질을 평가하는 설문입니다.",
+    "description_en": "A survey to assess dementia-related symptoms.",
+    "image_url": null,
+    "organization_id": 0,
+    "questions": [
+      {
+        "choices": [],
+        "question_id": 6,
+        "question_text": "지난 한달 동안, 당신은 평소 몇 시에 잠자리에 들었습니까?",
+        "question_type": "time_am_pm",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 7,
+        "question_text": "지난 한달 동안, 당신은 밤에 잠자리에 들어서 잠이 들기까지 보통 얼마나 오래 걸렸습니까?",
+        "question_type": "time",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 8,
+        "question_text": "지난 한달 동안, 당신은 평소 아침 몇 시에 일어났습니까?",
+        "question_type": "time_am_pm",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 9,
+        "question_text": "지난 한달 동안, 당신은 하루 밤에 실제로 잠잔 시간은 얼마나 됩니까?\n(이것은 당신이 잠자리에서 보낸 시간과 다를 수 있습니다.)",
+        "question_type": "time",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 10,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n취침 후 30분 이내에 잠들 수 없었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 11,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n한밤중이나 새벽에 깼다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 12,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n화장실에 가려고 일어나야 했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 13,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n편안하게 숨 쉴 수가 없었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 14,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n기침을 하거나 시끄럽게 코를 골았다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 15,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n너무 춥다고 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 16,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n너무 덥다고 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 17,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n나쁜 꿈을 꾸었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 18,
+        "question_text": "지난 한달 동안, 당신은 다음 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?\n통증이 있었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 19,
+        "question_text": "지난 한달 동안, 당신은 그 외에 다른 이유로 잠자는 데 얼마나 자주 문제가 있었습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "매우 좋음",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Very good"
+          },
+          {
+            "choice_label": "상당히 좋음",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Good"
+          },
+          {
+            "choice_label": "상당히 나쁨",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Bad"
+          },
+          {
+            "choice_label": "매우 나쁨",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Very bad"
+          }
+        ],
+        "question_id": 20,
+        "question_text": "지난 한달 동안, 당신은 전반적으로 수면의 질이 어느 정도라고 평가하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 21,
+        "question_text": "지난 한달 동안, 당신은 잠이 들기 위해 얼마나 자주 약을 복용했습니까? (처방약 또는 약국에서 구입한 약)",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "전혀 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "Never"
+          },
+          {
+            "choice_label": "매우 조금 있었다",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Rarely"
+          },
+          {
+            "choice_label": "다소 있었다",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "Somewhat often"
+          },
+          {
+            "choice_label": "매우 많이 있었다",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "Very frequently"
+          }
+        ],
+        "question_id": 22,
+        "question_text": "지난 한달 동안, 당신은 운전하거나, 식사 때 혹은 사회활동을 하는 동안 얼마나 자주 졸음을 느꼈습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "전혀 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "매우 조금 있었다",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "다소 있었다",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "매우 많이 있었다",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 23,
+        "question_text": "지난 한달 동안, 당신은 일에 열중하는데 얼마나 많은 문제가 있었습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "같은 잠자리에 자거나 집을 같이 쓰는 사람이 없다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "I do not share my bed or my house with anyone."
+          },
+          {
+            "choice_label": "집에 다른 방을 쓰는 사람이 있다",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "I share my house with someone who uses a different room."
+          },
+          {
+            "choice_label": "방을 같이 쓰지만 같은 잠자리에서 자지 않는다",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "I share my room with someone else but do not share the same bed."
+          },
+          {
+            "choice_label": "같은 잠자리에 자는 사람이 있다",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "I share my bed with someone else."
+          }
+        ],
+        "question_id": 24,
+        "question_text": "당신은 다른 사람과 같은 잠자리에 자거나 집을 같이 쓰는 사람이 있습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you share your bed and/or house with someone else?"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 25,
+        "question_text": "지난 한 달간, 같은 방을 쓰거나 같은 잠자리에서 자는 사람에게 당신이 다음과 같은 행동을 얼마나 자주 했습니까?\n심하게 코골기.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 26,
+        "question_text": "지난 한 달간, 같은 방을 쓰거나 같은 잠자리에서 자는 사람에게 당신이 다음과 같은 행동을 얼마나 자주 했습니까?\n잠잘 때 숨을 한동안 멈추고 다시 숨쉬기.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 27,
+        "question_text": "지난 한 달간, 같은 방을 쓰거나 같은 잠자리에서 자는 사람에게 당신이 다음과 같은 행동을 얼마나 자주 했습니까?\n잠잘 때 다리를 갑자기 떨거나 흔들기.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 28,
+        "question_text": "지난 한 달간, 같은 방을 쓰거나 같은 잠자리에서 자는 사람에게 당신이 다음과 같은 행동을 얼마나 자주 했습니까?\n잠자다가 잠시 시간, 장소, 상황을 인식하지 못하거나 혼란스러워함.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      },
+      {
+        "choices": [
+          {
+            "choice_label": "지난 한달 동안 없었다",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "None in the past month"
+          },
+          {
+            "choice_label": "주 1회 미만",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "less than once a week"
+          },
+          {
+            "choice_label": "주 1~2회",
+            "choice_order": 3,
+            "choice_value": "3",
+            "choice_label_en": "1~2 times a week"
+          },
+          {
+            "choice_label": "주 3회 이상",
+            "choice_order": 4,
+            "choice_value": "4",
+            "choice_label_en": "more than 3 times a week"
+          }
+        ],
+        "question_id": 29,
+        "question_text": "지난 한 달간, 같은 방을 쓰거나 같은 잠자리에서 자는 사람에게 당신이 다음과 같은 행동을 얼마나 자주 했습니까?\n그 외 잠자는 동안 다른 뒤척거리는 행동들이 있었음.",
+        "question_type": "multiple_choice",
+        "question_text_en": "asdf"
+      }
+    ]
+  }

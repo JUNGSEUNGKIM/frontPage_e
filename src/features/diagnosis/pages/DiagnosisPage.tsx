@@ -20,7 +20,7 @@ import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";
 import AlertModal from "@/shared/components/AlertModal";
-import { DiagnosisStartFragment, HealthSurveyFragment } from "../components";
+import { DiagnosisStartFragment, HealthSurveyFragment, SleepQualitySurveyFragment, SleepQualitySurveyMenuFragment } from "../components";
 import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
 import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 import { useUserStore } from "@/shared/stores/userStore";
@@ -28,7 +28,7 @@ import { useUserStore } from "@/shared/stores/userStore";
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
-    const { currentDiagnosis, surveyState, chooseSurvey } = useDiagnosisStore();
+    const { currentDiagnosis, surveyState, chooseSurvey, openSleepQualitySurvey } = useDiagnosisStore();
     const { member } = useUserStore();
     const { isVisible } = useModalStore();
 
@@ -87,6 +87,10 @@ export function DiagnosisPage() {
         switch (surveyState.status) {
             case "healthSurvey" : if (surveyState.responses.length == 12) {
                 handleSubmit(member ? member.member_id : 1, surveyState.responses);
+                openSleepQualitySurvey();
+            } break;
+            case "sleepQualitySurvey" : if (surveyState.responses.length == 22) {
+                // TODO submit responses
                 chooseSurvey();
             } break;
         }
@@ -119,6 +123,14 @@ export function DiagnosisPage() {
 
                         {surveyState.status === "healthSurvey" && (
                             <HealthSurveyFragment />
+                        )}
+
+                        {surveyState.status === "preSleepQualitySurvey" && (
+                            <SleepQualitySurveyMenuFragment />
+                        )}
+
+                        {surveyState.status === "sleepQualitySurvey" && (
+                            <SleepQualitySurveyFragment />
                         )}
 
                         {surveyState.status === "selection" && ( 
@@ -186,6 +198,14 @@ export function DiagnosisPage() {
                             <HealthSurveyFragment />
                         )}
 
+                        {surveyState.status === "preSleepQualitySurvey" && (
+                            <SleepQualitySurveyMenuFragment />
+                        )}
+
+                        {surveyState.status === "sleepQualitySurvey" && (
+                            <SleepQualitySurveyFragment />
+                        )}
+
                         {surveyState.status === "selection" && ( 
                             <SelectDiagnosisFragment />
                         )}
@@ -216,7 +236,7 @@ export function DiagnosisPage() {
 
 function DiagnosisProgressModal() {
     const { hideModal } = useModalStore();
-    const { init, chooseSurvey, surveyState } = useDiagnosisStore();
+    const { init, chooseSurvey, surveyState, openSleepQualitySurvey } = useDiagnosisStore();
     return (
         <AlertModal
             title="알림"
@@ -224,6 +244,7 @@ function DiagnosisProgressModal() {
             onAccept={() => {
                 hideModal();
                 if (surveyState.status === "inProgress") chooseSurvey();
+                else if (surveyState.status === "sleepQualitySurvey") openSleepQualitySurvey();
                 else init();
             }}
             onCancel={() => {

@@ -39,7 +39,6 @@ const postHealthSurveyAnswer = async (
     answerData: HealthSurveyResult,
 ) => {
     try {
-        console.log(answerData)
         const response = await axios.post(
             `${API_BASE_URL}/member/basic-info`,
             {

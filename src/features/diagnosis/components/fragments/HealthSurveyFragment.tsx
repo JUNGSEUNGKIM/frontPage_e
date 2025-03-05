@@ -5,8 +5,6 @@ import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 import { NumberInputField } from "../NumberInputField";
-import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
-import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 
 export default function HealthSurveyFragment() {
     // use diagnosis store
@@ -15,7 +13,10 @@ export default function HealthSurveyFragment() {
     // local state : 사용자가 선택한 탭
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
 
-    // 주관식 답
+    // local state : 사용자가 선택한 checkbox들
+    const [checkboxIdx, setCheckboxIdx] = useState<number[]>([]);
+
+    // API POST용 answer 값 저장
     const [answerValue, setAnswerValue] = useState<string>("");
 
     // 객관식 답 변경 시 해당하는 answer값 설정
@@ -25,16 +26,36 @@ export default function HealthSurveyFragment() {
         }
     }, [tappedButtonIdx]);
 
-    // currentIndex 변화할 때마다 null 값으로 변경 & answer값 초기화
+    // currentIndex 변화할 때마다 값 초기화
     // TODO: 이전에 선택했던 값 남기기?
     useEffect(() => {
         setTappedButtonIdx(null);
+        setCheckboxIdx([]);
         setAnswerValue("");
     }, [surveyState.currentIndex]);
 
+    // handling multiple choice button tap
     function handleAnswerTap(idx: number) {
         setTappedButtonIdx(idx);
     }
+
+    // handling checkbox tap
+    function handleAnswerCheckboxTap(idx: number) {
+        const idxIndex = checkboxIdx.indexOf(idx)
+        if (idxIndex === -1) { // selection
+            if (idx === 0 || checkboxIdx.indexOf(0) > -1) { // uncheck the rest when first box is checked (NOTE - this feature is specific to this health survey)
+                setCheckboxIdx([idx]);
+            } else {
+                setCheckboxIdx((curr) => [...curr, idx]);
+            }
+        } else { // deselection
+            setCheckboxIdx((curr) => [...curr.slice(0, idxIndex), ...curr.slice(idxIndex + 1)]);
+        }
+    }
+    // update answer value string
+    useEffect(() => {
+        setAnswerValue(checkboxIdx.map((index) => surveyState.survey.questions[surveyState.currentIndex].choices[index].choice_value).join(','))
+    }, [checkboxIdx]);
 
     // 진행된 퍼센트 계산
     const progressPercentage =
@@ -86,8 +107,8 @@ export default function HealthSurveyFragment() {
                         <AnswerButton
                             key={idx}
                             label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
-                            isSelected={tappedButtonIdx === idx}
-                            handleTap={() => handleAnswerTap(idx)}
+                            isSelected={checkboxIdx.indexOf(idx) > -1}
+                            handleTap={() => {handleAnswerCheckboxTap(idx)}}
                             isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
                         />
                     ))}

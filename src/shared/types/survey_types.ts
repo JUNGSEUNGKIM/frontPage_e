@@ -1,4 +1,4 @@
-export type SurveyStatus = "init" | "healthSurvey" | "sleepQualitySurvey" | "selection" | "inProgress" | "done";
+export type SurveyStatus = "init" | "healthSurvey" | "preSleepQualitySurvey" | "sleepQualitySurvey" | "selection" | "inProgress" | "done";
 
 export interface SurveyQuestions {
     // survey questions

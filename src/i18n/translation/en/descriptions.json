@@ -1,5 +1,6 @@
 {
-    "healthSurveyDescription" : "This survey's answers will help us provide a more personalized diagnostic experience and be used as a resource for detailed diagnostic analysis.",
+    "healthSurveyDescription" : "This health survey's answers will help us provide a more personalized diagnostic experience and be used as a resource for detailed diagnostic analysis.",
+    "sleepQualitySurveyDescription" : "This sleep quality survey's answers will help us provide a more personalized diagnostic experience and be used as a resource for detailed diagnostic analysis.",
     "depressionDescription" : "The PHQ-9 (Patient Health Questionnaire-9) is a clinically validated tool used to screen, diagnose, and measure the severity of depression.",
     "dementiaDescription" : "Cognitive impairment diagnosis involves a comprehensive evaluation to determine the presence and severity of cognitive decline that interferes with daily life.",
     "lucidDescription" : "Lucid 101 is a digital therapeutic tool that recommends music suited to your emotions.\nChoose the emotion you are currently feeling from the mind map.",

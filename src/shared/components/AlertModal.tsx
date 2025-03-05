@@ -41,21 +41,21 @@ export default function AlertModal({
                 aria-modal="true"
             >
                 <div className="w-[40vw] flex flex-col gap-16 bg-white p-8 rounded-lg">
-                    <h1 className="font-bold text-2xl">{title}</h1>
-                    <p className="text-xl">{desc}</p>
+                    <h1 className="font-bold text-center text-4xl">{title}</h1>
+                    <p className="text-2xl text-center">{desc}</p>
                     {/* buttons */}
                     <div className="w-full flex flex-row gap-4 justify-end font-medium">
                         <motion.button
                             whileTap={{ scale: 0.95 }}
                             onClick={onCancel}
-                            className="w-24 border border-slate-400 text-black bg-white rounded-lg py-4"
+                            className="w-full border border-slate-400 text-black bg-white rounded-lg py-6 text-2xl"
                         >
                             Cancel
                         </motion.button>
                         <motion.button
                             whileTap={{ scale: 0.95 }}
                             onClick={onAccept}
-                            className="w-24 bg-blue-500 text-white rounded-lg py-4"
+                            className="w-full bg-blue-500 text-white rounded-lg py-6 text-2xl"
                         >
                             Stop
                         </motion.button>

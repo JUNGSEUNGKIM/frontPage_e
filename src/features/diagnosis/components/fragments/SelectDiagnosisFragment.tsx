@@ -68,6 +68,10 @@ export default function SelectDiagnosisFragment() {
 
             {/* Diagnosis start button */}
             <div className="w-full flex gap-4">
+                <SecondaryButton
+                    label={t("btnRestart")}
+                    onClick={() => init()}
+                />
                 <PrimaryButton
                     label={
                         getSelectedSurvey() === null ?  t("diagnosisNotSelected") // Condition #1 - diagnosis not selected
@@ -77,10 +81,6 @@ export default function SelectDiagnosisFragment() {
                     }
                     disabled={getSelectedSurvey() === null || surveyState.status === "inProgress" || !getSelectedSurvey()?.isSuccess}
                     onClick={() => setSurvey(getSelectedSurvey()?.data)}
-                />
-                <SecondaryButton
-                    label={t("btnRestart")}
-                    onClick={() => init()}
                 />
             </div>
         </div>

@@ -6,11 +6,13 @@ export default function DiagnosisProgressToolBar({
     answerValue,
     isSkippable = false,
     skipDefaultValue = "",
+    skipQuestionCount = 0,
 }: {
     selectedIdx?: number | null;
     answerValue?: string | null;
     isSkippable?: boolean;
     skipDefaultValue?: string;
+    skipQuestionCount?: number;
 }) {
     const { surveyState, answerQuestion, goPrevious } = useDiagnosisStore();
 
@@ -20,14 +22,16 @@ export default function DiagnosisProgressToolBar({
     function handleSubmit() {
         if (selectedIdx != null) {
             answerQuestion(selectedIdx);
-            //TODO send answer via API (or maybe do it when all the questions are over)
         } else if (answerValue) {
             answerQuestion(answerValue);
-            //TODO send answer via API (or maybe do it when all the questions are over)
         } else if (isSkippable && skipDefaultValue) {
             answerQuestion(skipDefaultValue);
         } else {
             // show something?
+        }
+
+        for (let i = 0; i < skipQuestionCount; i++) {
+            answerQuestion(skipDefaultValue);
         }
     }
 

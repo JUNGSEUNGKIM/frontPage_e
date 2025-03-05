@@ -1,6 +1,7 @@
 import { DiagnosisType, Survey, SurveyState } from "@/types";
 import { create } from "zustand";
 import healthSurvey from "@/assets/data/healthSurvery.json";
+import sleepQualitySurvey from "@/assets/data/sleepQualitySurvey.json";
 
 interface DiagnosisStore {
     // states
@@ -9,8 +10,12 @@ interface DiagnosisStore {
     // functions
     init: () => void;
     selectDiagnosis: (value: DiagnosisType) => void;
-    /// start shared survey
+    /// start health survey
     startHealthSurvey: () => void;
+    /// open sleep quality start page
+    openSleepQualitySurvey: () => void;
+    /// start sleep quality survey
+    startSleepQualitySurvey: () => void;
     /// go to survey selection page
     chooseSurvey: () => void;
     /// set survey with given questions and options
@@ -99,6 +104,24 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
                 status: "healthSurvey",
                 survey: healthSurvey,
                 responses: [],
+                currentIndex: 0,
+            },
+        })),
+    openSleepQualitySurvey: () =>
+        set((state) => ({
+            surveyState: {
+                ...state.surveyState, // 기존 상태 유지
+                status: "preSleepQualitySurvey",
+            }
+        })),
+    startSleepQualitySurvey: () =>
+        set((state) => ({
+            surveyState: {
+                ...state.surveyState, // 기존 상태 유지
+                status: "sleepQualitySurvey",
+                survey: sleepQualitySurvey,
+                responses: [],
+                currentIndex: 0,
             },
         })),
     chooseSurvey: () =>
@@ -113,8 +136,9 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
             surveyState: {
                 ...state.surveyState, // 기존 상태 유지
                 status: "inProgress",
-                responses: [],
                 survey: survey || state.surveyState.survey,
+                responses: [],
+                currentIndex: 0,
             },
         })),
     stopSurvey: () =>
@@ -147,6 +171,7 @@ export const useDiagnosisStore = create<DiagnosisStore>((set) => ({
                     surveyState: {
                         ...state.surveyState,
                         responses: updatedResponses,
+                        status: state.surveyState.status === "inProgress" ? "done" : state.surveyState.status
                     },
                 };
             } else {

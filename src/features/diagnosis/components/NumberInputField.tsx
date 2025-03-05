@@ -16,7 +16,7 @@ export function NumberInputField ({inputValue = "", setInputValue}: NumberInputF
     setInputValue((prevValue) => prevValue.slice(0, -1));
   };
 
-  const buttonStyle = "border-2 rounded-lg p-4 bg-white hover:bg-blue-500 text-blue-500 hover:text-white"
+  const buttonStyle = "border-2 rounded-lg p-4 bg-white hover:bg-blue-500 text-black hover:text-white"
 
   return (
     <div className="flex flex-col items-center h-2/4 gap-4 text-2xl">

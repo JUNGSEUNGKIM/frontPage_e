@@ -4,17 +4,14 @@ import { AnswerButton } from "@/components/custom/AnswerButton";
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
-import { NumberInputField } from "../NumberInputField";
+import TimePicker from "../TimePicker";
 
-export default function DiagnosisProgressFragment() {
+export default function SleepQualitySurveyFragment() {
     // use diagnosis store
     const { surveyState } = useDiagnosisStore();
 
     // local state : 사용자가 선택한 탭
     const [tappedButtonIdx, setTappedButtonIdx] = useState<number | null>(null);
-
-    // local state : 사용자가 선택한 checkbox들
-    const [checkboxIdx, setCheckboxIdx] = useState<number[]>([]);
 
     // API POST용 answer 값 저장
     const [answerValue, setAnswerValue] = useState<string>("");
@@ -30,28 +27,18 @@ export default function DiagnosisProgressFragment() {
     // TODO: 이전에 선택했던 값 남기기?
     useEffect(() => {
         setTappedButtonIdx(null);
-        setCheckboxIdx([]);
-        setAnswerValue("");
+        console.log(surveyState.currentIndex)
+        switch(surveyState.survey.questions[surveyState.currentIndex].question_type) {
+            case "time": setAnswerValue("12:0"); break;
+            case "time_am_pm": setAnswerValue("12:0AM"); break;
+            default: setAnswerValue("");
+        }
     }, [surveyState.currentIndex]);
 
     // handling multiple choice button tap
     function handleAnswerTap(idx: number) {
         setTappedButtonIdx(idx);
     }
-
-    // handling checkbox tap
-    function handleAnswerCheckboxTap(idx: number) {
-        const idxIndex = checkboxIdx.indexOf(idx)
-        if (idxIndex === -1) { // selection
-            setCheckboxIdx((curr) => [...curr, idx]);
-        } else { // deselection
-            setCheckboxIdx((curr) => [...curr.slice(0, idxIndex), ...curr.slice(idxIndex + 1)]);
-        }
-    }
-    // update answer value string
-    useEffect(() => {
-        setAnswerValue(checkboxIdx.map((index) => surveyState.survey.questions[surveyState.currentIndex].choices[index].choice_value).join(','))
-    }, [checkboxIdx]);
 
     // 진행된 퍼센트 계산
     const progressPercentage =
@@ -78,11 +65,8 @@ export default function DiagnosisProgressFragment() {
                 </div>
             </div>
 
-            { surveyState.survey.questions[surveyState.currentIndex].question_type === "number" && 
-                <NumberInputField inputValue={answerValue} setInputValue={setAnswerValue}/>
-
-            // Multiple choice boxes
-            } { surveyState.survey.questions[surveyState.currentIndex].question_type === "multiple_choice" && 
+            {/* Multiple choice */}
+            { surveyState.survey.questions[surveyState.currentIndex].question_type === "multiple_choice" &&
                 <div className="w-full h-2/4 flex flex-col">
                     {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
                         <AnswerButton
@@ -94,23 +78,30 @@ export default function DiagnosisProgressFragment() {
                         />
                     ))}
                 </div>
+            }
 
-            // Checkboxes
-            } { surveyState.survey.questions[surveyState.currentIndex].question_type === "checkbox" &&
+            {/* Time picker */}
+            { surveyState.survey.questions[surveyState.currentIndex].question_type === "time" &&
                 <div className="w-full h-2/4 flex flex-col">
-                    {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
-                        <AnswerButton
-                            key={idx}
-                            label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
-                            isSelected={checkboxIdx.indexOf(idx) > -1}
-                            handleTap={() => {handleAnswerCheckboxTap(idx)}}
-                            isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
-                        />
-                    ))}
+                    <TimePicker pickMeridian={false} inputValue={answerValue} setInputValue={setAnswerValue}/>
                 </div>
             }
 
-            <DiagnosisProgressToolBar selectedIdx={tappedButtonIdx} />
+            {/* Time picker with AM/PM selector */}
+            { surveyState.survey.questions[surveyState.currentIndex].question_type === "time_am_pm" &&
+                <div className="w-full h-2/4 flex flex-col">
+                    <TimePicker pickMeridian={true} inputValue={answerValue} setInputValue={setAnswerValue}/>
+                </div>
+            }
+
+            <DiagnosisProgressToolBar 
+                answerValue={answerValue} 
+                skipDefaultValue={"null"}
+                skipQuestionCount={ // skip rest of the survey (5 questions) if chosen 0 for 13th question
+                    surveyState.currentIndex === 18 && (tappedButtonIdx === 0 || tappedButtonIdx === 1)
+                    ? 5 : 0
+                }
+             />
         </div>
     );
 }

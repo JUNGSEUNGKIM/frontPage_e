@@ -165,3 +165,23 @@ button:focus-visible {
 .no-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
+
+/* WebKit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent gray */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05); /* Very light gray */
+  border-radius: 4px;
+}
+
+/* Firefox (using scrollbar-width) */
+html {
+  scrollbar-width: thin; /* Makes scrollbars thinner */
+}
