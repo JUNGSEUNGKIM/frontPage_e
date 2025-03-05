@@ -6,7 +6,7 @@ import dementiaSurvey from "@/assets/data/dementiaSurvey.json";
 const API_BASE_URL = "https://api.emmaet.com/api";
 
 // TEST - use sample data for each survey
-const TEST = false;
+const TEST = true;
 
 const getSurvey = async (
     surveyId: number,

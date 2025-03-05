@@ -89,7 +89,7 @@ export function DiagnosisPage() {
                 handleSubmit(member ? member.member_id : 1, surveyState.responses);
                 openSleepQualitySurvey();
             } break;
-            case "sleepQualitySurvey" : if (surveyState.responses.length == 22) {
+            case "sleepQualitySurvey" : if (surveyState.responses.length == 24) {
                 // TODO submit responses
                 chooseSurvey();
             } break;

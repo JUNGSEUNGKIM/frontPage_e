@@ -27,7 +27,6 @@ export default function SleepQualitySurveyFragment() {
     // TODO: 이전에 선택했던 값 남기기?
     useEffect(() => {
         setTappedButtonIdx(null);
-        console.log(surveyState.currentIndex)
         switch(surveyState.survey.questions[surveyState.currentIndex].question_type) {
             case "time": setAnswerValue("12:0"); break;
             case "time_am_pm": setAnswerValue("12:0AM"); break;

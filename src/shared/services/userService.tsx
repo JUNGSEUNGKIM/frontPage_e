@@ -8,7 +8,7 @@ import SampleMemberData from "@/assets/data/sampleMemberData.json";
 const API_BASE_URL = "https://api.emmaet.com/api";
 
 // TEST - use sample data
-const TEST = false;
+const TEST = true;
 
 const getMemberData = async (
     memberId: number,

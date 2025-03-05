@@ -13,7 +13,7 @@ import isLandScape from "@/utls/is_landscape";
 
 type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
 
-const currentURL: SOCKETURL = "wss://api.emmaet.com/lucycare/ws";
+const currentURL: SOCKETURL = "ws://localhost:5050/ws";
 
 const FaceDetectionApp = ({
     onValueChanged,
