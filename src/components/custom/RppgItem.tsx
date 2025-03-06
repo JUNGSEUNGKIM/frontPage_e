@@ -25,7 +25,16 @@ export function RppgItem({
             {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
             {label === "HRV" && <CustomImage src={hrvImage} alt="HRV" />}
             {label === "Stress" && <CustomImage src={stress} alt="Stress" />}
-            <h1 className="w-1/2 text-3xl font-bold font-black">{value}</h1>
+            <div className="w-1/2 flex items-end">
+                <h1 className="text-3xl font-bold font-black">{value}</h1>
+                <p className="pl-2">
+                    {
+                        label === "HR" ? "bpm" :
+                        label === "HRV" ? "ms" :
+                        ""
+                    }
+                </p>
+            </div>
         </HStack>
     );
 }

@@ -72,7 +72,7 @@ function RPPGCards({
     // Text & icon styles
     const labelTextStyle = "text-xl text-gray-700 font-medium";
     const iconStyle = "w-16 h-16 object-cover";
-    const valueTextStyle = "text-3xl font-semibold flex w-full items-end pl-4";
+    const valueTextStyle = "text-3xl font-semibold flex items-end pl-4";
 
     return (
         <div className="flex h-full gap-3">
@@ -88,12 +88,15 @@ function RPPGCards({
                 <div className={cn(cardStyle, "h-2/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>HRV</h3>
                     <div className={iconAndTextWrapperStyle}>
-                        <div className="w-full flex justify-end">
+                        <div className="w-1/2 flex justify-end">
                             <img src={HRVIcon} className={iconStyle} />
                         </div>
-                        <p className={valueTextStyle}>
-                            {measurementValue.hrv}
-                        </p>
+                        <div className="w-1/2 flex justify-start items-end">
+                            <p className={valueTextStyle}>
+                                {measurementValue.hrv}
+                            </p>
+                            <p className="pl-2 text-sm">ms</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,12 +105,15 @@ function RPPGCards({
                 <div className={cn(cardStyle, "h-2/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>HR</h3>
                     <div className={iconAndTextWrapperStyle}>
-                        <div className="w-full flex justify-end">
+                        <div className="w-1/2 flex justify-end">
                             <img src={HRIcon} className={iconStyle} />
                         </div>
-                        <p className={valueTextStyle}>
-                            {measurementValue.hr}
-                        </p>
+                        <div className="w-1/2 flex justify-start items-end">
+                            <p className={valueTextStyle}>
+                                {measurementValue.hr}
+                            </p>
+                            <p className="pl-2 text-sm">bpm</p>
+                        </div>
                     </div>
                 </div>
 
@@ -118,7 +124,7 @@ function RPPGCards({
                         <div className="w-full flex justify-end">
                             <img src={StressIcon} className={iconStyle} />
                         </div>
-                        <p className={valueTextStyle}>
+                        <p className={cn(valueTextStyle, "w-full")}>
                             {measurementValue.stress}
                         </p>
                     </div>
