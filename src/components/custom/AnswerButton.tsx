@@ -23,13 +23,12 @@ export function AnswerButton({
             className={clsx(
                 "w-full flex flex-row justify-center rounded-2xl mt-4 border transition",
                 isSelected ? selectedClassName : unselectedClassName,
-                isSmall ? "p-5" : "p-6"
+                isSmall ? "p-4" : "p-6"
             )}
         >
             <h1
                 className={clsx(
-                    "w-full font-bold text-center text-black",
-                    isSmall ? "text-xl" : "text-2xl"
+                    "w-full font-bold text-center text-black text-2xl",
                 )}
             >
                 {label}
