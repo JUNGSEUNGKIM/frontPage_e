@@ -1,6 +1,7 @@
 // hooks
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 // components
 import {
     OnboardingButton,
@@ -15,7 +16,6 @@ import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
 import { useUserStore } from "@/shared/stores/userStore";
 import { useMemberDataGet } from "@/shared/services/userService";
-import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 
 export function OnboardingPage() {
     const navigate = useNavigate();
@@ -48,7 +48,6 @@ export function OnboardingPage() {
     useEffect(() => {
 
         init();
-        console.log("refreshed diagnosis state")
 
         const intervalId = setInterval(() => {
             // 최신 currentIndex 값을 참조
