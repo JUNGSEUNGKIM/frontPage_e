@@ -46,5 +46,11 @@
     "emotionNeutralLabel" : "Neutral",
     "emotionSadLabel" : "Sad",
     "emotionSurprisedLabel" : "Surprised",
-    "errorLabel" : "An error has occurred"
+    "errorLabel" : "An error has occurred",
+    "ageUnit" : "years old",
+    "heightUnit" : "cm",
+    "weightUnit" : "kg",
+    "oClockUnit" : ":",
+    "hoursUnit" : ":",
+    "minutesUnit" : ""
 }
