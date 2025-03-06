@@ -10,11 +10,10 @@ export default function DiagnosisAppBar() {
     }
 
     return (
-        <div className="w-full flex flex-row justify-between mt-4 mr-4 mb-8">
-
+        <div className="w-full h-16 flex flex-row items-center justify-between mr-4 mb-8 py-4">
             {/* Logo Button */}
             <LogoButton onClick={handleGoPreviousPage} isWhite={true} />
-            
+
             {/* Logout Button */}
             <LogoutButton onClick={() => navigate("/onboarding")} />
         </div>

@@ -18,7 +18,7 @@ export default function SelectableLanguageButton({
             className={`w-24 h-full rounded-sm py-2 font-bold text-4xl ${
                 isSelected
                     ? "bg-blue-300 text-white border border-blue-500"
-                    : "bg-slate-100 text-black"
+                    : "bg-slate-100 text-black border border-white"
             }`}
             data-cy={cy}
         >
