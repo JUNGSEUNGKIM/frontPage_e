@@ -12,7 +12,7 @@ export default function HRVResultCard({ state }: HRVResultCardProps) {
     return (
         <div className="w-full h-[28rem] flex flex-col rounded-xl border bg-card text-card-foreground shadow p-4">
             <h3 className="font-bold text-lg mb-4">
-                {t("rppgHRVLabel") + " (SDNN)"}
+                {t("rppgHRVLabel") + " (SDNN Index)"}
             </h3>
             <div className="w-full h-full flex flex-row gap-4">
                 <div className="w-1/2 h-full flex flex-col items-center justify-center p-4">
@@ -31,7 +31,7 @@ export default function HRVResultCard({ state }: HRVResultCardProps) {
                 </div>
                 <div className="h-full flex flex-col items-center justify-center">
                     <h1 className="text-sm font-medium">
-                        HRV(SDNN) 수치에 따른 위험도 구분표
+                        HRV(SDNN Index) 수치에 따른 위험도 구분표
                     </h1>
                     <SDNNTable />
                 </div>
