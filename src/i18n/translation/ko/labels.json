@@ -46,5 +46,11 @@
     "emotionNeutralLabel" : "중립",
     "emotionSadLabel" : "슬픔",
     "emotionSurprisedLabel" : "놀람",
-    "errorLabel" : "오류가 발생하였습니다"
+    "errorLabel" : "오류가 발생하였습니다",
+    "ageUnit" : "세",
+    "heightUnit" : "cm",
+    "weightUnit" : "kg",
+    "oClockUnit" : "시",
+    "hoursUnit" : "시간",
+    "minutesUnit" : "분"
 }

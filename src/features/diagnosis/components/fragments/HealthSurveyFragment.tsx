@@ -5,8 +5,12 @@ import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 import { NumberInputField } from "../NumberInputField";
+import { useTranslation } from "react-i18next";
 
 export default function HealthSurveyFragment() {
+
+    const [t] = useTranslation();
+
     // use diagnosis store
     const { surveyState } = useDiagnosisStore();
 
@@ -84,7 +88,16 @@ export default function HealthSurveyFragment() {
 
             
             { surveyState.survey.questions[surveyState.currentIndex].question_type === "number" && 
-                <NumberInputField inputValue={answerValue} setInputValue={setAnswerValue}/>
+                <NumberInputField 
+                    inputValue={answerValue} 
+                    setInputValue={setAnswerValue} 
+                    unit={
+                        surveyState.currentIndex === 1 ? t("ageUnit") :
+                        surveyState.currentIndex === 2 ? t("heightUnit") :
+                        surveyState.currentIndex === 3 ? t("weightUnit") :
+                        ""
+                    }
+                />
 
             // Multiple choice boxes
             } { surveyState.survey.questions[surveyState.currentIndex].question_type === "multiple_choice" && 
