@@ -1,4 +1,4 @@
-import Emoji from "@/assets/animations/thinking.png";
+import Emoji from "@/assets/static_emoji/doctor_emoji.png";
 import PrimaryButton from "@/shared/components/PrimaryButton";
 export default function ChatFragment() {
     return (
