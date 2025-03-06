@@ -15,6 +15,7 @@ import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
 import { useUserStore } from "@/shared/stores/userStore";
 import { useMemberDataGet } from "@/shared/services/userService";
+import { useTabStore } from "@/shared/stores/tabStore";
 
 export function OnboardingPage() {
     const navigate = useNavigate();
@@ -42,8 +43,13 @@ export function OnboardingPage() {
     }, [member.isSuccess]);
 
     const { init } = useDiagnosisStore();
+    const { changeTab } = useTabStore();
 
     // for dynamic emoji
+    useEffect(() => {
+        initializeApp();
+    }, []);
+
     useEffect(() => {
         init();
 
@@ -60,6 +66,13 @@ export function OnboardingPage() {
         return () => clearInterval(intervalId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    function initializeApp() {
+        // reset tabStore when onboarding is rendered
+        init();
+        // reset tabStore
+        changeTab("diagnosis");
+    }
 
     return isLandScape() ? (
         <div className="w-screen h-screen flex flex-col items-center justify-between bg-gradient-to-br from-[#E0E4FF] to-[#BFE4FF]">
