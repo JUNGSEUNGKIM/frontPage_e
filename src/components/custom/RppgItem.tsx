@@ -21,11 +21,11 @@ export function RppgItem({
         );
     }
     return (
-        <HStack>
+        <HStack className="w-full flex justify-center">
             {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
             {label === "HRV" && <CustomImage src={hrvImage} alt="HRV" />}
             {label === "Stress" && <CustomImage src={stress} alt="Stress" />}
-            <h1 className="w-12 text-3xl font-bold font-black">{value}</h1>
+            <h1 className="w-1/2 text-3xl font-bold font-black">{value}</h1>
         </HStack>
     );
 }
