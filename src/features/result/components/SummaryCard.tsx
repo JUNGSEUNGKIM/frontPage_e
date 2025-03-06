@@ -233,7 +233,7 @@ export default function SummaryCard({ state }: SummaryCardProps) {
                                 diagnosisStatus === "Warning" ? 
                                     t("statusWarningLabel") :
                                 diagnosisStatus === "Severe" ?
-                                    t("statsuSevereLabel") :
+                                    t("statusSevereLabel") :
                                 "Unknown"
                             }
                         </h4>
