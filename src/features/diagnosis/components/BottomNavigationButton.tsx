@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { TabIconType } from "../types";
 
 interface BottomNavigationButtonProps {
@@ -15,17 +16,22 @@ export default function BottomNavigationButton({
 }: BottomNavigationButtonProps) {
     const unselectedClassNames = "text-slate-300";
     const selectedClassNames = "text-blue-500";
+    const selectionMarkerBarSize = "w-24 h-2";
     return (
         <button
             onClick={onClick}
-            className={`flex flex-col items-center ${
+            className={`flex flex-col items-center justify-between h-full ${
                 isSelected ? selectedClassNames : unselectedClassNames
             }`}
         >
-            {tabIconType === "search" && <SearchIcon />}
-            {tabIconType === "dtx" && <DtxIcon />}
-            {tabIconType === "aichat" && <AIChatIcon />}
-            <p>{label}</p>
+            <div className={selectionMarkerBarSize}/>
+            <div className="flex flex-col items-center">
+                {tabIconType === "search" && <SearchIcon />}
+                {tabIconType === "dtx" && <DtxIcon />}
+                {tabIconType === "aichat" && <AIChatIcon />}
+                <p>{label}</p>
+            </div>
+            <div className={cn(selectionMarkerBarSize, isSelected ? "bg-blue-500" : "bg-white")}/>
         </button>
     );
 }

@@ -7,7 +7,7 @@ export function RppgMeasurementList({
     measurementValue: RPPGMeasurement;
 }) {
     return (
-        <div className="w-full h-[10%] flex flex-row gap-2 px-4">
+        <div className="w-full h-[15%] flex flex-row gap-4 px-8 h-28">
             <RppgMeasurementCell
                 label="Emotion"
                 value={measurementValue.emotion}

@@ -27,7 +27,7 @@ export function useSurvey() {
 
     const startSurvey = (questions: string[], options: string[]) => {
         setState({
-            status: "onProgress",
+            status: "inProgress",
             currentIndex: 0,
             responses: [],
             surveyQuestions: { questions, options },

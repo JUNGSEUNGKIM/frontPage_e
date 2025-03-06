@@ -1,0 +1,15 @@
+{
+    "member_id": 1,
+    "gender": "남성",
+    "age": 25,
+    "height": 175.5,
+    "weight": 70.2,
+    "regular_exercise": "네",
+    "exercise_frequency": "3~5회",
+    "sleep_hours": "6~8시간",
+    "sleep_quality": "보통",
+    "stress_level": "보통",
+    "emotional_state": "긍정적",
+    "existing_conditions": "고혈압,당뇨",
+    "medication": "없음"
+}

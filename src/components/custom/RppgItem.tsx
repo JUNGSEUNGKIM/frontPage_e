@@ -25,9 +25,7 @@ export function RppgItem({
             {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
             {label === "HRV" && <CustomImage src={hrvImage} alt="HRV" />}
             {label === "Stress" && <CustomImage src={stress} alt="Stress" />}
-            <Text textStyle="3xl" fontWeight="bold" color="black">
-                {value}
-            </Text>
+            <h1 className="w-12 text-3xl font-bold font-black">{value}</h1>
         </HStack>
     );
 }

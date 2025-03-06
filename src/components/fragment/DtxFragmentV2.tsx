@@ -54,7 +54,7 @@ const DtxFragmentV2 = () => {
     return (
         <DTxProvider dtx={dtxState}>
             <div className="w-full h-full mt-4">
-                {/* {dtxState[0].status === "init" && <DtxSelectFragment />} */}
+                {/* {dtxState[0].status === "selection" && <DtxSelectFragment />} */}
                 {dtxState[0].status === "loading" && <DTxLoading />}
                 {dtxState[0].status === "done" && (
                     <DTxWrapper>

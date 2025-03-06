@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { SampleDepressionSurvey } from "./sample";
+import depressionSurvey from "@/assets/data/depressionSurvey.json";
+import dementiaSurvey from "@/assets/data/dementiaSurvey.json";
 
 // TEMP DEBUG - depression survey API base URL
-const API_BASE_URL = "http://121.133.205.103:3000/api";
+const API_BASE_URL = "https://api.emmaet.com/api";
 
 // TEST - use sample data for each survey
 const TEST = true;
@@ -13,7 +14,13 @@ const getSurvey = async (
     memberId: number,
     organizationId: number
 ) => {
-    if (TEST) return SampleDepressionSurvey; // Only return sample for depression survey
+    if (TEST) {
+        switch (surveyId) {
+            case 1: return depressionSurvey;
+            case 2: return dementiaSurvey;
+            default: return depressionSurvey;
+        }
+    }
     try {
         const response = await axios.get(
             `${API_BASE_URL}/survey?survey_id=${surveyId}&member_id=${memberId}&organization_id=${organizationId}`
@@ -40,7 +47,7 @@ const postSurveyAnswer = async (
         console.log(`Survey answer data sucessfully posted.`);
         return response.data;
     } catch (error) {
-        console.error(`Error while posting answer to survey:`, error);
+        console.error(`Error while posting survey answer:`, error);
         throw error;
     }
 };
