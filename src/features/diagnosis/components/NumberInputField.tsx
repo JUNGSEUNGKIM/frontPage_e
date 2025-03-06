@@ -22,7 +22,7 @@ export function NumberInputField ({inputValue = "", setInputValue, unit = ""}: N
   return (
     <div className="flex flex-col items-center h-2/4 gap-4 text-2xl">
 
-      <div className="flex w-full justify-center items-end" >
+      <div className="flex w-full justify-center items-center" >
 
         {/* invisible unit text used to center the number input field */}
         <p className="invisible">{unit}</p>
@@ -36,7 +36,7 @@ export function NumberInputField ({inputValue = "", setInputValue, unit = ""}: N
         />
 
         {/* unit */}
-        <p className="mb-4">{unit}</p>
+        <p>{unit}</p>
 
       </div>
 
