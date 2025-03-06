@@ -47,7 +47,8 @@ export default function SelectDiagnosisFragment() {
         if (diagnosisMenuRef.current) {
             diagnosisMenuRef.current.scrollTo({
                 left: diagnosisMenuRef.current.offsetWidth * diagnosisPage * 5/6,
-                behavior: 'smooth',
+                behavior: 'auto', 
+                // behavior: 'smooth', // animation disabled due to high resource consumption in diagnosis page
             });
         }
     }, [diagnosisPage]);
