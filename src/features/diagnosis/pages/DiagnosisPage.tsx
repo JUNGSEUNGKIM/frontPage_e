@@ -15,7 +15,7 @@ import SelectDiagnosisFragment from "../components/fragments/SelectDiagnosisFrag
 import DiagnosisProgressFragment from "../components/fragments/DiagnosisProgressFragment";
 import DiagnosisDoneFragment from "../components/fragments/DiagnosisDoneFragment";
 import DtxFragmentV2 from "../../../components/fragment/DtxFragmentV2";
-import { ChatFragment } from "../../../components/fragment/ChatFragment";
+import ChatFragment from "../../../components/fragment/ChatFragment";
 import DiagnosisSidebar from "../components/DiagnosisSidebar";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";

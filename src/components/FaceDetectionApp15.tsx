@@ -5,15 +5,14 @@ import * as faceMesh from "@mediapipe/face_mesh";
 import { Camera } from "@mediapipe/camera_utils";
 import cv from "@techstark/opencv-js";
 import { RPPGMeasurement } from "@/types/rppg_types";
-import { Flex } from "@chakra-ui/react";
 import { useCameraStore } from "@/shared/stores/cameraStore";
 import { cn } from "@/lib/utils";
 import { CameraFlipButton } from "@/features/diagnosis/components";
 import isLandScape from "@/utls/is_landscape";
+import { useTranslation } from "react-i18next";
 
-type SOCKETURL = "ws://localhost:5050/ws" | "ws://121.133.205.103:5050/ws";
+type SOCKETURL = "ws://localhost:5050/ws" | "wss://api.emmaet.com/lucycare/ws";
 
-// const currentURL: SOCKETURL = "ws://localhost:5050/ws";
 const currentURL: SOCKETURL = "wss://api.emmaet.com/lucycare/ws";
 
 const FaceDetectionApp = ({
@@ -38,7 +37,9 @@ const FaceDetectionApp = ({
         width: 154, // 원하는 출력 크기로 조정
         height: 154,
     };
-    const [alertText, setAlertText] = useState('');
+
+    const [t] = useTranslation();
+    const [alertText, setAlertText] = useState("");
 
     // 브라우저 크기 감지
 
@@ -333,11 +334,11 @@ const FaceDetectionApp = ({
 
         canvasCtx.restore();
         canvasCtx.save();
-        setAlertText('');
+        setAlertText("");
 
-        if(results.multiFaceLandmarks.length >= 2) {
-            setAlertText('한 사람만 카메라 앞에 서 주세요.')
-        }else if (
+        if (results.multiFaceLandmarks.length >= 2) {
+            setAlertText(t("detectionAlertLabel"));
+        } else if (
             results.multiFaceLandmarks &&
             results.multiFaceLandmarks.length > 0
         ) {
@@ -528,32 +529,30 @@ const FaceDetectionApp = ({
     }, []);
 
     return (
-        <div
-            className="flex flex-col justify-center items-center"
-        >
+        <div className="flex flex-col justify-center items-center">
             {alertText && (
                 <div className="absolute z-10 text-2xl font-bold text-red-600 bg-gray-500 bg-opacity-50 p-2 rounded-lg">
                     {alertText}
                 </div>
             )}
 
-
             <video
                 ref={videoRef}
-                style={{display: "none"}}
+                style={{ display: "none" }}
                 autoPlay
                 playsInline
             />
             {/* canvas for detect check */}
             <div className="flex justify-end">
-                {!isCameraMirrored && !isLandScape() && <CameraFlipButton/>}
+                {!isCameraMirrored && !isLandScape() && <CameraFlipButton />}
                 <canvas
                     ref={canvasRef}
-                    className={cn("w-[640px] h-[480px] rounded-lg bg-blue-200",
+                    className={cn(
+                        "w-[640px] h-[480px] rounded-lg bg-blue-200",
                         isCameraMirrored && "scale-x-[-1]"
                     )}
                 />
-                {isCameraMirrored && !isLandScape() && <CameraFlipButton/>}
+                {isCameraMirrored && !isLandScape() && <CameraFlipButton />}
             </div>
             {/* canvas for skin extract */}
             {/*<canvas ref={skinCanvasRef} style={{ display: "none" }} />*/}
