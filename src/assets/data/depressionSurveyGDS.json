@@ -1,0 +1,599 @@
+{
+    "survey_id": 4,
+    "title": "노인 우울 척도",
+    "title_en": "Geriatric Depression Scale",
+    "description": "현재의 상태를 평가합니다.",
+    "description_en": "Evaluate the current emotional state.",
+    "image_url": null,
+    "questions": [
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 45,
+        "question_text": "귀하는 일상생활에 기본적으로 만족하고 계십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Are you basically satisfied with your life?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 46,
+        "question_text": "귀하는 귀하의 취미와 활동 중 많은 부분을 포기하셨는지요?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Have you dropped many of your activities and interests?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 47,
+        "question_text": "인생이 허무하다고 느끼십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel that your life is empty?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 48,
+        "question_text": "쉽게 짜증이 나십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you often get bored?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 49,
+        "question_text": "미래에 희망적이십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Are you hopeful about the future?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 50,
+        "question_text": "생각해도 잊어버리려고 해도 자꾸 떠오르는 생각으로 괴로워하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you frequently feel troubled by thoughts you cannot get out of your mind?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 51,
+        "question_text": "항상 기분이 좋습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel full of energy?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 52,
+        "question_text": "좋지 않은 일이 생길까 봐 두려워하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel afraid that something bad is going to happen?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 53,
+        "question_text": "일상생활이 거의 기쁘지 않습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel that most of your life is uninteresting?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 54,
+        "question_text": "귀하는 자주 무력감에 젖습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you often feel helpless?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 55,
+        "question_text": "귀하는 귀하의 장래에 대하여 자주 걱정하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you often worry about the future?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 56,
+        "question_text": "대부분의 사람들보다 귀하가 더 기억력 문제를 가지고 있다고 생각하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you think you have more memory problems than most people?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 57,
+        "question_text": "귀하는 현재 살고 계시는 데 대하여 매우 흡족하게 생각하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel satisfied with your current living situation?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 58,
+        "question_text": "귀하는 자주 먹이 풀리며 우울하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you frequently feel downhearted and blue?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 59,
+        "question_text": "귀하는 현재의 자신이 매우 가치있는 존재라고 느끼는지요?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel that you are a valuable person?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 60,
+        "question_text": "과거에 일어났던 일들에 대하여 많이 번민하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you often dwell on past mistakes?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 61,
+        "question_text": "귀하는 인생을 즐기고 계십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you enjoy life?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 62,
+        "question_text": "새로운 일을 시작하기가 힘드십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you have difficulty starting new projects?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 63,
+        "question_text": "귀하는 자신이 암기 왕성하다고 생각하시는지요?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel that you are full of energy?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 64,
+        "question_text": "귀하는 귀하의 처지가 희망적이 아니라고 보십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel hopeless about the future?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 65,
+        "question_text": "귀하는 대부분의 사람들이 자신보다 더 나은 생활을 하신다고 생각하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you think most people are better off than you?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 66,
+        "question_text": "사소한 일들에 자주 화가 나십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you frequently get upset over little things?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 67,
+        "question_text": "귀하는 즐거운 활동을 자주 하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you frequently participate in enjoyable activities?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 68,
+        "question_text": "무엇에 집중하기가 곤란하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you find it difficult to concentrate?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 69,
+        "question_text": "아침에 즐겁게 일어나십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you wake up in the morning feeling happy?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 70,
+        "question_text": "사람들과 어울리는 것을 피하는 편입니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you tend to avoid social activities?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 71,
+        "question_text": "일을 쉽게 결정하십니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you make decisions easily?"
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "예",
+            "choice_order": 1,
+            "choice_value": "1",
+            "choice_label_en": "yes"
+          },
+          {
+            "choice_label": "아니요",
+            "choice_order": 2,
+            "choice_value": "0",
+            "choice_label_en": "no"
+          }
+        ],
+        "question_id": 72,
+        "question_text": "귀하의 심정은 어떤가 다를 없이 맑습니까?",
+        "question_type": "multiple_choice",
+        "question_text_en": "Do you feel that your mood is generally stable?"
+      }
+    ],
+    "diagnosis_result_id": 29
+  }

@@ -39,8 +39,10 @@
     "loadingLucidLabel" : "Lucid 101 불러오는 중",
     "statusLabel":"상태",
     "statusNormalLabel" : "정상군",
+    "statusSlightWarningLabel" : "예비 주의군",
     "statusWarningLabel" : "주의군",
     "statusDangerLabel" : "위험군",
+    "statusSevereLabel" : "심한 위험군",
     "emotionAngryLabel" : "분노",
     "emotionDisgustedLabel" : "역함",
     "emotionFearfulLabel" : "두려움",
@@ -49,5 +51,13 @@
     "emotionSadLabel" : "슬픔",
     "emotionSurprisedLabel" : "놀람",
     "errorLabel" : "오류가 발생하였습니다",
-    "detectionAlertLabel":"한 사람만 카메라 앞에 서 주세요."
+    "detectionAlertLabel":"한 사람만 카메라 앞에 서 주세요.",
+    "ageUnit" : "세",
+    "heightUnit" : "cm",
+    "weightUnit" : "kg",
+    "oClockUnit" : "시",
+    "hoursUnit" : "시간",
+    "minutesUnit" : "분",
+    "warning" : "알림",
+    "stopDiagnosis" : "진행 중인 진단을 종료할까요?"
 }

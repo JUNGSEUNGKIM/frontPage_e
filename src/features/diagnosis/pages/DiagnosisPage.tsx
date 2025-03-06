@@ -28,12 +28,13 @@ import {
 import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
 import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 import { useUserStore } from "@/shared/stores/userStore";
+import { useTranslation } from "react-i18next";
 
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
     const { currentDiagnosis, surveyState, chooseSurvey } = useDiagnosisStore();
-    const { member } = useUserStore();
+    const { member, updateBasicInfo } = useUserStore();
     const { isVisible } = useModalStore();
 
     const hrRef = useRef<string[]>([]);
@@ -83,9 +84,10 @@ export function DiagnosisPage() {
             emotional_state: responses[9],
             existing_conditions: responses[10],
             medication: responses[11],
-        };
-        mutation.mutate({ answerData: updatedResponsesObject, memberId: 1 });
-    };
+        }
+        mutation.mutate({answerData: updatedResponsesObject, memberId: 1});
+        updateBasicInfo(updatedResponsesObject);
+    }
 
     useEffect(() => {
         switch (surveyState.status) {
@@ -234,10 +236,11 @@ export function DiagnosisPage() {
 function DiagnosisProgressModal() {
     const { hideModal } = useModalStore();
     const { init, chooseSurvey, surveyState } = useDiagnosisStore();
+    const [t] = useTranslation();
     return (
         <AlertModal
-            title="알림"
-            desc="진행 중인 진단을 종료할까요?"
+            title={t("warning")}
+            desc={t("stopDiagnosis")}
             onAccept={() => {
                 hideModal();
                 if (

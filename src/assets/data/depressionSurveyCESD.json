@@ -1,0 +1,671 @@
+{
+    "survey_id": 3,
+    "title": "우울 척도",
+    "title_en": "Depression Scale",
+    "description": "지난 1주 동안의 기분 상태를 평가합니다.",
+    "description_en": "Evaluate mood state over the past week.",
+    "image_url": null,
+    "questions": [
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 25,
+        "question_text": "평소에는 성가시지 않았던 일이 성가시게 느껴졌다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I was bothered by things that usually don’t bother me."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 26,
+        "question_text": "별로 먹고 싶지 않았다; 입맛이 없었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I did not feel like eating; my appetite was poor."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 27,
+        "question_text": "가족이나 친구가 도와주더라도 울적한 기분을 떨칠 수 없었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt that I could not shake off the blues even with help from my family or friends."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "3",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "1",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "0",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 28,
+        "question_text": "나도 다른 사람만큼 기분이 좋았다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt just as good as other people."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 29,
+        "question_text": "하고 있는 일에 마음을 집중하기가 어려웠다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I had trouble keeping my mind on what I was doing."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 30,
+        "question_text": "우울했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt depressed."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 31,
+        "question_text": "하는 일이마다 힘들게 느껴졌다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt that everything I did was an effort."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "3",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "1",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "0",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 32,
+        "question_text": "미래에 대해 희망적으로 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt hopeful about the future."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 33,
+        "question_text": "내 인생은 실패작이라고 생각했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I thought my life had been a failure."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 34,
+        "question_text": "무서움을 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt fearful."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 35,
+        "question_text": "잠을 설쳤다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "My sleep was restless."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "3",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "1",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "0",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 36,
+        "question_text": "행복했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I was happy."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 37,
+        "question_text": "평소보다 말을 적게 했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I talked less than usual."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 38,
+        "question_text": "외로움을 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt lonely."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 39,
+        "question_text": "사람들이 불친절했다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "People were unfriendly."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "3",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "2",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "1",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "0",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 40,
+        "question_text": "인생이 즐거웠다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I enjoyed life."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 41,
+        "question_text": "울음을 터뜨린 적이 있었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I had crying spells."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 42,
+        "question_text": "슬픔을 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt sad."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 43,
+        "question_text": "사람들이 나를 싫어한다고 느꼈다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I felt that people disliked me."
+      },
+      {
+        "answer": [],
+        "choices": [
+          {
+            "choice_label": "거의 드물게 (1일 이하)",
+            "choice_order": 1,
+            "choice_value": "0",
+            "choice_label_en": "Rarely or none of the time (less than 1 day)"
+          },
+          {
+            "choice_label": "때때로 (1~2일)",
+            "choice_order": 2,
+            "choice_value": "1",
+            "choice_label_en": "Some of the time (1-2 days)"
+          },
+          {
+            "choice_label": "상당히 (3~4일)",
+            "choice_order": 3,
+            "choice_value": "2",
+            "choice_label_en": "Occasionally (3-4 days)"
+          },
+          {
+            "choice_label": "대부분 (5~7일)",
+            "choice_order": 4,
+            "choice_value": "3",
+            "choice_label_en": "Most or all of the time (5-7 days)"
+          }
+        ],
+        "question_id": 44,
+        "question_text": "일을 제대로 진행시킬 수 없었다.",
+        "question_type": "multiple_choice",
+        "question_text_en": "I could not get going."
+      }
+    ],
+    "diagnosis_result_id": 28
+  }

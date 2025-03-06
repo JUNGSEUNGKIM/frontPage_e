@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface TimePickerProps {
     pickMeridian?: boolean,
@@ -7,8 +8,10 @@ interface TimePickerProps {
 }
 
 export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM", setInputValue }: TimePickerProps) {
+    const [t] = useTranslation();
+    
     const [isAm, setIsAm] = useState(true);
-    const [hour, setHour] = useState(1);
+    const [hour, setHour] = useState(pickMeridian ? 1 : 0);
     const [minute, setMinute] = useState(0);
 
     const [amPmOpen, setAmPmOpen] = useState(false);
@@ -93,7 +96,7 @@ export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM"
             </button>
             {hourOpen && (
                 <div className={dropdownMenuStyle}>
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((h) => (
+                {Array.from({ length: pickMeridian ? 12 : 25 }, (_, i) => i + (pickMeridian ? 1 : 0)).map((h) => (
                     <button
                     key={h}
                     onClick={() => handleHourSelect(h)}
@@ -106,7 +109,13 @@ export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM"
             )}
             </div>
 
-            <p className="py-6 text-2xl">:</p>
+            <p className="py-6 text-2xl">
+                { pickMeridian ?
+                    t("oClockUnit")
+                :
+                    t("hoursUnit")
+                }
+            </p>
 
             <div className="relative" ref={minuteRef}>
             <button onClick={toggleMinute} className={buttonStyle}>
@@ -126,6 +135,8 @@ export default function TimePicker({ pickMeridian = false, inputValue = "12:0AM"
                 </div>
             )}
             </div>
+
+            <p className="py-6 text-2xl">{t("minutesUnit")}</p>
 
             { pickMeridian && 
                 <>

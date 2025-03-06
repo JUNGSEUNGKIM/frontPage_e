@@ -23,18 +23,27 @@ export function RppgItem({
             </Text>
         );
     }
+
+    const isValueLoading = (value: string): boolean => {
+        return value.length === 0 || value.indexOf('-') > -1
+    }
+
     return (
-        <HStack>
-            {label === t("rppgHRLabel") && (
-                <CustomImage src={hrImage} alt="HR" />
-            )}
-            {label === t("rppgHRVLabel") && (
-                <CustomImage src={hrvImage} alt="HRV" />
-            )}
-            {label === t("rppgStressLabel") && (
-                <CustomImage src={stress} alt="Stress" />
-            )}
-            <h1 className="w-12 text-3xl font-bold text-black">{value}</h1>
+        <HStack className="w-full flex justify-center">
+            {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
+            {label === "HRV" && <CustomImage src={hrvImage} alt="HRV" />}
+            {label === "Stress" && <CustomImage src={stress} alt="Stress" />}
+            <div className="w-1/2 flex items-end">
+                <h1 className="text-3xl font-bold font-black">{value}</h1>
+                <p className="pl-2">
+                    {
+                        isValueLoading(value) ? "" :
+                        label === "HR" ? "bpm" :
+                        label === "HRV" ? "ms" :
+                        ""
+                    }
+                </p>
+            </div>
         </HStack>
     );
 }

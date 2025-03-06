@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import depressionSurvey from "@/assets/data/depressionSurvey.json";
+import depressionSurveyPHQ9 from "@/assets/data/depressionSurveyPHQ9.json";
+import depressionSurveyCESD from "@/assets/data/depressionSurveyCESD.json";
+import depressionSurveyGDS from "@/assets/data/depressionSurveyGDS.json";
 import dementiaSurvey from "@/assets/data/dementiaSurvey.json";
 
 // TEMP DEBUG - depression survey API base URL
@@ -16,9 +18,11 @@ const getSurvey = async (
 ) => {
     if (TEST) {
         switch (surveyId) {
-            case 1: return depressionSurvey;
+            case 1: return depressionSurveyPHQ9;
             case 2: return dementiaSurvey;
-            default: return depressionSurvey;
+            case 3: return depressionSurveyCESD;
+            case 4: return depressionSurveyGDS;
+            default: return depressionSurveyCESD;
         }
     }
     try {
@@ -63,12 +67,20 @@ const useSurveyGet = (
     });
 };
 
-const useDepressionSurveyGet = (
+const useCESDDepressionSurveyGet = (
     memberId: number = 1,
     organizationId: number = 1
 ) => {
     // TODO remove default params
-    return useSurveyGet(1, memberId, organizationId);
+    return useSurveyGet(3, memberId, organizationId);
+};
+
+const useGDSDepressionSurveyGet = (
+    memberId: number = 1,
+    organizationId: number = 1
+) => {
+    // TODO remove default params
+    return useSurveyGet(4, memberId, organizationId);
 };
 
 const useDementiaSurveyGet = (
@@ -116,7 +128,8 @@ const useDementiaSurveyAnswerPost = (
 
 export {
     useSurveyGet,
-    useDepressionSurveyGet,
+    useCESDDepressionSurveyGet,
+    useGDSDepressionSurveyGet,
     useDementiaSurveyGet,
     useSurveyAnswerPost,
     useDepressionSurveyAnswerPost,

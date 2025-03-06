@@ -41,6 +41,7 @@
     "statusNormalLabel" : "Normal",
     "statusWarningLabel" : "Warning",
     "statusDangerLabel" : "Danger",
+    "statusSevereLabel" : "Severe",
     "emotionAngryLabel" : "Angry",
     "emotionDisgustedLabel" : "Disgusted",
     "emotionFearfulLabel" : "Fearful",
@@ -49,5 +50,13 @@
     "emotionSadLabel" : "Sad",
     "emotionSurprisedLabel" : "Surprised",
     "errorLabel" : "An error has occurred",
-    "detectionAlertLabel":"Only one person should stand in front of the camera"
+    "detectionAlertLabel":"Only one person should stand in front of the camera",
+    "ageUnit" : "years old",
+    "heightUnit" : "cm",
+    "weightUnit" : "kg",
+    "oClockUnit" : ":",
+    "hoursUnit" : ":",
+    "minutesUnit" : "",
+    "warning" : "Warning",
+    "stopDiagnosis" : "Do you wish to quit from this diagnosis session?"
 }

@@ -33,7 +33,14 @@ export default function SummaryCard({ state }: SummaryCardProps) {
     // Sample data for the HR chart
     // left : total score - get
     // get : scores. sum
-    const maxScore = state.diagnosisType == "dementia" ? 30 : 27;
+    const maxScore = 
+        state.diagnosisType === "dementia" ? 
+            30 : 
+        state.diagnosisType === "depressionCESD" ?
+            60 :
+        state.diagnosisType === "depressionGDS" ?
+            30 : 
+            100
 
     const chartData = [
         { browser: "left", scores: maxScore - state.score, fill: "#e2e8f0" },
@@ -48,9 +55,28 @@ export default function SummaryCard({ state }: SummaryCardProps) {
             normal: { score: number; description: string };
             warning: { score: number; description: string };
             danger: { score: number; description: string };
+            severe?: { score: number; description: string };
         }
     > = {
-        depression: {
+        depressionCESD: {
+            normal: {
+                score: 15,
+                description: t("depressionNormalDescription"),
+            },
+            warning: {
+                score: 20,
+                description: t("depressionWarningDescription"),
+            },
+            danger: {
+                score: 24,
+                description: t("depressionWarningDescription"),
+            },
+            severe: {
+                score: Infinity,
+                description: t("depressionSevereDescription"),
+            },
+        },
+        depressionGDS: {
             normal: {
                 score: 10,
                 description: t("depressionNormalDescription"),
@@ -100,16 +126,26 @@ export default function SummaryCard({ state }: SummaryCardProps) {
                 status: "Warning",
                 description: threshold.warning.description,
             };
-        } else {
+        } else if (score < threshold.danger.score) {
             return {
                 status: "Danger",
-                description: threshold.danger.description,
+                description: threshold.warning.description,
+            };
+        } else if (threshold.severe && score < threshold.severe.score) {
+            return {
+                status: "Severe",
+                description: threshold.warning.description,
+            };
+        } else {
+            return {
+                status: "Unknown",
+                description: threshold.warning.description,
             };
         }
     }
 
     // 사용 예
-    const diagnosisType = state.diagnosisType; // e.g., "Depression"
+    const diagnosisType = state.diagnosisType; // e.g., "depressionCESD"
     const { status: diagnosisStatus, description: diagnosisDescription } =
         getDiagnosisResult(diagnosisType!, score);
 
@@ -189,11 +225,17 @@ export default function SummaryCard({ state }: SummaryCardProps) {
                                     : "text-red-500"
                             }`}
                         >
-                            {diagnosisStatus === "Danger"
-                                ? t("statusDangerLabel")
-                                : diagnosisStatus === "Normal"
-                                ? t("statusNormalLabel")
-                                : t("statusWarningLabel")}
+                            {
+                                diagnosisStatus === "Danger" ? 
+                                    t("statusDangerLabel") :
+                                diagnosisStatus === "Normal" ? 
+                                    t("statusNormalLabel") : 
+                                diagnosisStatus === "Warning" ? 
+                                    t("statusWarningLabel") :
+                                diagnosisStatus === "Severe" ?
+                                    t("statsuSevereLabel") :
+                                "Unknown"
+                            }
                         </h4>
                     </div>
                     <p>{diagnosisDescription}</p>

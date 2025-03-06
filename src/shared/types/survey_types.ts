@@ -14,7 +14,7 @@ export interface SurveyState {
     survey: Survey;
 }
 
-export type DiagnosisType = null | "depression" | "dementia" | "sleepQuality";
+export type DiagnosisType = null | "depressionCESD" | "depressionGDS" | "dementia" | "sleepQuality";
 
 export interface Survey {
   survey_id: number;
