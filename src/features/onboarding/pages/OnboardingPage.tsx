@@ -10,7 +10,6 @@ import {
 } from "../components";
 import LogoButton from "@/shared/components/LogoButton";
 // assets
-import CESLogo from "@/assets/ces_logo.png";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
@@ -35,18 +34,17 @@ export function OnboardingPage() {
     const { loginAsMember } = useUserStore();
 
     // DEBUG TEMP - automatic user login for testing
-    const member = useMemberDataGet(1)
+    const member = useMemberDataGet(1);
     useEffect(() => {
         if (member.isSuccess) {
-            loginAsMember(member.data)
+            loginAsMember(member.data);
         }
     }, [member.isSuccess]);
 
-    const { init } = useDiagnosisStore()
+    const { init } = useDiagnosisStore();
 
     // for dynamic emoji
     useEffect(() => {
-
         init();
 
         const intervalId = setInterval(() => {
@@ -71,20 +69,19 @@ export function OnboardingPage() {
         </div>
     ) : (
         <div className="w-full h-screen bg-gradient-to-r from-blue-300 to-slate-200 flex flex-col items-center justify-center">
-            <div className="w-full flex flex-row items-center justify-between mt-4">
-                <div className="flex flex-row">
-                    <LogoButton onClick={() => {}} />
-                    <img src={CESLogo} className="h-10 mr-4" />
+            <div className="w-full flex flex-row items-center justify-between">
+                <div className="h-16 flex flex-row items-center mr-4">
+                    <LogoButton isWhite onClick={() => {}} />
                 </div>
                 <div className="flex flex-row mr-4 gap-4">
                     <SelectableLanguageButton
-                        label={"🇬🇧"}
+                        label={"EN"}
                         onClick={() => i18n.changeLanguage("en")}
                         isSelected={i18n.language === "en"}
                         cy="selectable-en"
                     />
                     <SelectableLanguageButton
-                        label={"🇰🇷"}
+                        label={"KR"}
                         onClick={() => i18n.changeLanguage("ko")}
                         isSelected={i18n.language === "ko"}
                         cy="selectable-ko"
@@ -116,7 +113,6 @@ function OnboardingAppBar() {
         <div className="w-full flex flex-row items-center justify-between mt-4">
             <div className="flex flex-row">
                 <LogoButton onClick={() => {}} />
-                <img src={CESLogo} className="h-10 mr-4" />
             </div>
         </div>
     );
