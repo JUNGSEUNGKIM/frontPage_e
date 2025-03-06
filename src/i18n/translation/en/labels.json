@@ -39,6 +39,7 @@
     "statusNormalLabel" : "Normal",
     "statusWarningLabel" : "Warning",
     "statusDangerLabel" : "Danger",
+    "statusSevereLabel" : "Severe",
     "emotionAngryLabel" : "Angry",
     "emotionDisgustedLabel" : "Disgusted",
     "emotionFearfulLabel" : "Fearful",
@@ -52,5 +53,7 @@
     "weightUnit" : "kg",
     "oClockUnit" : ":",
     "hoursUnit" : ":",
-    "minutesUnit" : ""
+    "minutesUnit" : "",
+    "warning" : "Warning",
+    "stopDiagnosis" : "Do you wish to quit from this diagnosis session?"
 }

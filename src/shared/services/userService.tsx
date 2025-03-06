@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import dementiaSurvey from "@/assets/data/dementiaSurvey.json";
 import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 import SampleMemberData from "@/assets/data/sampleMemberData.json";
 
@@ -38,6 +37,10 @@ const useMemberDataGet = (
 const postHealthSurveyAnswer = async (
     answerData: HealthSurveyResult,
 ) => {
+    if (!TEST) {
+        console.log("Test mode running - health survey answer was not posted.")
+        return answerData;
+    }
     try {
         const response = await axios.post(
             `${API_BASE_URL}/member/basic-info`,

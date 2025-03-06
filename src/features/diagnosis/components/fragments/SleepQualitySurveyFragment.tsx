@@ -5,6 +5,7 @@ import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 import TimePicker from "../TimePicker";
+import i18n from "@/i18n";
 
 export default function SleepQualitySurveyFragment() {
     // use diagnosis store
@@ -52,7 +53,10 @@ export default function SleepQualitySurveyFragment() {
             <div className="h-1/4 flex flex-col items-center gap-10">
                 <h1 className="w-full h-2/5 text-center text-4xl font-bold text-black mt-14">
                     {
-                        surveyState.survey.questions[surveyState.currentIndex].question_text
+                        i18n.language === "en" ?
+                            surveyState.survey.questions[surveyState.currentIndex].question_text_en
+                        :
+                            surveyState.survey.questions[surveyState.currentIndex].question_text
                     }
                 </h1>
                 {/* Progress indicator */}
@@ -70,8 +74,12 @@ export default function SleepQualitySurveyFragment() {
                     {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
                         <AnswerButton
                             key={idx}
-                            label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
-                            isSelected={tappedButtonIdx === idx}
+                            label={
+                                i18n.language === "en" ?
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
+                                :
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
+                            }                            isSelected={tappedButtonIdx === idx}
                             handleTap={() => handleAnswerTap(idx)}
                             isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
                         />

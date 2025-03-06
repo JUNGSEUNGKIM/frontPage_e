@@ -24,12 +24,13 @@ import { DiagnosisStartFragment, HealthSurveyFragment, SleepQualitySurveyFragmen
 import { useHealthSurveyAnswerPost } from "@/shared/services/userService";
 import { HealthSurveyResult } from "@/shared/types/healthSurveyResult";
 import { useUserStore } from "@/shared/stores/userStore";
+import { useTranslation } from "react-i18next";
 
 export function DiagnosisPage() {
     // stores
     const { currentTab } = useTabStore();
     const { currentDiagnosis, surveyState, chooseSurvey } = useDiagnosisStore();
-    const { member } = useUserStore();
+    const { member, updateBasicInfo } = useUserStore();
     const { isVisible } = useModalStore();
 
     const hrRef = useRef<string[]>([]);
@@ -81,15 +82,16 @@ export function DiagnosisPage() {
             medication: responses[11],
         }
         mutation.mutate({answerData: updatedResponsesObject, memberId: 1});
+        updateBasicInfo(updatedResponsesObject);
     }
 
     useEffect(() => {
         switch (surveyState.status) {
-            case "healthSurvey" : if (surveyState.responses.length == 12) {
+            case "healthSurvey" : if (surveyState.responses.length === 12) {
                 handleSubmit(member ? member.member_id : 1, surveyState.responses);
                 chooseSurvey();
             } break;
-            case "sleepQualitySurvey" : if (surveyState.responses.length == 24) {
+            case "sleepQualitySurvey" : if (surveyState.responses.length === 24) {
                 // TODO submit responses
                 chooseSurvey();
             } break;
@@ -229,10 +231,11 @@ export function DiagnosisPage() {
 function DiagnosisProgressModal() {
     const { hideModal } = useModalStore();
     const { init, chooseSurvey, surveyState } = useDiagnosisStore();
+    const [t] = useTranslation();
     return (
         <AlertModal
-            title="알림"
-            desc="진행 중인 진단을 종료할까요?"
+            title={t("warning")}
+            desc={t("stopDiagnosis")}
             onAccept={() => {
                 hideModal();
                 if (surveyState.status === "inProgress" || surveyState.status === "sleepQualitySurvey") chooseSurvey();

@@ -74,6 +74,10 @@ function RPPGCards({
     const iconStyle = "w-14 h-14 object-cover";
     const valueTextStyle = "text-3xl font-semibold flex items-end pl-2";
 
+    const isValueLoading = (value: string): boolean => {
+        return value.length === 0 || value.indexOf('-') > -1
+    }
+
     return (
         <div className="flex h-full gap-3">
             <div className={columnWrapperStyle}>
@@ -95,7 +99,7 @@ function RPPGCards({
                             <p className={valueTextStyle}>
                                 {measurementValue.hrv}
                             </p>
-                            <p className="pl-2 text-sm">ms</p>
+                            {!isValueLoading(measurementValue.hrv) && <p className="pl-2 text-sm">ms</p>}
                         </div>
                     </div>
                 </div>
@@ -112,7 +116,7 @@ function RPPGCards({
                             <p className={valueTextStyle}>
                                 {measurementValue.hr}
                             </p>
-                            <p className="pl-2 text-sm">bpm</p>
+                            {!isValueLoading(measurementValue.hr) && <p className="pl-2 text-sm">bpm</p>}
                         </div>
                     </div>
                 </div>

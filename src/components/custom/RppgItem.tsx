@@ -20,6 +20,11 @@ export function RppgItem({
             </Text>
         );
     }
+
+    const isValueLoading = (value: string): boolean => {
+        return value.length === 0 || value.indexOf('-') > -1
+    }
+
     return (
         <HStack className="w-full flex justify-center">
             {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
@@ -29,6 +34,7 @@ export function RppgItem({
                 <h1 className="text-3xl font-bold font-black">{value}</h1>
                 <p className="pl-2">
                     {
+                        isValueLoading(value) ? "" :
                         label === "HR" ? "bpm" :
                         label === "HRV" ? "ms" :
                         ""

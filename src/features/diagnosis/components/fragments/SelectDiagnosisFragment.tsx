@@ -7,7 +7,7 @@ import PrimaryButton from "@/shared/components/PrimaryButton";
 import DiagnosisSelectableButton from "../DiagnosisSelectableButton";
 
 // services
-import { useDepressionSurveyGet, useDementiaSurveyGet } from "../../services/surveyService";
+import { useCESDDepressionSurveyGet, useGDSDepressionSurveyGet, useDementiaSurveyGet } from "../../services/surveyService";
 
 // assets
 import Crying from "@/assets/animations/crying.png";
@@ -17,8 +17,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import SecondaryButton from "@/shared/components/SecondaryButton";
 import { ChevronLeftIcon } from "@/assets/icons/chevron_left";
 import { ChevronRightIcon } from "@/assets/icons/chevron_right";
+import { useUserStore } from "@/shared/stores/userStore";
 
-const DIAGNOSIS_COUNT = 3;
+const DIAGNOSIS_COUNT = 2;
+const GDS_MIN_AGE = 65;
 
 export default function SelectDiagnosisFragment() {
 
@@ -31,15 +33,26 @@ export default function SelectDiagnosisFragment() {
     const diagnosisMenuRef = useRef<HTMLDivElement>(null)
 
     const { currentDiagnosis, selectDiagnosis, setSurvey, surveyState, init, startSleepQualitySurvey } = useDiagnosisStore();
+    const { basicInfo } = useUserStore();
 
-    const depressionSurvey = useDepressionSurveyGet();
+    const depressionSurveyGDS = useGDSDepressionSurveyGet(); // use GDS for depression survey if considered "elderly"
+    const depressionSurveyCESD = useCESDDepressionSurveyGet(); // use CES-D as default depression survey
     const dementiaSurvey = useDementiaSurveyGet();
 
     const getSelectedSurvey = (): UseQueryResult<any, Error> | null => {
         switch (currentDiagnosis) {
-            case "depression": return depressionSurvey;
-            case "dementia": return dementiaSurvey;
-            default: return null;
+            
+            case "depressionCESD": 
+                return depressionSurveyCESD;
+
+            case "depressionGDS":
+                return depressionSurveyGDS;
+
+            case "dementia": 
+                return dementiaSurvey;
+
+            default: 
+                return null;
         }
     } 
 
@@ -106,26 +119,26 @@ export default function SelectDiagnosisFragment() {
 
             <div className="w-full h-2/3 flex snap-x">
 
-                <button 
+                {/* <button 
                     className={diagnosisPage > 0 ? navButtonStyle : disabledNavButtonStyle} 
                     onClick={() => setDiagnosisPage(Math.max(diagnosisPage - 1, 0))}
                 >
                     <ChevronLeftIcon />
-                </button>
+                </button> */}
 
                 <div className="w-full flex flex-row overflow-x-hidden snap-x" ref={diagnosisMenuRef}>
                     <DiagnosisSelectableButton
-                        isSelected={currentDiagnosis === "depression"}
+                        isSelected={currentDiagnosis === "depressionGDS" || currentDiagnosis === "depressionCESD"}
                         onClick={() => {
-                            if (currentDiagnosis !== "depression") {
-                                selectDiagnosis("depression");
+                            if (currentDiagnosis !== "depressionGDS" && currentDiagnosis !== "depressionCESD") {
+                                selectDiagnosis((basicInfo && basicInfo.age >= GDS_MIN_AGE) ? "depressionGDS" : "depressionCESD");
                             }
                         }}
                         emojiSrc={Crying}
                         label={t("depressionDiagnosisLabel")}
                         description={t("depressionDescription")}
                     />
-                    <DiagnosisSelectableButton
+                    {/* <DiagnosisSelectableButton
                         isSelected={currentDiagnosis === "sleepQuality"}
                         onClick={() => {
                             if (currentDiagnosis !== "sleepQuality") {
@@ -135,7 +148,7 @@ export default function SelectDiagnosisFragment() {
                         emojiSrc={SleepyFace}
                         label={t("sleepQualitySurveyLabel")}
                         description={t("sleepQualitySurveyDescription")}
-                    />
+                    /> */}
                     <DiagnosisSelectableButton
                         isSelected={currentDiagnosis === "dementia"}
                         onClick={() => {
@@ -149,12 +162,12 @@ export default function SelectDiagnosisFragment() {
                     />
                 </div>
 
-                <button 
+                {/* <button 
                     className={diagnosisPage < maxPages ? navButtonStyle : disabledNavButtonStyle} 
                     onClick={() => setDiagnosisPage(Math.min(diagnosisPage + 1, maxPages))}
                 >
                     <ChevronRightIcon />
-                </button>
+                </button> */}
 
             </div>
 

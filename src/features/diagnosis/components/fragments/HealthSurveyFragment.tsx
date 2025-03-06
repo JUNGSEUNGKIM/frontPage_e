@@ -6,6 +6,7 @@ import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
 import { NumberInputField } from "../NumberInputField";
 import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 
 export default function HealthSurveyFragment() {
 
@@ -74,7 +75,10 @@ export default function HealthSurveyFragment() {
             <div className="h-1/4 flex flex-col items-center gap-10">
                 <h1 className="w-full h-2/5 text-center text-4xl font-bold text-black mt-14">
                     {
-                        surveyState.survey.questions[surveyState.currentIndex].question_text
+                        i18n.language === "en" ?
+                            surveyState.survey.questions[surveyState.currentIndex].question_text_en
+                        :
+                            surveyState.survey.questions[surveyState.currentIndex].question_text
                     }
                 </h1>
                 {/* Progress indicator */}
@@ -105,7 +109,12 @@ export default function HealthSurveyFragment() {
                     {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
                         <AnswerButton
                             key={idx}
-                            label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
+                            label={
+                                i18n.language === "en" ?
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
+                                :
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
+                            }
                             isSelected={tappedButtonIdx === idx}
                             handleTap={() => handleAnswerTap(idx)}
                             isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
@@ -119,7 +128,12 @@ export default function HealthSurveyFragment() {
                     {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
                         <AnswerButton
                             key={idx}
-                            label={surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label}
+                            label={
+                                i18n.language === "en" ?
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
+                                :
+                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
+                            }
                             isSelected={checkboxIdx.indexOf(idx) > -1}
                             handleTap={() => {handleAnswerCheckboxTap(idx)}}
                             isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
