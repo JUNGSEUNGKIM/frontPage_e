@@ -9,6 +9,7 @@ import { useCameraStore } from "@/shared/stores/cameraStore";
 import { cn } from "@/lib/utils";
 import { CameraFlipButton } from "@/features/diagnosis/components";
 import isLandScape from "@/utls/is_landscape";
+import { useTranslation } from "react-i18next";
 
 type SOCKETURL = "ws://localhost:5050/ws" | "wss://api.emmaet.com/lucycare/ws";
 
@@ -36,6 +37,8 @@ const FaceDetectionApp = ({
         width: 154, // 원하는 출력 크기로 조정
         height: 154,
     };
+
+    const [t] = useTranslation();
     const [alertText, setAlertText] = useState("");
 
     // 브라우저 크기 감지
@@ -334,7 +337,7 @@ const FaceDetectionApp = ({
         setAlertText("");
 
         if (results.multiFaceLandmarks.length >= 2) {
-            setAlertText("한 사람만 카메라 앞에 서 주세요.");
+            setAlertText(t("detectionAlertLabel"));
         } else if (
             results.multiFaceLandmarks &&
             results.multiFaceLandmarks.length > 0

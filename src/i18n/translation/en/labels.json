@@ -48,5 +48,6 @@
     "emotionNeutralLabel" : "Neutral",
     "emotionSadLabel" : "Sad",
     "emotionSurprisedLabel" : "Surprised",
-    "errorLabel" : "An error has occurred"
+    "errorLabel" : "An error has occurred",
+    "detectionAlertLabel":"Only one person should stand in front of the camera"
 }

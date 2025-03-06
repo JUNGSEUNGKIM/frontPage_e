@@ -48,5 +48,6 @@
     "emotionNeutralLabel" : "중립",
     "emotionSadLabel" : "슬픔",
     "emotionSurprisedLabel" : "놀람",
-    "errorLabel" : "오류가 발생하였습니다"
+    "errorLabel" : "오류가 발생하였습니다",
+    "detectionAlertLabel":"한 사람만 카메라 앞에 서 주세요."
 }
