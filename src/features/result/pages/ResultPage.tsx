@@ -1,4 +1,3 @@
-import Logo from "@/assets/logo.png";
 import { ReactNode, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
@@ -15,6 +14,7 @@ import { DiagnosisResult } from "../types";
 import isLandScape from "@/utls/is_landscape";
 import LSEmotionResultCard from "../components/LSEmotionResultCard";
 import LSStressResultCard from "../components/LSStressResultCard";
+import LogoButton from "@/shared/components/LogoButton";
 
 function ScaleTransitionButtonWrapper({
     onClick,
@@ -113,35 +113,29 @@ export default function ResultPage() {
             className="min-h-screen bg-white p-4 flex flex-col gap-4 overflow-auto"
         >
             {/* Logo */}
-            <div className="p-4">
-                <img
-                    src={Logo}
-                    style={{ height: "2vh", marginRight: "2vw" }}
-                    className="mr-auto"
-                    onClick={() => navigate("/", { replace: true })}
-                />
+            <div>
+                <LogoButton onClick={() => navigate("/", { replace: true })} />
             </div>
 
             {/* 제목 */}
-            <h1 className="text-4xl font-bold text-center mb-16">
+            <h1 className="text-3xl font-bold text-center mb-4">
                 {t("diagnosisResultLabel")}
             </h1>
 
             {/* 카메라 영상 & 진단 결과 */}
-            <div className="flex flex-row gap-4 h-1/5">
-                <SummaryCard state={state} />
-            </div>
 
+            <HRResultCard state={state} />
             {/* HR & HRV 결과 */}
-            <div className="grid grid-cols-2 gap-4">
-                <HRResultCard state={state} />
-                <HRVResultCard state={state} />
-            </div>
+            <HRVResultCard state={state} />
 
             {/* Emotions & Stress 결과 */}
             <div className="grid grid-cols-2 gap-4">
                 <EmotionResultCard state={state} />
                 <StressResultCard state={state} />
+            </div>
+
+            <div className="flex flex-row gap-4 h-1/5">
+                <SummaryCard state={state} />
             </div>
 
             {/* 진단 종료 버튼 */}

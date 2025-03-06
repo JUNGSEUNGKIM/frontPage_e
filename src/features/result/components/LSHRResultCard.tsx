@@ -24,7 +24,7 @@ export default function LSHRResultCard({ state }: LSHRResultCardProps) {
     );
 
     return (
-        <StatCard title={t("HR")}>
+        <StatCard title={t("rppgHRLabel")}>
             <ResultChardCard
                 config={{
                     value: {
