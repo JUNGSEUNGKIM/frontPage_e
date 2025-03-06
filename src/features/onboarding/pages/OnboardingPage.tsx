@@ -13,7 +13,6 @@ import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import isLandScape from "@/utls/is_landscape";
 import { useModalStore } from "@/shared/stores/modalStore";
-import AlertModal from "@/shared/components/AlertModal";
 import SignInModal from "@/features/authentication/components/SigninDialog";
 
 export function OnboardingPage() {
@@ -111,7 +110,6 @@ function OnboardingBottomToolBar() {
 
     const { showModal } = useModalStore();
 
-    const navigate = useNavigate();
     return (
         <div className="w-full px-8 py-8 flex flex-row items-center justify-between bg-blue-500 rounded-t-3xl shadow">
             <motion.button
