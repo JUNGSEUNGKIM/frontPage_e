@@ -26,7 +26,6 @@ export default function DiagnosisSidebar({
     children,
     measurementValue,
 }: LSDiagnosisSidebarProps) {
-
     return (
         <div
             className="w-1/3 h-screen bg-blue-500 flex"
@@ -80,20 +79,20 @@ function RPPGCards({
                 {/* Emotion */}
                 <div className={cn(cardStyle, "h-3/5")} style={shadowStyle}>
                     <h3 className={labelTextStyle}>{t("rppgEmotionLabel")}</h3>
-                    <p className="text-3xl font-semibold">{measurementValue.emotion}</p>
+                    <p className="text-3xl font-semibold">
+                        {measurementValue.emotion}
+                    </p>
                     <div />
                 </div>
 
                 {/* HRV */}
                 <div className={cn(cardStyle, "h-2/5")} style={shadowStyle}>
-                    <h3 className={labelTextStyle}>HRV</h3>
+                    <h3 className={labelTextStyle}>{t("rppgHRVLabel")}</h3>
                     <div className={iconAndTextWrapperStyle}>
                         <div className="w-full flex justify-end">
                             <img src={HRVIcon} className={iconStyle} />
                         </div>
-                        <p className={valueTextStyle}>
-                            {measurementValue.hrv}
-                        </p>
+                        <p className={valueTextStyle}>{measurementValue.hrv}</p>
                     </div>
                 </div>
             </div>
@@ -105,9 +104,7 @@ function RPPGCards({
                         <div className="w-full flex justify-end">
                             <img src={HRIcon} className={iconStyle} />
                         </div>
-                        <p className={valueTextStyle}>
-                            {measurementValue.hr}
-                        </p>
+                        <p className={valueTextStyle}>{measurementValue.hr}</p>
                     </div>
                 </div>
 
@@ -136,7 +133,8 @@ function TabBar() {
     return (
         <div className="w-1/5 h-full flex flex-col items-end">
             {/* Logo */}
-            <button className="flex mr-1 mt-7 mb-8 w-[78%]"
+            <button
+                className="flex mr-1 mt-7 mb-8 w-[78%]"
                 onClick={() => navigate("/onboarding")}
             >
                 <img src={whiteLogo} alt="Emma Healthcare Logo" />

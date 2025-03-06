@@ -11,7 +11,7 @@ export default function HRVResultCard({ state }: HRVResultCardProps) {
     const [t] = useTranslation();
 
     return (
-        <StatCard title={t("HRV")}>
+        <StatCard title={t("rppgHRVLabel")}>
             <div className="flex flex-col p-4">
                 <div className="flex flex-row items-center justify-center mb-4 px-10">
                     <img src={HeartBeat} className="w-1/2" />

@@ -19,6 +19,8 @@
     "chooseDiagnosisTypeLabel" : "Choose Diagnosis",
     "rppgEmotionLabel" : "Emotion",
     "rppgStressLabel" : "Stress",
+    "rppgHRLabel" :"HR",
+    "rppgHRVLabel":"HRV",
     "healthSurveyLabel" : "Health Survey Questions",
     "sleepQualitySurveyLabel" : "Sleep Quality Survey (PSQI)",
     "depressionDiagnosisLabel" : "Depression Diagnosis",
