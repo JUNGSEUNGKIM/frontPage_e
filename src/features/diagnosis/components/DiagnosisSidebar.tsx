@@ -67,12 +67,12 @@ function RPPGCards({
     const shadowStyle = { boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.2)" };
     const cardStyle =
         "w-full bg-[#99C0FF] flex flex-col items-center justify-between rounded-2xl p-4";
-    const iconAndTextWrapperStyle = "flex items-center justify-center w-full";
+    const iconAndTextWrapperStyle = "flex items-center justify-center w-full h-full";
 
     // Text & icon styles
     const labelTextStyle = "text-xl text-gray-700 font-medium";
-    const iconStyle = "w-16 h-16 object-cover";
-    const valueTextStyle = "text-3xl font-semibold flex items-end pl-4";
+    const iconStyle = "w-14 h-14 object-cover";
+    const valueTextStyle = "text-3xl font-semibold flex items-end pl-2";
 
     return (
         <div className="flex h-full gap-3">
