@@ -69,8 +69,8 @@ export default function ResultPage() {
                     <HRResultCard state={state} isLandscape />
                     <HRVResultCard state={state} isLandscape />
                     <div className="w-[25rem] flex flex-col gap-4">
-                        <LSEmotionResultCard state={state} />
                         <LSStressResultCard state={state} />
+                        <LSEmotionResultCard state={state} />
                     </div>
                     {/* <SummaryCard state={state} /> */}
                 </div>
