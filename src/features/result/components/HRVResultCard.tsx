@@ -4,13 +4,44 @@ import HRVIcon from "@/assets/hrv.png";
 
 interface HRVResultCardProps {
     state: DiagnosisResult;
+    isLandscape: boolean;
 }
 
-export default function HRVResultCard({ state }: HRVResultCardProps) {
+export default function HRVResultCard({
+    state,
+    isLandscape,
+}: HRVResultCardProps) {
     const { t, i18n } = useTranslation();
     const isEnglish = i18n.language === "en";
 
-    return (
+    return isLandscape ? (
+        <div className="w-[34rem] h-full flex flex-col rounded-xl border bg-card text-card-foreground shadow p-4">
+            <h3 className="font-bold text-lg mb-4">
+                {t("rppgHRVLabel") + " (SDNN Index)"}
+            </h3>
+
+            <div className="w-full h-full flex flex-col items-center justify-center p-4">
+                <div className="flex flex-row items-center justify-center mb-4 px-10 gap-4">
+                    <img src={HRVIcon} className="w-20" />
+                    <span className="w-1/2 text-7xl font-bold text-blue-500 text-center">
+                        {state.measurement.hrv}
+                    </span>
+                    <span className="text-4xl font-bold text-blue-500">ms</span>
+                </div>
+                <span className="text-sm text-slate-400 text-center">
+                    {t("hrvDescription")}
+                </span>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+                <h1 className="text-sm font-medium">
+                    {isEnglish
+                        ? "HRV (SDNN Index) Risk Classification"
+                        : "HRV(SDNN Index) 수치에 따른 위험도 구분표"}
+                </h1>
+                <SDNNTable isEnglish={isEnglish} />
+            </div>
+        </div>
+    ) : (
         <div className="w-full h-[28rem] flex flex-col rounded-xl border bg-card text-card-foreground shadow p-4">
             <h3 className="font-bold text-lg mb-4">
                 {t("rppgHRVLabel") + " (SDNN Index)"}
@@ -32,7 +63,9 @@ export default function HRVResultCard({ state }: HRVResultCardProps) {
                 </div>
                 <div className="h-full flex flex-col items-center justify-center">
                     <h1 className="text-sm font-medium">
-                        {isEnglish ? "HRV (SDNN Index) Risk Classification" : "HRV(SDNN Index) 수치에 따른 위험도 구분표"}
+                        {isEnglish
+                            ? "HRV (SDNN Index) Risk Classification"
+                            : "HRV(SDNN Index) 수치에 따른 위험도 구분표"}
                     </h1>
                     <SDNNTable isEnglish={isEnglish} />
                 </div>
@@ -90,7 +123,9 @@ const SDNNTable = ({ isEnglish }: { isEnglish: boolean }) => {
     return (
         <div className="flex flex-col p-4 text-[13px] gap-2">
             <div className="w-full flex flex-row justify-end">
-                <span className="text-[12px] font-bold">{isEnglish ? "Unit (ms)" : "단위(ms)"}</span>
+                <span className="text-[12px] font-bold">
+                    {isEnglish ? "Unit (ms)" : "단위(ms)"}
+                </span>
             </div>
             <table className="w-full border-collapse border border-gray-300 shadow-lg">
                 <thead>
