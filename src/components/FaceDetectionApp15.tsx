@@ -69,72 +69,119 @@ const FaceDetectionApp = ({
         };
     }, [sendBatch]);
 
+    const createWebSocket = (url) => {
+        return new Promise((resolve, reject) => {
+            const socket = new WebSocket(url);
+
+            socket.onopen = () => {
+                console.log(`✅ WebSocket 연결됨: ${url}`);
+                resolve(socket);
+            };
+
+            socket.onerror = () => {
+                console.log(`⚠️ WebSocket 실패: ${url}`);
+                reject();
+            };
+        });
+    };
+
     useEffect(() => {
-        // socketRef.current = new WebSocket("ws://localhost:5050/ws");
-        socketRef.current = new WebSocket(currentURL);
+        const LOCAL_URL = "ws://localhost:5050/ws";
+        const REMOTE_URL = "wss://api.emmaet.com/lucycare/ws";
 
-        frameCountRef.current = 0;
-        lastEmotionSendTimeRef.current = Date.now();
+        // 🎯 비동기 WebSocket 연결 함수
+        const connectWebSocket = async () => {
+            if (socketRef.current) {
+                console.log("⚠️ 기존 WebSocket이 이미 존재합니다:", socketRef.current);
+                return;
+            }
 
-        if (socketRef.current === null) return;
-
-        socketRef.current.onopen = () => {
-            console.log("WebSocket 연결됨");
-        };
-
-        socketRef.current.onmessage = (event) => {
+            let socket;
             try {
-                // JSON 형태의 응답 파싱
-                const response = JSON.parse(event.data);
-                console.log("서버로부터 응답 받음:", response);
+                console.log(`✅ WebSocket 연결 시도: ${LOCAL_URL}`);
+                socket = new WebSocket(LOCAL_URL);
 
-                // setAnalysisResult(response);
+                await new Promise<void>((resolve, reject) => {
+                    socket.onopen = () => {
+                        socketRef.current = socket;
+                        console.log(`✅ WebSocket 연결됨: ${LOCAL_URL}`);
+                        resolve();
+                    };
+                    socket.onerror = () => {
+                        console.log(`⚠️ 로컬 WebSocket 실패, 원격 WebSocket으로 전환`);
+                        reject();
+                    };
+                });
+            } catch {
+                try {
+                    console.log(`🌐 원격 WebSocket 연결 시도: ${REMOTE_URL}`);
+                    socket = new WebSocket(REMOTE_URL);
 
-                if (response.message === "Measurement received successfully") {
-                    // 성공적으로 분석 완료
-                    console.log(response.message);
-
-                    console.log(response.result);
-                    // {
-                    // "Angry": 0,
-                    // "Disgusted": 0,
-                    // "Fearful": 0,
-                    // "Happy": 0,
-                    // "Neutral": 0,
-                    // "Sad": 0,
-                    // "Surprised": 0
-                    // }
-                    // change rppg values
-                    onValueChanged({
-                        hr: response.result.hr as string,
-                        hrv: response.result.hrv as string,
-                        emotion: response.result.emotion as string,
-                        stress: response.result.stress as string,
-                        emotionResult: response.result.emotion_result,
+                    await new Promise<void>((resolve, reject) => {
+                        socket.onopen = () => {
+                            socketRef.current = socket;
+                            console.log(`✅ WebSocket 연결됨: ${REMOTE_URL}`);
+                            resolve();
+                        };
+                        socket.onerror = () => {
+                            console.log(`❌ WebSocket 연결 실패 (모든 서버)`);
+                            reject();
+                        };
                     });
-                } else {
-                    // 에러 처리
-                    console.error("분석 실패:", response.message);
+                } catch {
+                    console.error("❌ 모든 WebSocket 연결 실패");
+                    return;
                 }
-            } catch (error) {
-                console.error("응답 처리 중 에러:", error);
+            }
+
+            // ✅ WebSocket이 완전히 연결된 후 실행해야 할 코드들
+            if (socketRef.current) {
+                console.log("✅ 최종 WebSocket 객체:", socketRef.current);
+
+                socketRef.current.onmessage = (event) => {
+                    try {
+                        const response = JSON.parse(event.data);
+                        console.log("📩 서버 응답:", response);
+
+                        if (response.message === "Measurement received successfully") {
+                            console.log("✅ 분석 성공:", response.message);
+                            onValueChanged({
+                                hr: response.result.hr as string,
+                                hrv: response.result.hrv as string,
+                                emotion: response.result.emotion as string,
+                                stress: response.result.stress as string,
+                                emotionResult: response.result.emotion_result,
+                            });
+                        } else {
+                            console.error("❌ 분석 실패:", response.message);
+                        }
+                    } catch (error) {
+                        console.error("❌ 응답 처리 중 에러:", error);
+                    }
+                };
+
+                socketRef.current.onclose = () => {
+                    console.log("🔌 WebSocket 연결 닫힘");
+                };
+
+                socketRef.current.onerror = (error) => {
+                    console.error("⚠️ WebSocket 에러:", error);
+                };
             }
         };
 
-        socketRef.current.onclose = () => {
-            console.log("WebSocket 연결 닫힘");
-        };
-
-        socketRef.current.onerror = (error) => {
-            console.error("WebSocket 에러:", error);
-        };
+        // 🎯 비동기 함수 호출 (useEffect 내부에서 직접 async 사용 불가능)
+        connectWebSocket();
 
         return () => {
             if (socketRef.current) {
+                console.log("🛑 WebSocket 연결 닫음");
                 socketRef.current.close();
+                socketRef.current = null;
             }
         };
-    }, []);
+    }, []); // 🚀 빈 배열 유지하여 useEffect가 한 번만 실행되도록 함
+
 
     const drawFaceBoundingBox = (canvasCtx, landmarks, width, height) => {
         let minX = width;
