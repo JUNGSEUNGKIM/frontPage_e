@@ -33,14 +33,14 @@ export default function SummaryCard({ state }: SummaryCardProps) {
     // Sample data for the HR chart
     // left : total score - get
     // get : scores. sum
-    const maxScore = 
-        state.diagnosisType === "dementia" ? 
-            30 : 
-        state.diagnosisType === "depressionCESD" ?
-            60 :
-        state.diagnosisType === "depressionGDS" ?
-            30 : 
-            100
+    const maxScore =
+        state.diagnosisType === "dementia"
+            ? 30
+            : state.diagnosisType === "depressionCESD"
+            ? 60
+            : state.diagnosisType === "depressionGDS"
+            ? 30
+            : 100;
 
     const chartData = [
         { browser: "left", scores: maxScore - state.score, fill: "#e2e8f0" },
@@ -149,7 +149,7 @@ export default function SummaryCard({ state }: SummaryCardProps) {
     const { status: diagnosisStatus, description: diagnosisDescription } =
         getDiagnosisResult(diagnosisType!, score);
 
-    const horizontal = "flex flex-col justify-between items-center p-4";
+    const horizontal = "flex flex-row justify-between items-center p-4";
     const vertical = "flex flex-row justify-between items-center p-4";
 
     return (
@@ -225,17 +225,15 @@ export default function SummaryCard({ state }: SummaryCardProps) {
                                     : "text-red-500"
                             }`}
                         >
-                            {
-                                diagnosisStatus === "Danger" ? 
-                                    t("statusDangerLabel") :
-                                diagnosisStatus === "Normal" ? 
-                                    t("statusNormalLabel") : 
-                                diagnosisStatus === "Warning" ? 
-                                    t("statusWarningLabel") :
-                                diagnosisStatus === "Severe" ?
-                                    t("statusSevereLabel") :
-                                "Unknown"
-                            }
+                            {diagnosisStatus === "Danger"
+                                ? t("statusDangerLabel")
+                                : diagnosisStatus === "Normal"
+                                ? t("statusNormalLabel")
+                                : diagnosisStatus === "Warning"
+                                ? t("statusWarningLabel")
+                                : diagnosisStatus === "Severe"
+                                ? t("statusSevereLabel")
+                                : "Unknown"}
                         </h4>
                     </div>
                     <p>{diagnosisDescription}</p>
