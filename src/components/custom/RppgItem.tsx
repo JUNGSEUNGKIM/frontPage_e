@@ -3,7 +3,6 @@ import { CustomImage } from "./CustomImage";
 import hrImage from "@/assets/hr.png";
 import hrvImage from "@/assets/hrv.png";
 import stress from "@/assets/stress.png";
-import { useTranslation } from "react-i18next";
 
 export function RppgItem({
     value,
@@ -14,7 +13,6 @@ export function RppgItem({
     isEmotion: boolean;
     label: string;
 }) {
-    const [t] = useTranslation();
 
     if (isEmotion) {
         return (
@@ -30,16 +28,16 @@ export function RppgItem({
 
     return (
         <HStack className="w-full flex justify-center">
-            {label === "HR" && <CustomImage src={hrImage} alt="HR" />}
-            {label === "HRV" && <CustomImage src={hrvImage} alt="HRV" />}
-            {label === "Stress" && <CustomImage src={stress} alt="Stress" />}
+            {label === "HR" || label === "심박수" && <CustomImage src={hrImage} alt="HR" />}
+            {label === "HRV" || label === "심박 변이도" && <CustomImage src={hrvImage} alt="HRV" />}
+            {label === "Stress" || label === "스트레스" && <CustomImage src={stress} alt="Stress" />}
             <div className="w-1/2 flex items-end">
                 <h1 className="text-3xl font-bold font-black">{value}</h1>
                 <p className="pl-2">
                     {
                         isValueLoading(value) ? "" :
-                        label === "HR" ? "bpm" :
-                        label === "HRV" ? "ms" :
+                        label === "HR" || label === "심박수" ? "bpm" :
+                        label === "HRV" || label === "심박 변이도" ? "ms" :
                         ""
                     }
                 </p>
