@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { RppgMeasurementList } from "@/components/custom/RppgMeasurementList";
+import { RppgMeasurementList } from "@/features/diagnosis/components/RppgMeasurementList";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
 
