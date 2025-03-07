@@ -149,7 +149,7 @@ export default function SummaryCard({ state }: SummaryCardProps) {
     const { status: diagnosisStatus, description: diagnosisDescription } =
         getDiagnosisResult(diagnosisType!, score);
 
-    const horizontal = "flex flex-row justify-between items-center p-4";
+    const horizontal = "flex flex-col justify-between items-center p-4";
     const vertical = "flex flex-row justify-between items-center p-4";
 
     return (
