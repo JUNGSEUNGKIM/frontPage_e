@@ -37,8 +37,6 @@ export default function ResultPage() {
     const location = useLocation();
     const state = location.state as DiagnosisResult; // Type Assertion
 
-    console.log(state.score);
-
     const navigate = useNavigate();
 
     return isLandScape() ? (

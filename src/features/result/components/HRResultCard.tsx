@@ -23,7 +23,6 @@ export default function HRResultCard({
         .filter((e) => e != "-" && e != "--" && e != "0")
         .map((e) => Number(e))
         .filter((e) => e != 0);
-    console.log(convertedHrValues);
     const hrValuesMin = Math.min(...convertedHrValues);
     const hrValuesMax = Math.max(...convertedHrValues);
     const hrValuesMean = Math.floor(
