@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { RppgMeasurementList } from "@/components/custom/RppgResults";
+import { RppgMeasurementList } from "@/features/diagnosis/components/RppgMeasurementList";
 import FaceDetectionApp from "@/components/FaceDetectionApp15";
 import { RPPGMeasurement } from "@/types/rppg_types";
 
@@ -69,6 +69,7 @@ export function DiagnosisPage() {
     }
 
     const mutation = useHealthSurveyAnswerPost();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleSubmit = (memberId: number, responses: any[]) => {
         const updatedResponsesObject: HealthSurveyResult = {
             member_id: memberId,
@@ -84,10 +85,10 @@ export function DiagnosisPage() {
             emotional_state: responses[9],
             existing_conditions: responses[10],
             medication: responses[11],
-        }
-        mutation.mutate({answerData: updatedResponsesObject, memberId: 1});
+        };
+        mutation.mutate({ answerData: updatedResponsesObject, memberId: 1 });
         updateBasicInfo(updatedResponsesObject);
-    }
+    };
 
     useEffect(() => {
         switch (surveyState.status) {

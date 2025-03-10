@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { AnswerButton } from "@/components/custom/AnswerButton";
+import { AnswerButton } from "@/features/diagnosis/components/AnswerButton";
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
@@ -23,7 +23,11 @@ export default function DiagnosisProgressFragment() {
     // 객관식 답 변경 시 해당하는 answer값 설정
     useEffect(() => {
         if (tappedButtonIdx != null) {
-            setAnswerValue(surveyState.survey.questions[surveyState.currentIndex].choices[tappedButtonIdx].choice_value);
+            setAnswerValue(
+                surveyState.survey.questions[surveyState.currentIndex].choices[
+                    tappedButtonIdx
+                ].choice_value
+            );
         }
     }, [tappedButtonIdx]);
 
@@ -42,23 +46,34 @@ export default function DiagnosisProgressFragment() {
 
     // handling checkbox tap
     function handleAnswerCheckboxTap(idx: number) {
-        const idxIndex = checkboxIdx.indexOf(idx)
-        if (idxIndex === -1) { // selection
+        const idxIndex = checkboxIdx.indexOf(idx);
+        if (idxIndex === -1) {
+            // selection
             setCheckboxIdx((curr) => [...curr, idx]);
-        } else { // deselection
-            setCheckboxIdx((curr) => [...curr.slice(0, idxIndex), ...curr.slice(idxIndex + 1)]);
+        } else {
+            // deselection
+            setCheckboxIdx((curr) => [
+                ...curr.slice(0, idxIndex),
+                ...curr.slice(idxIndex + 1),
+            ]);
         }
     }
     // update answer value string
     useEffect(() => {
-        setAnswerValue(checkboxIdx.map((index) => surveyState.survey.questions[surveyState.currentIndex].choices[index].choice_value).join(','))
+        setAnswerValue(
+            checkboxIdx
+                .map(
+                    (index) =>
+                        surveyState.survey.questions[surveyState.currentIndex]
+                            .choices[index].choice_value
+                )
+                .join(",")
+        );
     }, [checkboxIdx]);
 
     // 진행된 퍼센트 계산
     const progressPercentage =
-        (surveyState.currentIndex /
-            surveyState.survey.questions.length) *
-        100;
+        (surveyState.currentIndex / surveyState.survey.questions.length) * 100;
 
     return (
         // fragment container
@@ -66,12 +81,11 @@ export default function DiagnosisProgressFragment() {
             {/* Question Text */}
             <div className="h-1/4 flex flex-col items-center gap-10">
                 <h1 className="w-full h-2/5 text-center text-4xl font-bold text-black mt-14">
-                    {
-                        i18n.language === "en" ?
-                            surveyState.survey.questions[surveyState.currentIndex].question_text_en
-                        :
-                            surveyState.survey.questions[surveyState.currentIndex].question_text
-                    }
+                    {i18n.language === "en"
+                        ? surveyState.survey.questions[surveyState.currentIndex]
+                              .question_text_en
+                        : surveyState.survey.questions[surveyState.currentIndex]
+                              .question_text}
                 </h1>
                 {/* Progress indicator */}
                 <div className="w-11/12 h-[0.4rem] bg-[#d9d9d9]">
@@ -81,47 +95,79 @@ export default function DiagnosisProgressFragment() {
                     />
                 </div>
             </div>
+            {
+                surveyState.survey.questions[surveyState.currentIndex]
+                    .question_type === "number" && (
+                    <NumberInputField
+                        inputValue={answerValue}
+                        setInputValue={setAnswerValue}
+                    />
+                )
 
-            { surveyState.survey.questions[surveyState.currentIndex].question_type === "number" && 
-                <NumberInputField inputValue={answerValue} setInputValue={setAnswerValue}/>
+                // Multiple choice boxes
+            }{" "}
+            {
+                surveyState.survey.questions[surveyState.currentIndex]
+                    .question_type === "multiple_choice" && (
+                    <div className="w-full h-2/4 flex flex-col">
+                        {surveyState.survey.questions[
+                            surveyState.currentIndex
+                        ].choices.map((_, idx) => (
+                            <AnswerButton
+                                key={idx}
+                                label={
+                                    i18n.language === "en"
+                                        ? surveyState.survey.questions[
+                                              surveyState.currentIndex
+                                          ].choices[idx].choice_label_en
+                                        : surveyState.survey.questions[
+                                              surveyState.currentIndex
+                                          ].choices[idx].choice_label
+                                }
+                                isSelected={tappedButtonIdx === idx}
+                                handleTap={() => handleAnswerTap(idx)}
+                                isSmall={
+                                    surveyState.survey.questions[
+                                        surveyState.currentIndex
+                                    ].choices.length > 4
+                                }
+                            />
+                        ))}
+                    </div>
+                )
 
-            // Multiple choice boxes
-            } { surveyState.survey.questions[surveyState.currentIndex].question_type === "multiple_choice" && 
+                // Checkboxes
+            }{" "}
+            {surveyState.survey.questions[surveyState.currentIndex]
+                .question_type === "checkbox" && (
                 <div className="w-full h-2/4 flex flex-col">
-                    {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
+                    {surveyState.survey.questions[
+                        surveyState.currentIndex
+                    ].choices.map((_, idx) => (
                         <AnswerButton
                             key={idx}
                             label={
-                                i18n.language === "en" ?
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
-                                :
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
-                            }                            isSelected={tappedButtonIdx === idx}
-                            handleTap={() => handleAnswerTap(idx)}
-                            isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
+                                i18n.language === "en"
+                                    ? surveyState.survey.questions[
+                                          surveyState.currentIndex
+                                      ].choices[idx].choice_label_en
+                                    : surveyState.survey.questions[
+                                          surveyState.currentIndex
+                                      ].choices[idx].choice_label
+                            }
+                            isSelected={checkboxIdx.indexOf(idx) > -1}
+                            handleTap={() => {
+                                handleAnswerCheckboxTap(idx);
+                            }}
+                            isSmall={
+                                surveyState.survey.questions[
+                                    surveyState.currentIndex
+                                ].choices.length > 4
+                            }
                         />
                     ))}
                 </div>
-
-            // Checkboxes
-            } { surveyState.survey.questions[surveyState.currentIndex].question_type === "checkbox" &&
-                <div className="w-full h-2/4 flex flex-col">
-                    {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
-                        <AnswerButton
-                            key={idx}
-                            label={
-                                i18n.language === "en" ?
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
-                                :
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
-                            }                            isSelected={checkboxIdx.indexOf(idx) > -1}
-                            handleTap={() => {handleAnswerCheckboxTap(idx)}}
-                            isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
-                        />
-                    ))}
-                </div>
-            }
-
+            )}
             <DiagnosisProgressToolBar selectedIdx={tappedButtonIdx} />
         </div>
     );

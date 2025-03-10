@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { AnswerButton } from "@/components/custom/AnswerButton";
+import { AnswerButton } from "@/features/diagnosis/components/AnswerButton";
 import { useDiagnosisStore } from "@/shared/stores/diagnosisStore";
 import DiagnosisProgressToolBar from "../DiagnosisProgressToolBar";
 import { motion } from "motion/react";
@@ -20,7 +20,11 @@ export default function SleepQualitySurveyFragment() {
     // 객관식 답 변경 시 해당하는 answer값 설정
     useEffect(() => {
         if (tappedButtonIdx != null) {
-            setAnswerValue(surveyState.survey.questions[surveyState.currentIndex].choices[tappedButtonIdx].choice_value);
+            setAnswerValue(
+                surveyState.survey.questions[surveyState.currentIndex].choices[
+                    tappedButtonIdx
+                ].choice_value
+            );
         }
     }, [tappedButtonIdx]);
 
@@ -28,10 +32,17 @@ export default function SleepQualitySurveyFragment() {
     // TODO: 이전에 선택했던 값 남기기?
     useEffect(() => {
         setTappedButtonIdx(null);
-        switch(surveyState.survey.questions[surveyState.currentIndex].question_type) {
-            case "time": setAnswerValue("1:0"); break;
-            case "time_am_pm": setAnswerValue("1:0AM"); break;
-            default: setAnswerValue("");
+        switch (
+            surveyState.survey.questions[surveyState.currentIndex].question_type
+        ) {
+            case "time":
+                setAnswerValue("1:0");
+                break;
+            case "time_am_pm":
+                setAnswerValue("1:0AM");
+                break;
+            default:
+                setAnswerValue("");
         }
     }, [surveyState.currentIndex]);
 
@@ -42,9 +53,7 @@ export default function SleepQualitySurveyFragment() {
 
     // 진행된 퍼센트 계산
     const progressPercentage =
-        (surveyState.currentIndex /
-            surveyState.survey.questions.length) *
-        100;
+        (surveyState.currentIndex / surveyState.survey.questions.length) * 100;
 
     return (
         // fragment container
@@ -52,12 +61,11 @@ export default function SleepQualitySurveyFragment() {
             {/* Question Text */}
             <div className="h-1/4 flex flex-col items-center gap-10">
                 <h1 className="w-full h-2/5 text-center text-4xl font-bold text-black mt-14">
-                    {
-                        i18n.language === "en" ?
-                            surveyState.survey.questions[surveyState.currentIndex].question_text_en
-                        :
-                            surveyState.survey.questions[surveyState.currentIndex].question_text
-                    }
+                    {i18n.language === "en"
+                        ? surveyState.survey.questions[surveyState.currentIndex]
+                              .question_text_en
+                        : surveyState.survey.questions[surveyState.currentIndex]
+                              .question_text}
                 </h1>
                 {/* Progress indicator */}
                 <div className="w-11/12 h-[0.4rem] bg-[#d9d9d9]">
@@ -69,46 +77,70 @@ export default function SleepQualitySurveyFragment() {
             </div>
 
             {/* Multiple choice */}
-            { surveyState.survey.questions[surveyState.currentIndex].question_type === "multiple_choice" &&
+            {surveyState.survey.questions[surveyState.currentIndex]
+                .question_type === "multiple_choice" && (
                 <div className="w-full h-2/4 flex flex-col">
-                    {surveyState.survey.questions[surveyState.currentIndex].choices.map((_, idx) => (
+                    {surveyState.survey.questions[
+                        surveyState.currentIndex
+                    ].choices.map((_, idx) => (
                         <AnswerButton
                             key={idx}
                             label={
-                                i18n.language === "en" ?
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label_en
-                                :
-                                    surveyState.survey.questions[surveyState.currentIndex].choices[idx].choice_label
-                            }                            isSelected={tappedButtonIdx === idx}
+                                i18n.language === "en"
+                                    ? surveyState.survey.questions[
+                                          surveyState.currentIndex
+                                      ].choices[idx].choice_label_en
+                                    : surveyState.survey.questions[
+                                          surveyState.currentIndex
+                                      ].choices[idx].choice_label
+                            }
+                            isSelected={tappedButtonIdx === idx}
                             handleTap={() => handleAnswerTap(idx)}
-                            isSmall={surveyState.survey.questions[surveyState.currentIndex].choices.length > 4}
+                            isSmall={
+                                surveyState.survey.questions[
+                                    surveyState.currentIndex
+                                ].choices.length > 4
+                            }
                         />
                     ))}
                 </div>
-            }
+            )}
 
             {/* Time picker */}
-            { surveyState.survey.questions[surveyState.currentIndex].question_type === "time" &&
+            {surveyState.survey.questions[surveyState.currentIndex]
+                .question_type === "time" && (
                 <div className="w-full h-2/4 flex flex-col">
-                    <TimePicker pickMeridian={false} inputValue={answerValue} setInputValue={setAnswerValue}/>
+                    <TimePicker
+                        pickMeridian={false}
+                        inputValue={answerValue}
+                        setInputValue={setAnswerValue}
+                    />
                 </div>
-            }
+            )}
 
             {/* Time picker with AM/PM selector */}
-            { surveyState.survey.questions[surveyState.currentIndex].question_type === "time_am_pm" &&
+            {surveyState.survey.questions[surveyState.currentIndex]
+                .question_type === "time_am_pm" && (
                 <div className="w-full h-2/4 flex flex-col">
-                    <TimePicker pickMeridian={true} inputValue={answerValue} setInputValue={setAnswerValue}/>
+                    <TimePicker
+                        pickMeridian={true}
+                        inputValue={answerValue}
+                        setInputValue={setAnswerValue}
+                    />
                 </div>
-            }
+            )}
 
-            <DiagnosisProgressToolBar 
-                answerValue={answerValue} 
+            <DiagnosisProgressToolBar
+                answerValue={answerValue}
                 skipDefaultValue={"null"}
-                skipQuestionCount={ // skip rest of the survey (5 questions) if chosen 0 for 13th question
-                    surveyState.currentIndex === 18 && (tappedButtonIdx === 0 || tappedButtonIdx === 1)
-                    ? 5 : 0
+                skipQuestionCount={
+                    // skip rest of the survey (5 questions) if chosen 0 for 13th question
+                    surveyState.currentIndex === 18 &&
+                    (tappedButtonIdx === 0 || tappedButtonIdx === 1)
+                        ? 5
+                        : 0
                 }
-             />
+            />
         </div>
     );
 }

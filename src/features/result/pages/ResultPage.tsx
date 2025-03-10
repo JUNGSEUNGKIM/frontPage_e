@@ -37,17 +37,12 @@ export default function ResultPage() {
     const location = useLocation();
     const state = location.state as DiagnosisResult; // Type Assertion
 
-    console.log(state.score)
-
     const navigate = useNavigate();
 
     return isLandScape() ? (
-        <div
-            id="capture"
-            className="w-full h-screen flex flex-row gap-4 bg-[#f8f8f8] pr-4"
-        >
+        <div className="w-full h-screen flex flex-row bg-[#f8f8f8] pr-4 gap-4">
             {/* SideBar */}
-            <div className="w-[6rem] h-full py-32 flex flex-col items-center justify-end bg-blue-500 rounded-r-[50px] gap-10">
+            <div className="w-[6rem] h-full py-32 flex flex-col items-center justify-end bg-blue-500 rounded-r-[50px] gap-10 mr-4">
                 <ScaleTransitionButtonWrapper
                     onClick={() => {
                         navigate("/onboarding");
@@ -60,24 +55,24 @@ export default function ResultPage() {
                 </ScaleTransitionButtonWrapper>
                 <div className="h-4" />
             </div>
+            {/* results */}
             <div
                 id="capture"
                 className="w-full h-screen flex flex-col items-start justify-center gap-4"
             >
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-3xl font-bold">
                     {t("diagnosisResultLabel")}
                 </h1>
-                <div className="grid grid-cols-3 gap-4">
-                    <SummaryCard state={state} />
-                    <div className="w-full h-full flex flex-col gap-4">
-                        <HRResultCard state={state} />
+                <div className="flex flex-row gap-4">
+                    <HRResultCard state={state} isLandscape />
+                    <HRVResultCard state={state} isLandscape />
+                    <div className="w-[25rem] flex flex-col gap-4">
+                        <LSStressResultCard state={state} />
                         <LSEmotionResultCard state={state} />
                     </div>
-                    <div className="w-full h-full flex flex-col gap-4">
-                        <HRVResultCard state={state} />
-                        <LSStressResultCard state={state} />
-                    </div>
+                    {/* <SummaryCard state={state} /> */}
                 </div>
+
                 {/* 카메라 영상 & 진단 결과 */}
                 {/* <div className="w-1/3 flex flex-row gap-4">
                     <SummaryCard state={state} />
@@ -124,9 +119,9 @@ export default function ResultPage() {
 
             {/* 카메라 영상 & 진단 결과 */}
 
-            <HRResultCard state={state} />
+            <HRResultCard state={state} isLandscape={false} />
             {/* HR & HRV 결과 */}
-            <HRVResultCard state={state} />
+            <HRVResultCard state={state} isLandscape={false} />
 
             {/* Emotions & Stress 결과 */}
             <div className="grid grid-cols-2 gap-4">

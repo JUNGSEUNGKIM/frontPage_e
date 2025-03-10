@@ -14,3 +14,5 @@ export interface RPPGMeasurement {
         Surprised: number;
     };
 }
+
+export type RPPGType = "HR" | "HRV" | "Stress" | "Emotion";
