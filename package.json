@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:open":"cypress open"
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.2.3",
@@ -43,6 +43,7 @@
     "react-slick": "^0.30.3",
     "react-webcam": "^7.2.0",
     "recharts": "^2.15.0",
+    "socket.io-client": "^4.8.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "use-sound": "^4.0.3",
